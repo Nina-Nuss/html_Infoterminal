@@ -64,7 +64,7 @@
                                             <p class="text-md-left"></p>
                                             <div class="d-flex align-items-center  mb-2 ">
                                                 <label for="anzeigeDauer" class="form-label me-2 mb-0">ausgewählte Zeit:</label>
-                                                <input type="text" class="form-control ml-2 w-50 " id="anzeigeDauer" value="Infoseite auswählen" readonly>
+                                                <h4 class="form-control ml-2 w-50 " id="anzeigeDauer" value="Infoseite auswählen" readonly></h4>
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i>
