@@ -7,12 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Erlaubt nur Buchstaben, Zahlen und Unterstrich
     if (isset($titel)) {
         if (!preg_match('/^[A-Za-z0-9_]+$/', $titel)) {
-            echo "Ungültige Zeichen im Titel!";
+            echo "";
+
             exit;
         }
 
         if (!preg_match('/^[A-Za-z0-9_ \r\n]+$/', $beschreibung) && $beschreibung !== '') {
-            echo "Ungültige Zeichen in der Beschreibung!";
+            echo "";
             exit;
         }
     }
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         // Erlaubte Dateierweiterungen
-        $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php'];
         $allowedVideoTypes = ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm'];
         $allowedTypes = array_merge($allowedImageTypes, $allowedVideoTypes);
 

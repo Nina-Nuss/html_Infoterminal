@@ -67,7 +67,7 @@
                                    
 
                                         <div class="form-group mb-2">
-                                            <p class="text-md-left">Left aligned text on viewports sized MD (medium) or wider.</p>
+                                            <p class="text-md-left"></p>
                                             <div class="d-flex align-items-center mt-4 p-2 justify-content-space-between">
                                                
                                                 <div class="d-flex align-items-center">

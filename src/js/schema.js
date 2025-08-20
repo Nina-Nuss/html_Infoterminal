@@ -47,7 +47,7 @@ class CardObj {
     htmlBody(umgebung) {
         // Bestimme den korrekten Bildpfad basierend auf dem imagePathb
         const ext = this.imagePath.split('.').pop().toLowerCase();
-        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php' ]; // gängige Bildformate
         const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
 
         let placeHolder;
@@ -65,6 +65,7 @@ class CardObj {
         }
         else {
             placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
+            alert(ext + " ist kein gültiges Bild- oder Videoformat. Bitte verwenden Sie eines der folgenden Formate: " + imageExts.join(', ') + " oder " + videoExts.join(', '));
         }
 
         const body = `
