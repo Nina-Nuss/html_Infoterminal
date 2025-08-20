@@ -32,7 +32,7 @@
                                     <div class="card-body w-25">
                                         <div class="d-flex align-items-center justify-content-space-between mb-3">
                                             <label for="websiteName" class="form-label me-2 mb-0">Infoseite Name:</label>
-                                            <input type="text" class="form-control ml-2 w-50" id="websiteName" value="Infoseite auswählen" readonly>
+                                            <input type="text" class="form-control ml-4 w-50" id="websiteName" value="Infoseite auswählen" readonly>
                                         </div>
 
 
@@ -62,13 +62,12 @@
 
                                         <div class="form-group mb-2">
                                             <p class="text-md-left"></p>
-                                            <div class="d-flex align-items-center justify-content-space-between mb-3">
-                                                <label for="anzeigeDauer" class="form-label me-2 mb-0">Ausgewählte Zeit:</label>
+                                            <div class="d-flex align-items-center  mb-2 ">
+                                                <label for="anzeigeDauer" class="form-label me-2 mb-0">ausgewählte Zeit:</label>
                                                 <input type="text" class="form-control ml-2 w-50 " id="anzeigeDauer" value="Infoseite auswählen" readonly>
                                             </div>
-                                            <div class="d-flex align-items-center mt-4">
-
-
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i>
                                                 <div class="d-flex align-items-center">
                                                     <label for="selectSekunden" class="me-2 ">Sekunden:</label>
                                                     <input type="text" id="selectSekunden" class="form-control ml-2" maxlength="2" style="width: 50px;">
@@ -80,7 +79,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="form-check mb-2">
+                                        <div class="form-group form-check">
                                             <input class="form-check-input" type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
                                             <label class="form-check-label" for="checkA">
                                                 anzeigen

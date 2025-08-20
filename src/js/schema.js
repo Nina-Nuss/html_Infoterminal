@@ -924,6 +924,8 @@ function deakAktivCb(aktiv) {
     var btnShowUhrzeit = document.getElementById("btnShowUhrzeit");
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
+    var selectSekunden = document.getElementById("selectSekunden");
+    var selectMinuten = document.getElementById("selectMinuten");
 
     if (window.location.href.includes("templatebereich.php")) {
         return;
@@ -939,6 +941,10 @@ function deakAktivCb(aktiv) {
         btnShowZeitraum.disabled = true; // Deaktiviert den Löschen-Button für Datum und Uhrzeit
         btnShowUhrzeit.disabled = true; // Deaktiviert den Löschen-Button für Zeit
         panelForDateTime.style.display = "none"; // Versteckt das Panel für Datum und Uhrzeit
+        selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
+        selectMinuten.disabled = true; // Deaktiviert die Minuten-Auswahl
+        selectMinuten.value = ""; // Setzt die Minuten-Auswahl auf leer
+        selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
     } else {
         titel.disabled = false; // Aktiviert das Titel-Eingabefeld
         checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
@@ -947,6 +953,8 @@ function deakAktivCb(aktiv) {
         btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
         btnShowZeitraum.disabled = false; // Aktiviert den Löschen-Button für Datum und Uhrzeit
         btnShowUhrzeit.disabled = false; // Aktiviert den Löschen-Button für Zeit
+        selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
+        selectMinuten.disabled = false; // Deaktiviert die Minuten-Auswahl
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
     }
 }
