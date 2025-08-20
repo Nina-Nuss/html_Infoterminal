@@ -152,9 +152,7 @@ select::after {
     transition: transform 0.3s ease;
 }
 
-.form-check {
-    padding-left: 0rem !important;
-}
+
 
 [id^="imagePreview"] img:hover {
     transform: scale(1.2);

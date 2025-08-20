@@ -48,7 +48,7 @@
                                                         <i class="fas fa-image me-2"></i> Bild auswählen
                                                     </label>
                                                     <input type="file" id="img" name="img" accept="image/*,video/*">
-                                                    <img id="imgPreview" src="#" alt="Bildvorschau" style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
+                                                    <img id="imgPreview" src="#" style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
                                                     <video id="videoPreview" controls muted style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
                                                         <source src="#" type="video/mp4">
                                                         Ihr Browser unterstützt das Video-Element nicht.

@@ -5,7 +5,7 @@
 <?php include  '../layout/modal/loeschen.html'; ?>
 
 
-<div class="container-fluid py-2 " style="max-height: 90vh; overflow-y: auto;">
+<div class="container-fluid py-2" style="height:100vh; overflow-y:auto;">
 
     <div class="row">
 
@@ -30,18 +30,12 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <div class="card-body w-25">
-                                        <div class="mb-3">
-                                            <label for="websiteName" class="form-label">Infoseite Name: </label>
-                                            <input type="text" class="form-control" id="websiteName" value="bitte Infoseite auswählen" readonly>
+                                        <div class="d-flex align-items-center justify-content-space-between mb-3">
+                                            <label for="websiteName" class="form-label me-2 mb-0">Infoseite Name:</label>
+                                            <input type="text" class="form-control ml-2 w-50" id="websiteName" value="Infoseite auswählen" readonly>
                                         </div>
 
-                                        <div class="form-check mb-3">
-                                         
-                                            <input class="form-check-input" type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
-                                            <label class="form-check-label" for="checkA">
-                                                anzeigen
-                                            </label>
-                                        </div>
+
 
                                         <!-- <div class="form-group mb-3">
                                             <label for="timerSelectRange" class="form-label">Anzeige-Dauer:</label>
@@ -64,23 +58,35 @@
                                             </select>
                                         </div> -->
 
-                                   
+
 
                                         <div class="form-group mb-2">
                                             <p class="text-md-left"></p>
-                                            <div class="d-flex align-items-center mt-4 p-2 justify-content-space-between">
-                                               
+                                            <div class="d-flex align-items-center justify-content-space-between mb-3">
+                                                <label for="anzeigeDauer" class="form-label me-2 mb-0">Ausgewählte Zeit:</label>
+                                                <input type="text" class="form-control ml-2 w-50 " id="anzeigeDauer" value="Infoseite auswählen" readonly>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+
+
                                                 <div class="d-flex align-items-center">
-                                                    <label for="selectSekunden" class="me-2">Sekunden:</label>
-                                                    <input type="text" id="selectSekunden" class="form-control" maxlength="2" style="width: 50px;">
+                                                    <label for="selectSekunden" class="me-2 ">Sekunden:</label>
+                                                    <input type="text" id="selectSekunden" class="form-control ml-2" maxlength="2" style="width: 50px;">
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <label for="selectMinuten" class="me-2">Minuten:</label>
-                                                    <input type="text" id="selectMinuten" class="form-control" maxlength="2" style="width: 50px;">
+                                                    <label for="selectMinuten" class="me-2 ml-2">Minuten:</label>
+                                                    <input type="text" id="selectMinuten" class="form-control ml-2" maxlength="2" style="width: 50px;">
                                                 </div>
-                                            
+
                                             </div>
                                         </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
+                                            <label class="form-check-label" for="checkA">
+                                                anzeigen
+                                            </label>
+                                        </div>
+
                                     </div>
                                     <div class="card-body w-25">
                                         <div class="mb-2">
@@ -148,7 +154,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-12 d-flex justify-content-center">
-                                        <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()" class="btn btn-success shadow-sm w-75">
+                                        <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()" class="btn btn-success shadow-sm w-25">
                                             <i class="fas fa-save"></i> Speichern
                                         </button>
                                     </div>
@@ -170,7 +176,7 @@
                                             <option value="">-- Bitte wählen --</option>
                                         </select>
                                     </div>
-                                    <button id="openTerminalBtn" class="btn btn-primary w-100">
+                                    <button id="openTerminalBtn" class="btn btn-primary w-50">
                                         <i class="fas fa-external-link-alt me-1"></i> Anzeige öffnen
                                     </button>
                                 </div>

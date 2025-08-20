@@ -47,7 +47,7 @@ class CardObj {
     htmlBody(umgebung) {
         // Bestimme den korrekten Bildpfad basierend auf dem imagePathb
         const ext = this.imagePath.split('.').pop().toLowerCase();
-        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php' ]; // gängige Bildformate
+        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php']; // gängige Bildformate
         const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
 
         let placeHolder;
@@ -65,9 +65,7 @@ class CardObj {
         }
         else {
             placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
-            alert(ext + " ist kein gültiges Bild- oder Videoformat. Bitte verwenden Sie eines der folgenden Formate: " + imageExts.join(', ') + " oder " + videoExts.join(', '));
         }
-
         const body = `
         <div class="card-deck p-1 h-50">
             <div class="card" id="${this.cardObjekte}">
@@ -83,7 +81,7 @@ class CardObj {
                         <label class="form-check-label" id="label${this.id}" name="label${this.id}" for="flexCheck${this.id}"></label>
                     </small>
                     <div class="form-check">
-                        <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${this.selectedTime / 1000} sekunde</small>
+                        <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${getSekMin(this.selectedTime)}</small>
                     </div>
                 </div>
                 <div class="card-footer p-1">
@@ -328,15 +326,46 @@ class CardObj {
     }
 
     static prepareSelectedTimer(obj) {
-        var selectSekunden = parseInt(document.getElementById("selectSekunden").value) || 0; // Falls leer, wird 0 verwendet
-        var selectMinuten = parseInt(document.getElementById("selectMinuten").value) || 0; // Falls leer, wird 0 verwendet
+        var selectSekunden = document.getElementById("selectSekunden");
+        var selectMinuten = document.getElementById("selectMinuten");
 
-        console.log("Selected Minuten: ", selectMinuten);
-        console.log("Selected Sekunden: ", selectSekunden);
+        if (selectSekunden.value == "" && selectMinuten.value == "") {
+            alert("keine Zeit Eingabe wurde getätigt")
+            return; //keine Eingabe, also nichts tun
+        }
+        var resultMinute = isParseableNumber(selectMinuten.value)
+        var resultSekunden = isParseableNumber(selectSekunden.value)
 
-        if (selectMinuten || selectSekunden) {
+
+        if (!resultMinute || !resultSekunden) {
+            alert("Bitte geben Sie gültige Werte für Minuten und Sekunden ein.");
+            selectSekunden.value = "";
+            selectMinuten.value = "";
+            return;
+        }
+        var selectSekunden = parseInt(selectSekunden.value)
+        var selectMinuten = parseInt(selectMinuten.value)
+
+        console.log("Minuten:", selectMinuten);
+        console.log("Sekunden:", selectSekunden);
+
+        if (selectMinuten > 59 || selectSekunden > 59) {
+            alert("Bitte Minuten und Sekunden im Bereich von 0-59 eingeben.");
+            return;
+        }
+
+        if (selectMinuten && selectSekunden) {
             obj.selectedTime = (selectMinuten * 60 + selectSekunden) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
             console.log("Selected Time in Millisekunden: ", obj.selectedTime);
+            console.log("sekunden und minuten vorhanden");
+
+        } else if (selectMinuten) {
+            obj.selectedTime = selectMinuten * 60 * 1000; // Minuten in Millisekunden umrechnen
+            console.log("minuten vorhanden:", obj.selectMinuten);
+        } else if (selectSekunden) {
+            obj.selectedTime = selectSekunden * 1000; // Sekunden in Millisekunden umrechnen
+            console.log("sekunden vorhanden:", obj.selectSekunden);
+
         } else {
             obj.selectedTime = 0; // Setze auf 0, wenn keine Eingabe vorhanden ist
             console.log("Keine Zeit ausgewählt, setze auf 0");
@@ -377,6 +406,7 @@ class CardObj {
         var cardtimerLabel = document.getElementById(cardObj.selectedTimerLabel);
         // var timerbereich = document.getElementById("timerSelectRange");
         var titel = document.getElementById("websiteName");
+        var anzeigeDauer = document.getElementById("anzeigeDauer");
         var checkA = document.getElementById("checkA");
 
 
@@ -390,17 +420,21 @@ class CardObj {
 
         checkA.checked = cardObj.aktiv; // Set the checkbox state
         titel.value = cardObj.titel; // Set the title to the checkbox's title
+
         // timerbereich.value = cardObj.selectedTime; // Set the time range
         var selectedTime = cardObj.selectedTime / 1000; // Convert milliseconds to seconds
-
+        var restSekunden = selectedTime % 60;
+        var restMinuten = Math.floor(selectedTime / 60);
+        console.log("Rest Minuten:", restMinuten);
+        console.log("Rest Sekunden:", restSekunden);
+        anzeigeDauer.value = restMinuten + " Min," +  " Sek: " + restSekunden; // Set the display duration
+        cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.value}`; // Update the label with the selected time
+     
+     
         var startTimeSplit = cardObj.startDate.split(" ")[1];
         var startDateSplit = cardObj.startDate.split(" ")[0];
-
-
         var endTimeSplit = cardObj.endDate.split(" ")[1];
         var endDateSplit = cardObj.endDate.split(" ")[0];
-
-
 
         if (!startTimeSplit || !startDateSplit) {
             console.error("Startzeit oder Startdatum ist ungültig:", cardObj.startDate);
@@ -413,7 +447,6 @@ class CardObj {
         }
 
         console.log("Startzeit:", startDateSplit, startTimeSplit);
-
         startDate.value = startDateSplit
         endDate.value = endDateSplit; // Set the end date
         startTimeDate.value = startTimeSplit;
@@ -426,10 +459,6 @@ class CardObj {
         // startDate.value = startDate;
         // startTimeDate.value = startTime; // Set the end date
         // endDate.value = cardObj.endDate;
-
-
-        cardtimerLabel.innerHTML = `Dauer: ${selectedTime} Sekunden`; // Update the label with the selected time
-
         checkA.checked = cardObj.aktiv; // Set the checkbox state
 
     }
@@ -765,6 +794,8 @@ async function meow(event) {
         console.error("Fehler beim erstellen des CardObj:", error);
     }
     form.reset(); // Formular zurücksetzen
+    const imgPreview = document.getElementById('imgPreview');
+    imgPreview.src = '#'; // Bildvorschau zurücksetzen
 
 }
 async function sendPicture(formData) {
@@ -853,10 +884,10 @@ function erstelleFunktionForCardObj(objID) {
         deakAktivCb(false);
         CardObj.loadChanges(obj); // Load changes for the selected CardObj
         // CardObj.DateTimeHandler(obj);
-    
+
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
-           
+
             if (id !== extractNumberFromString(cb.id)) {
                 cb.checked = false;
             }
@@ -892,13 +923,15 @@ function deakAktivCb(aktiv) {
     var btnShowZeitraum = document.getElementById("btnShowZeitraum");
     var btnShowUhrzeit = document.getElementById("btnShowUhrzeit");
     var panelForDateTime = document.getElementById("panelForDateTime");
+    var anzeigeDauer = document.getElementById("anzeigeDauer");
 
     if (window.location.href.includes("templatebereich.php")) {
         return;
     }
     if (aktiv == true) {
         titel.disabled = true; // Deaktiviert das Titel-Eingabefeld
-        titel.value = "bitte wählen sie eine Infoseite"; // Setzt den Titel auf leer
+        titel.value = "Infoseite auswählen"; // Setzt den Titel auf leer
+        anzeigeDauer.value = "Infoseite auswählen"; // Setzt den Titel auf leer
         checkA.disabled = true; // Deaktiviert die Aktiv-Checkbox
         btn_hinzufuegen.disabled = true; // Deaktiviert den Hinzufügen-
         btn_loeschen.disabled = true; // Deaktiviert den Löschen-Button

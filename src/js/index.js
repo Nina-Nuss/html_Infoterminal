@@ -31,6 +31,11 @@ window.onload = async function () {
     erstelleNavigation();
 }
 
+function getSekMin(ms){
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${minutes} Min,  ${seconds} Sek`;
+}
 
 function deakNavbarbtns() {
     try {
@@ -227,6 +232,20 @@ function saveCardObj() {
         });
     });
 }
+
+
+function isParseableNumber(str) {
+    for (const ch of str) {
+        if (ch.trim() === "") continue; // Leerzeichen überspringen
+        if (!Number.isNaN(Number(ch))) {
+            console.log("parseable number:", ch);
+        } else {
+        console.log("not parseable:", ch);
+        return false; 
+        }
+    }
+    return true;
+};
 
 async function updateDataBase(cardObj, databaseUrl) {
     // Erstellen eines FormData-Objekts
