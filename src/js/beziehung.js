@@ -73,24 +73,23 @@ class Beziehungen {
                 let obj = erstelleObj(umgebungsId);
                 if (obj) {
                     anzeigebereichD.innerHTML += `<tr>
-                    <td>${obj.id}</td>
-                    <td>${obj.ipAdresse}</td>
                     <td>${obj.titel}</td>
                     <td><input type="checkbox" name="${obj.id}" id="checkDel${obj.id}" onchange="Beziehungen.event_remove(${obj.id})"></td>
                 </tr>`;
-
                 }
             });
         }
 
         // Display items to add
         if (anzeigebereicht && this.temp_add.length > 0) {
+            anzeigebereicht.innerHTML = `<tr>
+                    <td>Alle auswählen</td>
+                    <td><input type="checkbox" name="checkAddAll" id="checkAddAll" onchange="Beziehungen.add_all(this)"></td>
+                </tr>`;
             this.temp_add.forEach(umgebungsId => {
                 let obj = erstelleObj(umgebungsId);
                 if (obj) {
                     anzeigebereicht.innerHTML += `<tr>
-                    <td>${obj.id}</td>
-                    <td>${obj.ipAdresse}</td>
                     <td>${obj.titel}</td>
                     <td><input type="checkbox" name="${obj.id}" id="checkAdd${obj.id}" onchange="Beziehungen.event_add(${obj.id})"></td>
                 </tr>`;
@@ -170,6 +169,26 @@ class Beziehungen {
         for (const umgebungsID of list) {
             await this.addToDatabaseViaID(id, umgebungsID, databaseUrl);
         };
+    }
+
+    static add_all(cbx) {
+        console.log(cbx);
+        if (cbx.checked) {
+            this.temp_add.forEach(id => {
+                if (!this.temp_list_add.includes(id)) {
+                    this.event_add(id);
+                }
+            });
+        } else {
+            this.temp_list_add.forEach(id => {
+                if (this.temp_list_add.includes(id)) {
+                    this.event_add(id);
+                }
+
+            });
+            this.temp_list_add = [];
+            console.log("Alle Elemente wurden abgewählt");
+        }
     }
 
     static showBeziehungsList() {

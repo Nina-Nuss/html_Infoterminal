@@ -337,7 +337,7 @@ class CardObj {
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
         let selectMinutenInt = null;
-        
+
         if (document.getElementById("selectMinuten")) {
             selectMinuten = document.getElementById("selectMinuten");
         } else {
@@ -363,7 +363,7 @@ class CardObj {
             return;
         }
         let selectSekundenInt = parseInt(selectSekunden.value)
-       
+
         if (selectMinuten) {
             selectMinutenInt = parseInt(selectMinuten.value)
             console.log("Minuten:", selectMinuten);
@@ -463,7 +463,6 @@ class CardObj {
         var endDateSplit = cardObj.endDate.split(" ")[0];
 
         if (!startTimeSplit || !startDateSplit) {
-            console.error("Startzeit oder Startdatum ist ungültig:", cardObj.startDate);
             return;
         }
 
@@ -951,6 +950,7 @@ function deakAktivCb(aktiv) {
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
+    var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
 
 
     if (window.location.href.includes("templatebereich.php")) {
@@ -968,8 +968,7 @@ function deakAktivCb(aktiv) {
         btnShowUhrzeit.disabled = true; // Deaktiviert den Löschen-Button für Zeit
         panelForDateTime.style.display = "none"; // Versteckt das Panel für Datum und Uhrzeit
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
-
-
+        btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
     } else {
         titel.disabled = false; // Aktiviert das Titel-Eingabefeld
@@ -980,7 +979,7 @@ function deakAktivCb(aktiv) {
         btnShowZeitraum.disabled = false; // Aktiviert den Löschen-Button für Datum und Uhrzeit
         btnShowUhrzeit.disabled = false; // Aktiviert den Löschen-Button für Zeit
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
-
+        btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
     }
 }

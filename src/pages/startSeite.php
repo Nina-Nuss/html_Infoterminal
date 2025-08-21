@@ -158,8 +158,8 @@
                                 <div class="card-body">
 
                                     <div class="d-flex mb-3">
-                                        <button id="btn_addInfoSeite" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addInfoSeite">
-                                            Hinzufügen
+                                        <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2" data-toggle="modal" data-target="#addInfoSeite">
+                                            <i class="fas fa-plus"></i>  Hinzufügen
                                         </button>
                                         <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Löschen
@@ -186,6 +186,7 @@
                                     </div>
                                     <div class="border rounded p-2" style="max-height: 200px; overflow-y: auto; overflow-x: hidden; border-radius: 8px;" id="anzeigebereichV">
                                         <!-- IP Adressen werden hier angezeigt -->
+                                         
                                     </div>
                                 </div>
                             </div>
