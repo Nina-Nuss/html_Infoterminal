@@ -8,7 +8,7 @@
 
 <div class="container-fluid py-2" style="height:100vh;">
 
-    <div class="row h-100">
+    <div class="row" style="height:90vh;">
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
         <div class="col-md-10 text-center">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
@@ -30,8 +30,8 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="card-body w-25">
                                         <div class="d-flex align-items-center justify-content-space-between mb-3">
-                                            <label for="websiteName" class="form-label me-2 mb-0 ">Infoseite Name:</label>
-                                            <input type="text" class="form-control mx-sm-3 w-50  form-control-sm" id="websiteName" value="Infoseite auswählen" readonly>
+                                            <label for="websiteName" class="form-label me-2 mb-0 ">Infoseite Name: </label>
+                                            <input type="text" class="form-control mx-sm-2 w-50  form-control-sm" id="websiteName" value="Infoseite auswählen" readonly>
                                         </div>
 
                                         <div class="form-group mb-2">
@@ -161,7 +161,7 @@
                                         <button id="btn_addInfoSeite" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addInfoSeite">
                                             Hinzufügen
                                         </button>
-                                        <button  type="button" class="btn btn-danger btn-sm">
+                                        <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button" class="btn btn-danger btn-sm">
                                             <i class="fas fa-trash"></i> Löschen
                                         </button>
                                     </div>

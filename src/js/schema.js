@@ -67,13 +67,12 @@ class CardObj {
             placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
         }
         const body = `
-        <div class="card-deck p-1 mb-3" style="height: 35vh;">
-            <div class="card"  style="width: 18rem;"  id="${this.cardObjekte}">
+            <div class="card mb-2 text-wrap"  style="height: 33vh;"  id="${this.cardObjekte}">
                 <div class="card-header p-1">
                     <small class="text-muted">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
                 </div>
                 ${placeHolder}
-                <div class="card-body small-card-body" >
+                <div class="card-body small-card-body p-1 overflow-hidden">
                     <h5 class="card-title m-0">${this.titel}</h5>
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <small class="form-check">
@@ -88,7 +87,6 @@ class CardObj {
                         <small class="text-muted">Datum: ${this.startDate}  -  ${this.endDate}</small>
                 </div>
             </div>
-        </div>
     `;
         document.getElementById(umgebung).innerHTML += body;
     }
@@ -153,6 +151,16 @@ class CardObj {
         }
 
         await this.removeFromListLogik();
+        await this.update();
+    }
+
+    static async deleteCardObj() {
+        const confirmed = confirm("Sind Sie sicher, dass Sie die Infoseite löschen möchten?");
+        if (!confirmed) {
+            console.log("Löschvorgang vom Benutzer abgebrochen");
+            return; // Benutzer hat abgebrochen
+        }
+        await this.deleteCardObjDataBase(this.selectedID);
         await this.update();
     }
 
@@ -326,49 +334,62 @@ class CardObj {
     }
 
     static prepareSelectedTimer(obj) {
-        var selectSekunden = document.getElementById("selectSekunden");
-        var selectMinuten = document.getElementById("selectMinuten");
+        const selectSekunden = document.getElementById("selectSekunden");
+        let selectMinuten = null;
+        let selectMinutenInt = null;
+        
+        if (document.getElementById("selectMinuten")) {
+            selectMinuten = document.getElementById("selectMinuten");
+        } else {
+            selectMinuten = null; // Wenn selectMinuten nicht existiert, setze es auf null
+        }
 
         if (selectSekunden.value == "" && selectMinuten.value == "") {
             alert("keine Zeit Eingabe wurde getätigt")
             return; //keine Eingabe, also nichts tun
         }
-        if (selectMinuten != null) {
-            var resultMinute = isParseableNumber(selectMinuten.value)
-        }else{
-            var resultMinute = true; // Wenn selectMinuten nicht existiert, ist es gültig
+        if (selectMinuten) {
+            var resultMinuteBool = isParseableNumber(selectMinuten.value)
+        } else {
+            var resultMinuteBool = true; // Wenn selectMinuten nicht existiert, ist es gültig
         }
-        var resultSekunden = isParseableNumber(selectSekunden.value)
-        if (!resultMinute || !resultSekunden) {
+        var resultSekundenBool = isParseableNumber(selectSekunden.value)
+        if (!resultMinuteBool || !resultSekundenBool) {
             alert("Bitte geben Sie gültige Werte für Minuten und Sekunden ein.");
             selectSekunden.value = "";
-            if (selectMinuten != null) {
+            if (!selectMinuten) {
                 selectMinuten.value = "";
             }
             return;
         }
-        var selectSekunden = parseInt(selectSekunden.value)
-        if (selectMinuten != null) {
-            var selectMinuten = parseInt(selectMinuten.value)
+        let selectSekundenInt = parseInt(selectSekunden.value)
+       
+        if (selectMinuten) {
+            selectMinutenInt = parseInt(selectMinuten.value)
             console.log("Minuten:", selectMinuten);
+        } else {
+            selectMinutenInt = null; // Wenn selectMinuten nicht existiert, setze es auf 0
         }
-        console.log("Sekunden:", selectSekunden);
+        console.log("Sekunden:", selectSekundenInt);
 
-        if (selectMinuten > 59 || selectSekunden > 3599) {
+        if (selectMinutenInt > 59 || selectSekundenInt > 3599) {
             alert("Bitte Minuten und Sekunden im Bereich von 0-59 eingeben.");
+            selectSekunden.value = "";
+            if (selectMinuten) {
+                selectMinuten.value = "";
+            }
             return;
         }
-
-        if (selectMinuten && selectSekunden) {
-            obj.selectedTime = (selectMinuten * 60 + selectSekunden) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
+        if (selectMinutenInt && selectSekundenInt) {
+            obj.selectedTime = (selectMinutenInt * 60 + selectSekundenInt) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
             console.log("Selected Time in Millisekunden: ", obj.selectedTime);
             console.log("sekunden und minuten vorhanden");
 
         } else if (selectMinuten) {
             obj.selectedTime = selectMinuten * 60 * 1000; // Minuten in Millisekunden umrechnen
             console.log("minuten vorhanden:", obj.selectMinuten);
-        } else if (selectSekunden) {
-            obj.selectedTime = selectSekunden * 1000; // Sekunden in Millisekunden umrechnen
+        } else if (selectSekundenInt) {
+            obj.selectedTime = selectSekundenInt * 1000; // Sekunden in Millisekunden umrechnen
             console.log("sekunden vorhanden:", obj.selectSekunden);
 
         } else {

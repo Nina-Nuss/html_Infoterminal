@@ -30,78 +30,7 @@
                                         </h6>
                                     </div>
                                     <div class="card-body" style="max-height: 400px; overflow-y: auto;">
-                                        <form action="../php/movePic.php" method="post" enctype="multipart/form-data">
-                                            <div>
-                                                <div class="alert alert-info" role="alert">
-                                                    <h6 class="alert-heading">
-                                                        <i class="fas fa-info-circle me-2"></i> Wichtige Hinweise:
-                                                    </h6>
-                                                    <ul class="mb-0">
-                                                        <li>Maximal 50 Infoseiten</li>
-                                                        <li>Es sind jpg, png und gif Dateien erlaubt</li>
-                                                    </ul>
-                                                </div>
-
-
-                                                <div class="form-group mb-3">
-                                                    <label for="img" class="form-label">
-                                                        <i class="fas fa-image me-2"></i> Bild auswählen
-                                                    </label>
-                                                    <input type="file" id="img" name="img" accept="image/*,video/*">
-                                                    <img id="imgPreview" src="#" style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
-                                                    <video id="videoPreview" controls muted style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
-                                                        <source src="#" type="video/mp4">
-                                                        Ihr Browser unterstützt das Video-Element nicht.
-                                                    </video>
-                                                </div>
-
-
-                                                <div class="form-group mb-3">
-                                                    <label for="title" class="form-label">
-                                                        <i class="fas fa-tag me-2"></i> Name:
-                                                    </label>
-                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Schema Name eingeben">
-                                                </div>
-
-                                                <div class="form-group mb-3">
-                                                    <label for="description" class="form-label">
-                                                        <i class="fas fa-align-left me-2"></i> Beschreibung:
-                                                    </label>
-                                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Beschreibung eingeben"></textarea>
-                                                </div>
-
-                                                <div class="form-group mb-3">
-                                                    <label for="selectedTime" class="form-label">
-                                                        <i class="fas fa-clock me-2"></i> Anzeigedauer:
-                                                    </label>
-                                                    <select class="form-select" id="selectedTime" name="selectedTime">
-                                                        <option value="3000">3 Sekunden</option>
-                                                        <option value="5000">5 Sekunden</option>
-                                                        <option value="10000">10 Sekunden</option>
-                                                        <option value="15000">15 Sekunden</option>
-                                                        <option value="20000">20 Sekunden</option>
-                                                        <option value="25000">25 Sekunden</option>
-                                                        <option value="30000" selected>30 Sekunden</option>
-                                                        <option value="45000">45 Sekunden</option>
-                                                        <option value="60000">1 Minute</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group mb-3">
-                                                    <label for="aktiv" class="form-label">
-                                                        <i class="fas fa-toggle-on me-2"></i> Status:
-                                                    </label>
-                                                    <select class="form-select" id="aktiv" name="aktiv">
-                                                        <option value="1">Aktiv</option>
-                                                        <option value="0">Inaktiv</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-success shadow-sm" onclick="meow(event)">
-                                                <i class="fas fa-plus me-2"></i> hinzufügen
-                                            </button>
-
-                                        </form>
+                                       
 
                                     </div>
                                 </div>
