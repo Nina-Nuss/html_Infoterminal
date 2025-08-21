@@ -3,16 +3,15 @@
 
 <?php include  '../layout/modal/hinzufuegen.html'; ?>
 <?php include  '../layout/modal/loeschen.html'; ?>
+<?php include  '../layout/modal/addInfoSeite.html'; ?>
 
 
-<div class="container-fluid py-2" style="height:100vh; overflow-y:auto;">
+<div class="container-fluid py-2" style="height:100vh;">
 
-    <div class="row">
-
+    <div class="row h-100">
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
         <div class="col-md-10 text-center">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
-
             <div class="pt-3"></div>
             <div class="card">
                 <div class="card-header text-center">
@@ -31,56 +30,28 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="card-body w-25">
                                         <div class="d-flex align-items-center justify-content-space-between mb-3">
-                                            <label for="websiteName" class="form-label me-2 mb-0">Infoseite Name:</label>
-                                            <input type="text" class="form-control ml-4 w-50" id="websiteName" value="Infoseite auswählen" readonly>
+                                            <label for="websiteName" class="form-label me-2 mb-0 ">Infoseite Name:</label>
+                                            <input type="text" class="form-control mx-sm-3 w-50  form-control-sm" id="websiteName" value="Infoseite auswählen" readonly>
                                         </div>
-
-
-
-                                        <!-- <div class="form-group mb-3">
-                                            <label for="timerSelectRange" class="form-label">Anzeige-Dauer:</label>
-                                            <select class="form-select form-control" id="timerSelectRange" onchange="CardObj.setTimerRange(this.value)">
-                                                <option value="3000">3 Sekunden</option>
-                                              
-                                                <option value="5000">5 Sekunden</option>
-                                               
-                                                <option value="10000">10 Sekunden</option>
-                                               
-                                                <option value="15000">15 Sekunden</option>
-                                              
-                                                <option value="20000">20 Sekunden</option>
-                                                
-                                                <option value="25000">25 Sekunden</option>
-                                                
-                                                <option value="30000">30 Sekunden</option>
-                                                <option value="45000">45 Sekunden</option>
-                                                <option value="60000">1 Minute</option>
-                                            </select>
-                                        </div> -->
-
-
 
                                         <div class="form-group mb-2">
                                             <p class="text-md-left"></p>
                                             <div class="d-flex align-items-center  mb-2 ">
-                                                <label for="anzeigeDauer" class="form-label me-2 mb-0">ausgewählte Zeit:</label>
-                                                <h4 class="form-control ml-2 w-50 " id="anzeigeDauer" value="Infoseite auswählen" readonly></h4>
+                                                <label for="anzeigeDauer" class="form-label me-2 mb-0 ">Anzeige Dauer:</label>
+                                                <input class="form-control w-50 mx-sm-3 form-control-sm " id="anzeigeDauer" value="Infoseite auswählen" readonly></input>
                                             </div>
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i>
-                                                <div class="d-flex align-items-center">
-                                                    <label for="selectSekunden" class="me-2 ">Sekunden:</label>
-                                                    <input type="text" id="selectSekunden" class="form-control ml-2" maxlength="2" style="width: 50px;">
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <label for="selectMinuten" class="me-2 ml-2">Minuten:</label>
-                                                    <input type="text" id="selectMinuten" class="form-control ml-2" maxlength="2" style="width: 50px;">
-                                                </div>
+                                            <div class="align-items-center d-flex">
+                                                <!-- <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i> -->
+                                                <label for="selectSekunden">Sekunden:</label>
+                                                <input type="text" id="selectSekunden" class="form-control form-control-sm ml-5" maxlength="4" style="width: 70px;">
+                                                <!--  -->
+                                                <small class="form-text text-muted ml-2">10-3599</small>
+                                            </div>
 
-                                            </div>
                                         </div>
+
                                         <div class="form-group form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
+                                            <input class="form-check-input " type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
                                             <label class="form-check-label" for="checkA">
                                                 anzeigen
                                             </label>
@@ -163,7 +134,6 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-
                             <div class="card h-35">
                                 <div class="card-header">
                                     <h6 class="mb-0"><i class="fas fa-desktop me-2"></i> Infoseite öffnen(Testanzeige)</h6>
@@ -180,8 +150,24 @@
                                     </button>
                                 </div>
                             </div>
+                            <hr />
+                            <div class="card h-35">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="fas fa-image me-2"></i> Infoseiten Neuauflage/Löschen</h6>
+                                </div>
+                                <div class="card-body">
 
+                                    <div class="d-flex mb-3">
+                                        <button id="btn_addInfoSeite" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addInfoSeite">
+                                            Hinzufügen
+                                        </button>
+                                        <button  type="button" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Löschen
+                                        </button>
+                                    </div>
 
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-3">
@@ -204,8 +190,17 @@
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
+
+
+
+
+
                 </div>
+
             </div>
 
             <hr />
@@ -213,5 +208,9 @@
         </div>
 
     </div>
+
+
+
+
 </div>
 <?php include  '../assets/scripts.html'; ?>

@@ -14,7 +14,7 @@ if (!isset($data['name']) || !isset($data['value'])) {
     exit;
 }
 
-$configFile = $_SERVER['DOCUMENT_ROOT'] . '/.gitignore/config/config.json';
+$configFile = $_SERVER['DOCUMENT_ROOT'] . '/config/config.json';
 
 // Überprüfen, ob die Konfigurationsdatei lesbar und beschreibbar ist
 if (!is_readable($configFile) || !is_writable($configFile)) {

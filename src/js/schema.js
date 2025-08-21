@@ -67,13 +67,13 @@ class CardObj {
             placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
         }
         const body = `
-        <div class="card-deck p-1 h-50">
-            <div class="card" id="${this.cardObjekte}">
+        <div class="card-deck p-1 mb-3" style="height: 35vh;">
+            <div class="card"  style="width: 18rem;"  id="${this.cardObjekte}">
                 <div class="card-header p-1">
                     <small class="text-muted">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
                 </div>
                 ${placeHolder}
-                <div class="card-body small-card-body">
+                <div class="card-body small-card-body" >
                     <h5 class="card-title m-0">${this.titel}</h5>
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <small class="form-check">
@@ -333,23 +333,28 @@ class CardObj {
             alert("keine Zeit Eingabe wurde getätigt")
             return; //keine Eingabe, also nichts tun
         }
-        var resultMinute = isParseableNumber(selectMinuten.value)
+        if (selectMinuten != null) {
+            var resultMinute = isParseableNumber(selectMinuten.value)
+        }else{
+            var resultMinute = true; // Wenn selectMinuten nicht existiert, ist es gültig
+        }
         var resultSekunden = isParseableNumber(selectSekunden.value)
-
-
         if (!resultMinute || !resultSekunden) {
             alert("Bitte geben Sie gültige Werte für Minuten und Sekunden ein.");
             selectSekunden.value = "";
-            selectMinuten.value = "";
+            if (selectMinuten != null) {
+                selectMinuten.value = "";
+            }
             return;
         }
         var selectSekunden = parseInt(selectSekunden.value)
-        var selectMinuten = parseInt(selectMinuten.value)
-
-        console.log("Minuten:", selectMinuten);
+        if (selectMinuten != null) {
+            var selectMinuten = parseInt(selectMinuten.value)
+            console.log("Minuten:", selectMinuten);
+        }
         console.log("Sekunden:", selectSekunden);
 
-        if (selectMinuten > 59 || selectSekunden > 59) {
+        if (selectMinuten > 59 || selectSekunden > 3599) {
             alert("Bitte Minuten und Sekunden im Bereich von 0-59 eingeben.");
             return;
         }
@@ -427,10 +432,10 @@ class CardObj {
         var restMinuten = Math.floor(selectedTime / 60);
         console.log("Rest Minuten:", restMinuten);
         console.log("Rest Sekunden:", restSekunden);
-        anzeigeDauer.value = restMinuten + " Min," +  " Sek: " + restSekunden; // Set the display duration
+        anzeigeDauer.value = restMinuten + " Min," + " Sek: " + restSekunden; // Set the display duration
         cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.value}`; // Update the label with the selected time
-     
-     
+
+
         var startTimeSplit = cardObj.startDate.split(" ")[1];
         var startDateSplit = cardObj.startDate.split(" ")[0];
         var endTimeSplit = cardObj.endDate.split(" ")[1];
@@ -925,7 +930,7 @@ function deakAktivCb(aktiv) {
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
-    var selectMinuten = document.getElementById("selectMinuten");
+
 
     if (window.location.href.includes("templatebereich.php")) {
         return;
@@ -942,8 +947,8 @@ function deakAktivCb(aktiv) {
         btnShowUhrzeit.disabled = true; // Deaktiviert den Löschen-Button für Zeit
         panelForDateTime.style.display = "none"; // Versteckt das Panel für Datum und Uhrzeit
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
-        selectMinuten.disabled = true; // Deaktiviert die Minuten-Auswahl
-        selectMinuten.value = ""; // Setzt die Minuten-Auswahl auf leer
+
+
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
     } else {
         titel.disabled = false; // Aktiviert das Titel-Eingabefeld
@@ -954,7 +959,7 @@ function deakAktivCb(aktiv) {
         btnShowZeitraum.disabled = false; // Aktiviert den Löschen-Button für Datum und Uhrzeit
         btnShowUhrzeit.disabled = false; // Aktiviert den Löschen-Button für Zeit
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
-        selectMinuten.disabled = false; // Deaktiviert die Minuten-Auswahl
+
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
     }
 }

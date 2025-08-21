@@ -211,14 +211,14 @@ label {
 #dokumente {
     overflow: scroll;
     height: 100%;
-    scroll-behavior: smooth;
-
 }
 
+/* kleine, standardisierte Höhe für card/modal body */
+/* kleine, standardisierte Höhe für card/modal body */
+
+
 #rowForCards {
-    overflow: auto;
     height: 100%;
-    scroll-behavior: smooth;
 }
 
 .clock {
@@ -295,10 +295,7 @@ hr {
     float: left;
 }
 
-.row {
-    flex-wrap: nowrap;
-    margin-top: 1vh;
-}
+
 
 #anzeige {
     font-size: 2.5ch;
