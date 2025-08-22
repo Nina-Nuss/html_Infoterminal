@@ -61,24 +61,24 @@ class Beziehungen {
 
         var anzeigebereichV = document.getElementById("anzeigebereichV");
         var anzeigebereicht = document.getElementById("tabelleAdd");
-        var anzeigebereichD = document.getElementById("tabelleDelete");
+        var anzeigebereichD = document.getElementById("anzeigebereichV");
 
         anzeigebereichV.innerHTML = "";
         anzeigebereicht.innerHTML = "";
         anzeigebereichD.innerHTML = "";
 
         // Display items to remove
-        if (anzeigebereichD && this.temp_remove.length > 0) {
-            this.temp_remove.forEach(umgebungsId => {
-                let obj = erstelleObj(umgebungsId);
-                if (obj) {
-                    anzeigebereichD.innerHTML += `<tr>
-                    <td>${obj.titel}</td>
-                    <td><input type="checkbox" name="${obj.id}" id="checkDel${obj.id}" onchange="Beziehungen.event_remove(${obj.id})"></td>
-                </tr>`;
-                }
-            });
-        }
+        // if (anzeigebereichD && this.temp_remove.length > 0) {
+        //     this.temp_remove.forEach(umgebungsId => {
+        //         let obj = erstelleObj(umgebungsId);
+        //         if (obj) {
+        //             anzeigebereichD.innerHTML += `<tr>
+        //             <td>${obj.titel}</td>
+        //             <td><input type="checkbox" name="${obj.id}" id="checkDel${obj.id}" onchange="Beziehungen.event_remove(${obj.id})"></td>
+        //         </tr>`;
+        //         }
+        //     });
+        // }
 
         // Display items to add
         if (anzeigebereicht && this.temp_add.length > 0) {
