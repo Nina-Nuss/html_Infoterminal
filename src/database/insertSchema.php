@@ -10,15 +10,8 @@ $data = json_decode($file, true);
 
 echo json_encode($data);
 
-
-echo "<br>";
-echo $_SESSION['schemalistLength'];
-echo "<br>";
-echo $_SESSION['defaultMaxCountForInfoPages'];
-echo "<br>";
-
 // Überprüfen, ob die Daten korrekt abgerufen wurden
-if (is_array($data) && $_SESSION['schemalistLength'] < $_SESSION['defaultMaxCountForInfoPages']) {
+if (is_array($data)) {
     $imagePath = $data["imagePath"];
     $selectedTime = $data["selectedTime"];
     $aktiv = $data["aktiv"];

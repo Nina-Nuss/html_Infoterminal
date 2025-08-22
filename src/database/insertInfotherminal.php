@@ -1,17 +1,10 @@
 <?php
-include("checkJson.php");
+include "checkJson.php";
 include 'connection.php';
 
 
-$ip = $_SESSION['ip'] ?? '';
-$name = $_SESSION['name'] ?? '';
-
-
-// ...weiter wie gehabt...
-// IP und Name aus POST-Daten abrufen
-
 // Überprüfen, ob beide Werte vorhanden sind
-if ($ip !== '' && $name !== '' &&  $_SESSION['infoterminalListLength'] < $_SESSION['defaultMaxCountForInfoTerminals']) {
+if ($ip !== '' && $name !== '' &&  $listelengthValue[1][1] < $listelengthValue[1][0]) {
     // SQL-Abfrage mit Prepared Statement
     $sql = "INSERT INTO infotherminals (titel, ipAdresse) VALUES (?, ?)";
     $params = array($name, $ip);

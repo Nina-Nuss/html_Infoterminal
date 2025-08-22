@@ -80,7 +80,7 @@ class Umgebung {
    
 
         let selectorOptions = '<option value="">-- Bitte wählen --</option>';
-        let selectorOptionsForCards = '<option value="">-- wähle Infoterminal --</option>';
+        let selectorOptionsForCards = '<option value="alle">-- wähle Infoterminal --</option>';
         this.list = [];
         this.temp_remove = [];
         console.log("Update wird aufgerufen von Umgebung.js");
@@ -334,6 +334,7 @@ function cutAndCreate(responseText) {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+  
     const select = document.getElementById('refreshSelect');
     const infoCounterLimit = document.getElementById('infoCounterLimit');
     const cardCounterLimit = document.getElementById('cardCounterLimit');
@@ -349,7 +350,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const cfg = await res.json();
 
         // Dropdown befüllen
-        createList(cfg.intervals, select, cfg.default + " " + "Sek/stunden"); // falls du einen Default-Wert hast
+        createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
         createList(cfg.maxCountForInfoPages, infoCounterLimit, cfg.defaultMaxCountForInfoPages + " " + "Info-Seiten");
         createList(cfg.maxCountForInfoTerminals, cardCounterLimit, cfg.defaultMaxCountForInfoTerminals + " " + "Terminals");
 
@@ -368,6 +369,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function createList(cfg, select, defaultValue) {
+  
     select.innerHTML = ""; // Vorher leeren
 
     // "Bitte wählen" als erste Option
@@ -377,6 +379,7 @@ function createList(cfg, select, defaultValue) {
     select.appendChild(bitteWaehlen);
 
     cfg.forEach(i => {
+          debugger
         const opt = document.createElement('option');
         opt.value = i.value;
         opt.textContent = i.name;

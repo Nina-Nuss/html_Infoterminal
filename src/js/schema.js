@@ -54,11 +54,11 @@ class CardObj {
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
 
         if (imageExts.includes(ext)) {
-            placeHolder = `<img class="card-img-top" src="${src}" alt="Bild" onerror="this.src='/img/bild.png'">`;
+            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.src='/img/bild.png'">`;
         }
         else if (videoExts.includes(ext)) {
             placeHolder = `
-    <video class="w-100" autoplay muted loop  >
+    <video class="card-img-small w-100" autoplay muted loop  >
       <source src="${src}">
       Ihr Browser unterstützt das Video-Tag nicht.
     </video>`;
@@ -67,13 +67,13 @@ class CardObj {
             placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
         }
         const body = `
-            <div class="card mb-2 text-wrap"  style="height: 33vh;"  id="${this.cardObjekte}">
-                <div class="card-header p-1">
+            <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
+                <div class="card-header p-0">
                     <small class="text-muted">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
                 </div>
                 ${placeHolder}
-                <div class="card-body small-card-body p-1 overflow-hidden">
-                    <h5 class="card-title m-0">${this.titel}</h5>
+                <div class="card-body p-2 overflow-hidden">
+                    <h5 class="card-title m-0 p-0">${this.titel}</h5>
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <small class="form-check">
                         <input class="form-check-input single-active-checkbox" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
@@ -82,9 +82,6 @@ class CardObj {
                     <div class="form-check">
                         <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${getSekMin(this.selectedTime)}</small>
                     </div>
-                </div>
-                <div class="card-footer p-1">
-                        <small class="text-muted">Datum: ${this.startDate}  -  ${this.endDate}</small>
                 </div>
             </div>
     `;
@@ -344,10 +341,16 @@ class CardObj {
             selectMinuten = null; // Wenn selectMinuten nicht existiert, setze es auf null
         }
 
-        if (selectSekunden.value == "" && selectMinuten.value == "") {
-            alert("keine Zeit Eingabe wurde getätigt")
-            return; //keine Eingabe, also nichts tun
+        if (selectMinuten != null) {
+            if (selectSekunden.value == "" && selectMinuten.value == "") {
+                return; //keine Eingabe, also nichts tun
+            }
+        } else {
+            if (selectSekunden.value == "") {
+                return; //keine Eingabe, also nichts tun
+            }
         }
+
         if (selectMinuten) {
             var resultMinuteBool = isParseableNumber(selectMinuten.value)
         } else {
@@ -496,6 +499,7 @@ class CardObj {
             console.error("Timer Select Range Element nicht gefunden");
         }
     }
+
 
 
     static DateTimeHandler(cardObj) {
@@ -917,8 +921,20 @@ function erstelleFunktionForCardObj(objID) {
                 cb.checked = false;
             }
         });
+ 
+
+        console.log("Checkbox mit ID " + id + " wurde aktiviert.");
+
+        console.log(CardObj.selectedID);
+
+
         if (objID == CardObj.selectedID) {
             label.innerHTML = "Ausgewählt"; // Set the label text to "checked" when checked
+            labelForSelectSchema.forEach(label => {
+                if (id !== extractNumberFromString(label.id)) {
+                    label.innerHTML = ""; // Clear the label text for unchecked checkboxes
+                }
+            });
         } else {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
             console.log("Checkbox mit ID " + labelId + " wurde deaktiviert.");

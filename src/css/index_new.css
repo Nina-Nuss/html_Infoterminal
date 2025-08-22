@@ -14,12 +14,17 @@ body {
 
 }
 
-
-.card-img-top {
+.card-img-small {
+    max-height: 15vh;   /* oder z.B. 20vh, je nach gewünschter Größe */
+    width: auto;
     width: 100%;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
+
+
 
 .card-deck {
     height: 400px;
@@ -45,6 +50,8 @@ body {
 .form-group {
     margin-top: 2vh;
 }
+
+
 
 
 /* Schlichte Custom Checkbox */

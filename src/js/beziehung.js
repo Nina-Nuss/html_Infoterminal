@@ -196,6 +196,8 @@ class Beziehungen {
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
                 const selectedValue = event.target.value;
+                console.log(selectorInfoterminalForCards[0]);
+
                 console.log("Ausgewählter Wert:", selectedValue);
                 if (selectedValue) {
                     let cardContainer = document.getElementById("cardContainer");
@@ -207,8 +209,15 @@ class Beziehungen {
                             console.log(obj);
                             obj.htmlBody("cardContainer");
                         }
+
                         // Hier kannst du die Logik hinzufügen, um die Beziehung anzuzeigen
                     });
+                    if (selectedValue == "alle") {
+                        CardObj.list.forEach(obj => {
+                            console.log(obj);
+                            obj.htmlBody("cardContainer");
+                        });
+                    }
                 }
                 // Hier können Sie die Logik hinzufügen, um die Beziehungen basierend auf dem ausgewählten Wert anzuzeigen
             });
