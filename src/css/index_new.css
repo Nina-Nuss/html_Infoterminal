@@ -123,9 +123,6 @@ input[type="checkbox"] {
     border-color: 006c99 !important;
 }
 
-.para_inhalt {
-    float: initial;
-}
 
 .marquee {
     max-width: 100vw;

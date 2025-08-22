@@ -14,6 +14,7 @@ window.onload = async function () {
     console.log("IP-Adresse:", ipAdress);
 
 
+
     try {
         await CardObj.update();
     } catch (error) {
@@ -25,13 +26,15 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Umgebung:", error);
     }
+
+   
     // Modal Focus-Management hinzufügen
     setupModalFocusManagement();
     // Hier wird die startseite ausgewählt
     erstelleNavigation();
 }
 
-function getSekMin(ms){
+function getSekMin(ms) {
     const minutes = Math.floor(ms / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes} Min,  ${seconds} Sek`;
@@ -240,8 +243,8 @@ function isParseableNumber(str) {
         if (!Number.isNaN(Number(ch))) {
             console.log("parseable number:", ch);
         } else {
-        console.log("not parseable:", ch);
-        return false; 
+            console.log("not parseable:", ch);
+            return false;
         }
     }
     return true;

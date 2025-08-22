@@ -63,10 +63,7 @@ select::after {
     overflow: hidden;
 }
 
-.card {
-    padding-left: 0%;
-    padding-right: 0%;
-}
+
 
 .image-picker {
     display: flex;

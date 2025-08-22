@@ -45,7 +45,7 @@
             "value": 1440
         }
     ],
-    "default": 0.25,
+    "default": 30,
     "maxCountForInfoPages": [
         {
             "name": "5 pages",

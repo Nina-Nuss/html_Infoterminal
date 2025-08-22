@@ -54,7 +54,8 @@ class CardObj {
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
 
         if (imageExts.includes(ext)) {
-            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.src='/img/bild.png'">`;
+            // Remove the onerror handler before setting fallback to avoid infinite error loop
+            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null;this.src='/img/bild.png'">`;
         }
         else if (videoExts.includes(ext)) {
             placeHolder = `
@@ -64,7 +65,8 @@ class CardObj {
     </video>`;
         }
         else {
-            placeHolder = `<img class="card-img-top" src="/img/bild.png" alt="Fallback">`;
+            // Ensure a src is present for the fallback so the image element doesn't remain empty
+            placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
         }
         const body = `
             <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
@@ -75,10 +77,10 @@ class CardObj {
                 <div class="card-body p-2 overflow-hidden">
                     <h5 class="card-title m-0 p-0">${this.titel}</h5>
                     <p class="card-text m-0">${this.beschreibung}</p>
-                    <small class="form-check">
-                        <input class="form-check-input single-active-checkbox" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
-                        <label class="form-check-label" id="label${this.id}" name="label${this.id}" for="flexCheck${this.id}"></label>
-                    </small>
+                    <div class="form-check d-flex justify-content-center align-items-center">
+                        <input class="form-check-input single-active-checkbox me-2" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
+                        <label class="form-check-label mb-0" id="label${this.id}" name="label${this.id}" for="flexCheck${this.id}"></label>
+                    </div>
                     <div class="form-check">
                         <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${getSekMin(this.selectedTime)}</small>
                     </div>
@@ -252,7 +254,7 @@ class CardObj {
         let objList = convertCardObjForDataBase(response)
         objList.forEach(cardObj => {
             if (cardObj.imagePath == null || cardObj.imagePath == "null" || cardObj.imagePath == "") {
-                cardObj.imagePath = "img/bild.png"; // Setze einen Standardwert,
+                cardObj.imagePath = ""; // Setze einen Standardwert,
             } else {
                 new CardObj(
                     cardObj.id,
@@ -754,17 +756,17 @@ function imgVideoPreview() {
                 videoPreview.src = '#';
             }
             if (file) {
-                const objectURL = URL.createObjectURL(file);
+                console.log(file.name);
                 if (file.type.startsWith('image/')) {
                     // Bild-Vorschau anzeigen
                     if (imgPreview) {
-                        imgPreview.src = objectURL;
+                        imgPreview.src = URL.createObjectURL(file);
                         imgPreview.style.display = 'block';
                     }
                 } else if (file.type.startsWith('video/')) {
                     // Video-Vorschau anzeigen
                     if (videoPreview) {
-                        videoPreview.src = objectURL;
+                        videoPreview.src = URL.createObjectURL(file);
                         videoPreview.style.display = 'block';
                         videoPreview.load(); // Video neu laden
                     }
@@ -825,6 +827,12 @@ async function meow(event) {
     form.reset(); // Formular zurücksetzen
     const imgPreview = document.getElementById('imgPreview');
     imgPreview.src = '#'; // Bildvorschau zurücksetzen
+    imgPreview.style.display = 'none';
+    imgPreview.alt = 'Bildvorschau';
+    const videoPreview = document.getElementById('videoPreview');
+    videoPreview.src = '#'; // Video-Vorschau zurücksetzen
+    videoPreview.style.display = 'none';
+    videoPreview.alt = 'Video-Vorschau';
 
 }
 async function sendPicture(formData) {

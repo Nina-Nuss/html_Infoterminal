@@ -43,16 +43,16 @@
                                             <div class="align-items-center d-flex">
                                                 <!-- <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i> -->
                                                 <label for="selectSekunden">Sekunden:</label>
-                                                <input type="text" id="selectSekunden" class="form-control form-control-sm ml-5" maxlength="4" style="width: 70px;">
+                                                <input type="text" id="selectSekunden" class="form-control form-control-sm" maxlength="4" style="width: 70px;">
                                                 <!--  -->
-                                                <small class="form-text text-muted ml-2">10-3599</small>
+                                                <small class="form-text text-muted me-2">10-3599</small>
                                             </div>
 
                                         </div>
 
-                                        <div class="form-group form-check">
-                                            <input class="form-check-input " type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
-                                            <label class="form-check-label" for="checkA">
+                                        <div class="form-group form-check d-flex justify-content-center align-items-center">
+                                            <input class="form-check-input me-2" type="checkbox" id="checkA" name="checkA" onchange="CardObj.checkAktiv()">
+                                            <label class="form-check-label mb-0" for="checkA">
                                                 anzeigen
                                             </label>
                                         </div>
@@ -158,7 +158,7 @@
                                 <div class="card-body">
 
                                     <div class="d-flex mb-3">
-                                        <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2" data-toggle="modal" data-target="#addInfoSeite">
+                                        <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#addInfoSeite">
                                             <i class="fas fa-plus"></i>  Hinzufügen
                                         </button>
                                         <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button" class="btn btn-danger btn-sm">
@@ -177,10 +177,10 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex mb-3">
-                                        <button id="btn_hinzufuegen" type="button" data-toggle="modal" data-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
+                                        <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal" data-bs-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
                                             <i class="fas fa-plus"></i> Hinzufügen
                                         </button>
-                                        <button id="btn_loeschen" type="button" data-toggle="modal" class="btn btn-danger btn-sm" data-target="#modal_loeschen">
+                                        <button id="btn_loeschen" type="button" data-bs-toggle="modal" class="btn btn-danger btn-sm" data-bs-target="#modal_loeschen">
                                             <i class="fas fa-trash"></i> Löschen
                                         </button>
                                     </div>

@@ -25,7 +25,7 @@
 </style>
 
 <div class="parallelogram">
-    <div class="para_inhalt text d-flex justify-content-between align-items-center px-5 gap-2">
+    <div class=" text d-flex justify-content-between align-items-center px-5 gap-2">
         <div class="clock"> Infoterminal CJD Offenburg</div>
         <div class="clock">
             <div id="time"></div>

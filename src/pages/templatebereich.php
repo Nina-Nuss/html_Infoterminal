@@ -3,9 +3,6 @@
 <?php include  '../assets/scripts.html'; ?>
 
 
-
-
-
 <body class="bg-light">
     <div class="container-fluid py-2">
         <div class="row ">
@@ -80,8 +77,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </bo>
 
     <script>

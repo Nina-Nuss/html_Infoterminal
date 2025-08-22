@@ -7,7 +7,7 @@
                       style="border-color: #006c99; border-radius: 8px; background-color: rgba(255, 255, 255, 0.952);">Home</button>
 
               <div class="dropdown">
-                  <button type="button" data-toggle="dropdown" aria-expanded="false" class="btn text-dark start-btn dropdown-toggle"
+                  <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="btn text-dark start-btn dropdown-toggle"
                           style="background-color: rgba(255, 255, 255, 0.952); border-color: #006c99; border-radius: 8px;">Infoterminal</button>
                   <ul class="dropdown-menu">
                       <li><a id="infotherminalBereich" class="dropdown-item" href="#">Infoseite-Konfiguration</a></li>
