@@ -1,0 +1,35 @@
+
+
+
+<div class="modal fade" id="modal_hinzufuegen" tabindex="-1" role="dialog" aria-labelledby="modalHinzufuegenLabel"
+  aria-hidden="true">
+  <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalHinzufuegenLabel">Infoterminal Hinzufügen</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <!-- Hier dein Formular oder Inhalt -->
+        <table class="table table-hover position-relative">
+          <thead>
+           
+            <tr>
+              <th>Titel</th>
+              <th>Hinzufuegen</th>
+            </tr>
+             
+          </thead>
+          <tbody id="tabelleAdd">
+
+          </tbody>
+        </table>
+   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+        <button id="addCardToUmgebung" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="Beziehungen.remove_generate(CardObj.selectedID, Beziehungen.temp_list_add, 'insert_Relation')">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
