@@ -56,7 +56,7 @@
 
                                     </div>
                                 </div>
-                                <div class="card-body" style="width: 900px; padding-left:0px;">
+                                <div class="card-body" style="width: 900px;">
                                     <div class="mb-3 d-flex justify-content-end">
                                         <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
                                             class="btn btn-success shadow-sm btn-sm ">
