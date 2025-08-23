@@ -56,14 +56,14 @@
                                 </div>
                                 <div class="card-body w-75">
                                     <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
-                                        <select class="form-select form-select-sm  mb-2" id="btnShowZeitraum"
+                                        <select class="form-select form-select-sm mb-2" style="width: 200px;" id="btnShowZeitraum"
                                             onchange="handleDateTimeSelector(this)">
                                             <option value="" selected disabled>Zeit Konfiguration</option>
                                             <option value="zeitspanne">Datum</option>
                                             <option value="uhrzeit">Täglich</option>
                                         </select>
                                         <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
-                                            class="btn btn-success shadow-sm btn-sm ">
+                                            class="btn btn-success shadow-sm btn-sm" style="width: 200px;">
                                             <i class="fas fa-save"></i> Speichern
                                         </button>
                                         <script>
