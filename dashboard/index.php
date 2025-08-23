@@ -1,4 +1,4 @@
 <?php
-header("Location: /src/pages/index.php");
+header("Location: /src/pages/startSeite.php");
 exit;
 ?>
