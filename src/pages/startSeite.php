@@ -20,7 +20,7 @@
                                 <h6 class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</h6>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <div class="card-body" style="width: 500px;  padding-right:0px;">
+                                <div class="card-body">
                                     <div class="form-group mt-0">
                                         <div class="d-flex align-items-center justify-content-start mb-3">
                                             <label for="websiteName" class="form-label mb-0 w-50 ">Infoseite Name:
@@ -51,36 +51,37 @@
                                                     class="form-control form-control-sm ml-2" maxlength="4"
                                                     style="width: 70px;">
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
-                                <div class="card-body" style="width: 900px;">
-                                    <div class="mb-3 d-flex justify-content-end">
+                                <div class="card-body w-75">
+                                    <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                        <select class="form-select form-select-sm  mb-2" id="btnShowZeitraum"
+                                            onchange="handleDateTimeSelector(this)">
+                                            <option value="" selected disabled>Zeit Konfiguration</option>
+                                            <option value="zeitspanne">Datum</option>
+                                            <option value="uhrzeit">Täglich</option>
+                                        </select>
                                         <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
                                             class="btn btn-success shadow-sm btn-sm ">
                                             <i class="fas fa-save"></i> Speichern
                                         </button>
+                                        <script>
+                                            function handleDateTimeSelector(sel) {
+                                                if (sel.value === "zeitspanne") {
+                                                    showDateTime('zeitspanne');
+                                                } else if (sel.value === "uhrzeit") {
+                                                    showDateTime('uhrzeit');
+                                                }
+                                            }
+                                        </script>
+
                                     </div>
                                     <div class="d-flex">
-                                        <div class="d-flex flex-column p-1 me-3 w-25">
-                                            <button class="btn text-dark start-btn btn-sm w-100 mb-2"
-                                                style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952);"
-                                                type="button" id="btnShowZeitraum" onclick="showDateTime('zeitspanne')">
-                                                <i class="bi bi-calendar-range me-1"></i> Datum
-                                            </button>
-                                            <button class="btn text-dark start-btn btn-sm w-100 mb-2"
-                                                style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952);"
-                                                type="button" id="btnShowUhrzeit" onclick="showDateTime('uhrzeit')">
-                                                <i class="bi bi-clock me-1"></i> Täglich
-                                            </button>
-                                        </div>
-
-                                        <div id="panelForDateTime" class="w-75">
+                                        <div id="panelForDateTime" class="w-100">
                                             <div id="zeitspannePanel"
                                                 class="border rounded-3 shadow-sm p-2  mb-2 bg-light"
-                                                style="display:block;">
+                                                style="display:none;">
                                                 <div class="row d-flex g-2">
                                                     <div class="col-6">
                                                         <div class="d-flex align-items-center" style="min-width:0;">
@@ -187,7 +188,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <div class="card">
+                        <div class="card h-100">
                             <div class="card-header">
                                 <h6 class="mb-0"><i class="fas fa-tv me-2"></i> Bildschirm Verwaltung</h6>
                             </div>

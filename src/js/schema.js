@@ -460,6 +460,10 @@ class CardObj {
         anzeigeDauer.value = restMinuten + " Min," + " Sek: " + restSekunden; // Set the display duration
         cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.value}`; // Update the label with the selected time
 
+        console.log(cardObj.startDate);
+        console.log(cardObj.endDate);
+
+
 
         var startTimeSplit = cardObj.startDate.split(" ")[1];
         var startDateSplit = cardObj.startDate.split(" ")[0];
@@ -474,6 +478,7 @@ class CardObj {
         if (!startTimeSplit || !startDateSplit) {
             return;
         }
+
 
         if (!endTimeSplit || !endDateSplit) {
             console.error("Endzeit oder Enddatum ist ungültig:", cardObj.endDate);
@@ -539,6 +544,8 @@ class CardObj {
                     cardObj.dateAktiv = true;
                     console.log("alles klar, Datum und Zeit wurden gesetzt");
                 }
+                    console.log("Startdatum:", cardObj.startDate);
+                console.log("Enddatum:", cardObj.endDate);
             } else if (endDate && endTime) {
                 alert("Nur Enddatum und Endzeit gesetzt");
                 var now = new Date();
@@ -552,6 +559,8 @@ class CardObj {
                 cardObj.startDate = getTodayDate() + " 00:00"; // Setze ein Standard-Startdatum
                 cardObj.dateAktiv = true;
                 console.log("Enddatum wurde gesetzt");
+                    console.log("Startdatum:", cardObj.startDate);
+                console.log("Enddatum:", cardObj.endDate);
             }
             else if (startTime && startDate) {
                 alert("Nur Startdatum und Startzeit gesetzt");
@@ -566,6 +575,9 @@ class CardObj {
                 cardObj.startDate = getTodayDate() + " 00:00"; // Setze ein Standard-Startdatum
                 cardObj.dateAktiv = true;
                 console.log("Enddatum wurde gesetzt");
+                    console.log("Startdatum:", cardObj.startDate);
+                console.log("Enddatum:", cardObj.endDate);
+
             }
             else {
                 alert("Es wurden keine gültigen Daten eingegeben.");
@@ -922,7 +934,7 @@ function deakAktivCb(aktiv) {
     var btn_loeschen = document.getElementById("btn_loeschen");
     var btn_save_changes = document.getElementById("btn_save_changes");
     var btnShowZeitraum = document.getElementById("btnShowZeitraum");
-    var btnShowUhrzeit = document.getElementById("btnShowUhrzeit");
+
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
@@ -941,7 +953,7 @@ function deakAktivCb(aktiv) {
         btn_loeschen.disabled = true; // Deaktiviert den Löschen-Button
         btn_save_changes.disabled = true; // Deaktiviert den Speichern-Button
         btnShowZeitraum.disabled = true; // Deaktiviert den Löschen-Button für Datum und Uhrzeit
-        btnShowUhrzeit.disabled = true; // Deaktiviert den Löschen-Button für Zeit
+      
         panelForDateTime.style.display = "none"; // Versteckt das Panel für Datum und Uhrzeit
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
@@ -953,7 +965,7 @@ function deakAktivCb(aktiv) {
         btn_loeschen.disabled = false; // Aktiviert den Löschen-Button
         btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
         btnShowZeitraum.disabled = false; // Aktiviert den Löschen-Button für Datum und Uhrzeit
-        btnShowUhrzeit.disabled = false; // Aktiviert den Löschen-Button für Zeit
+       
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
