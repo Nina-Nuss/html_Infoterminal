@@ -1,8 +1,8 @@
 {
-  "serverName": "10.1.6.3",
+  "serverName": "Nina\\SQLEXPRESS", 
   "Database": "testdbTerminal",
-  "UID": "sa",
-  "PWD": "A%00000p&",
+  "UID": "",
+  "PWD": "",
   "Encrypt": true,
   "TrustServerCertificate": true,
   "CharacterSet": "UTF-8"
