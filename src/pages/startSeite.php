@@ -24,6 +24,13 @@
                                 <div class="card-header p-0">
                                     <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</small>
                                 </div>
+                                <div class="card-body d-flex justify-content-center pb-0">
+                                    <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
+                                        class="btn btn-success btn-sm me-2" style="width: 9vw;">
+                                        <i class="fas fa-save"></i> Speichern
+                                    </button>
+                                </div>
+
                                 <div class="d-flex justify-content-between">
                                     <div class="card-body">
                                         <div class="form-group mt-0">
@@ -59,7 +66,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body w-75">
-                                        <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+
+
+                                        <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
                                             <div class="btn-group   " id="btnShowZeitraum" role="group"
                                                 aria-label="Zeit Konfiguration" style="width: 200px;">
                                                 <button type="button" class="btn btn-sm btn-custom-outline"
@@ -73,10 +82,7 @@
                                                         class="fas fa-clock me-2"></i></button>
 
                                             </div>
-                                            <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
-                                                class="btn btn-success btn-sm me-2" style="width: 9vw;">
-                                                <i class="fas fa-save"></i> Speichern
-                                            </button>
+
 
                                         </div>
 
@@ -251,7 +257,7 @@
                                         </button>
                                     </div>
                                     <div class="mt-2">
-                                        <div style="height: 120px; overflow-y: auto;">
+                                        <div style="height: 150px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">

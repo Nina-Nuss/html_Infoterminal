@@ -923,8 +923,6 @@ function erstelleFunktionForCardObj(objID) {
 
 function deakAktivCb(aktiv) {
     console.log("deakAktivCb aufgerufen mit aktiv:", aktiv);
-
-    var timerbereich = document.getElementById("timerSelectRange");
     var titel = document.getElementById("websiteName");
     var checkA = document.getElementById("checkA");
     var btn_hinzufuegen = document.getElementById("btn_hinzufuegen");
