@@ -59,26 +59,30 @@ class Beziehungen {
 
     static createListForAnzeige() {
 
-        var anzeigebereichV = document.getElementById("anzeigebereichV");
-        var anzeigebereicht = document.getElementById("tabelleAdd");
-        var anzeigebereichD = document.getElementById("anzeigebereichV");
 
-        anzeigebereichV.innerHTML = "";
-        anzeigebereicht.innerHTML = "";
+        var anzeigebereichA = document.getElementById("tabelleAdd");
+        var anzeigebereichD = document.getElementById("tabelleDelete");
+        var anzeigebereicht = document.getElementById("tabelleAdd");
+
+        anzeigebereichA.innerHTML = "";
         anzeigebereichD.innerHTML = "";
 
         // Display items to remove
-        // if (anzeigebereichD && this.temp_remove.length > 0) {
-        //     this.temp_remove.forEach(umgebungsId => {
-        //         let obj = erstelleObj(umgebungsId);
-        //         if (obj) {
-        //             anzeigebereichD.innerHTML += `<tr>
-        //             <td>${obj.titel}</td>
-        //             <td><input type="checkbox" name="${obj.id}" id="checkDel${obj.id}" onchange="Beziehungen.event_remove(${obj.id})"></td>
-        //         </tr>`;
-        //         }
-        //     });
-        // }
+        if (anzeigebereichD && this.temp_remove.length > 0) {
+            anzeigebereichD.innerHTML = `<tr>
+                    <td>Alle auswählen</td>
+                    <td><input type="checkbox" name="checkDelAll" id="checkDelAll" onchange="Beziehungen.remove_all(this)"></td>
+                </tr>`;
+            this.temp_remove.forEach(umgebungsId => {
+                let obj = erstelleObj(umgebungsId);
+                if (obj) {
+                    anzeigebereichD.innerHTML += `<tr>
+                    <td>${obj.titel}</td>
+                    <td><input type="checkbox" name="${obj.id}" id="checkDel${obj.id}" onchange="Beziehungen.event_remove(${obj.id})"></td>
+                </tr>`;
+                }
+            });
+        }
 
         // Display items to add
         if (anzeigebereicht && this.temp_add.length > 0) {
@@ -97,20 +101,20 @@ class Beziehungen {
             });
         }
 
-        if (anzeigebereichV != null) {
-            console.log("anzeigebereichv ist nicht null, füge Elemente hinzu");
-            this.temp_remove.forEach(umgebungsId => {
-                let obj = erstelleObj(umgebungsId);
-                if (obj) {
-                    anzeigebereichV.innerHTML += `<div style="display: flex;">
-                    <span name="${obj.titel}" id="${obj.id}" style="float: left;  margin-right: 10px;">${obj.ipAdresse}</span>
-                    <label for="Schulaula" class="text-wrap" value="15">${obj.titel}</label>
-                </div>`;
-                }
-            });
-        } else {
-            console.log("anzeigebereichV ist null, keine Elemente hinzugefügt");
-        }
+        // if (anzeigebereichD != null) {
+        //     console.log("anzeigebereichv ist nicht null, füge Elemente hinzu");
+        //     this.temp_remove.forEach(umgebungsId => {
+        //         let obj = erstelleObj(umgebungsId);
+        //         if (obj) {
+        //             anzeigebereichD.innerHTML += `<div style="display: flex;">
+        //             <span name="${obj.titel}" id="${obj.id}" style="float: left;  margin-right: 10px;">${obj.ipAdresse}</span>
+        //             <label for="Schulaula" class="text-wrap" value="15">${obj.titel}</label>
+        //         </div>`;
+        //         }
+        //     });
+        // } else {
+        //     console.log("anzeigebereichV ist null, keine Elemente hinzugefügt");
+        // }
 
         console.log("Temp Remove verarbeitet:", this.temp_remove);
         console.log("Temp Add verarbeitet:", this.temp_add);
@@ -165,6 +169,7 @@ class Beziehungen {
         console.log(this.temp_list_add);
     }
 
+
     static async removeFromListLogik(id, list, databaseUrl) {
         for (const umgebungsID of list) {
             await this.addToDatabaseViaID(id, umgebungsID, databaseUrl);
@@ -187,6 +192,24 @@ class Beziehungen {
 
             });
             this.temp_list_add = [];
+            console.log("Alle Elemente wurden abgewählt");
+        }
+    }
+    static remove_all(cbx) {
+        console.log(cbx);
+        if (cbx.checked) {
+            this.temp_remove.forEach(id => {
+                if (!this.temp_list_remove.includes(id)) {
+                    this.event_remove(id);
+                }
+            });
+        } else {
+            this.temp_list_remove.forEach(id => {
+                if (this.temp_list_remove.includes(id)) {
+                    this.event_remove(id);
+                }
+            });
+            this.temp_list_remove = [];
             console.log("Alle Elemente wurden abgewählt");
         }
     }
@@ -275,10 +298,7 @@ function leereListe(anzeigebereich) {
         anzeigebereich.innerHTML = "";
     }
 }
-
-
 window.addEventListener("load", async () => {
-
     const relationListe = await Beziehungen.getRelation();
     console.log(relationListe);
     relationListe.forEach(element => {

@@ -2,7 +2,7 @@
 <?php include '../layout/header.php'; ?>
 
 <?php include '../layout/modal/hinzufuegen.html'; ?>
-<?php include '../layout/modal/loeschen.html'; ?>
+
 <?php include '../layout/modal/addInfoSeite.html'; ?>
 
 
@@ -16,8 +16,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card h-100">
-                            <div class="card-header">
-                                <h6 class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</h6>
+                            <div class="card-header p-0">
+                                <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</small>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="card-body">
@@ -29,6 +29,7 @@
                                                 id="websiteName" value="Infoseite auswählen" readonly>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="d-flex align-items-center  justify-content-start mb-2 ">
                                             <label for="anzeigeDauer" class="form-label mb-0  w-50">
@@ -36,46 +37,36 @@
                                             <input class="form-control w-50  form-control-sm " id="anzeigeDauer"
                                                 value="Infoseite auswählen" readonly></input>
                                         </div>
-                                        <div class="d-flex align-items-center   justify-content-evenly">
-                                            <!-- <i class="fas fa-circle" style="font-size:10px;color:#333;margin-right:10px; margin-left:10px;"></i> -->
-                                            <div class="d-flex align-items-center gap-2">
-                                                <input class="form-check-input" type="checkbox" id="checkA"
-                                                    name="checkA" onchange="CardObj.checkAktiv()">
-                                                <label class="form-check-label mb-0" for="checkA">
-                                                    anzeigen
-                                                </label>
-                                            </div>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div for="selectSekunden">Sekunden:</div>
-                                                <input type="text" id="selectSekunden"
-                                                    class="form-control form-control-sm ml-2" maxlength="4"
-                                                    style="width: 70px;">
-                                            </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-2">
+                                            <i class="fas fa-arrow-right"></i>
+                                            <div for="selectSekunden">Sekunden:</div>
+                                            <input type="text" id="selectSekunden"
+                                                class="form-control form-control-sm ml-2" maxlength="4"
+                                                style="width: 70px;">
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center gap-2 w-50">
+                                            <input class="form-check-input" type="checkbox" id="checkA" name="checkA"
+                                                onchange="CardObj.checkAktiv()">
+                                            <label class="form-check-label mb-0" for="checkA">
+                                                anzeigen
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body w-75">
-                                    <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
-                                        <select class="form-select form-select-sm mb-2" style="width: 200px;" id="btnShowZeitraum"
-                                            onchange="handleDateTimeSelector(this)">
-                                            <option value="" selected disabled>Zeit Konfiguration</option>
-                                            <option value="zeitspanne">Datum</option>
-                                            <option value="uhrzeit">Täglich</option>
-                                        </select>
+                                    <div class="d-flex align-items-center justify-content-end gap-2 mb-2">
+
                                         <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
-                                            class="btn btn-success shadow-sm btn-sm" style="width: 200px;">
+                                            class="btn btn-success btn-sm me-2" style="width: 8vw;">
                                             <i class="fas fa-save"></i> Speichern
                                         </button>
-                                        <script>
-                                            function handleDateTimeSelector(sel) {
-                                                if (sel.value === "zeitspanne") {
-                                                    showDateTime('zeitspanne');
-                                                } else if (sel.value === "uhrzeit") {
-                                                    showDateTime('uhrzeit');
-                                                }
-                                            }
-                                        </script>
-
+                                    </div>
+                                    <div class="btn-group mb-2 " id="btnShowZeitraum" role="group"
+                                        aria-label="Zeit Konfiguration" style="width: 200px;">
+                                        <button type="button" class="btn btn-sm btn-custom-outline"
+                                            onclick="showDateTime('zeitspanne')">Datum</button>
+                                        <button type="button" class="btn btn-sm btn-custom-outline"
+                                            onclick="showDateTime('uhrzeit')">Täglich</button>
                                     </div>
                                     <div class="d-flex">
                                         <div id="panelForDateTime" class="w-100">
@@ -86,7 +77,7 @@
                                                     <div class="col-6">
                                                         <div class="d-flex align-items-center" style="min-width:0;">
                                                             <label for="startDate"
-                                                                class="form-label small mb-0 me-2"></label>
+                                                                class="form-label small mb-0 me-2">von</label>
                                                             <input type="datetime-local"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="startDate" name="startDate" style="min-width:0;">
@@ -96,7 +87,7 @@
                                                     <div class="col-6">
                                                         <div class="d-flex align-items-center" style="min-width:0;">
                                                             <label for="endDate"
-                                                                class="form-label small mb-0 me-2">-</label>
+                                                                class="form-label small mb-0 me-2">bis</label>
                                                             <input type="datetime-local"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endDate" name="endDate" style="min-width:0;">
@@ -147,8 +138,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card">
-                            <div class="card-header">
-                                <h6 class="mb-0"><i class="fas fa-image me-2"></i> Infoseiten</h6>
+                            <div class="card-header p-0">
+                                <small class="mb-0"><i class="fas fa-image me-2"></i> Infoseiten</small>
                             </div>
                             <div class="card-body pl-0">
                                 <div class="d-flex">
@@ -164,10 +155,10 @@
 
                             </div>
                         </div>
-                        <hr />
-                        <div class="card">
-                            <div class="card-header">
-                                <h6 class="mb-0"><i class="fas fa-desktop me-2"></i>Testanzeige</h6>
+
+                        <div class="card mt-3">
+                            <div class="card-header p-0">
+                                <small class="mb-0"><i class="fas fa-desktop me-2"></i>Testanzeige</small>
                             </div>
                             <div class="card-body">
                                 <div class=" g-2 d-flex align-items-center justify-content-center">
@@ -189,25 +180,34 @@
 
                     <div class="col-md-3">
                         <div class="card h-100">
-                            <div class="card-header">
-                                <h6 class="mb-0"><i class="fas fa-tv me-2"></i> Bildschirm Verwaltung</h6>
+                            <div class="card-header p-0">
+                                <small class="mb-0"><i class="fas fa-tv me-2"></i> Bildschirm Verwaltung</small>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex mb-3">
+                                <div class="d-flex">
                                     <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
+                                        data-bs-target="#modal_hinzufuegen" class="btn btn-light btn-sm me-2">
                                         <i class="fas fa-plus"></i> Hinzufügen
                                     </button>
-                                    <button id="btn_loeschen" type="button" data-bs-toggle="modal"
-                                        class="btn btn-danger btn-sm" data-bs-target="#modal_loeschen">
+                                    <button id="btn_loeschen" type="button" class="btn btn-light btn-sm"
+                                        onclick="Beziehungen.remove_generate(CardObj.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                         <i class="fas fa-minus"></i> Entfernen
                                     </button>
                                 </div>
-                                <div class="border rounded p-2"
-                                    style="max-height: 200px; overflow-y: auto; overflow-x: hidden; border-radius: 8px;"
-                                    id="anzeigebereichV">
-                                    <!-- IP Adressen werden hier angezeigt -->
-
+                                <div class="mt-2">
+                                    <div style="height: 150px; overflow-y: auto;">
+                                        <table class="table table-hover w-100 mb-0">
+                                            <thead class="table-light" style="position: sticky; top: 0; z-index: 2;">
+                                                <!-- <tr>
+                                                    <th style="background: #fff;">Titel</th>
+                                                    <th style="background: #fff;">auswählen</th>
+                                                </tr> -->
+                                            </thead>
+                                            <tbody id="tabelleDelete">
+                                                <!-- Tabellenzeilen hier -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

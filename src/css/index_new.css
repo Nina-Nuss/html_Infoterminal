@@ -337,3 +337,17 @@ hr {
 .button_time:hover {
     background-color: grey;
 }
+
+
+
+.btn-custom-outline {
+    border-color: #006c99 !important;
+    background-color: rgba(255,255,255,0.952) !important;
+    color: #006c99 !important;
+    transition: background-color .15s, color .15s;
+}
+.btn-custom-outline:hover,
+.btn-custom-outline:focus {
+    background-color: #006c99 !important;
+    color: #fff !important;
+}

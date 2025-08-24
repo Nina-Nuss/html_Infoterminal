@@ -9,15 +9,15 @@
         <div class="col-md-12 text-center pt-2">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-12">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-light text-dark border-bottom text-center">
+                <!-- <div class="card shadow-sm"> -->
+                    <!-- <div class="card-header bg-light text-dark border-bottom text-center">
                         <h3 class="card-title mb-0">
                             <i class="fas fa-cogs me-2"></i> Adminbereich
                         </h3>
                         <p class="mb-0 mt-2">Hier können Sie neue Infoterminals hinzufügen oder löschen</p>
-                    </div>
+                    </div> -->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
@@ -137,7 +137,7 @@
                         </div>
 
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
