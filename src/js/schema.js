@@ -947,7 +947,7 @@ function deakAktivCb(aktiv) {
         btn_save_changes.disabled = true; // Deaktiviert den Speichern-Button
         btnShowZeitraum.disabled = true; // Deaktiviert den Löschen-Button für Datum und Uhrzeit
         anzeigeDauer.disabled = true; // Deaktiviert die Anzeige-Dauer
-        panelForDateTime.style.display = "none"; // Versteckt das Panel für Datum und Uhrzeit
+
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
