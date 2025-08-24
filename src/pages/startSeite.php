@@ -16,6 +16,24 @@
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
+                <hr>    
+
+                <div class="d-flex justify-content-center">
+                 
+                        <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
+                            class="btn btn-success btn-sm me-2" style="width: 9vw;">
+                            <i class="fas fa-save"></i> Speichern
+                        </button>
+                   <!--  -->
+                    <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
+                        data-bs-toggle="modal" data-bs-target="#addInfoSeite">
+                        <i class="fas fa-pen-to-square"></i> Erstellen
+                    </button>
+                    <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button"
+                        class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i> Löschen
+                    </button>
+                </div>
                 <div class="pt-2"></div>
                 <div class="card-body h-100">
                     <div class="row">
@@ -24,12 +42,7 @@
                                 <div class="card-header p-0">
                                     <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</small>
                                 </div>
-                                <div class="card-body d-flex justify-content-end pb-0">
-                                    <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
-                                        class="btn btn-success btn-sm me-2" style="width: 9vw;">
-                                        <i class="fas fa-save"></i> Speichern
-                                    </button>
-                                </div>
+
 
                                 <div class="d-flex justify-content-between">
                                     <div class="card-body">
@@ -202,26 +215,9 @@
                             </div>
                         </div>
                         <div class="col-md-3">
+                           
+
                             <div class="card">
-                                <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-image me-2"></i> Infoseiten</small>
-                                </div>
-                                <div class="card-body pl-0">
-                                    <div class="d-flex">
-                                        <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
-                                            data-bs-toggle="modal" data-bs-target="#addInfoSeite">
-                                            <i class="fas fa-pen-to-square"></i> Erstellen
-                                        </button>
-                                        <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button"
-                                            class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i> Löschen
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="card mt-3">
                                 <div class="card-header p-0">
                                     <small class="mb-0"><i class="fas fa-desktop me-2"></i>Testanzeige</small>
                                 </div>
@@ -257,7 +253,7 @@
                                         </button>
                                     </div>
                                     <div class="mt-2">
-                                        <div style="height: 150px; overflow-y: auto;">
+                                        <div style="height: 110px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
