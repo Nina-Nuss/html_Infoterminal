@@ -24,7 +24,7 @@
                                 <div class="card-header p-0">
                                     <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite Eigenschaften</small>
                                 </div>
-                                <div class="card-body d-flex justify-content-center pb-0">
+                                <div class="card-body d-flex justify-content-end pb-0">
                                     <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
                                         class="btn btn-success btn-sm me-2" style="width: 9vw;">
                                         <i class="fas fa-save"></i> Speichern
