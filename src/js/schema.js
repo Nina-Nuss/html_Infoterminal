@@ -478,13 +478,10 @@ class CardObj {
         if (!startTimeSplit || !startDateSplit) {
             return;
         }
-
-
         if (!endTimeSplit || !endDateSplit) {
             console.error("Endzeit oder Enddatum ist ungültig:", cardObj.endDate);
             return;
         }
-
         console.log("Startzeit:", startDateSplit, startTimeSplit);
         startDate.value = startDateSplit + "T" + startTimeSplit; // Set the start date
         endDate.value = endDateSplit + "T" + endTimeSplit; // Set the end date

@@ -143,13 +143,20 @@ function getJsonData(key) {
 function showDateTime(type) {
     const zeitspannePanel = document.getElementById("zeitspannePanel");
     const uhrzeitPanel = document.getElementById("uhrzeitPanel");
+    const dateTimeInfoPanel = document.getElementById("dateTimeInfoPanel");
 
     if (type === 'zeitspanne') {
         zeitspannePanel.style.display = "block";
         uhrzeitPanel.style.display = "none";
+        dateTimeInfoPanel.style.display = "none";
     } else if (type === 'uhrzeit') {
         zeitspannePanel.style.display = "none";
         uhrzeitPanel.style.display = "block";
+        dateTimeInfoPanel.style.display = "none";
+    }else if(type === 'dateTimeInfoPanel'){
+        dateTimeInfoPanel.style.display = "block";
+        zeitspannePanel.style.display = "none";
+        uhrzeitPanel.style.display = "none";
     }
 }
 

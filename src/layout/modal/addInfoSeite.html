@@ -5,14 +5,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addInfoSeiteLabel">Infoseite hinzufügen</h5>
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success shadow-sm" onclick="meow(event)" data-bs-dismiss="modal">
-                            <i class="fas fa-plus me-2"></i> hinzufügen
-                        </button>
+
             </div>
             <div class="modal-body">
                 <form action="../php/movePic.php" method="post" enctype="multipart/form-data">
-                    <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success shadow-sm" onclick="meow(event)"
+                        data-bs-dismiss="modal">
+                        <i class="fas fa-plus me-2"></i> hinzufügen
+                    </button>
+                    <div class="mt-3">
                         <div class="alert alert-info" role="alert">
                             <h6 class="alert-heading">
                                 <i class="fas fa-info-circle me-2"></i> Wichtige Hinweise:
@@ -82,7 +84,7 @@
                             </select>
                         </div>
                     </div>
-                
+
                 </form>
             </div>
 

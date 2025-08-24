@@ -127,7 +127,7 @@ class Beziehungen {
 
         Beziehungen.list.forEach(ele => {
             if (ele.cardObjektID == cardObjID) {
-                console.log(`Beziehung gefunden: ${ele.id} mit CardObjektID: ${ele.cardObjektID}`);
+              
                 Beziehungen.temp_remove.push(ele.umgebungsID);
             }
         });
