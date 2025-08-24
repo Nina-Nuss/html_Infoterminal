@@ -17,11 +17,9 @@
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>    
-
                 <div class="d-flex justify-content-center">
-                 
                         <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
-                            class="btn btn-success btn-sm me-2" style="width: 9vw;">
+                            class="btn btn-success btn-sm me-2">
                             <i class="fas fa-save"></i> Speichern
                         </button>
                    <!--  -->
