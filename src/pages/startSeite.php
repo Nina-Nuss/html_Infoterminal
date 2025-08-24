@@ -42,7 +42,22 @@
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" >
+                                    <div class="card-body w-50">
+                                        <div class="form-group mt-0 mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <label for="openTerminalBtn" class="form-label mb-0 me-2">
+                                                    <i class="fas fa-tv me-2"></i> Testanzeige:
+                                                </label>
+                                                <select class="form-control form-select-sm w-25"
+                                                    id="infotherminalSelect">
+                                                    <option value="">auswählen</option>
+                                                </select>
+                                                <button id="openTerminalBtn" class="btn text-dark start-btn btn-sm w-25"
+                                                    style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952);">
+                                                    <i class="fas fa-external-link-alt me-1"></i>öffnen
+                                                </button>
+                                            </div>
+                                        </div>
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-start mb-3">
                                                 <label for="websiteName" class="form-label mb-0 ">Infoseite Name:
@@ -53,6 +68,8 @@
                                         </div>
 
                                         <div class="form-group">
+
+
                                             <div class="d-flex align-items-center  justify-content-start mb-2 ">
                                                 <label for="anzeigeDauer" class="form-label mb-0 ">
                                                     Anzeige Dauer:</label>
@@ -74,11 +91,12 @@
                                                 </label>
 
                                             </div>
-                                           
+
                                         </div>
                                     </div>
-                                    <div class="card-body w-75" >
-                                        <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+
+                                    <div class="card-body w-50">
+                                        <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
                                             <div class="btn-group   " id="btnShowZeitraum" role="group"
                                                 aria-label="Zeit Konfiguration" style="width: 200px;">
                                                 <button type="button" class="btn btn-sm btn-custom-outline"
@@ -91,17 +109,9 @@
                                                     onclick="showDateTime('uhrzeit')"><i
                                                         class="fas fa-clock me-2"></i></button>
                                             </div>
-                                            <div class=" d-flex align-items-center">
-                                                <select class="form-control form-select-sm" id="infotherminalSelect">
-                                                    <option value="">-- Bitte wählen --</option>
-                                                </select>
-                                                <button id="openTerminalBtn" class="btn text-dark start-btn btn-sm"
-                                                    style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952);">
-                                                    <i class="fas fa-external-link-alt me-1"></i>öffnen
-                                                </button>
 
-                                            </div>
                                         </div>
+
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel"
@@ -214,6 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
