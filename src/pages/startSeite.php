@@ -92,7 +92,7 @@
                                                     class="border rounded-3 shadow-sm p-3  bg-light"
                                                     style="display:block;">
                                                     <!-- Zeitraum -->
-                                                    <div class="d-flex align-items-center mb-2">
+                                                    <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas text-primary  fa-calendar-alt me-2"></i>
                                                             <span class="me-3
