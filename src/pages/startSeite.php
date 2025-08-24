@@ -248,10 +248,10 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#modal_hinzufuegen" class="btn btn-light btn-sm me-2">
+                                            data-bs-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
                                             <i class="fas fa-plus"></i> Hinzufügen
                                         </button>
-                                        <button id="btn_loeschen" type="button" class="btn btn-light btn-sm"
+                                        <button id="btn_loeschen" type="button" class="btn btn-danger btn-sm"
                                             onclick="Beziehungen.remove_generate(CardObj.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i> Entfernen
                                         </button>
