@@ -59,44 +59,48 @@
                                         </div>
                                     </div>
                                     <div class="card-body w-75">
-                                        <div class="d-flex align-items-center justify-content-end gap-2 mb-2">
+                                        <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                                            <div class="btn-group   " id="btnShowZeitraum" role="group"
+                                                aria-label="Zeit Konfiguration" style="width: 200px;">
+                                                <button type="button" class="btn btn-sm btn-custom-outline"
+                                                    onclick="showDateTime('dateTimeInfoPanel')"> <i
+                                                        class="fas fa-info-circle"></i></button>
+                                                <button type="button" class="btn btn-sm btn-custom-outline"
+                                                    onclick="showDateTime('zeitspanne')"><i
+                                                        class="fas fa-calendar-alt me-2"></i></button>
+                                                <button type="button" class="btn btn-sm btn-custom-outline"
+                                                    onclick="showDateTime('uhrzeit')"><i
+                                                        class="fas fa-clock me-2"></i></button>
+
+                                            </div>
                                             <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
                                                 class="btn btn-success btn-sm me-2" style="width: 9vw;">
                                                 <i class="fas fa-save"></i> Speichern
                                             </button>
-                                        </div>
-                                        <div class="btn-group mb-2 " id="btnShowZeitraum" role="group"
-                                            aria-label="Zeit Konfiguration" style="width: 200px;">
-                                            <button type="button" class="btn btn-sm btn-custom-outline"
-                                                onclick="showDateTime('dateTimeInfoPanel')"> <i
-                                                    class="fas fa-info-circle"></i></button>
-                                            <button type="button" class="btn btn-sm btn-custom-outline"
-                                                onclick="showDateTime('zeitspanne')"><i class="fas fa-calendar-alt me-2"></i></button>
-                                            <button type="button" class="btn btn-sm btn-custom-outline"
-                                                onclick="showDateTime('uhrzeit')"><i class="fas fa-clock me-2"></i></button>
 
                                         </div>
+
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel"
                                                     class="border rounded-3 shadow-sm p-3  bg-light"
                                                     style="display:block;">
                                                     <!-- Zeitraum -->
-                                                    <div class="d-flex align-items-center mb-2"
-                                                    >
+                                                    <div class="d-flex align-items-center mb-2">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas text-primary  fa-calendar-alt me-2"></i>
-                                                            <span class="me-2">Zeitraum</span>
+                                                            <span class="me-3
+                                                            ">Datum</span>
                                                             <label
                                                                 class="form-label mb-0 me-2 text-secondary">von:</label>
                                                             <span class="form-control-plaintext p-0 me-2"
-                                                                id="startDateText">01.01.2024 08:00</span>
+                                                                id="startDateText">01.01.2024</span>
                                                         </div>
                                                         <div class="d-flex align-items-center">
                                                             <label
                                                                 class="form-label mb-0 me-2 text-secondary">bis:</label>
                                                             <span class="form-control-plaintext p-0"
-                                                                id="endDateText">01.01.2024 08:00</span>
+                                                                id="endDateText">01.01.2024</span>
                                                         </div>
                                                     </div>
 
@@ -105,7 +109,7 @@
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-primary me-2"></i>
                                                             <span class="me-3">Uhrzeit</span>
-                                                            <label class="form-label mb-0 me-2 text-secondary"
+                                                            <label class="form-label mb-0 me-2  text-secondary"
                                                                 style="width:60px;">von:</label>
                                                             <span class="form-control-plaintext p-0"
                                                                 id="startTimeText">-</span>
@@ -168,7 +172,8 @@
                                                         </div>
                                                         <div class="col-6 d-flex align-items-center"
                                                             style="min-width:0;">
-                                                            <label for="endTimeRange" class="form-label mb-0 me-2 text-secondary"
+                                                            <label for="endTimeRange"
+                                                                class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
@@ -246,7 +251,7 @@
                                         </button>
                                     </div>
                                     <div class="mt-2">
-                                        <div style="height: 150px; overflow-y: auto;">
+                                        <div style="height: 120px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
