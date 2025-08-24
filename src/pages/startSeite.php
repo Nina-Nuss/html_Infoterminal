@@ -118,13 +118,13 @@
                                                             <label class="form-label mb-0 me-2  text-secondary"
                                                                 style="width:60px;">von:</label>
                                                             <span class="form-control-plaintext p-0"
-                                                                id="startTimeText">-</span>
+                                                                id="startTimeText">00:00</span>
                                                         </div>
                                                         <div class="d-flex align-items-center">
                                                             <label class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:60px;">bis:</label>
                                                             <span class="form-control-plaintext p-0"
-                                                                id="endTimeText">-</span>
+                                                                id="endTimeText">00:00</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -243,7 +243,7 @@
                         <div class="col-md-3">
                             <div class="card h-100">
                                 <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-tv me-2"></i> Bildschirm Verwaltung</small>
+                                    <small class="mb-0"><i class="fas fa-tv me-2"></i>Zu Bildschirm</small>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex">
