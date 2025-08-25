@@ -949,6 +949,7 @@ function deakAktivCb(aktiv) {
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
     var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
+    var tabelleDelete = document.getElementById("tabelleDelete");
 
     if (window.location.href.includes("templatebereich.php")) {
         return;
@@ -968,6 +969,7 @@ function deakAktivCb(aktiv) {
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
+        tabelleDelete.innerHTML = ""    ; // Versteckt die Tabelle für das Löschen von Schemas
     } else {
         titel.disabled = false; // Aktiviert das Titel-Eingabefeld
         checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
