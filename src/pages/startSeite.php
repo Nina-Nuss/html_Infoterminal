@@ -57,9 +57,9 @@
 
                                         <div class="form-group">
                                             <div class="d-flex align-items-center  justify-content-start mb-2 ">
-                                                <i class="fas fa-clock text-secondary"></i>
+                                                <i class="fas fa-hourglass-half text-secondary"></i>
                                                 <!-- Uhr-Icon für Sekunden -->
-                                                <label for="anzeigeDauer" class="form-label mb-0 ">
+                                                <label for="anzeigeDauer" class="form-label mb-0 ms-1">
                                                     Anzeige Dauer:</label>
                                                 <input class="form-control w-50  form-control-sm mx-3" id="anzeigeDauer"
                                                     value="Infoseite auswählen" readonly></input>
@@ -92,8 +92,7 @@
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
                                                             <span class="me-3">Datum</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
-                                                                <label for="startDate"
-                                                                    class="form-label mb-0 mx-2 text-secondary"></label>
+                                                               
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="startDate" name="startDate"
@@ -122,16 +121,15 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-dark me-2"></i>
-                                                            <span class="me-3">Uhrzeit</span>
-                                                            <label for="startTimeRange"
-                                                                class="form-label mb-0 me-2 text-secondary"
-                                                                style="width:40px; margin-left: 0.3rem;"></label>
+                                                            <span class="me-2">Uhrzeit</span>
+                                                    
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="startTimeRange" name="startTimeRange"
-                                                                style="min-width:0;">
+                                                                >
+                                                            <label for="endTimeRange" class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center" style="margin-left: 5.5rem;">
+                                                        <div class="d-flex align-items-center" style="margin-left: 4.0rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
@@ -139,6 +137,7 @@
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange"
                                                                 style="min-width:0;">
+                                                            <label for="endTimeRange" class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
                                                         <div class="d-flex align-items-center" style="width: 50px;">
                                                             <button id="delTimeRange"
@@ -152,7 +151,7 @@
                                                 <div class="form-group mt-2">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label mb-0 me-2">
-                                                            <i class="fas fa-tv me-2"></i> Testanzeige:
+                                                           <i class="fas fa-desktop me-2"></i>Testanzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm w-25"
                                                             id="infotherminalSelect">
