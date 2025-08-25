@@ -1,7 +1,6 @@
 class CardObj {
     static idCounter = 0;
     static selectedID = null;
-    static allCardObjekte = [];
     static temp_remove = [];
     static eleListe = []
     static list = [];
@@ -684,6 +683,7 @@ class CardObj {
 }
 window.addEventListener("load", async function () {
     imgVideoPreview();
+
     const templatebereich = document.getElementById("templateBereich");
     if (templatebereich !== null) {
         templatebereich.addEventListener("click", async function (event) {

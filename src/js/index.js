@@ -27,11 +27,18 @@ window.onload = async function () {
         console.error("Fehler beim Aktualisieren der Umgebung:", error);
     }
 
-   
+
     // Modal Focus-Management hinzufügen
     setupModalFocusManagement();
     // Hier wird die startseite ausgewählt
     erstelleNavigation();
+
+    try {
+        document.getElementById("flexCheck" + CardObj.list[0].id).click();
+
+    } catch (error) {
+        console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
+    }
 }
 
 function getSekMin(ms) {
@@ -153,7 +160,7 @@ function showDateTime(type) {
         zeitspannePanel.style.display = "none";
         uhrzeitPanel.style.display = "block";
         dateTimeInfoPanel.style.display = "none";
-    }else if(type === 'dateTimeInfoPanel'){
+    } else if (type === 'dateTimeInfoPanel') {
         dateTimeInfoPanel.style.display = "block";
         zeitspannePanel.style.display = "none";
         uhrzeitPanel.style.display = "none";
