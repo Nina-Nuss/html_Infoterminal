@@ -45,9 +45,9 @@
                                     <div class="card-body" style="width:30%;">
 
                                         <div class="form-group mt-0">
-                                          
+
                                             <div class="d-flex align-items-center justify-content-start mb-3">
-                                                  <i class="fas fa-file-alt me-2"></i>
+                                                <i class="fas fa-file-alt me-2"></i>
                                                 <label for="websiteName" class="form-label mb-0 ">Infoseite Name:
                                                 </label>
                                                 <input type="text" class="form-control  w-50 ml-0 form-control-sm mx-2"
@@ -57,21 +57,20 @@
 
                                         <div class="form-group">
                                             <div class="d-flex align-items-center  justify-content-start mb-2 ">
-                                                    <i class="fas fa-clock text-secondary"></i> <!-- Uhr-Icon für Sekunden -->
+                                                <i class="fas fa-clock text-secondary"></i>
+                                                <!-- Uhr-Icon für Sekunden -->
                                                 <label for="anzeigeDauer" class="form-label mb-0 ">
                                                     Anzeige Dauer:</label>
                                                 <input class="form-control w-50  form-control-sm mx-3" id="anzeigeDauer"
                                                     value="Infoseite auswählen" readonly></input>
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-center gap-2">
+                                            <div class="d-flex align-items-center justify-content-start gap-2" style="margin-left: 2.2rem">
                                                 <i class="fas fa-arrow-right"></i>
-
-
                                                 <div for="selectSekunden">Sekunden:</div>
                                                 <input type="text" id="selectSekunden"
-                                                    class="form-control form-control-sm ml-2" maxlength="4"
+                                                    class="form-control form-control-sm me-3" maxlength="4"
                                                     style="width: 70px;">
-                                                <input class="form-check-input" type="checkbox" id="checkA"
+                                                <input class="form-check-input ms-2" type="checkbox" id="checkA"
                                                     name="checkA" onchange="CardObj.checkAktiv()">
                                                 <label class="form-check-label mb-0" for="checkA">
                                                     anzeigen
@@ -110,11 +109,11 @@
                                                                     id="endDate" name="endDate" style="min-width:0;">
                                                             </div>
                                                         </div>
-                                                        <div class="d-flex align-items-center w-25 ">
-                                                            <button id="delTimeRange"
-                                                                class="btn btn-outline-danger btn-sm px-3" style="width: 50px;"
-                                                                onclick="CardObj.removeTimeRange(CardObj.selectedID)">
-                                                                <i class="fas fa-trash-alt"></i> 
+                                                        <div class="d-flex align-items-center"  style="width: 50px;">
+                                                            <button id="btnDelDateTime"
+                                                                class="btn btn-outline-danger btn-sm px-3"
+                                                                onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
+                                                                <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -126,13 +125,13 @@
                                                             <span class="me-3">Uhrzeit</span>
                                                             <label for="startTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
-                                                                style="width:40px;">von</label>
+                                                                style="width:40px; margin-left: 0.3rem;">von</label>
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="startTimeRange" name="startTimeRange"
                                                                 style="min-width:0;">
                                                         </div>
-                                                        <div class="d-flex align-items-center">
+                                                        <div class="d-flex align-items-center" style="margin-left: 5.5rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
@@ -142,10 +141,10 @@
                                                                 style="min-width:0;">
                                                         </div>
                                                         <div class="d-flex align-items-center" style="width: 50px;">
-                                                            <button id="btnDelDateTime"
+                                                            <button id="delTimeRange"
                                                                 class="btn btn-outline-danger btn-sm px-3"
-                                                                onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
-                                                                <i class="fas fa-trash-alt"></i> 
+                                                                onclick="CardObj.removeTimeRange(CardObj.selectedID)">
+                                                                <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -160,7 +159,7 @@
                                                             <option value="">auswählen</option>
                                                         </select>
                                                         <button id="openTerminalBtn"
-                                                            class="btn text-dark start-btn btn-sm" 
+                                                            class="btn text-dark start-btn btn-sm"
                                                             style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 40px;">
                                                             <i class="fas fa-external-link-alt me-1"></i>
                                                         </button>
