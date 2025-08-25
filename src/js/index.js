@@ -76,7 +76,7 @@ function erstelleNavigation() {
     const homeBereich = document.getElementById("homeBereich");
     if (infoterminalBereich) {
         infoterminalBereich.addEventListener("click", async function (event) {
-            window.location.href = 'startSeite.php';
+            window.location.href = 'dashboard.php';
         });
     }
 

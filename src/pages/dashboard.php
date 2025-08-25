@@ -129,7 +129,7 @@
                                                                 >
                                                             <label for="endTimeRange" class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center" style="margin-left: 4.0rem;">
+                                                        <div class="d-flex align-items-center" style="margin-left: 3.6rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
