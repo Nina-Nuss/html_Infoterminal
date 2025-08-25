@@ -93,7 +93,7 @@
                                                             <span class="me-3">Datum</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
                                                                 <label for="startDate"
-                                                                    class="form-label mb-0 mx-2 text-secondary">von</label>
+                                                                    class="form-label mb-0 mx-2 text-secondary"></label>
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="startDate" name="startDate"
@@ -125,7 +125,7 @@
                                                             <span class="me-3">Uhrzeit</span>
                                                             <label for="startTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
-                                                                style="width:40px; margin-left: 0.3rem;">von</label>
+                                                                style="width:40px; margin-left: 0.3rem;"></label>
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="startTimeRange" name="startTimeRange"
@@ -215,7 +215,7 @@
                                 <div class="card-header p-0">
                                     <small class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</small>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body pb-0">
                                     <div class="d-flex">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
@@ -227,8 +227,8 @@
                                         </button>
                                     </div>
                                     <div class="mt-2">
-                                        <div style="height: 80px; overflow-y: auto;">
-                                            <table class="table table-hover w-100 mb-0">
+                                        <div style="height: 100px; overflow-y: auto;">
+                                            <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
                                                     <!-- <tr>
