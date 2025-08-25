@@ -26,6 +26,8 @@ class CardObj {
 
         //HTMLOBJEKTE-------------------------
         this.deleteBtn = `deleteBtn${this.id}`
+        this.timeLabel = `timeLabel${this.id}`;
+        this.dateLabel = `dateLabel${this.id}`;
 
         this.imageInputId = `imageInput${this.id}`;
         this.modalImageId = `modalImageID${this.id}`;
@@ -71,7 +73,7 @@ class CardObj {
         const body = `
             <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
                 <div class="card-header p-0">
-                    <small class="text-muted">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
+                    <small class="text-muted" id="${this.timeLabel}">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
@@ -86,7 +88,7 @@ class CardObj {
                     </div>
                 </div>
                 <div class="card-footer p-0">
-                    <small class="text-muted">Datum: ${formatDateToDayMonth(this.startDate)} bis ${formatDateToDayMonth(this.endDate)}</small>
+                    <small class="text-muted" id="${this.dateLabel}">Datum: ${formatDateToDayMonth(this.startDate)} bis ${formatDateToDayMonth(this.endDate)}</small>
                 </div>
             </div>
     `;
@@ -443,6 +445,9 @@ class CardObj {
         var anzeigeDauer = document.getElementById("anzeigeDauer");
         var checkA = document.getElementById("checkA");
 
+        var timeLabel = document.getElementById(cardObj.timeLabel);
+        var dateLabel = document.getElementById(cardObj.dateLabel);
+
         var startDate = document.getElementById("startDate");
         var endDate = document.getElementById("endDate");
 
@@ -472,7 +477,7 @@ class CardObj {
         cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.value}`; // Update the label with the selected time
 
 
-     
+
         var startTimeSplit = cardObj.startDate.split(" ")[1];
         var startDateSplit = cardObj.startDate.split(" ")[0];
         var endTimeSplit = cardObj.endDate.split(" ")[1];
@@ -486,6 +491,9 @@ class CardObj {
         console.log("Startzeit:", startDateSplit, startTimeSplit);
         startDate.value = startDateSplit + "T" + startTimeSplit; // Set the start date
         endDate.value = endDateSplit + "T" + endTimeSplit; // Set the end date
+
+        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(cardObj.startDate)} bis ${formatDateToDayMonth(cardObj.endDate)}`;
+        timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
 
         startTimeRange.value = cardObj.startTime;
         endTimeRange.value = cardObj.endTime;
@@ -524,10 +532,10 @@ class CardObj {
         debugger
 
 
+
         if (startDate && endDate && startTime && endTime) {
             let startDateTime = combineDateTime(startDate, startTime);
             let endDateTime = combineDateTime(endDate, endTime);
-            alert("Startzeit: " + startDateTime + "\nEndzeit: " + endDateTime);
             if (startDateTime >= endDateTime) {
                 alert("Ungültige Eingabe: Bis-Datum/Zeit kann nicht vor Von-Datum/Zeit liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist größer oder gleich dem Enddatum.");
@@ -578,11 +586,9 @@ class CardObj {
 
         }
         else {
-            alert("Es wurden keine gültigen Daten eingegeben.");
             cardObj.startDate = "";
             cardObj.endDate = "";
             cardObj.dateAktiv = false;
-            alert("Datum wurde nicht gespeichert, da die Eingabefelder nicht alle ausgefüllt sind.");
         }
 
         // Zeitbereich prüfen
@@ -944,17 +950,23 @@ function deakAktivCb(aktiv) {
     var btn_hinzufuegen = document.getElementById("btn_hinzufuegen");
     var btn_loeschen = document.getElementById("btn_loeschen");
     var btn_save_changes = document.getElementById("btn_save_changes");
-
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
     var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
     var tabelleDelete = document.getElementById("tabelleDelete");
+    const panel = document.getElementById("panelForDateTime");
+    // Selektiere alle relevanten Form-Elemente im Panel
+    const elements = panel.querySelectorAll('input, button');
 
     if (window.location.href.includes("templatebereich.php")) {
         return;
     }
     if (aktiv == true) {
+        elements.forEach(el => {
+            el.disabled = true;
+            el.value = "";
+        });
         titel.disabled = true; // Deaktiviert das Titel-Eingabefeld
         titel.value = "Infoseite auswählen"; // Setzt den Titel auf leer
         anzeigeDauer.value = "Infoseite auswählen"; // Setzt den Titel auf leer
@@ -965,11 +977,12 @@ function deakAktivCb(aktiv) {
 
         anzeigeDauer.disabled = true; // Deaktiviert die Anzeige-Dauer
 
+
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
-        tabelleDelete.innerHTML = ""    ; // Versteckt die Tabelle für das Löschen von Schemas
+        tabelleDelete.innerHTML = ""; // Versteckt die Tabelle für das Löschen von Schemas
     } else {
         titel.disabled = false; // Aktiviert das Titel-Eingabefeld
         checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
@@ -981,6 +994,11 @@ function deakAktivCb(aktiv) {
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
+
+        elements.forEach(el => {
+            el.disabled = false;
+            
+        });
     }
 }
 

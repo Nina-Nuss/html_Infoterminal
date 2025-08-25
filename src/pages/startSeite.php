@@ -90,7 +90,7 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
-                                                            <span class="me-3">Datum</span>
+                                                            <span class="me-2">Datum:</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
                                                                
                                                                 <input type="datetime-local"
@@ -102,7 +102,7 @@
                                                         <div class="d-flex align-items-center">
                                                             <div class="d-flex align-items-center">
                                                                 <label for="endDate"
-                                                                    class="form-label mb-0 mx-2 text-secondary">bis:</label>
+                                                                    class="form-label mb-0 mx-2 text-secondary">bis</label>
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="endDate" name="endDate" style="min-width:0;">
@@ -121,7 +121,7 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-dark me-2"></i>
-                                                            <span class="me-2">Uhrzeit</span>
+                                                            <span class="me-2">Uhrzeit:</span>
                                                     
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
@@ -151,7 +151,7 @@
                                                 <div class="form-group mt-2">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label mb-0 me-2">
-                                                           <i class="fas fa-desktop me-2"></i>Testanzeige:
+                                                           <i class="fas fa-desktop me-2"></i>Anzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm w-25"
                                                             id="infotherminalSelect">
