@@ -36,44 +36,31 @@
                 <div class="card-body h-100">
                     <div class="row">
                         <div class="col-md-9">
-                            <div class="card h-100">
+                            <div class="card">
                                 <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite</small>
+                                    <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite konfigurieren</small>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body w-50">
-                                        <div class="form-group mt-0 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <label for="openTerminalBtn" class="form-label mb-0 me-2">
-                                                    <i class="fas fa-tv me-2"></i> Testanzeige:
-                                                </label>
-                                                <select class="form-control form-select-sm w-25"
-                                                    id="infotherminalSelect">
-                                                    <option value="">auswählen</option>
-                                                </select>
-                                                <button id="openTerminalBtn" class="btn text-dark start-btn btn-sm w-25"
-                                                    style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952);">
-                                                    <i class="fas fa-external-link-alt me-1"></i>öffnen
-                                                </button>
-                                            </div>
-                                        </div>
+                                    <div class="card-body" style="width:30%;">
+
                                         <div class="form-group mt-0">
+                                          
                                             <div class="d-flex align-items-center justify-content-start mb-3">
+                                                  <i class="fas fa-file-alt me-2"></i>
                                                 <label for="websiteName" class="form-label mb-0 ">Infoseite Name:
                                                 </label>
-                                                <input type="text" class="form-control  w-50 ml-0 form-control-sm"
+                                                <input type="text" class="form-control  w-50 ml-0 form-control-sm mx-2"
                                                     id="websiteName" value="Infoseite auswählen" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-
-
                                             <div class="d-flex align-items-center  justify-content-start mb-2 ">
+                                                    <i class="fas fa-clock text-secondary"></i> <!-- Uhr-Icon für Sekunden -->
                                                 <label for="anzeigeDauer" class="form-label mb-0 ">
                                                     Anzeige Dauer:</label>
-                                                <input class="form-control w-50  form-control-sm " id="anzeigeDauer"
+                                                <input class="form-control w-50  form-control-sm mx-3" id="anzeigeDauer"
                                                     value="Infoseite auswählen" readonly></input>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-center gap-2">
@@ -95,105 +82,48 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-body w-50">
-                                        <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                                            <div class="btn-group   " id="btnShowZeitraum" role="group"
-                                                aria-label="Zeit Konfiguration" style="width: 200px;">
-                                                <button type="button" class="btn btn-sm btn-custom-outline"
-                                                    onclick="showDateTime('dateTimeInfoPanel')"> <i
-                                                        class="fas fa-info-circle"></i></button>
-                                                <button type="button" class="btn btn-sm btn-custom-outline"
-                                                    onclick="showDateTime('zeitspanne')"><i
-                                                        class="fas fa-calendar-alt me-2"></i></button>
-                                                <button type="button" class="btn btn-sm btn-custom-outline"
-                                                    onclick="showDateTime('uhrzeit')"><i
-                                                        class="fas fa-clock me-2"></i></button>
-                                            </div>
+                                    <div class="card-body" style="width: 50%;">
 
-                                        </div>
 
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
-                                                <div id="dateTimeInfoPanel"
-                                                    class="border rounded-3 shadow-sm p-3  bg-light"
-                                                    style="display:block;">
-                                                    <!-- Zeitraum -->
+                                                <div id="dateTimeInfoPanel">
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas text-primary  fa-calendar-alt me-2"></i>
-                                                            <span class="me-3
-                                                            ">Datum</span>
-                                                            <label
-                                                                class="form-label mb-0 me-2 text-secondary">von:</label>
-                                                            <span class="form-control-plaintext p-0 me-2"
-                                                                id="startDateText">01.01.2024</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center">
-                                                            <label
-                                                                class="form-label mb-0 me-2 text-secondary">bis:</label>
-                                                            <span class="form-control-plaintext p-0"
-                                                                id="endDateText">01.01.2024</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Uhrzeit -->
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="d-flex align-items-center">
-                                                            <i class="fas fa-clock text-primary me-2"></i>
-                                                            <span class="me-3">Uhrzeit</span>
-                                                            <label class="form-label mb-0 me-2  text-secondary"
-                                                                style="width:60px;">von:</label>
-                                                            <span class="form-control-plaintext p-0"
-                                                                id="startTimeText">00:00</span>
-                                                        </div>
-                                                        <div class="d-flex align-items-center">
-                                                            <label class="form-label mb-0 me-2 text-secondary"
-                                                                style="width:60px;">bis:</label>
-                                                            <span class="form-control-plaintext p-0"
-                                                                id="endTimeText">00:00</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="zeitspannePanel"
-                                                    class="border rounded-3 shadow-sm p-3 bg-light"
-                                                    style="display:none;">
-                                                    <div class="row d-flex g-2">
-                                                        <div class="col-6">
+                                                            <i class="fas text-dark  fa-calendar-alt me-2"></i>
+                                                            <span class="me-3">Datum</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
                                                                 <label for="startDate"
-                                                                    class="form-label mb-0 me-2 text-secondary">von</label>
+                                                                    class="form-label mb-0 mx-2 text-secondary">von</label>
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="startDate" name="startDate"
                                                                     style="min-width:0;">
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-6">
-                                                            <div class="d-flex align-items-center" style="min-width:0;">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-center">
                                                                 <label for="endDate"
-                                                                    class="form-label mb-0 me-2 text-secondary">bis:</label>
+                                                                    class="form-label mb-0 mx-2 text-secondary">bis:</label>
                                                                 <input type="datetime-local"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="endDate" name="endDate" style="min-width:0;">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row ">
-                                                        <div class="col-12 mt-2">
-                                                            <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger btn-sm px-3"
-                                                                onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
-                                                                <i class="fas fa-trash-alt"></i> Zeitspanne löschen
+                                                        <div class="d-flex align-items-center w-25 ">
+                                                            <button id="delTimeRange"
+                                                                class="btn btn-outline-danger btn-sm px-3" style="width: 50px;"
+                                                                onclick="CardObj.removeTimeRange(CardObj.selectedID)">
+                                                                <i class="fas fa-trash-alt"></i> 
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div id="uhrzeitPanel" class="border rounded-3 shadow-sm p-3 bg-light"
-                                                    style="display:none;">
-                                                    <div class="row g-2 justify-content-center">
-                                                        <div class="col-6 d-flex align-items-center"
-                                                            style="min-width:0;">
+
+                                                    <!-- Uhrzeit -->
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="fas fa-clock text-dark me-2"></i>
+                                                            <span class="me-3">Uhrzeit</span>
                                                             <label for="startTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">von</label>
@@ -202,8 +132,7 @@
                                                                 id="startTimeRange" name="startTimeRange"
                                                                 style="min-width:0;">
                                                         </div>
-                                                        <div class="col-6 d-flex align-items-center"
-                                                            style="min-width:0;">
+                                                        <div class="d-flex align-items-center">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
@@ -212,12 +141,65 @@
                                                                 id="endTimeRange" name="endTimeRange"
                                                                 style="min-width:0;">
                                                         </div>
-
-                                                        <button id="delTimeRange"
-                                                            class="btn btn-outline-danger btn-sm px-3"
-                                                            onclick="CardObj.removeTimeRange(CardObj.selectedID)">
-                                                            <i class="fas fa-trash-alt"></i> Uhrzeit löschen
+                                                        <div class="d-flex align-items-center" style="width: 50px;">
+                                                            <button id="btnDelDateTime"
+                                                                class="btn btn-outline-danger btn-sm px-3"
+                                                                onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
+                                                                <i class="fas fa-trash-alt"></i> 
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <label for="openTerminalBtn" class="form-label mb-0 me-2">
+                                                            <i class="fas fa-tv me-2"></i> Testanzeige:
+                                                        </label>
+                                                        <select class="form-control form-select-sm w-25"
+                                                            id="infotherminalSelect">
+                                                            <option value="">auswählen</option>
+                                                        </select>
+                                                        <button id="openTerminalBtn"
+                                                            class="btn text-dark start-btn btn-sm" 
+                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 40px;">
+                                                            <i class="fas fa-external-link-alt me-1"></i>
                                                         </button>
+                                                    </div>
+                                                </div>
+                                                <div id="zeitspannePanel"
+                                                    class="border rounded-3 shadow-sm p-3 bg-light"
+                                                    style="display:none;">
+                                                    <div class="row d-flex g-2">
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center" style="min-width:0;">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center" style="min-width:0;">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row ">
+                                                        <div class="col-12 mt-2">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="uhrzeitPanel" class="border rounded-3 shadow-sm p-3 bg-light"
+                                                    style="display:none;">
+                                                    <div class="row g-2 justify-content-center">
+                                                        <div class="col-6 d-flex align-items-center"
+                                                            style="min-width:0;">
+
+                                                        </div>
+                                                        <div class="col-6 d-flex align-items-center"
+                                                            style="min-width:0;">
+
+                                                        </div>
+
+
 
                                                     </div>
                                                 </div>
@@ -232,7 +214,7 @@
                         <div class="col-md-3">
                             <div class="card h-100">
                                 <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-tv me-2"></i>Zu Bildschirm</small>
+                                    <small class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</small>
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex">
@@ -246,7 +228,7 @@
                                         </button>
                                     </div>
                                     <div class="mt-2">
-                                        <div style="height: 110px; overflow-y: auto;">
+                                        <div style="height: 80px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">

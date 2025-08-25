@@ -928,7 +928,7 @@ function deakAktivCb(aktiv) {
     var btn_hinzufuegen = document.getElementById("btn_hinzufuegen");
     var btn_loeschen = document.getElementById("btn_loeschen");
     var btn_save_changes = document.getElementById("btn_save_changes");
-    var btnShowZeitraum = document.getElementById("btnShowZeitraum");
+
     var panelForDateTime = document.getElementById("panelForDateTime");
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
@@ -945,7 +945,7 @@ function deakAktivCb(aktiv) {
         btn_hinzufuegen.disabled = true; // Deaktiviert den Hinzufügen-
         btn_loeschen.disabled = true; // Deaktiviert den Löschen-Button
         btn_save_changes.disabled = true; // Deaktiviert den Speichern-Button
-        btnShowZeitraum.disabled = true; // Deaktiviert den Löschen-Button für Datum und Uhrzeit
+    
         anzeigeDauer.disabled = true; // Deaktiviert die Anzeige-Dauer
 
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
@@ -958,7 +958,7 @@ function deakAktivCb(aktiv) {
         btn_hinzufuegen.disabled = false; // Aktiviert den Hinzufügen-Button
         btn_loeschen.disabled = false; // Aktiviert den Löschen-Button
         btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
-        btnShowZeitraum.disabled = false; // Aktiviert den Löschen-Button für Datum und Uhrzeit
+       
         anzeigeDauer.disabled = false; // Aktiviert die Anzeige-Dauer
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
