@@ -139,6 +139,11 @@
                                             <!-- Optionen werden per JS aus config.json befüllt -->
                                         </select>
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <button type="button" class="btn btn-danger" onclick="bereinigeDatenbankUndFolder()">
+                                            <i class="fas fa-broom me-2"></i></i> Daten bereinigen
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

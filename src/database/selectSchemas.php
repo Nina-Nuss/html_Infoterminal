@@ -1,6 +1,9 @@
 <?php
-include 'connection.php';
 
+ob_start();
+include 'connection.php';
+include '../php/selectUploads.php';
+ob_clean();
 
 $sql = "SELECT * FROM schemas";
 $result = sqlsrv_query($conn, $sql);
@@ -19,6 +22,7 @@ if (!$absolutePath || !is_dir($absolutePath)) {
 
 // Tabelle für die Ergebnisse
 $schemaList1 = [];
+
 
 
 
