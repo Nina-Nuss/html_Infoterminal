@@ -76,7 +76,7 @@ class Umgebung {
         const selectorForCards = document.getElementById('selectorInfoterminalForCards');
         let delInfoRows = ""; // String für Tabellenzeilen
 
-        let selectorOptions = '<option value="">-- Test Anzeige --</option>';
+        let selectorOptions = "";
         let selectorOptionsForCards = '<option value="alle">-- wähle Infoterminal --</option>';
         this.list = [];
         this.temp_remove = [];
@@ -110,8 +110,9 @@ class Umgebung {
         if (selector) {
             selector.innerHTML = selectorOptions;
             Array.from(selector.options).forEach(option => {
-                if (option.value === "test") {
+                if (option.value === "Localhost") {
                     option.selected = true;
+                    option.innerHTML = "Test Anzeige";
                 }
             });
 
@@ -170,9 +171,7 @@ class Umgebung {
         try {
             const prepare = "?idDelete=" + idDelete;
             console.log(prepare);
-
             const response = await fetch(`../database/${databaseUrl}.php` + prepare);
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -207,7 +206,6 @@ class Umgebung {
         this.temp_remove = []
         console.log(this.list);
     }
-
     static async remove_generate() {
         if (this.temp_remove.length == 0) {
             alert("Bitte wählen Sie mindestens ein Infotherminal aus, um es zu löschen.");
@@ -218,12 +216,10 @@ class Umgebung {
             console.log("Löschvorgang vom Benutzer abgebrochen");
             return; // Benutzer hat abgebrochen
         }
-
         await this.removeFromListLogik();
         await warten(100);
         await this.update();
     }
-
     static erstelleSelector() {
         const selector = document.getElementById('infotherminalSelect');
         const button = document.getElementById('openTerminalBtn');
@@ -231,26 +227,22 @@ class Umgebung {
             console.error("Selector oder Button nicht gefunden.");
             return;
         }
-
-
-
         // Event-Listener nur einmal hinzufügen (außerhalb der forEach-Schleife)
         button.addEventListener('click', function () {
             console.log("Button zum Öffnen des Terminals wurde geklickt");
-
             const selectedTerminal = selector.value;
-
+            console.log("Ausgewähltes Infoterminal:", selectedTerminal);
+            if (selectedTerminal === "Localhost") {
+                debugger
+                var obj = findObj(CardObj.list, CardObj.selectedID);
+                const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
+                window.open(url, '_blank');
+            }
 
             if (selectedTerminal !== '') {
                 const url = `../output/index.php?ip=${encodeURIComponent(selectedTerminal)}`;
                 window.open(url, '_blank');
-            } else if (selectedTerminal == "") {
-                debugger
-                var obj = findObj(CardObj.list, CardObj.selectedID);
-                const url = `../output/TestAnzeige.php?bild=${encodeURIComponent(obj.imagePath)}`;
-                window.open(url, '_blank');
             }
-
         });
     }
 
@@ -281,7 +273,6 @@ window.addEventListener("load", async function () {
     // Sende POST-Request zu php/sendingToPage.php
     try {
         const adminBereich = document.getElementById("adminBereich");
-        console.log("DSFDSFDSFFSDDSF");
         adminBereich.addEventListener('click', async function () {
             window.location.href = 'adminbereich.php';
         });

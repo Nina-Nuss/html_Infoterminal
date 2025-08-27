@@ -69,6 +69,11 @@ class CardObj {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
             placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
         }
+        if (this.aktiv) {
+            var aktiv = `<span class="text-success ms-2"><i class="fas fa-check-circle"></i></span>`;
+        } else {
+            var aktiv = `<span class="text-danger ms-2"><i class="fas fa-times-circle"></i></span>`;
+        }
         const body = `
             <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
                 <div class="card-header p-0">
@@ -76,11 +81,12 @@ class CardObj {
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
-                    <h5 class="card-title m-0 p-0">${this.titel}</h5>
+                    <h5 class="card-title m-0 p-0">${this.titel} ${aktiv}</h5> 
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <div class="form-check d-flex justify-content-center align-items-center">
                         <input class="form-check-input single-active-checkbox me-2" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
                         <label class="form-check-label mb-0" id="label${this.id}" name="label${this.id}" for="flexCheck${this.id}"></label>
+                       
                     </div>
                     <div class="form-check">
                         <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${getSekMin(this.selectedTime)}</small>
@@ -780,8 +786,7 @@ async function meow(event) {
     console.log("Selected Time:", selectedTime);
     const imgFile = formData.get("img");
 
-    const localImageName = imgFile && imgFile.name ? imgFile.name : "";
-    if (localImageName === "" || localImageName === null || selectedTime === null || aktiv === null || titel === "") {
+    if (imgFile === null || selectedTime === null || aktiv === null || titel === "") {
         alert("Bitte füllen Sie alle Felder aus inkl Bild.");
         return;
     }
@@ -817,7 +822,9 @@ async function meow(event) {
     } catch (error) {
         console.error("Fehler beim erstellen des CardObj:", error);
     }
+
     form.reset(); // Formular zurücksetzen
+
     const imgPreview = document.getElementById('imgPreview');
     imgPreview.src = '#'; // Bildvorschau zurücksetzen
     imgPreview.style.display = 'none';
@@ -826,6 +833,10 @@ async function meow(event) {
     videoPreview.src = '#'; // Video-Vorschau zurücksetzen
     videoPreview.style.display = 'none';
     videoPreview.alt = 'Video-Vorschau';
+
+    const modalElement = document.getElementById('addInfoSeite');
+    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+    modalInstance.hide();
 
 }
 async function sendPicture(formData) {

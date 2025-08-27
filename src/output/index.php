@@ -43,7 +43,7 @@
 
 
     .iframe-container iframe {
-        height: 74vh;
+        height: 75vh;
         width: 74vw;
         border: none;
         object-fit: cover;
@@ -65,7 +65,7 @@
             justify-content: center;
             align-items: center;
             width: 74.5vw;
-            height: 74.5vh;
+            height: 75vh;
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -81,7 +81,7 @@
             justify-content: center;
             align-items: center;
             width: 74.5vw;
-            height: 74.5vh;
+            height: 75vh;
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -112,9 +112,15 @@
     window.addEventListener('DOMContentLoaded', async () => {
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
+        const template = params.get('template');
         const container = document.getElementById('container');
         const ip = await checkIP(ort);
         console.log(ip);
+        if(template){
+           console.log("Template geladen");
+           showTestTemplate(template);
+           return;
+        }
         if (ort && container != null && ip != false) {
             startCarousel(ort);
         } else {
@@ -131,7 +137,15 @@
         iframe.src = data;
         container.appendChild(iframe);
     }
-
+    function showTestTemplate(template){
+        const iframe = document.createElement('iframe');
+        // Variablen als Query-Parameter anhängen
+        let data = `out.php?template=${encodeURIComponent(template)}`;
+        // Wenn du weitere Variablen hast, einfach anhängen:
+        // data += `&foo=${encodeURIComponent(foo)}`;
+        iframe.src = data;
+        container.appendChild(iframe);
+    }
 
     async function checkIP(ort) {
         const response = await fetch("../php/checkURL.php?ip=" + ort);

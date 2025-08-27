@@ -37,34 +37,33 @@
                     <div class="row">
                         <div class="col-md-9">
                             <div class="card">
-                                <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-cog me-2"></i> Infoseite konfigurieren</small>
+                                <div class="card-header p-1">
+                                    <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren</>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width:30%;">
-
+                                    <div class="card-body" style="width: 30%;">
                                         <div class="form-group mt-0">
-
-                                            <div class="d-flex align-items-center justify-content-start mb-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
-                                                <div class="mb-0 ">Infoseite Name:
+                                                <div class="mb-0 me-auto">Infoseite Name:
                                                 </div>
-                                                <div type="text" class="w-25 fw-bolder" id="websiteName" value="-">
+                                                <div type="text" class="w-auto fw-bolder" id="websiteName" value="-">
                                                 </div>
                                             </div>
+                                            
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="d-flex align-items-center  justify-content-start mb-2 ">
-                                                <i class="fas fa-hourglass-half text-secondary"></i>
+                                            <div class="d-flex align-items-center  justify-content-between mb-2 ">
+                                                <i class="fas fa-hourglass-half"></i>
                                                 <!-- Uhr-Icon für Sekunden -->
-                                                <div for="anzeigeDauer" class="mb-0 ms-1">
+                                                <div for="anzeigeDauer" class="mb-0 ms-2">
                                                     Sekunden:</div>
                                                 <input type="text" id="selectSekunden"
-                                                    class="form-control form-control-sm ms-3" maxlength="4"
+                                                    class="form-control form-control-sm ms-2 me-auto" maxlength="4"
                                                     style="width: 70px;">
-                                                <div class="fw-bolder w-25 ms-2" id="anzeigeDauer"></div>
+                                                <div class="fw-bolder w-auto" id="anzeigeDauer"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-start gap-2">
 
@@ -72,13 +71,18 @@
                                                     Aktiv:
                                                 </label>
 
-                                                <input class="form-check-input ms-2" type="checkbox" id="checkA"
+                                                <input class="form-check-input" type="checkbox" id="checkA"
                                                     name="checkA" onchange="CardObj.checkAktiv()">
 
 
                                             </div>
 
                                         </div>
+                                    </div>
+
+
+                                    <div class="card-body" style="width: 20%;">
+
                                     </div>
 
                                     <div class="card-body" style="width: 50%;">
@@ -214,8 +218,8 @@
 
                         <div class="col-md-3">
                             <div class="card h-100">
-                                <div class="card-header p-0">
-                                    <small class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</small>
+                                <div class="card-header p-1">
+                                    <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
                                 <div class="card-body pb-0">
                                     <div class="d-flex">
