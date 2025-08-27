@@ -581,17 +581,12 @@ class CardObj {
                 return;
             }
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
-
-                
                 alert("Das Startdatum muss in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
                 return;
             }
-
             console.log(new Date(getTodayDate() + "T" + startTime));
             console.log(startDateTime);
-
-
             cardObj.startDate = startDate + " " + startTime; // Setze das heutige Datum mit der Startzeit
             cardObj.endDate = endDate + " " + endTime; // Setze das heutige Datum mit der Endzeit
             cardObj.dateAktiv = true;
@@ -627,16 +622,13 @@ class CardObj {
             console.log("Enddatum wurde gesetzt");
             console.log("Startdatum:", cardObj.startDate);
             console.log("Enddatum:", cardObj.endDate);
-
         }
         else {
             cardObj.startDate = "";
             cardObj.endDate = "";
             cardObj.dateAktiv = false;
         }
-
         // Zeitbereich prüfen
-
         if (startTimeRange || endTimeRange) {
             if (startTimeRange.value && endTimeRange.value) {
                 const startTimeOnly = combineDateTime("1970-01-01", startTimeRange.value);
