@@ -1,6 +1,12 @@
 <?php
+
+ob_start();
+
 include "checkJson.php";
 include '../../config/php/connection.php';
+
+ob_clean();
+
 
 
 // Überprüfen, ob beide Werte vorhanden sind

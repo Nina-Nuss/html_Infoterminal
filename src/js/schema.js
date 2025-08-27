@@ -483,7 +483,6 @@ class CardObj {
         console.log("Endzeit:", cardObj.endTime);
         console.log("Startdatum:", cardObj.startDate);
         console.log("Enddatum:", cardObj.endDate);
-
         checkA.checked = cardObj.aktiv; // Set the checkbox state
         titel.innerHTML = cardObj.titel; // Set the title to the checkbox's title
         // timerbereich.value = cardObj.selectedTime; // Set the time range
@@ -494,7 +493,6 @@ class CardObj {
         console.log("Rest Sekunden:", restSekunden);
         anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
         cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
-
         var startDateSplit = cardObj.startDate.split(" ")[0];
         var endDateSplit = cardObj.endDate.split(" ")[0];
 
@@ -903,41 +901,39 @@ function createBodyCardObj() {
     // Alle Checkboxen mit ID, die mit "flexCheck" beginnt, auswählen und loopen
 };
 
-const input = document.getElementById("selectSekunden");
-const anzeigeDauer = document.getElementById("anzeigeDauer");
-input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        // Deine Aktion hier
-        var sekunden = input.value
-        var minuten = 0;
 
-        console.log(sekunden);
-        var intParse = isParseableNumber(sekunden)
-        if (!intParse) {
-            alert("Bitte Zahlen eingeben")
-            return
+if (document.getElementById("selectSekunden")) {
+    const input = document.getElementById("selectSekunden");
+    const anzeigeDauer = document.getElementById("anzeigeDauer");
+    input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            // Deine Aktion hier
+            var sekunden = input.value
+            var minuten = 0;
+            console.log(sekunden);
+            var intParse = isParseableNumber(sekunden)
+            if (!intParse) {
+                alert("Bitte Zahlen eingeben")
+                return
+            }
+            if (sekunden < 0 || sekunden > 3599) {
+                alert("Maximal 3599 Sekunden (59 Minuten) erlaubt.");
+                return;
+            }
+            if (sekunden > 59) {
+                var minuten = Math.floor(sekunden / 60);
+                sekunden = sekunden % 60;
+                var restSekunden = sekunden % 60;
+                console.log("Minuten:", minuten);
+                console.log("Sekunden:", restSekunden);
+                anzeigeDauer.innerHTML = "Min " + minuten + " Sek: " + restSekunden; // Set the display duration
+
+            } else {
+                anzeigeDauer.innerHTML = "0 Min " + sekunden + " Sek"; // Set the display duration
+            }
         }
-        if (sekunden < 0 || sekunden > 3599) {
-            alert("Maximal 3599 Sekunden (59 Minuten) erlaubt.");
-            return;
-        }
-        if (sekunden > 59) {
-            var minuten = Math.floor(sekunden / 60);
-            sekunden = sekunden % 60;
-            var restSekunden = sekunden % 60;
-            console.log("Minuten:", minuten);
-            console.log("Sekunden:", restSekunden);
-            anzeigeDauer.innerHTML = "Min " + minuten + " Sek: " + restSekunden; // Set the display duration
-
-        } else {
-            anzeigeDauer.innerHTML = "0 Min " + sekunden + " Sek"; // Set the display duration
-        
-
-        }
-      
-    }
-});
-
+    });
+}
 
 
 function erstelleFunktionForCardObj(objID) {
@@ -961,13 +957,9 @@ function erstelleFunktionForCardObj(objID) {
                 cb.checked = false;
             }
         });
-
-
         console.log("Checkbox mit ID " + id + " wurde aktiviert.");
 
         console.log(CardObj.selectedID);
-
-
         if (objID == CardObj.selectedID) {
             label.innerHTML = "Ausgewählt"; // Set the label text to "checked" when checked
             labelForSelectSchema.forEach(label => {
@@ -1016,7 +1008,6 @@ function deakAktivCb(aktiv) {
             el.disabled = true;
             el.value = "";
         });
-
         titel.innerHTML = "-"; // Setzt den Titel auf leer
         anzeigeDauer.innerHTML = "-"; // Setzt den Titel auf leer
         checkA.disabled = true; // Deaktiviert die Aktiv-Checkbox
@@ -1029,13 +1020,10 @@ function deakAktivCb(aktiv) {
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
         tabelleDelete.innerHTML = ""; // Versteckt die Tabelle für das Löschen von Schemas
     } else {
-
         checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
         btn_hinzufuegen.disabled = false; // Aktiviert den Hinzufügen-Button
         btn_loeschen.disabled = false; // Aktiviert den Löschen-Button
         btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
-
-
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
@@ -1046,14 +1034,12 @@ function deakAktivCb(aktiv) {
         });
     }
 }
-
 function deaktivereCbx(aktiv) {
     const cardContainer = document.getElementById('cardContainer');
     if (cardContainer) {
         const checkboxes = cardContainer.querySelectorAll('input[type="checkbox"]');
         const labels = cardContainer.querySelectorAll('label[name^="label"]');
         console.log(`Checkboxes gefunden: ${checkboxes.length}, Labels gefunden: ${labels.length}`);
-
         checkboxes.forEach(checkbox => {
             checkbox.disabled = aktiv;
 

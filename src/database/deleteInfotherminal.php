@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../../config/php/connection.php';
 
 if (!isset($_GET['idDelete'])) {
     echo 'Fehler: Keine Daten empfangen';

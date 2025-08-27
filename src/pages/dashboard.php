@@ -50,8 +50,7 @@
                                                 <i class="fas fa-file-alt me-2"></i>
                                                 <div class="mb-0 ">Infoseite Name:
                                                 </div>
-                                                <div type="text" class="w-25 fw-bolder" id="websiteName"
-                                                    value="-">
+                                                <div type="text" class="w-25 fw-bolder" id="websiteName" value="-">
                                                 </div>
                                             </div>
                                         </div>
@@ -68,14 +67,14 @@
                                                 <div class="fw-bolder w-25 ms-2" id="anzeigeDauer"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-start gap-2">
-                                               
-                                            
+
+                                                <label class="form-check-label mb-0" for="checkA">
+                                                    Aktiv:
+                                                </label>
 
                                                 <input class="form-check-input ms-2" type="checkbox" id="checkA"
                                                     name="checkA" onchange="CardObj.checkAktiv()">
-                                                <label class="form-check-label mb-0" for="checkA">
-                                                    Aktiv
-                                                </label>
+
 
                                             </div>
 

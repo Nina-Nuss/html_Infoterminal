@@ -109,19 +109,17 @@ class Umgebung {
         // DOM nur einmal aktualisieren (bessere Performance)
         if (selector) {
             selector.innerHTML = selectorOptions;
+            Array.from(selector.options).forEach(option => {
+                if (option.value === "test") {
+                    option.selected = true;
+                }
+            });
 
         }
         if (selectorForCards) {
             selectorForCards.innerHTML = selectorOptionsForCards;
         }
         console.log(this.list);
-
-        Array.from(selector.options).forEach(option => {
-            if(option.value === "test") {
-                option.selected = true;
-            }
-        });
-
 
     }
     static removeFromListViaID(id, list) {
