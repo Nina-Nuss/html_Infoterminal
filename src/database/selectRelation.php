@@ -1,6 +1,6 @@
 <?php
 
-include 'connection.php';
+include '../../config/php/connection.php';
 
 $sql = "SELECT * FROM infotherminal_schema";
 $result = sqlsrv_query($conn, $sql);

@@ -1,6 +1,6 @@
 <?php
 include("../php/checkJson.php");
-include 'connection.php';
+include '../../config/php/connection.php';
 
 
 $file = file_get_contents('php://input');

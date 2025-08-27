@@ -74,12 +74,9 @@ class Umgebung {
         const delInfo = document.getElementById("deleteInfotherminal");
         const selector = document.getElementById('infotherminalSelect');
         const selectorForCards = document.getElementById('selectorInfoterminalForCards');
-
- 
         let delInfoRows = ""; // String für Tabellenzeilen
-   
 
-        let selectorOptions = '<option value="">-- Bitte wählen --</option>';
+        let selectorOptions = '<option value="">-- Test Anzeige --</option>';
         let selectorOptionsForCards = '<option value="alle">-- wähle Infoterminal --</option>';
         this.list = [];
         this.temp_remove = [];
@@ -100,9 +97,10 @@ class Umgebung {
                     <td class="p-2 text-center"><input type="checkbox" name="${listInfo[0]}" id="checkDelInfo${listInfo[0]}" onchange="Umgebung.event_remove(${listInfo[0]})"></td>
                 </tr>`;
             // Selector-Optionen sammeln
-            selectorOptions += `<option value="${listInfo[1]}">${listInfo[1]}</option>`;
+            selectorOptions += `<option value="${listInfo[1]}">${listInfo[1]}</option>`
             selectorOptionsForCards += `<option value="${listInfo[0]}">${listInfo[1]}</option>`;
         });
+
         if (delInfo != null) {
             delInfo.innerHTML = "";
             delInfo.innerHTML = delInfoRows;
@@ -111,11 +109,20 @@ class Umgebung {
         // DOM nur einmal aktualisieren (bessere Performance)
         if (selector) {
             selector.innerHTML = selectorOptions;
+
         }
-        if(selectorForCards){
+        if (selectorForCards) {
             selectorForCards.innerHTML = selectorOptionsForCards;
         }
         console.log(this.list);
+
+        Array.from(selector.options).forEach(option => {
+            if(option.value === "test") {
+                option.selected = true;
+            }
+        });
+
+
     }
     static removeFromListViaID(id, list) {
         var temp = [];
@@ -226,18 +233,26 @@ class Umgebung {
             console.error("Selector oder Button nicht gefunden.");
             return;
         }
-        // Selector nur einmal befüllen und Event-Listener nur einmal hinzufügen
-        // Selector leeren
-        selector.innerHTML = '<option value="">-- Bitte wählen --</option>';
+
+
+
         // Event-Listener nur einmal hinzufügen (außerhalb der forEach-Schleife)
         button.addEventListener('click', function () {
             console.log("Button zum Öffnen des Terminals wurde geklickt");
 
             const selectedTerminal = selector.value;
+
+
             if (selectedTerminal !== '') {
                 const url = `../output/index.php?ip=${encodeURIComponent(selectedTerminal)}`;
                 window.open(url, '_blank');
+            } else if (selectedTerminal == "") {
+                debugger
+                var obj = findObj(CardObj.list, CardObj.selectedID);
+                const url = `../output/TestAnzeige.php?bild=${encodeURIComponent(obj.imagePath)}`;
+                window.open(url, '_blank');
             }
+
         });
     }
 
@@ -247,10 +262,10 @@ class Umgebung {
             selectorInfoterminal.innerHTML = ""
             selectorInfoterminal.innerHTML = `<option value="">Alle Infoterminals</option>`;
             console.log(Umgebung.list.length);
-                console.log("Infoterminals vorhanden:", Umgebung.list);
-                Umgebung.list.forEach(umgebung => {
-                    selectorInfoterminal.innerHTML += `<option value="${umgebung.id}">${umgebung.name}</option>`;
-                });
+            console.log("Infoterminals vorhanden:", Umgebung.list);
+            Umgebung.list.forEach(umgebung => {
+                selectorInfoterminal.innerHTML += `<option value="${umgebung.id}">${umgebung.name}</option>`;
+            });
             selectorInfoterminal.addEventListener("change", function (event) {
                 console.log("ruby chaaaaaaaaany haaay");
                 console.log(event.target.value);
@@ -334,7 +349,7 @@ function cutAndCreate(responseText) {
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  
+
     const select = document.getElementById('refreshSelect');
     const infoCounterLimit = document.getElementById('infoCounterLimit');
     const cardCounterLimit = document.getElementById('cardCounterLimit');
@@ -345,7 +360,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("Config wird geladen");
         console.log("select: ", select);
 
-    const res = await fetch('../../config/config.json');
+        const res = await fetch('../../config/config.json');
         if (!res.ok) throw new Error(`Config nicht gefunden (Status ${res.status})`);
         const cfg = await res.json();
 
@@ -369,7 +384,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function createList(cfg, select, defaultValue) {
-  
+
     select.innerHTML = ""; // Vorher leeren
 
     // "Bitte wählen" als erste Option
@@ -379,7 +394,7 @@ function createList(cfg, select, defaultValue) {
     select.appendChild(bitteWaehlen);
 
     cfg.forEach(i => {
-          debugger
+        debugger
         const opt = document.createElement('option');
         opt.value = i.value;
         opt.textContent = i.name;

@@ -1,7 +1,7 @@
 <?php
 
 ob_start();
-include 'connection.php';
+include '../../config/php/connection.php';
 include '../php/selectUploads.php';
 ob_clean();
 

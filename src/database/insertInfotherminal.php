@@ -1,6 +1,6 @@
 <?php
 include "checkJson.php";
-include 'connection.php';
+include '../../config/php/connection.php';
 
 
 // Überprüfen, ob beide Werte vorhanden sind

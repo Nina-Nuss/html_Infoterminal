@@ -316,7 +316,7 @@ class CardObj {
         }
         CardObj.checkAktiv();
         const obj = findObj(CardObj.list, CardObj.selectedID);
-        CardObj.prepareSelectedTimer(obj);
+        CardObj.prepareSelectedTimer(obj, null, null);
 
         if (obj === null) {
             console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
@@ -327,8 +327,6 @@ class CardObj {
             var preCardObj = CardObj.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
             await updateDataBase(preCardObj, "updateSchema");
             alert("Änderungen erfolgreich gespeichert!");
-
-
             CardObj.loadChanges(obj); // Lade die Änderungen für das ausgewählte CardObj
         } catch (error) {
             console.error("Fehler beim Speichern der Änderungen:", error);
@@ -336,10 +334,13 @@ class CardObj {
         }
     }
 
-    static prepareSelectedTimer(obj) {
+    static prepareSelectedTimer(obj, min, sek) {
+        debugger
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
         let selectMinutenInt = null;
+
+
 
         if (document.getElementById("selectMinuten")) {
             selectMinuten = document.getElementById("selectMinuten");
@@ -382,13 +383,29 @@ class CardObj {
         console.log("Sekunden:", selectSekundenInt);
 
         if (selectMinutenInt > 59 || selectSekundenInt > 3599) {
-            alert("Bitte Minuten und Sekunden im Bereich von 0-59 eingeben.");
+            alert("Maximal 3599 Sekunden (59 Minuten) erlaubt.");
             selectSekunden.value = "";
             if (selectMinuten) {
                 selectMinuten.value = "";
             }
             return;
         }
+
+        if (min != 0 && sek) {
+            obj.selectedTime = (min * 60 + sek) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
+            console.log("Selected Time in Millisekunden: ", obj.selectedTime);
+            console.log("sekunden und minuten vorhanden");
+            return;
+        } else if (min) {
+            obj.selectedTime = selectMinuten * 60 * 1000; // Minuten in Millisekunden umrechnen
+            console.log("minuten vorhanden:", obj.selectMinuten);
+            return;
+        } else if (sek) {
+            obj.selectedTime = sek * 1000; // Sekunden in Millisekunden umrechnen
+            console.log("sekunden vorhanden:", obj.selectSekunden);
+            return;
+        }
+
         if (selectMinutenInt && selectSekundenInt) {
             obj.selectedTime = (selectMinutenInt * 60 + selectSekundenInt) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
             console.log("Selected Time in Millisekunden: ", obj.selectedTime);
@@ -405,6 +422,8 @@ class CardObj {
             obj.selectedTime = 0; // Setze auf 0, wenn keine Eingabe vorhanden ist
             console.log("Keine Zeit ausgewählt, setze auf 0");
         }
+
+
 
     }
 
@@ -444,6 +463,8 @@ class CardObj {
         var anzeigeDauer = document.getElementById("anzeigeDauer");
         var checkA = document.getElementById("checkA");
 
+
+
         var timeLabel = document.getElementById(cardObj.timeLabel);
         var dateLabel = document.getElementById(cardObj.dateLabel);
 
@@ -464,32 +485,25 @@ class CardObj {
         console.log("Enddatum:", cardObj.endDate);
 
         checkA.checked = cardObj.aktiv; // Set the checkbox state
-        titel.value = cardObj.titel; // Set the title to the checkbox's title
-
+        titel.innerHTML = cardObj.titel; // Set the title to the checkbox's title
         // timerbereich.value = cardObj.selectedTime; // Set the time range
         var selectedTime = cardObj.selectedTime / 1000; // Convert milliseconds to seconds
         var restSekunden = selectedTime % 60;
         var restMinuten = Math.floor(selectedTime / 60);
         console.log("Rest Minuten:", restMinuten);
         console.log("Rest Sekunden:", restSekunden);
-        anzeigeDauer.value = restMinuten + " Min," + " Sek: " + restSekunden; // Set the display duration
-        cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.value}`; // Update the label with the selected time
+        anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
+        cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
 
-
-
-        var startTimeSplit = cardObj.startDate.split(" ")[1];
         var startDateSplit = cardObj.startDate.split(" ")[0];
-        var endTimeSplit = cardObj.endDate.split(" ")[1];
         var endDateSplit = cardObj.endDate.split(" ")[0];
 
         console.log("Startdatum:", startDateSplit);
-        console.log("Startzeit:", startTimeSplit);
-        console.log("Enddatum:", endDateSplit);
-        console.log("Endzeit:", endTimeSplit);
 
-        console.log("Startzeit:", startDateSplit, startTimeSplit);
-        startDate.value = startDateSplit + "T" + startTimeSplit; // Set the start date
-        endDate.value = endDateSplit + "T" + endTimeSplit; // Set the end date
+        console.log("Enddatum:", endDateSplit);
+
+        startDate.value = startDateSplit // Set the start date
+        endDate.value = endDateSplit; // Set the end date
 
         dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(cardObj.startDate)} bis ${formatDateToDayMonth(cardObj.endDate)}`;
         timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
@@ -519,8 +533,8 @@ class CardObj {
         let startTimeRange = document.getElementById("startTimeRange");
         let endTimeRange = document.getElementById("endTimeRange");
 
-        let startTime = startDateID.value.split("T")[1];
-        let endTime = endDateID.value.split("T")[1];
+        let startTime = "00:00";
+        let endTime = "23:59";
 
 
         let startDate = startDateID.value.split("T")[0];
@@ -529,7 +543,6 @@ class CardObj {
         console.log("End Date:", endDate);
         console.log("End Time:", endTime);
         debugger
-
 
 
         if (startDate && endDate && startTime && endTime) {
@@ -591,7 +604,6 @@ class CardObj {
         }
 
         // Zeitbereich prüfen
-
 
         if (startTimeRange || endTimeRange) {
             if (startTimeRange.value && endTimeRange.value) {
@@ -891,6 +903,44 @@ function createBodyCardObj() {
     // Alle Checkboxen mit ID, die mit "flexCheck" beginnt, auswählen und loopen
 };
 
+const input = document.getElementById("selectSekunden");
+const anzeigeDauer = document.getElementById("anzeigeDauer");
+input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        // Deine Aktion hier
+        var sekunden = input.value
+        var minuten = 0;
+
+        console.log(sekunden);
+        var intParse = isParseableNumber(sekunden)
+        if (!intParse) {
+            alert("Bitte Zahlen eingeben")
+            return
+        }
+        if (sekunden < 0 || sekunden > 3599) {
+            alert("Maximal 3599 Sekunden (59 Minuten) erlaubt.");
+            return;
+        }
+        if (sekunden > 59) {
+            var minuten = Math.floor(sekunden / 60);
+            sekunden = sekunden % 60;
+            var restSekunden = sekunden % 60;
+            console.log("Minuten:", minuten);
+            console.log("Sekunden:", restSekunden);
+            anzeigeDauer.innerHTML = "Min " + minuten + " Sek: " + restSekunden; // Set the display duration
+
+        } else {
+            anzeigeDauer.innerHTML = "0 Min " + sekunden + " Sek"; // Set the display duration
+        
+
+        }
+        const obj = findObj(CardObj.list, CardObj.selectedID);
+        CardObj.prepareSelectedTimer(obj, minuten, sekunden);
+    }
+});
+
+prepare
+
 function erstelleFunktionForCardObj(objID) {
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
@@ -967,37 +1017,33 @@ function deakAktivCb(aktiv) {
             el.disabled = true;
             el.value = "";
         });
-        titel.disabled = true; // Deaktiviert das Titel-Eingabefeld
-        titel.value = "Infoseite auswählen"; // Setzt den Titel auf leer
-        anzeigeDauer.value = "Infoseite auswählen"; // Setzt den Titel auf leer
+
+        titel.innerHTML = "-"; // Setzt den Titel auf leer
+        anzeigeDauer.innerHTML = "-"; // Setzt den Titel auf leer
         checkA.disabled = true; // Deaktiviert die Aktiv-Checkbox
         btn_hinzufuegen.disabled = true; // Deaktiviert den Hinzufügen-
         btn_loeschen.disabled = true; // Deaktiviert den Löschen-Button
         btn_save_changes.disabled = true; // Deaktiviert den Speichern-Button
-
-        anzeigeDauer.disabled = true; // Deaktiviert die Anzeige-Dauer
-
-
         selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
         selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
         tabelleDelete.innerHTML = ""; // Versteckt die Tabelle für das Löschen von Schemas
     } else {
-        titel.disabled = false; // Aktiviert das Titel-Eingabefeld
+
         checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
         btn_hinzufuegen.disabled = false; // Aktiviert den Hinzufügen-Button
         btn_loeschen.disabled = false; // Aktiviert den Löschen-Button
         btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
 
-        anzeigeDauer.disabled = false; // Aktiviert die Anzeige-Dauer
+
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
 
         elements.forEach(el => {
             el.disabled = false;
-            
+
         });
     }
 }

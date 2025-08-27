@@ -48,10 +48,11 @@
 
                                             <div class="d-flex align-items-center justify-content-start mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
-                                                <label for="websiteName" class="form-label mb-0 ">Infoseite Name:
-                                                </label>
-                                                <input type="text" class="form-control  w-50 ml-0 form-control-sm mx-2"
-                                                    id="websiteName" value="Infoseite auswählen" readonly>
+                                                <div class="mb-0 ">Infoseite Name:
+                                                </div>
+                                                <div type="text" class="w-25 fw-bolder" id="websiteName"
+                                                    value="-">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -59,21 +60,21 @@
                                             <div class="d-flex align-items-center  justify-content-start mb-2 ">
                                                 <i class="fas fa-hourglass-half text-secondary"></i>
                                                 <!-- Uhr-Icon für Sekunden -->
-                                                <label for="anzeigeDauer" class="form-label mb-0 ms-1">
-                                                    Anzeige Dauer:</label>
-                                                <input class="form-control w-50  form-control-sm mx-3" id="anzeigeDauer"
-                                                    value="Infoseite auswählen" readonly></input>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-start gap-2" style="margin-left: 2.2rem">
-                                                <i class="fas fa-arrow-right"></i>
-                                                <div for="selectSekunden">Sekunden:</div>
+                                                <div for="anzeigeDauer" class="mb-0 ms-1">
+                                                    Sekunden:</div>
                                                 <input type="text" id="selectSekunden"
-                                                    class="form-control form-control-sm me-3" maxlength="4"
+                                                    class="form-control form-control-sm ms-3" maxlength="4"
                                                     style="width: 70px;">
+                                                <div class="fw-bolder w-25 ms-2" id="anzeigeDauer"></div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-start gap-2">
+                                               
+                                            
+
                                                 <input class="form-check-input ms-2" type="checkbox" id="checkA"
                                                     name="checkA" onchange="CardObj.checkAktiv()">
                                                 <label class="form-check-label mb-0" for="checkA">
-                                                    anzeigen
+                                                    Aktiv
                                                 </label>
 
                                             </div>
@@ -90,10 +91,10 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
-                                                            <span class="me-2">Datum:</span>
+                                                            <span class="me-3">Datum:</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
-                                                               
-                                                                <input type="datetime-local"
+
+                                                                <input type="date"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="startDate" name="startDate"
                                                                     style="min-width:0;">
@@ -102,13 +103,14 @@
                                                         <div class="d-flex align-items-center">
                                                             <div class="d-flex align-items-center">
                                                                 <label for="endDate"
-                                                                    class="form-label mb-0 mx-2 text-secondary">bis</label>
-                                                                <input type="datetime-local"
+                                                                    class="form-label mb-0 ms-5 mx-2 text-secondary">bis</label>
+                                                                <input type="date"
                                                                     class="form-control form-control-sm flex-fill"
                                                                     id="endDate" name="endDate" style="min-width:0;">
                                                             </div>
                                                         </div>
-                                                        <div class="d-flex align-items-center"  style="width: 50px;">
+                                                        <div class="d-flex align-items-center ms-2"
+                                                            style="width: 50px;">
                                                             <button id="btnDelDateTime"
                                                                 class="btn btn-outline-danger btn-sm px-3"
                                                                 onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
@@ -122,14 +124,15 @@
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-dark me-2"></i>
                                                             <span class="me-2">Uhrzeit:</span>
-                                                    
+
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
-                                                                id="startTimeRange" name="startTimeRange"
-                                                                >
-                                                            <label for="endTimeRange" class="form-label mb-0 mx-2 text-secondary">Uhr</label>
+                                                                id="startTimeRange" name="startTimeRange">
+                                                            <label for="endTimeRange"
+                                                                class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center" style="margin-left: 3.6rem;">
+                                                        <div class="d-flex align-items-center"
+                                                            style="margin-left: 3.5rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>
@@ -137,7 +140,8 @@
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange"
                                                                 style="min-width:0;">
-                                                            <label for="endTimeRange" class="form-label mb-0 mx-2 text-secondary">Uhr</label>
+                                                            <label for="endTimeRange"
+                                                                class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
                                                         <div class="d-flex align-items-center" style="width: 50px;">
                                                             <button id="delTimeRange"
@@ -151,7 +155,7 @@
                                                 <div class="form-group mt-2">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label mb-0 me-2">
-                                                           <i class="fas fa-desktop me-2"></i>Anzeige:
+                                                            <i class="fas fa-desktop me-2"></i>Anzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm w-25"
                                                             id="infotherminalSelect">
