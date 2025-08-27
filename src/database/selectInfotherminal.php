@@ -19,14 +19,15 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         ));
     }
 }
+
 sqlsrv_free_stmt($result);
 
-
+sqlsrv_close($conn);
 
 $infotherminalList = json_encode($infotherminalList1);
 echo $infotherminalList;
 
-sqlsrv_close($conn);
+
 
 
 

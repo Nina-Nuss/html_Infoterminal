@@ -45,4 +45,6 @@ if (is_array($data)) {
 } else {
     echo "Fehler beim Abrufen der Daten";
 }
+sqlsrv_free_stmt($stmt);
+
 sqlsrv_close($conn);

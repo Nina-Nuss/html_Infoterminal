@@ -61,7 +61,7 @@ if ($stmt) {
 
         // echo "<br>Insgesamt $deletedCount verwaiste Datensätze gelöscht.<br>";
     } else {
-        // echo "Fehler beim Ausführen der Abfrage: ";
+        sqlsrv_free_stmt($stmt);
         // print_r(sqlsrv_errors());
     }
     sqlsrv_free_stmt($stmt);

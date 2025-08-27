@@ -21,7 +21,7 @@ if ($ip !== '' && $name !== '' &&  $listelengthValue[1][1] < $listelengthValue[1
             print_r(sqlsrv_errors());
         }
         // Statement schließen
-        sqlsrv_free_stmt($stmt);
+      
     } else {
         echo "Fehler bei der Vorbereitung: ";
         print_r(sqlsrv_errors());
@@ -29,6 +29,7 @@ if ($ip !== '' && $name !== '' &&  $listelengthValue[1][1] < $listelengthValue[1
 } else {
     echo "Fehler: IP oder Name nicht gesetzt, oder maximale Anzahl an Infoterminals erreicht.";
 }
+sqlsrv_free_stmt($stmt);
 
 sqlsrv_close($conn);
 ?>
