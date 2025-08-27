@@ -334,7 +334,7 @@ class CardObj {
         }
     }
 
-    static prepareSelectedTimer(obj, min, sek) {
+    static prepareSelectedTimer(obj) {
         debugger
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
@@ -391,20 +391,20 @@ class CardObj {
             return;
         }
 
-        if (min != 0 && sek) {
-            obj.selectedTime = (min * 60 + sek) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
-            console.log("Selected Time in Millisekunden: ", obj.selectedTime);
-            console.log("sekunden und minuten vorhanden");
-            return;
-        } else if (min) {
-            obj.selectedTime = selectMinuten * 60 * 1000; // Minuten in Millisekunden umrechnen
-            console.log("minuten vorhanden:", obj.selectMinuten);
-            return;
-        } else if (sek) {
-            obj.selectedTime = sek * 1000; // Sekunden in Millisekunden umrechnen
-            console.log("sekunden vorhanden:", obj.selectSekunden);
-            return;
-        }
+        // if (min != 0 && sek) {
+        //     obj.selectedTime = (min * 60 + sek) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
+        //     console.log("Selected Time in Millisekunden: ", obj.selectedTime);
+        //     console.log("sekunden und minuten vorhanden");
+        //     return;
+        // } else if (min) {
+        //     obj.selectedTime = selectMinuten * 60 * 1000; // Minuten in Millisekunden umrechnen
+        //     console.log("minuten vorhanden:", obj.selectMinuten);
+        //     return;
+        // } else if (sek) {
+        //     obj.selectedTime = sek * 1000; // Sekunden in Millisekunden umrechnen
+        //     console.log("sekunden vorhanden:", obj.selectSekunden);
+        //     return;
+        // }
 
         if (selectMinutenInt && selectSekundenInt) {
             obj.selectedTime = (selectMinutenInt * 60 + selectSekundenInt) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
@@ -934,12 +934,11 @@ input.addEventListener("keydown", function (event) {
         
 
         }
-        const obj = findObj(CardObj.list, CardObj.selectedID);
-        CardObj.prepareSelectedTimer(obj, minuten, sekunden);
+      
     }
 });
 
-prepare
+
 
 function erstelleFunktionForCardObj(objID) {
     const checkbox = document.getElementById(`flexCheck${objID}`);
