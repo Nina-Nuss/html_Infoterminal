@@ -341,7 +341,7 @@ class CardObj {
     }
 
     static prepareSelectedTimer(obj) {
-        debugger
+
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
         let selectMinutenInt = null;
@@ -468,8 +468,7 @@ class CardObj {
         var titel = document.getElementById("websiteName");
         var anzeigeDauer = document.getElementById("anzeigeDauer");
         var checkA = document.getElementById("checkA");
-
-
+        var selectSekunden = document.getElementById("selectSekunden");
 
         var timeLabel = document.getElementById(cardObj.timeLabel);
         var dateLabel = document.getElementById(cardObj.dateLabel);
@@ -484,6 +483,7 @@ class CardObj {
         endDate.value = ""
         startTimeRange.value = ""
         endTimeRange.value = ""
+        selectSekunden.value = ""
 
         console.log("Startzeit:", cardObj.startTime);
         console.log("Endzeit:", cardObj.endTime);
@@ -499,17 +499,39 @@ class CardObj {
         console.log("Rest Sekunden:", restSekunden);
         anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
         cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
-        var startDateSplit = cardObj.startDate.split(" ")[0];
-        var endDateSplit = cardObj.endDate.split(" ")[0];
+
+
+        let startDateStr = String(cardObj.startDate);
+        let endDateStr = String(cardObj.endDate);
+
+        if (startDateStr.includes("T")) {
+            // Es ist ein "T" im String enthalten
+            console.log('"T" ist in startDate enthalten:', startDateStr);
+            var startDateSplit = startDateStr.split("T")[0]; // Get the date part before "T"
+        } else {
+            var startDateSplit = startDateStr.split(" ")[0]; // Get the date part before "T"
+            // Kein "T" im String
+            console.log('"T" ist NICHT in startDate enthalten:', startDateStr);
+        }
+        if (endDateStr.includes("T")) {
+            // Es ist ein "T" im String enthalten
+            console.log('"T" ist in endDate enthalten:', endDateStr);
+            var endDateSplit = endDateStr.split("T")[0]; // Get the date part before "T"
+        } else {
+            var endDateSplit = endDateStr.split(" ")[0]; // Get the date part before "T"
+            // Kein "T" im String
+            console.log('"T" ist NICHT in endDate enthalten:', endDateStr);
+        }
 
         console.log("Startdatum:", startDateSplit);
-
         console.log("Enddatum:", endDateSplit);
+        console.log("Startdatum:", startDateStr);
+        console.log("Enddatum:", endDateStr);
 
         startDate.value = startDateSplit // Set the start date
         endDate.value = endDateSplit; // Set the end date
 
-        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(cardObj.startDate)} bis ${formatDateToDayMonth(cardObj.endDate)}`;
+        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} bis ${formatDateToDayMonth(endDateStr)}`;
         timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
 
         startTimeRange.value = cardObj.startTime;
@@ -537,43 +559,49 @@ class CardObj {
         let startTimeRange = document.getElementById("startTimeRange");
         let endTimeRange = document.getElementById("endTimeRange");
 
+        console.log(startDateID.value);
+        console.log(endDateID.value);
+
         let startTime = "00:00";
         let endTime = "23:59";
 
-
-        let startDate = startDateID.value.split("T")[0];
-        let endDate = endDateID.value.split("T")[0];
-
-        console.log("End Date:", endDate);
-        console.log("End Time:", endTime);
-        debugger
+        var startDate = startDateID.value;
+        var endDate = endDateID.value;
 
 
         if (startDate && endDate && startTime && endTime) {
             let startDateTime = combineDateTime(startDate, startTime);
             let endDateTime = combineDateTime(endDate, endTime);
-            if (startDateTime >= endDateTime) {
+            console.log("Start DateTime:", startDateTime);
+            console.log("End DateTime:", endDateTime);
+
+            if (startDateTime > endDateTime) {
                 alert("Ungültige Eingabe: Bis-Datum/Zeit kann nicht vor Von-Datum/Zeit liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist größer oder gleich dem Enddatum.");
                 return;
-            } else if (startDateTime < new Date()) {
-                cardObj.startDate = new Date(); // Setze das heutige Datum mit der Startzeit
-                cardObj.endDate = endDate + " " + endTime; // Setze das heutige Datum mit der Endzeit
-                cardObj.dateAktiv = true;
             }
-            else {
-                cardObj.startDate = startDate + " " + startTime; // Setze das heutige Datum mit der Startzeit
-                cardObj.endDate = endDate + " " + endTime; // Setze das heutige Datum mit der Endzeit
-                cardObj.dateAktiv = true;
-                console.log("alles klar, Datum und Zeit wurden gesetzt");
+            if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
+
+                
+                alert("Das Startdatum muss in der Zukunft liegen.");
+                console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
+                return;
             }
+
+            console.log(new Date(getTodayDate() + "T" + startTime));
+            console.log(startDateTime);
+
+
+            cardObj.startDate = startDate + " " + startTime; // Setze das heutige Datum mit der Startzeit
+            cardObj.endDate = endDate + " " + endTime; // Setze das heutige Datum mit der Endzeit
+            cardObj.dateAktiv = true;
+            console.log("alles klar, Datum und Zeit wurden gesetzt");
             console.log("Startdatum:", cardObj.startDate);
             console.log("Enddatum:", cardObj.endDate);
         } else if (endDate && endTime) {
             alert("Nur Enddatum und Endzeit gesetzt");
-            var now = new Date();
             var endDateTime = new Date(endDate + " " + endTime);
-            if (endDateTime < now) {
+            if (endDateTime < new Date()) {
                 alert("Das Enddatum und die Endzeit müssen in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Enddatum ist in der Vergangenheit.");
                 return;
@@ -588,8 +616,8 @@ class CardObj {
         else if (startTime && startDate) {
             alert("Nur Startdatum und Startzeit gesetzt");
             let startDateTime = new Date(startDate + " " + startTime);
-            if (startDateTime < new Date()) {
-                alert("Das Startdatum und die Startzeit müssen in der Zukunft liegen.");
+            if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
+                alert("Das Startdatum muss in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
                 return;
             }
@@ -715,12 +743,23 @@ function combineDateTime(date, time) {
 function formatDateToDayMonth(dateTimeStr) {
     // Erwartetes Format: "YYYY-MM-DD HH:MM"
     if (!dateTimeStr || typeof dateTimeStr !== "string") return "";
+
     if (dateTimeStr === "9999-12-31 00:00") return "";
-    const [datePart] = dateTimeStr.split(" ");
-    if (!datePart) return "";
-    const [year, month, day] = datePart.split("-");
-    if (!day || !month) return "";
-    return `${day}.${month}`;
+
+    if (dateTimeStr.includes("T")) {
+        const [datePart] = dateTimeStr.split("T");
+        if (!datePart) return "";
+        const [year, month, day] = datePart.split("-");
+        if (!day || !month) return "";
+        return `${day}.${month}`;
+    }
+    if (dateTimeStr.includes(" ")) {
+        const [datePart] = dateTimeStr.split(" ");
+        if (!datePart) return "";
+        const [year, month, day] = datePart.split("-");
+        if (!day || !month) return "";
+        return `${day}.${month}`;
+    }
 }
 
 

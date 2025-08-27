@@ -80,7 +80,7 @@
                 return;
             }
 
-            const data = await response.json();
+            let  data = await response.json();
             console.log(data);
 
             while (data.length === 0) {
