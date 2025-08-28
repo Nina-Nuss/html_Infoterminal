@@ -27,7 +27,7 @@ class CardObj {
         this.deleteBtn = `deleteBtn${this.id}`
         this.timeLabel = `timeLabel${this.id}`;
         this.dateLabel = `dateLabel${this.id}`;
-
+        this.isAktiv = `isAktiv${this.id}`;
         this.imageInputId = `imageInput${this.id}`;
         this.modalImageId = `modalImageID${this.id}`;
         this.checkAktiv = `activCheck${this.id}`;
@@ -55,7 +55,7 @@ class CardObj {
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
         var aktiv = `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`;
         var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
-        var isAktiv = ""
+
 
 
         if (imageExts.includes(ext)) {
@@ -73,11 +73,10 @@ class CardObj {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
             placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
         }
-        if (this.aktiv) {
-            isAktiv = aktiv;
-        } else {
-            isAktiv = inaktiv;
-        }
+        const aktivIcon = this.aktiv
+            ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`
+            : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
+
         const body = `
             <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
                 <div class="card-header p-0">
@@ -85,7 +84,7 @@ class CardObj {
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
-                    <h5 class="card-title m-0 p-0">${this.titel} <span id="isAktiv${this.id}"></span></h5> 
+                    <h5 class="card-title m-0 p-0">${this.titel} <span id="isAktiv${this.id}">${aktivIcon}</span></h5> 
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <div class="form-check d-flex justify-content-center align-items-center">
                         <input class="form-check-input single-active-checkbox me-2" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
@@ -487,12 +486,12 @@ class CardObj {
         var aktiv = `<span class="text-success ms-2" id="aktivIcon${cardObj.id}"><i class="fas fa-check-circle"></i></span>`;
         var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${cardObj.id}"><i class="fas fa-times-circle"></i></span>`;
 
-        if(cardObj.aktiv){
+        if (cardObj.aktiv) {
             isAktiv.innerHTML = aktiv;
         } else {
             isAktiv.innerHTML = inaktiv;
         }
-    
+
 
         startDate.value = ""
         endDate.value = ""
