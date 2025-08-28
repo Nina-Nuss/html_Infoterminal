@@ -18,7 +18,7 @@
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
                 <div class="d-flex justify-content-center">
-                    <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges()"
+                    <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges(null)"
                         class="btn btn-success btn-sm me-2">
                         <i class="fas fa-save"></i> Speichern
                     </button>

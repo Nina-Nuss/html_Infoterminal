@@ -211,22 +211,28 @@ class CardObj {
         }
         return temp;
     }
-    static überprüfenÄnderungen() {
+    static async überprüfenÄnderungen() {
 
         var zuletztAusgewählteObj = "";
         var obj = ""
+        if (CardObj.zuletztAusgewählt.length === 0) {
+            return;
+        }
+        if (CardObj.zuletztAusgewählt.length > 20) {
+            CardObj.zuletztAusgewählt = [];
+            return;
+        }
         if (CardObj.zuletztAusgewählt.length > 2) {
             zuletztAusgewählteObj = CardObj.zuletztAusgewählt[CardObj.zuletztAusgewählt.length - 2];
             obj = findObj(CardObj.list, zuletztAusgewählteObj);
-            console.log(obj.titel);
+         
 
         } else {
             zuletztAusgewählteObj = CardObj.zuletztAusgewählt[0];
             obj = findObj(CardObj.list, zuletztAusgewählteObj);
-            console.log(obj.titel);
+         
         }
         if (!obj) return;
-
         console.log(CardObj.zuletztAusgewählt)
 
         const konfigContainer = document.getElementById('konfigContainer');
@@ -238,9 +244,14 @@ class CardObj {
                     obj.changed = true;
                 });
             });
-
             if (obj.changed) {
-                confirm("Infoseite " + obj.titel + " wurde geändert. Bitte Änderungen speichern.");
+                var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
+                if (confirmed) {
+                    // Hier deine Methode aufrufen, z.B. speichern:
+                    await CardObj.saveChanges(obj);
+                } else {
+                    alert("änderungen wurden nicht gespeichert");
+                }
                 obj.changed = false;
             }
         }
@@ -356,15 +367,23 @@ class CardObj {
             }
         }
     }
-    static async saveChanges() {
+    static async saveChanges(obj) {
+        debugger;
+        
+
+        
         if (CardObj.selectedID === null) {
             alert("Bitte wählen Sie ein Schema aus, um Änderungen zu speichern.");
             return;
         }
+        if (obj != null) {
+            obj =  findObj(CardObj.list, obj.id);
+            CardObj.prepareSelectedTimer(obj);
+        } else {
+            obj = findObj(CardObj.list, CardObj.selectedID);
+            CardObj.prepareSelectedTimer(obj);
+        }
         CardObj.checkAktiv();
-        const obj = findObj(CardObj.list, CardObj.selectedID);
-        CardObj.prepareSelectedTimer(obj, null, null);
-
         if (obj === null) {
             console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
             return;
@@ -373,6 +392,7 @@ class CardObj {
             CardObj.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = CardObj.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
             await updateDataBase(preCardObj, "updateSchema");
+            obj = findObj(CardObj.list, CardObj.selectedID);
             alert("Änderungen erfolgreich gespeichert!");
             CardObj.loadChanges(obj); // Lade die Änderungen für das ausgewählte CardObj
         } catch (error) {
@@ -386,8 +406,6 @@ class CardObj {
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
         let selectMinutenInt = null;
-
-
 
         if (document.getElementById("selectMinuten")) {
             selectMinuten = document.getElementById("selectMinuten");
@@ -477,12 +495,9 @@ class CardObj {
     static prepareObjForUpdate(obj) {
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         CardObj.checkAktiv()
-
         console.log(obj.selectedTime);
-
         // var timerSelect = document.getElementById("timerSelectRange");
         // obj.selectedTime = timerSelect.value;
-
         var preObj = {
             id: obj.id,
             imagePath: obj.imagePath,
@@ -831,10 +846,6 @@ if (document.querySelectorAll('input[type="date"]') || document.querySelectorAll
 
 }
 
-
-
-
-
 function getTodayDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -849,7 +860,6 @@ function getCurrentTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
 }
-
 function imgVideoPreview() {
     if (document.getElementById('img') !== null) {
         document.getElementById('img').addEventListener('change', function (event) {
@@ -885,7 +895,6 @@ function imgVideoPreview() {
         });
     }
 }
-
 async function meow(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
     const form = event.target.form;
@@ -1023,7 +1032,6 @@ function createBodyCardObj() {
     // Alle Checkboxen mit ID, die mit "flexCheck" beginnt, auswählen und loopen
 };
 
-
 if (document.getElementById("selectSekunden")) {
     const input = document.getElementById("selectSekunden");
     const anzeigeDauer = document.getElementById("anzeigeDauer");
@@ -1060,18 +1068,13 @@ if (document.getElementById("selectSekunden")) {
 
 function erstelleFunktionForCardObj(objID) {
 
-
     CardObj.zuletztAusgewählt.push(objID);
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
 
-
-
-
     CardObj.überprüfenÄnderungen();
-
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
         deakAktivCb(false);
