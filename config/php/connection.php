@@ -3,12 +3,12 @@
 
 // Versuche Konfiguration aus JSON-Datei zu laden
 
-$ninchen = "Nina\SQLEXPRESS";
+// $ninchen = "Nina\SQLEXPRESS";
 
 
-// $serverName =  "10.1.6.3";
-// $UID = "sa";
-// $PWD = "A%00000p&";
+$serverName =  "10.1.6.3";
+$UID = "sa";
+$PWD = "A%00000p&";
 
 
 $connectionOptions = array(
