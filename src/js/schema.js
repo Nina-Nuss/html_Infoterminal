@@ -23,9 +23,6 @@ class CardObj {
         this.titel = titel //Der Titel des Objektes
         this.beschreibung = beschreibung //Die Beschreibung des Objektes
         //-------------------------------------
-
-
-
         //HTMLOBJEKTE-------------------------
         this.changed = false;
         this.deleteBtn = `deleteBtn${this.id}`
@@ -57,10 +54,6 @@ class CardObj {
 
         let placeHolder;
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
-        var aktiv = `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`;
-        var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
-
-
 
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
@@ -212,7 +205,6 @@ class CardObj {
         return temp;
     }
     static async überprüfenÄnderungen() {
-
         var zuletztAusgewählteObj = "";
         var obj = ""
         if (CardObj.zuletztAusgewählt.length === 0) {
@@ -225,12 +217,12 @@ class CardObj {
         if (CardObj.zuletztAusgewählt.length > 2) {
             zuletztAusgewählteObj = CardObj.zuletztAusgewählt[CardObj.zuletztAusgewählt.length - 2];
             obj = findObj(CardObj.list, zuletztAusgewählteObj);
-         
+
 
         } else {
             zuletztAusgewählteObj = CardObj.zuletztAusgewählt[0];
             obj = findObj(CardObj.list, zuletztAusgewählteObj);
-         
+
         }
         if (!obj) return;
         console.log(CardObj.zuletztAusgewählt)
@@ -368,31 +360,32 @@ class CardObj {
         }
     }
     static async saveChanges(obj) {
-        debugger;
-        
-
-        
+      
         if (CardObj.selectedID === null) {
             alert("Bitte wählen Sie ein Schema aus, um Änderungen zu speichern.");
             return;
         }
         if (obj != null) {
-            obj =  findObj(CardObj.list, obj.id);
+            obj = findObj(CardObj.list, obj.id);
             CardObj.prepareSelectedTimer(obj);
         } else {
             obj = findObj(CardObj.list, CardObj.selectedID);
             CardObj.prepareSelectedTimer(obj);
         }
-        CardObj.checkAktiv();
+       
         if (obj === null) {
             console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
             return;
         }
         try {
+            debugger
+            CardObj.checkAktiv();
             CardObj.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = CardObj.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
             await updateDataBase(preCardObj, "updateSchema");
-            obj = findObj(CardObj.list, CardObj.selectedID);
+            if (CardObj.selectedID) {
+                obj = findObj(CardObj.list, CardObj.selectedID);
+            }
             alert("Änderungen erfolgreich gespeichert!");
             CardObj.loadChanges(obj); // Lade die Änderungen für das ausgewählte CardObj
         } catch (error) {
@@ -544,8 +537,7 @@ class CardObj {
         } else {
             isAktiv.innerHTML = inaktiv;
         }
-
-
+        
         startDate.value = ""
         endDate.value = ""
         startTimeRange.value = ""
@@ -1084,10 +1076,8 @@ function erstelleFunktionForCardObj(objID) {
         var obj = findObj(CardObj.list, id);
         CardObj.selectedID = id; // Set the selected ID
 
-
         CardObj.loadChanges(obj); // Load changes for the selected CardObj
         // CardObj.DateTimeHandler(obj);
-
 
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
@@ -1134,9 +1124,7 @@ function deakAktivCb(aktiv) {
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
     var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
-    var tabelleDelete = document.getElementById("tabelleDelete");
-
-
+    var tabelleDelete = document.getElementById("tabelleDelete");   
 
     if (document.getElementById("panelForDateTime")) {
         var panel = document.getElementById("panelForDateTime");
