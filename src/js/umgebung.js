@@ -110,7 +110,7 @@ class Umgebung {
         if (selector) {
             selector.innerHTML = selectorOptions;
             Array.from(selector.options).forEach(option => {
-                if (option.value === "Localhost") {
+                if (option.value.toLowerCase().trim() === "localhost") {
                     option.selected = true;
                     option.innerHTML = "Test Anzeige";
                 }
@@ -231,8 +231,9 @@ class Umgebung {
         button.addEventListener('click', function () {
             console.log("Button zum Öffnen des Terminals wurde geklickt");
             const selectedTerminal = selector.value;
+                     debugger
             console.log("Ausgewähltes Infoterminal:", selectedTerminal);
-            if (selectedTerminal === "Localhost") {
+            if (selectedTerminal.toLowerCase().trim() === "localhost" || selectedTerminal.toLowerCase().trim() === "test anzeige") {
                 debugger
                 var obj = findObj(CardObj.list, CardObj.selectedID);
                 const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
@@ -247,6 +248,7 @@ class Umgebung {
     }
 
     static erstelleSelectorForCardObj() {
+        
         var selectorInfoterminal = document.getElementById("selectorInfoterminal");
         if (selectorInfoterminal != null) {
             selectorInfoterminal.innerHTML = ""

@@ -35,14 +35,14 @@
                 <div class="pt-2"></div>
                 <div class="card-body h-100">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-9" id="konfigContainer">
                             <div class="card">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren</>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width: 30%;">
+                                    <div class="card-body" style="width: 25%;">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -81,13 +81,11 @@
                                     </div>
 
 
-                                    <div class="card-body" style="width: 20%;">
+                                    <div class="card-body" style="width: 15%;">
 
                                     </div>
 
                                     <div class="card-body" style="width: 50%;">
-
-
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel">
@@ -98,7 +96,7 @@
                                                             <div class="d-flex align-items-center" style="min-width:0;">
 
                                                                 <input type="date"
-                                                                    class="form-control form-control-sm flex-fill"
+                                                                    class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
                                                                     style="min-width:0;">
                                                             </div>
@@ -108,7 +106,7 @@
                                                                 <label for="endDate"
                                                                     class="form-label mb-0 ms-5 mx-2 text-secondary">bis</label>
                                                                 <input type="date"
-                                                                    class="form-control form-control-sm flex-fill"
+                                                                    class="form-control form-control-sm w-auto"
                                                                     id="endDate" name="endDate" style="min-width:0;">
                                                             </div>
                                                         </div>
@@ -135,7 +133,7 @@
                                                                 class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
                                                         <div class="d-flex align-items-center"
-                                                            style="margin-left: 3.5rem;">
+                                                            style="margin-left: 3.8rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width:40px;">bis</label>

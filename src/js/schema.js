@@ -4,6 +4,7 @@ class CardObj {
     static temp_remove = [];
     static eleListe = []
     static list = [];
+    static zuletztAusgewählt = [];
     static checkAllowed = false; // Variable to control checkbox behavior
     constructor(id, imagePath, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, beschreibung) {
 
@@ -23,7 +24,10 @@ class CardObj {
         this.beschreibung = beschreibung //Die Beschreibung des Objektes
         //-------------------------------------
 
+
+
         //HTMLOBJEKTE-------------------------
+        this.changed = false;
         this.deleteBtn = `deleteBtn${this.id}`
         this.timeLabel = `timeLabel${this.id}`;
         this.dateLabel = `dateLabel${this.id}`;
@@ -79,8 +83,8 @@ class CardObj {
 
         const body = `
             <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
-                <div class="card-header p-0">
-                    <small class="text-muted" id="${this.timeLabel}">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
+                <div class="card-header p-1">
+                   
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
@@ -95,8 +99,9 @@ class CardObj {
                         <small id="${this.selectedTimerLabel}" class="text-muted">Dauer: ${getSekMin(this.selectedTime)}</small>
                     </div>
                 </div>
-                <div class="card-footer p-0">
-                    <small class="text-muted" id="${this.dateLabel}">Datum: ${formatDateToDayMonth(this.startDate)} bis ${formatDateToDayMonth(this.endDate)}</small>
+                <div class="card-footer p-0 d-flex flex-column">
+                    <small class="text-muted" id="${this.dateLabel}">Datum: ${formatDateToDayMonth(this.startDate)} - ${formatDateToDayMonth(this.endDate)}</small>
+                     <small class="text-muted" id="${this.timeLabel}">Uhrzeit: ${this.startTime} - ${this.endTime}</small>
                 </div>
             </div>
     `;
@@ -206,7 +211,40 @@ class CardObj {
         }
         return temp;
     }
+    static überprüfenÄnderungen() {
 
+        var zuletztAusgewählteObj = "";
+        var obj = ""
+        if (CardObj.zuletztAusgewählt.length > 2) {
+            zuletztAusgewählteObj = CardObj.zuletztAusgewählt[CardObj.zuletztAusgewählt.length - 2];
+            obj = findObj(CardObj.list, zuletztAusgewählteObj);
+            console.log(obj.titel);
+
+        } else {
+            zuletztAusgewählteObj = CardObj.zuletztAusgewählt[0];
+            obj = findObj(CardObj.list, zuletztAusgewählteObj);
+            console.log(obj.titel);
+        }
+        if (!obj) return;
+
+        console.log(CardObj.zuletztAusgewählt)
+
+        const konfigContainer = document.getElementById('konfigContainer');
+        if (konfigContainer) {
+            const inputs = konfigContainer.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.oninput = null;
+                input.addEventListener('input', function (event) {
+                    obj.changed = true;
+                });
+            });
+
+            if (obj.changed) {
+                confirm("Infoseite " + obj.titel + " wurde geändert. Bitte Änderungen speichern.");
+                obj.changed = false;
+            }
+        }
+    }
 
     static async deleteCardObjDataBase(cardObjId) {
         try {
@@ -545,13 +583,17 @@ class CardObj {
         startDate.value = startDateSplit // Set the start date
         endDate.value = endDateSplit; // Set the end date
 
-        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} bis ${formatDateToDayMonth(endDateStr)}`;
+
+        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} - ${formatDateToDayMonth(endDateStr)}`;
         timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
+
+
 
         startTimeRange.value = cardObj.startTime;
         endTimeRange.value = cardObj.endTime;
 
         checkA.checked = cardObj.aktiv; // Set the checkbox state
+        cardObj.changed = false; // Reset the changed flag
 
     }
     static setTimerRange(value) {
@@ -734,6 +776,8 @@ class CardObj {
 window.addEventListener("load", async function () {
     imgVideoPreview();
 
+
+
     const templatebereich = document.getElementById("templateBereich");
     if (templatebereich !== null) {
         templatebereich.addEventListener("click", async function (event) {
@@ -767,6 +811,28 @@ function formatDateToDayMonth(dateTimeStr) {
         return `${day}.${month}`;
     }
 }
+
+if (document.querySelectorAll('input[type="date"]') || document.querySelectorAll('input[type="time"]')) {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type="date"]').forEach(function (input) {
+            input.addEventListener('keydown', function (e) {
+                e.preventDefault();
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type="time"]').forEach(function (input) {
+            input.addEventListener('keydown', function (e) {
+                e.preventDefault();
+            });
+        });
+    });
+
+}
+
+
+
 
 
 function getTodayDate() {
@@ -993,18 +1059,32 @@ if (document.getElementById("selectSekunden")) {
 
 
 function erstelleFunktionForCardObj(objID) {
+
+
+    CardObj.zuletztAusgewählt.push(objID);
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
+
+
+
+
+    CardObj.überprüfenÄnderungen();
+
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
-        const id = extractNumberFromString(checkbox.id);
-        CardObj.selectedID = id; // Set the selected ID
-        var obj = findObj(CardObj.list, id);
         deakAktivCb(false);
+
+
+        const id = extractNumberFromString(checkbox.id);
+        var obj = findObj(CardObj.list, id);
+        CardObj.selectedID = id; // Set the selected ID
+
+
         CardObj.loadChanges(obj); // Load changes for the selected CardObj
         // CardObj.DateTimeHandler(obj);
+
 
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
@@ -1052,13 +1132,16 @@ function deakAktivCb(aktiv) {
     var selectSekunden = document.getElementById("selectSekunden");
     var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
     var tabelleDelete = document.getElementById("tabelleDelete");
-    const panel = document.getElementById("panelForDateTime");
-    // Selektiere alle relevanten Form-Elemente im Panel
-    const elements = panel.querySelectorAll('input, button');
 
-    if (window.location.href.includes("templatebereich.php")) {
-        return;
+
+
+    if (document.getElementById("panelForDateTime")) {
+        var panel = document.getElementById("panelForDateTime");
+
+        // Selektiere alle relevanten Form-Elemente im Panel
+        var elements = panel.querySelectorAll('input, button');
     }
+
     if (aktiv == true) {
         elements.forEach(el => {
             el.disabled = true;
@@ -1110,4 +1193,7 @@ function deaktivereCbx(aktiv) {
         console.log("cardContainer nicht gefunden");
     }
 }
+
+
+
 

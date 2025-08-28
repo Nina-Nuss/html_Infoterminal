@@ -39,6 +39,7 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }
+  
 }
 
 function getSekMin(ms) {
@@ -121,21 +122,21 @@ function checkAnzahl() {
 
 }
 
-function bereinigeDatenbankUndFolder(){
+function bereinigeDatenbankUndFolder() {
     if (confirm("Möchten Sie wirklich die Datenbank und den Upload-Ordner bereinigen? Diese Aktion kann nicht rückgängig gemacht werden.")) {
         fetch('../database/deleteFileFolder.php', {
             method: 'POST'
         })
-        .then(response => response.text())
-        .then(data => {
-            console.log('Erfolg:', data);
-            alert("Datenbank und Upload-Ordner wurden erfolgreich bereinigt.");
-            location.reload(); // Seite neu laden, um Änderungen anzuzeigen
-        })
-        .catch((error) => {
-            console.error('Fehler:', error);
-            alert("Fehler beim Bereinigen der Datenbank und des Upload-Ordners.");
-        });
+            .then(response => response.text())
+            .then(data => {
+                console.log('Erfolg:', data);
+                alert("Datenbank und Upload-Ordner wurden erfolgreich bereinigt.");
+                location.reload(); // Seite neu laden, um Änderungen anzuzeigen
+            })
+            .catch((error) => {
+                console.error('Fehler:', error);
+                alert("Fehler beim Bereinigen der Datenbank und des Upload-Ordners.");
+            });
     } else {
         console.log("Bereinigung abgebrochen.");
     }
