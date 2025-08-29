@@ -31,7 +31,6 @@ class CardObj {
         this.isAktiv = `isAktiv${this.id}`;
         this.imageInputId = `imageInput${this.id}`;
         this.modalImageId = `modalImageID${this.id}`;
-        this.checkAktiv = `activCheck${this.id}`;
         this.dateRangeInputId = `daterange${this.id}`;
         this.dateRangeContainerId = `selected-daterange${this.id}`;
         this.infoBtn = `infoBtn${this.id}`;
@@ -205,6 +204,7 @@ class CardObj {
         return temp;
     }
     static async überprüfenÄnderungen() {
+        debugger
         var zuletztAusgewählteObj = "";
         var obj = ""
         if (CardObj.zuletztAusgewählt.length === 0) {
@@ -225,7 +225,6 @@ class CardObj {
 
         }
         if (!obj) return;
-        console.log(CardObj.zuletztAusgewählt)
 
         const konfigContainer = document.getElementById('konfigContainer');
         if (konfigContainer) {
@@ -293,10 +292,6 @@ class CardObj {
         this.list = [];
         this.temp_remove = [];
         await CardObj.createCardObj();
-        if (window.location.href.includes("templatebereich.php") ||
-            window.location.href.includes("adminbereich.php")) {
-            deaktivereCbx(true);
-        }
         console.log(this.list);
 
     }
@@ -340,27 +335,27 @@ class CardObj {
     }
 
 
-    static checkAktiv() {
-        if (CardObj.selectedID !== null) {
-            var checkA = document.getElementById("checkA");
-            var obj = findObj(CardObj.list, CardObj.selectedID);
-            if (checkA.checked && obj !== null) {
-                console.log("Checkbox ist aktiviert");
-                obj.aktiv = true;
-                console.log("Checkbox aktiviert für CardObjektID:", obj.id);
+    static checkAktiv(obj) {
+        debugger
+        if(!obj) return;
+        var checkA = document.getElementById("checkA");
+        if (checkA.checked && obj !== null) {
+            console.log("Checkbox ist aktiviert");
+            obj.aktiv = true;
+            console.log("Checkbox aktiviert für CardObjektID:", obj.id);
 
-            } else {
-                if (obj === null) {
-                    console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
-                    return;
-                }
-                obj.aktiv = false;
-                console.log("Checkbox deaktiviert für CardObjektID:", obj.id);
+        } else {
+            if (obj === null) {
+                console.warn("Objekt nicht gefunden für ID:", obj.id);
+                return;
             }
+            obj.aktiv = false;
+            console.log("Checkbox deaktiviert für CardObjektID:", obj.id);
         }
+
     }
     static async saveChanges(obj) {
-      
+
         if (CardObj.selectedID === null) {
             alert("Bitte wählen Sie ein Schema aus, um Änderungen zu speichern.");
             return;
@@ -372,14 +367,13 @@ class CardObj {
             obj = findObj(CardObj.list, CardObj.selectedID);
             CardObj.prepareSelectedTimer(obj);
         }
-       
+
         if (obj === null) {
             console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
             return;
         }
         try {
-            debugger
-            CardObj.checkAktiv();
+            CardObj.checkAktiv(obj);
             CardObj.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = CardObj.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
             await updateDataBase(preCardObj, "updateSchema");
@@ -480,14 +474,11 @@ class CardObj {
             obj.selectedTime = 0; // Setze auf 0, wenn keine Eingabe vorhanden ist
             console.log("Keine Zeit ausgewählt, setze auf 0");
         }
-
-
-
     }
 
     static prepareObjForUpdate(obj) {
+        debugger
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
-        CardObj.checkAktiv()
         console.log(obj.selectedTime);
         // var timerSelect = document.getElementById("timerSelectRange");
         // obj.selectedTime = timerSelect.value;
@@ -537,7 +528,7 @@ class CardObj {
         } else {
             isAktiv.innerHTML = inaktiv;
         }
-        
+
         startDate.value = ""
         endDate.value = ""
         startTimeRange.value = ""
@@ -581,21 +572,14 @@ class CardObj {
             // Kein "T" im String
             console.log('"T" ist NICHT in endDate enthalten:', endDateStr);
         }
-
         console.log("Startdatum:", startDateSplit);
         console.log("Enddatum:", endDateSplit);
         console.log("Startdatum:", startDateStr);
         console.log("Enddatum:", endDateStr);
-
         startDate.value = startDateSplit // Set the start date
         endDate.value = endDateSplit; // Set the end date
-
-
         dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} - ${formatDateToDayMonth(endDateStr)}`;
         timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
-
-
-
         startTimeRange.value = cardObj.startTime;
         endTimeRange.value = cardObj.endTime;
 
@@ -612,9 +596,6 @@ class CardObj {
             console.error("Timer Select Range Element nicht gefunden");
         }
     }
-
-
-
     static DateTimeHandler(cardObj) {
         console.log("DateTimeHandler aufgerufen für CardObjektID:", cardObj.id);
         let startDateID = document.getElementById("startDate");
@@ -782,9 +763,6 @@ class CardObj {
 }
 window.addEventListener("load", async function () {
     imgVideoPreview();
-
-
-
     const templatebereich = document.getElementById("templateBereich");
     if (templatebereich !== null) {
         templatebereich.addEventListener("click", async function (event) {
@@ -827,15 +805,6 @@ if (document.querySelectorAll('input[type="date"]') || document.querySelectorAll
             });
         });
     });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('input[type="time"]').forEach(function (input) {
-            input.addEventListener('keydown', function (e) {
-                e.preventDefault();
-            });
-        });
-    });
-
 }
 
 function getTodayDate() {
@@ -1067,27 +1036,24 @@ function erstelleFunktionForCardObj(objID) {
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
 
     CardObj.überprüfenÄnderungen();
+
+
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
         deakAktivCb(false);
 
-
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(CardObj.list, id);
         CardObj.selectedID = id; // Set the selected ID
-
         CardObj.loadChanges(obj); // Load changes for the selected CardObj
         // CardObj.DateTimeHandler(obj);
-
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
-
             if (id !== extractNumberFromString(cb.id)) {
                 cb.checked = false;
             }
         });
         console.log("Checkbox mit ID " + id + " wurde aktiviert.");
-
         console.log(CardObj.selectedID);
         if (objID == CardObj.selectedID) {
             label.innerHTML = "Ausgewählt"; // Set the label text to "checked" when checked
@@ -1108,7 +1074,6 @@ function erstelleFunktionForCardObj(objID) {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
         });
         checkA.checked = false;
-
     }
     Beziehungen.update(CardObj.selectedID);
 }
@@ -1124,15 +1089,13 @@ function deakAktivCb(aktiv) {
     var anzeigeDauer = document.getElementById("anzeigeDauer");
     var selectSekunden = document.getElementById("selectSekunden");
     var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
-    var tabelleDelete = document.getElementById("tabelleDelete");   
+    var tabelleDelete = document.getElementById("tabelleDelete");
 
     if (document.getElementById("panelForDateTime")) {
         var panel = document.getElementById("panelForDateTime");
-
         // Selektiere alle relevanten Form-Elemente im Panel
         var elements = panel.querySelectorAll('input, button');
     }
-
     if (aktiv == true) {
         elements.forEach(el => {
             el.disabled = true;
@@ -1157,10 +1120,8 @@ function deakAktivCb(aktiv) {
         selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
         btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
         panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
-
         elements.forEach(el => {
             el.disabled = false;
-
         });
     }
 }
@@ -1172,7 +1133,6 @@ function deaktivereCbx(aktiv) {
         console.log(`Checkboxes gefunden: ${checkboxes.length}, Labels gefunden: ${labels.length}`);
         checkboxes.forEach(checkbox => {
             checkbox.disabled = aktiv;
-
         });
         labels.forEach(label => {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
@@ -1184,7 +1144,3 @@ function deaktivereCbx(aktiv) {
         console.log("cardContainer nicht gefunden");
     }
 }
-
-
-
-

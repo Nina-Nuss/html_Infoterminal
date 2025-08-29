@@ -90,7 +90,7 @@
     }
 </style>
 </head>
-<?php include '../assets/links.html'; ?> 
+<?php include '../assets/links.html'; ?>
 
 <header>
     <?php include '../layout/logo.php'; ?>
@@ -104,7 +104,7 @@
 </body>
 
 <footer class="p-0">
-    <?php include  '../layout/footer.php'; ?>
+    <?php include '../layout/footer.php'; ?>
 </footer>
 
 
@@ -116,10 +116,10 @@
         const container = document.getElementById('container');
         const ip = await checkIP(ort);
         console.log(ip);
-        if(template){
-           console.log("Template geladen");
-           showTestTemplate(template);
-           return;
+        if (template) {
+            console.log("Template geladen");
+            showTestTemplate(template);
+            return;
         }
         if (ort && container != null && ip != false) {
             startCarousel(ort);
@@ -137,7 +137,7 @@
         iframe.src = data;
         container.appendChild(iframe);
     }
-    function showTestTemplate(template){
+    function showTestTemplate(template) {
         const iframe = document.createElement('iframe');
         // Variablen als Query-Parameter anhängen
         let data = `out.php?template=${encodeURIComponent(template)}`;
@@ -152,6 +152,12 @@
         const clientIP = await response.text();
         return clientIP; // Rückgabe der IP-Adresse für weitere Verwendung
     }
+
+
+    // Seite nach 60 Minuten automatisch neu laden
+    setTimeout(function () {
+        window.location.reload();
+    }, 3600000); // 3600000 ms = 60 Minuten
 </script>
 
 </html>

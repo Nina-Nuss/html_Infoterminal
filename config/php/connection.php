@@ -3,16 +3,17 @@
 
 // Versuche Konfiguration aus JSON-Datei zu laden
 
-// $ninchen = "Nina\SQLEXPRESS";
+// $server =  "10.1.6.3";
+$serverName = "10.1.6.21";
 
-
-$serverName =  "10.1.6.3";
+// $serverName = "Nina\SQLEXPRESS";
+$database = "testdbTerminal";
 $UID = "sa";
 $PWD = "A%00000p&";
 
 
 $connectionOptions = array(
-    "Database" =>  "testdbTerminal",
+    "Database" =>  $database ?? "testdbTerminal",
     "CharacterSet" =>  "UTF-8",
     "TrustServerCertificate" =>  true,
     "Encrypt" =>  true,
@@ -22,7 +23,7 @@ $connectionOptions = array(
 
 // Verbindung herstellen
 global $conn;
-$conn = sqlsrv_connect( $serverName ?? $ninchen, $connectionOptions);
+$conn = sqlsrv_connect( $serverName ?? "10.1.6.21", $connectionOptions);
 
 // Verbindung überprüfen
 if (!$conn) {

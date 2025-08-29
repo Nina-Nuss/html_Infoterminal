@@ -72,9 +72,7 @@
                                                 </label>
 
                                                 <input class="form-check-input" type="checkbox" id="checkA"
-                                                    name="checkA" onchange="CardObj.checkAktiv()">
-
-
+                                                    name="checkA" >
                                             </div>
 
                                         </div>
@@ -136,7 +134,7 @@
                                                             style="margin-left: 3.8rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
-                                                                style="width:40px;">bis</label>
+                                                                style="width: auto;">bis</label>
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange"

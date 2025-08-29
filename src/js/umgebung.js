@@ -324,10 +324,6 @@ function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
-
-
-
 function cutAndCreate(responseText) {
     var obj = responseText.split("],[");
     for (let i = 0; i < obj.length; i++) {
@@ -337,10 +333,7 @@ function cutAndCreate(responseText) {
     }
 }
 
-
-
 document.addEventListener('DOMContentLoaded', async () => {
-
     const select = document.getElementById('refreshSelect');
     const infoCounterLimit = document.getElementById('infoCounterLimit');
     const cardCounterLimit = document.getElementById('cardCounterLimit');
@@ -373,7 +366,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
 });
-
 function createList(cfg, select, defaultValue) {
 
     select.innerHTML = ""; // Vorher leeren
@@ -422,6 +414,4 @@ function saveList(select, name) {
             alert('Speicher-Fehler');
         }
     });
-
-
 }
