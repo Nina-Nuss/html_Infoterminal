@@ -18,7 +18,7 @@
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
                 <div class="d-flex justify-content-center">
-                    <button id="btn_save_changes" type="button" onclick="CardObj.saveChanges(null)"
+                    <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                         class="btn btn-success btn-sm me-2">
                         <i class="fas fa-save"></i> Speichern
                     </button>
@@ -27,7 +27,7 @@
                         data-bs-toggle="modal" data-bs-target="#addInfoSeite">
                         <i class="fas fa-pen-to-square"></i> Erstellen
                     </button>
-                    <button id="btn_deleteInfoSeite" onclick="CardObj.deleteCardObj()" type="button"
+                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
                         class="btn btn-danger btn-sm">
                         <i class="fas fa-trash"></i> Löschen
                     </button>
@@ -112,7 +112,7 @@
                                                             style="width: 50px;">
                                                             <button id="btnDelDateTime"
                                                                 class="btn btn-outline-danger btn-sm px-3"
-                                                                onclick="CardObj.deleteDateTimeRange(CardObj.selectedID)">
+                                                                onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
@@ -145,7 +145,7 @@
                                                         <div class="d-flex align-items-center" style="width: 50px;">
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger btn-sm px-3"
-                                                                onclick="CardObj.removeTimeRange(CardObj.selectedID)">
+                                                                onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
@@ -224,7 +224,7 @@
                                             <i class="fas fa-plus"></i> Hinzufügen
                                         </button>
                                         <button id="btn_loeschen" type="button" class="btn btn-danger btn-sm"
-                                            onclick="Beziehungen.remove_generate(CardObj.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
+                                            onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i> Entfernen
                                         </button>
                                     </div>

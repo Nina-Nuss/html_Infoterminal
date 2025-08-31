@@ -235,7 +235,7 @@ class Umgebung {
             console.log("Ausgewähltes Infoterminal:", selectedTerminal);
             if (selectedTerminal.toLowerCase().trim() === "localhost" || selectedTerminal.toLowerCase().trim() === "test anzeige") {
                 debugger
-                var obj = findObj(CardObj.list, CardObj.selectedID);
+                var obj = findObj(Infoseite.list, Infoseite.selectedID);
                 const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
                 window.open(url, '_blank');
             }

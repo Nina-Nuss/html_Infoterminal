@@ -51,7 +51,7 @@ class Beziehungen {
         this.createList(cardObjID)
         console.log("Temp Liste Add: " + this.temp_add);
         console.log("Temp Liste Remove: " + this.temp_remove);
-        if (CardObj.selectedID != null) {
+        if (Infoseite.selectedID != null) {
             this.createListForAnzeige();
         }
 
@@ -215,10 +215,13 @@ class Beziehungen {
     }
 
     static showBeziehungsList() {
+      
         const selectorInfoterminalForCards = document.getElementById('selectorInfoterminalForCards');
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
+                  debugger
                 const selectedValue = event.target.value;
+                
                 console.log(selectorInfoterminalForCards[0]);
 
                 console.log("Ausgewählter Wert:", selectedValue);
@@ -226,9 +229,12 @@ class Beziehungen {
                     let cardContainer = document.getElementById("cardContainer");
                     console.log("Kartencontainer gefunden:", cardContainer);
                     cardContainer.innerHTML = ''
+
+                    Infoseite.selectedID = null;
+                    Infoseite.removeChanges();
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
-                            let obj = findObj(CardObj.list, beziehung.cardObjektID);
+                            let obj = findObj(Infoseite.list, beziehung.cardObjektID);
                             console.log(obj);
                             obj.htmlBody("cardContainer");
                         }
@@ -236,7 +242,7 @@ class Beziehungen {
                         // Hier kannst du die Logik hinzufügen, um die Beziehung anzuzeigen
                     });
                     if (selectedValue == "alle") {
-                        CardObj.list.forEach(obj => {
+                        Infoseite.list.forEach(obj => {
                             console.log(obj);
                             obj.htmlBody("cardContainer");
                         });
@@ -248,7 +254,7 @@ class Beziehungen {
     }
 
     static async remove_generate(id, list, databaseUrl) {
-        if (CardObj.selectedID == null || id === undefined || list === undefined || databaseUrl === undefined) {
+        if (Infoseite.selectedID == null || id === undefined || list === undefined || databaseUrl === undefined) {
             return;
 
         }

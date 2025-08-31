@@ -1,10 +1,11 @@
-class CardObj {
+class Infoseite {
     static idCounter = 0;
     static selectedID = null;
+    static lastSelectedID = null;
     static temp_remove = [];
     static eleListe = []
     static list = [];
-    static zuletztAusgewählt = [];
+    static selectedHistorys = [];
     static checkAllowed = false; // Variable to control checkbox behavior
     constructor(id, imagePath, selectedTime, aktiv, startTime, endTime, startDate, endDate, timeAktiv, dateAktiv, titel, beschreibung) {
 
@@ -42,7 +43,7 @@ class CardObj {
 
         //-------------------------------------    
 
-        CardObj.list.push(this)
+        Infoseite.list.push(this)
 
     }
     htmlBody(umgebung) {
@@ -204,24 +205,24 @@ class CardObj {
         return temp;
     }
     static async überprüfenÄnderungen() {
-        debugger
         var zuletztAusgewählteObj = "";
         var obj = ""
-        if (CardObj.zuletztAusgewählt.length === 0) {
+        if (Infoseite.selectedHistorys.length === 0) {
             return;
         }
-        if (CardObj.zuletztAusgewählt.length > 20) {
-            CardObj.zuletztAusgewählt = [];
+        if (Infoseite.selectedHistorys.length > 20) {
+            Infoseite.selectedHistorys = [];
             return;
         }
-        if (CardObj.zuletztAusgewählt.length > 2) {
-            zuletztAusgewählteObj = CardObj.zuletztAusgewählt[CardObj.zuletztAusgewählt.length - 2];
-            obj = findObj(CardObj.list, zuletztAusgewählteObj);
-
+        if (Infoseite.selectedHistorys.length > 2) {
+            zuletztAusgewählteObj = Infoseite.selectedHistorys[Infoseite.selectedHistorys.length - 2];
+            Infoseite.lastSelectedID = zuletztAusgewählteObj;
+            obj = findObj(Infoseite.list, zuletztAusgewählteObj);
+       
 
         } else {
-            zuletztAusgewählteObj = CardObj.zuletztAusgewählt[0];
-            obj = findObj(CardObj.list, zuletztAusgewählteObj);
+            zuletztAusgewählteObj = Infoseite.selectedHistorys[0];
+            obj = findObj(Infoseite.list, zuletztAusgewählteObj);
 
         }
         if (!obj) return;
@@ -239,7 +240,7 @@ class CardObj {
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
                     // Hier deine Methode aufrufen, z.B. speichern:
-                    await CardObj.saveChanges(obj);
+                    await Infoseite.saveChanges(obj);
                 } else {
                     alert("änderungen wurden nicht gespeichert");
                 }
@@ -291,7 +292,7 @@ class CardObj {
         }
         this.list = [];
         this.temp_remove = [];
-        await CardObj.createCardObj();
+        await Infoseite.createCardObj();
         console.log(this.list);
 
     }
@@ -305,7 +306,7 @@ class CardObj {
             if (cardObj.imagePath == null || cardObj.imagePath == "null" || cardObj.imagePath == "") {
                 cardObj.imagePath = ""; // Setze einen Standardwert,
             } else {
-                new CardObj(
+                new Infoseite(
                     cardObj.id,
                     cardObj.imagePath,
                     cardObj.selectedTime,
@@ -324,20 +325,20 @@ class CardObj {
                     <td class="p-2">${cardObj.id}</td>
                     <td class="p-2">${cardObj.titel}</td>
                     <td class="p-2">${cardObj.beschreibung}</td>
-                    <td class="p-2 text-center"><input type="checkbox" name="${cardObj.id}" id="checkDelSchema${cardObj.id}" onchange="CardObj.event_remove(${cardObj.id})"></td>
+                    <td class="p-2 text-center"><input type="checkbox" name="${cardObj.id}" id="checkDelSchema${cardObj.id}" onchange="Infoseite.event_remove(${cardObj.id})"></td>
                 </tr>`;
                 }
             }
         });
         createBodyCardObj();
         deakAktivCb(true);
-        console.log(CardObj.list);
+        console.log(Infoseite.list);
     }
 
 
     static checkAktiv(obj) {
         debugger
-        if(!obj) return;
+        if (!obj) return;
         var checkA = document.getElementById("checkA");
         if (checkA.checked && obj !== null) {
             console.log("Checkbox ist aktiviert");
@@ -356,32 +357,32 @@ class CardObj {
     }
     static async saveChanges(obj) {
 
-        if (CardObj.selectedID === null) {
+        if (Infoseite.selectedID === null) {
             alert("Bitte wählen Sie ein Schema aus, um Änderungen zu speichern.");
             return;
         }
         if (obj != null) {
-            obj = findObj(CardObj.list, obj.id);
-            CardObj.prepareSelectedTimer(obj);
+            obj = findObj(Infoseite.list, obj.id);
+            Infoseite.prepareSelectedTimer(obj);
         } else {
-            obj = findObj(CardObj.list, CardObj.selectedID);
-            CardObj.prepareSelectedTimer(obj);
+            obj = findObj(Infoseite.list, Infoseite.selectedID);
+            Infoseite.prepareSelectedTimer(obj);
         }
 
         if (obj === null) {
-            console.warn("Objekt nicht gefunden für ID:", CardObj.selectedID);
+            console.warn("Objekt nicht gefunden für ID:", Infoseite.selectedID);
             return;
         }
         try {
-            CardObj.checkAktiv(obj);
-            CardObj.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
-            var preCardObj = CardObj.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
+            Infoseite.checkAktiv(obj);
+            Infoseite.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
+            var preCardObj = Infoseite.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
             await updateDataBase(preCardObj, "updateSchema");
-            if (CardObj.selectedID) {
-                obj = findObj(CardObj.list, CardObj.selectedID);
+            if (Infoseite.selectedID) {
+                obj = findObj(Infoseite.list, Infoseite.selectedID);
             }
             alert("Änderungen erfolgreich gespeichert!");
-            CardObj.loadChanges(obj); // Lade die Änderungen für das ausgewählte CardObj
+            Infoseite.loadChanges(obj); // Lade die Änderungen für das ausgewählte Infoseite
         } catch (error) {
             console.error("Fehler beim Speichern der Änderungen:", error);
             alert("Fehler beim Speichern der Änderungen. Bitte versuchen Sie es erneut.");
@@ -523,6 +524,8 @@ class CardObj {
         var aktiv = `<span class="text-success ms-2" id="aktivIcon${cardObj.id}"><i class="fas fa-check-circle"></i></span>`;
         var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${cardObj.id}"><i class="fas fa-times-circle"></i></span>`;
 
+        isAktiv.innerHTML = ""; // Clear previous content
+
         if (cardObj.aktiv) {
             isAktiv.innerHTML = aktiv;
         } else {
@@ -587,6 +590,28 @@ class CardObj {
         cardObj.changed = false; // Reset the changed flag
 
     }
+    static removeChanges() {
+        if (Infoseite.selectedID === null) {
+            // var timerbereich = document.getElementById("timerSelectRange");
+            var titel = document.getElementById("websiteName");
+            var anzeigeDauer = document.getElementById("anzeigeDauer");
+            var checkA = document.getElementById("checkA");
+            var selectSekunden = document.getElementById("selectSekunden");
+            var startDate = document.getElementById("startDate");
+            var endDate = document.getElementById("endDate");
+            var startTimeRange = document.getElementById("startTimeRange");
+            var endTimeRange = document.getElementById("endTimeRange");
+           
+            titel.innerHTML = ""
+            checkA.checked = false
+            anzeigeDauer.innerHTML = ""
+            startDate.value = ""
+            endDate.value = ""
+            startTimeRange.value = ""
+            endTimeRange.value = ""
+            selectSekunden.value = ""
+        }
+    }
     static setTimerRange(value) {
         console.log("Timer Range gesetzt auf:", value);
         var timerbereich = document.getElementById("timerSelectRange");
@@ -597,14 +622,21 @@ class CardObj {
         }
     }
     static DateTimeHandler(cardObj) {
+
         console.log("DateTimeHandler aufgerufen für CardObjektID:", cardObj.id);
         let startDateID = document.getElementById("startDate");
         let endDateID = document.getElementById("endDate");
         let startTimeRange = document.getElementById("startTimeRange");
         let endTimeRange = document.getElementById("endTimeRange");
 
+        console.log(startTimeRange.value);
+        console.log(endTimeRange.value);
         console.log(startDateID.value);
         console.log(endDateID.value);
+
+        if (!startTimeRange.value || !endTimeRange.value) {
+            alert("Bitte geben Sie sowohl Start- als auch Endzeit ein.");
+        }
 
         let startTime = "00:00";
         let endTime = "23:59";
@@ -678,7 +710,7 @@ class CardObj {
                 const startTimeOnly = combineDateTime("1970-01-01", startTimeRange.value);
                 const endTimeOnly = combineDateTime("1970-01-01", endTimeRange.value);
 
-                if (startTimeOnly >= endTimeOnly) {
+                if (startTimeOnly > endTimeOnly) {
                     alert("Die Startzeit muss vor der Endzeit liegen.");
                     console.error("Ungültige Eingabe: Startzeit ist größer oder gleich der Endzeit.");
                     return;
@@ -752,8 +784,8 @@ class CardObj {
 
         var btnDelDateTime = document.getElementById('btnDelDateTime');
         if (btnDelDateTime && objID !== null) {
-            CardObj.removeDateRange(objID);
-            CardObj.removeTimeRangeFromDate(objID);
+            Infoseite.removeDateRange(objID);
+            Infoseite.removeTimeRangeFromDate(objID);
             console.log("Datum und Zeitbereich wurden gelöscht");
         } else {
             console.error("Button oder Objekt-ID nicht gefunden");
@@ -873,15 +905,15 @@ async function meow(event) {
     }
     // Bild hochladen und vom Server den Dateinamen erhalten
     const serverImageName = await sendPicture(formData);
-    // CardObj mit dem vom Server erhaltenen Bildnamen erstellen
+    // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
     if (serverImageName === "") {
         console.error("Bild konnte nicht hochgeladen werden.");
         alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
         return;
     }
     try {
-        // Lokalen Dateinamen in den CardObj einfügen
-        const obj1 = new CardObj(
+        // Lokalen Dateinamen in den Infoseite einfügen
+        const obj1 = new Infoseite(
             "",
             serverImageName, // Nur Bildname, kein Pfad
             selectedTime,
@@ -898,10 +930,10 @@ async function meow(event) {
         console.log(obj1.selectedTime);
         await insertDatabase(obj1);
         alert("Schema erfolgreich erstellt!");
-        await CardObj.update();
+        await Infoseite.update();
 
     } catch (error) {
-        console.error("Fehler beim erstellen des CardObj:", error);
+        console.error("Fehler beim erstellen des Infoseite:", error);
     }
 
     form.reset(); // Formular zurücksetzen
@@ -984,12 +1016,12 @@ function createBodyCardObj() {
         return;
     }
     cardContainer.innerHTML = ""; // Clear existing content
-    CardObj.list.forEach(cardObj => {
+    Infoseite.list.forEach(cardObj => {
         const cardContainer = "cardContainer"
         cardObj.htmlBody(cardContainer);
 
     });
-    console.log(CardObj.list);
+    console.log(Infoseite.list);
     // Alle Checkboxen mit ID, die mit "flexCheck" beginnt, auswählen und loopen
 };
 
@@ -1028,25 +1060,25 @@ if (document.getElementById("selectSekunden")) {
 
 
 function erstelleFunktionForCardObj(objID) {
+    if(!objID) return;
+    Infoseite.selectedHistorys.push(objID);
 
-    CardObj.zuletztAusgewählt.push(objID);
+
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
-
-    CardObj.überprüfenÄnderungen();
-
-
+    Infoseite.überprüfenÄnderungen();
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
         deakAktivCb(false);
 
         const id = extractNumberFromString(checkbox.id);
-        var obj = findObj(CardObj.list, id);
-        CardObj.selectedID = id; // Set the selected ID
-        CardObj.loadChanges(obj); // Load changes for the selected CardObj
-        // CardObj.DateTimeHandler(obj);
+        var obj = findObj(Infoseite.list, id);
+        Infoseite.lastSelectedID = objID;
+        Infoseite.selectedID = id; // Set the selected ID
+        Infoseite.loadChanges(obj); // Load changes for the selected Infoseite
+        // Infoseite.DateTimeHandler(obj);
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
             if (id !== extractNumberFromString(cb.id)) {
@@ -1054,8 +1086,8 @@ function erstelleFunktionForCardObj(objID) {
             }
         });
         console.log("Checkbox mit ID " + id + " wurde aktiviert.");
-        console.log(CardObj.selectedID);
-        if (objID == CardObj.selectedID) {
+        console.log(Infoseite.selectedID);
+        if (objID == Infoseite.selectedID) {
             label.innerHTML = "Ausgewählt"; // Set the label text to "checked" when checked
             labelForSelectSchema.forEach(label => {
                 if (id !== extractNumberFromString(label.id)) {
@@ -1069,13 +1101,13 @@ function erstelleFunktionForCardObj(objID) {
     } else {
         var checkA = document.getElementById("checkA");
         deakAktivCb(true);
-        CardObj.selectedID = null; // Reset the selected ID
+        Infoseite.selectedID = null; // Reset the selected ID
         labelForSelectSchema.forEach(label => {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
         });
         checkA.checked = false;
     }
-    Beziehungen.update(CardObj.selectedID);
+    Beziehungen.update(Infoseite.selectedID);
 }
 
 function deakAktivCb(aktiv) {
@@ -1137,7 +1169,7 @@ function deaktivereCbx(aktiv) {
         labels.forEach(label => {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
         });
-        CardObj.selectedID = null; // Update the checkAllowed state
+        Infoseite.selectedID = null; // Update the checkAllowed state
         console.log(`${checkboxes.length} Checkboxes im cardContainer wurden deaktiviert`);
 
     } else {

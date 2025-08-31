@@ -16,7 +16,7 @@ window.onload = async function () {
 
 
     try {
-        await CardObj.update();
+        await Infoseite.update();
     } catch (error) {
         console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
     }
@@ -34,7 +34,7 @@ window.onload = async function () {
     erstelleNavigation();
 
     try {
-        document.getElementById("flexCheck" + CardObj.list[0].id).click();
+        document.getElementById("flexCheck" + Infoseite.list[0].id).click();
 
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
@@ -111,7 +111,7 @@ async function getSystemPath() {
 
 function checkAnzahl() {
     const anzahlInfo = Umgebung.list.length;
-    const anzahlCardObj = CardObj.list.length;
+    const anzahlCardObj = Infoseite.list.length;
     console.log("Anzahl der Umgebungen:", anzahlInfo);
     console.log("Anzahl der CardObjekte:", anzahlCardObj);
     if (anzahlInfo > 0) {
@@ -342,8 +342,8 @@ function uncheckAllTableCheckboxes() {
     if (Umgebung.temp_remove) {
         Umgebung.temp_remove = [];
     }
-    if (CardObj.temp_remove) {
-        CardObj.temp_remove = [];
+    if (Infoseite.temp_remove) {
+        Infoseite.temp_remove = [];
     }
 
 
