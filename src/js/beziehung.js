@@ -227,9 +227,11 @@ class Beziehungen {
                     console.log("Kartencontainer gefunden:", cardContainer);
                     cardContainer.innerHTML = ''
 
-                    Infoseite.selectedID = null;
+              
                     Infoseite.removeChanges();
                     Infoseite.deaktiviereAllElements(true);
+                    Infoseite.überprüfenÄnderungen();
+                   
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
                             let obj = findObj(Infoseite.list, beziehung.cardObjektID);
@@ -246,7 +248,7 @@ class Beziehungen {
                         });
                     }
                 }
-                // Hier können Sie die Logik hinzufügen, um die Beziehungen basierend auf dem ausgewählten Wert anzuzeigen
+                Infoseite.selectedID = null;
             });
         }
     }

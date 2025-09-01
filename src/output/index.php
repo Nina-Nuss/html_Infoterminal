@@ -141,7 +141,7 @@
                     console.error('404: Script gelöscht, versuche ort neu zu laden');
                     // Entferne den alten iframe und versuche neu
                     container.removeChild(iframe);
-                    setTimeout(() => startCarousel(ort), 10000); // Nach 1 Sekunde neu versuchen
+                    setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
                 }
             } catch (error) {
                 console.error('Fehler beim Prüfen des iframe-Inhalts:', error);

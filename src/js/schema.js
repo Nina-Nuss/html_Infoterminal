@@ -165,11 +165,11 @@ class Infoseite {
     }
 
     static deaktiviereAllElements(aktiv) {
-        debugger
         const konfigContainer = document.getElementById("konfigContainer");
         const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
         const deleteInfoSeite = document.getElementById("btn_deleteInfoSeite")
         const tabelleDelete = document.getElementById("tabelleDelete")
+        const checkbox = document.getElementById("checkA");
         console.log(bildschirmVerwaltung);
 
         if (konfigContainer) {
@@ -188,6 +188,9 @@ class Infoseite {
             selects.forEach(select => {
                 select.disabled = aktiv;
             });
+            if (checkbox.checked) {
+                checkbox.checked = false;
+            }
         }
         if (bildschirmVerwaltung) {
 
@@ -199,7 +202,7 @@ class Infoseite {
         if (deleteInfoSeite) {
             deleteInfoSeite.disabled = aktiv
         }
-        if(tabelleDelete){
+        if (tabelleDelete) {
             tabelleDelete.innerHTML = "";
         }
         if (aktiv) {
@@ -281,6 +284,7 @@ class Infoseite {
                 });
             });
             if (obj.changed) {
+
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
                     // Hier deine Methode aufrufen, z.B. speichern:
@@ -381,7 +385,7 @@ class Infoseite {
 
 
     static checkAktiv(obj) {
-        debugger
+
         if (!obj) return;
         var checkA = document.getElementById("checkA");
         if (checkA.checked && obj !== null) {
@@ -401,10 +405,6 @@ class Infoseite {
     }
     static async saveChanges(obj) {
 
-        if (Infoseite.selectedID === null) {
-            alert("Bitte wählen Sie ein Schema aus, um Änderungen zu speichern.");
-            return;
-        }
         if (obj != null) {
             obj = findObj(Infoseite.list, obj.id);
             Infoseite.prepareSelectedTimer(obj);
@@ -522,7 +522,7 @@ class Infoseite {
     }
 
     static prepareObjForUpdate(obj) {
-        debugger
+
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         console.log(obj.selectedTime);
         // var timerSelect = document.getElementById("timerSelectRange");
@@ -547,6 +547,7 @@ class Infoseite {
     }
 
     static loadChanges(cardObj) {
+        
         console.log("loadChanges aufgerufen für CardObjektID:", cardObj.id);
         var cardtimerLabel = document.getElementById(cardObj.selectedTimerLabel);
         // var timerbereich = document.getElementById("timerSelectRange");
@@ -564,17 +565,11 @@ class Infoseite {
         var startTimeRange = document.getElementById("startTimeRange");
         var endTimeRange = document.getElementById("endTimeRange");
 
-        var isAktiv = document.getElementById(`isAktiv${cardObj.id}`);
-        var aktiv = `<span class="text-success ms-2" id="aktivIcon${cardObj.id}"><i class="fas fa-check-circle"></i></span>`;
-        var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${cardObj.id}"><i class="fas fa-times-circle"></i></span>`;
+        if (isAktiv != null) {
 
-        isAktiv.innerHTML = ""; // Clear previous content
 
-        if (cardObj.aktiv) {
-            isAktiv.innerHTML = aktiv;
-        } else {
-            isAktiv.innerHTML = inaktiv;
         }
+
 
         startDate.value = ""
         endDate.value = ""
@@ -595,8 +590,6 @@ class Infoseite {
         console.log("Rest Minuten:", restMinuten);
         console.log("Rest Sekunden:", restSekunden);
         anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
-        cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
-
 
         let startDateStr = String(cardObj.startDate);
         let endDateStr = String(cardObj.endDate);
@@ -625,8 +618,25 @@ class Infoseite {
         console.log("Enddatum:", endDateStr);
         startDate.value = startDateSplit // Set the start date
         endDate.value = endDateSplit; // Set the end date
-        dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} - ${formatDateToDayMonth(endDateStr)}`;
-        timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
+
+        if (dateLabel && timeLabel && cardtimerLabel && isAktiv != null) {
+            dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} - ${formatDateToDayMonth(endDateStr)}`;
+            timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
+            cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
+
+            var isAktiv = document.getElementById(`isAktiv${cardObj.id}`);
+            var aktiv = `<span class="text-success ms-2" id="aktivIcon${cardObj.id}"><i class="fas fa-check-circle"></i></span>`;
+            var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${cardObj.id}"><i class="fas fa-times-circle"></i></span>`;
+
+            isAktiv.innerHTML = ""; // Clear previous content
+
+            if (cardObj.aktiv) {
+                isAktiv.innerHTML = aktiv;
+            } else {
+                isAktiv.innerHTML = inaktiv;
+            }
+        }
+
         startTimeRange.value = cardObj.startTime;
         endTimeRange.value = cardObj.endTime;
 
