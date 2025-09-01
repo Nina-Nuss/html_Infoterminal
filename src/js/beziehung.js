@@ -232,6 +232,7 @@ class Beziehungen {
 
                     Infoseite.selectedID = null;
                     Infoseite.removeChanges();
+                    Infoseite.deaktiviereAllElements(true);
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
                             let obj = findObj(Infoseite.list, beziehung.cardObjektID);

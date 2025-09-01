@@ -212,8 +212,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="card h-100">
+                        <div class="col-md-3" id="bildschirmVerwaltung">
+                            <div class="card h-100" >
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>

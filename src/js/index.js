@@ -12,9 +12,8 @@ window.onload = async function () {
 
     const ipAdress = await getSystemPath();
     console.log("IP-Adresse:", ipAdress);
-
-
-
+    
+  
     try {
         await Infoseite.update();
     } catch (error) {

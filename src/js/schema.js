@@ -164,6 +164,50 @@ class Infoseite {
         await this.update();
     }
 
+    static deaktiviereAllElements(aktiv) {
+        debugger
+        const konfigContainer = document.getElementById("konfigContainer");
+        const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
+        const deleteInfoSeite = document.getElementById("btn_deleteInfoSeite")
+        const tabelleDelete = document.getElementById("tabelleDelete")
+        console.log(bildschirmVerwaltung);
+
+        if (konfigContainer) {
+            console.log("DSAGFLKDSAFJLKDSFJLKSJFLKDSFLKJDSLK");
+            let buttons = konfigContainer.querySelectorAll('button');
+            let inputs = konfigContainer.querySelectorAll('input');
+
+            let selects = konfigContainer.querySelectorAll('select');
+
+            buttons.forEach(button => {
+                button.disabled = aktiv;
+            });
+            inputs.forEach(input => {
+                input.disabled = aktiv;
+            });
+            selects.forEach(select => {
+                select.disabled = aktiv;
+            });
+        }
+        if (bildschirmVerwaltung) {
+
+            var buttons = bildschirmVerwaltung.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.disabled = aktiv;
+            });
+        }
+        if (deleteInfoSeite) {
+            deleteInfoSeite.disabled = aktiv
+        }
+        if(tabelleDelete){
+            tabelleDelete.innerHTML = "";
+        }
+        if (aktiv) {
+            Infoseite.selectedID = null; // Update the checkAllowed state
+        }
+    }
+
+
     static async deleteCardObj() {
         const confirmed = confirm("Sind Sie sicher, dass Sie die Infoseite löschen möchten?");
         if (!confirmed) {
@@ -218,7 +262,7 @@ class Infoseite {
             zuletztAusgewählteObj = Infoseite.selectedHistorys[Infoseite.selectedHistorys.length - 2];
             Infoseite.lastSelectedID = zuletztAusgewählteObj;
             obj = findObj(Infoseite.list, zuletztAusgewählteObj);
-       
+
 
         } else {
             zuletztAusgewählteObj = Infoseite.selectedHistorys[0];
@@ -331,7 +375,7 @@ class Infoseite {
             }
         });
         createBodyCardObj();
-        deakAktivCb(true);
+        Infoseite.deaktiviereAllElements(true);
         console.log(Infoseite.list);
     }
 
@@ -601,7 +645,7 @@ class Infoseite {
             var endDate = document.getElementById("endDate");
             var startTimeRange = document.getElementById("startTimeRange");
             var endTimeRange = document.getElementById("endTimeRange");
-           
+
             titel.innerHTML = ""
             checkA.checked = false
             anzeigeDauer.innerHTML = ""
@@ -1060,7 +1104,7 @@ if (document.getElementById("selectSekunden")) {
 
 
 function erstelleFunktionForCardObj(objID) {
-    if(!objID) return;
+    if (!objID) return;
     Infoseite.selectedHistorys.push(objID);
 
 
@@ -1071,8 +1115,7 @@ function erstelleFunktionForCardObj(objID) {
     Infoseite.überprüfenÄnderungen();
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
-        deakAktivCb(false);
-
+        Infoseite.deaktiviereAllElements(false)
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
         Infoseite.lastSelectedID = objID;
@@ -1100,7 +1143,7 @@ function erstelleFunktionForCardObj(objID) {
         }
     } else {
         var checkA = document.getElementById("checkA");
-        deakAktivCb(true);
+        Infoseite.deaktiviereAllElements(true)
         Infoseite.selectedID = null; // Reset the selected ID
         labelForSelectSchema.forEach(label => {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
@@ -1110,69 +1153,6 @@ function erstelleFunktionForCardObj(objID) {
     Beziehungen.update(Infoseite.selectedID);
 }
 
-function deakAktivCb(aktiv) {
-    console.log("deakAktivCb aufgerufen mit aktiv:", aktiv);
-    var titel = document.getElementById("websiteName");
-    var checkA = document.getElementById("checkA");
-    var btn_hinzufuegen = document.getElementById("btn_hinzufuegen");
-    var btn_loeschen = document.getElementById("btn_loeschen");
-    var btn_save_changes = document.getElementById("btn_save_changes");
-    var panelForDateTime = document.getElementById("panelForDateTime");
-    var anzeigeDauer = document.getElementById("anzeigeDauer");
-    var selectSekunden = document.getElementById("selectSekunden");
-    var btn_deleteInfoSeite = document.getElementById("btn_deleteInfoSeite");
-    var tabelleDelete = document.getElementById("tabelleDelete");
 
-    if (document.getElementById("panelForDateTime")) {
-        var panel = document.getElementById("panelForDateTime");
-        // Selektiere alle relevanten Form-Elemente im Panel
-        var elements = panel.querySelectorAll('input, button');
-    }
-    if (aktiv == true) {
-        elements.forEach(el => {
-            el.disabled = true;
-            el.value = "";
-        });
-        titel.innerHTML = "-"; // Setzt den Titel auf leer
-        anzeigeDauer.innerHTML = "-"; // Setzt den Titel auf leer
-        checkA.disabled = true; // Deaktiviert die Aktiv-Checkbox
-        btn_hinzufuegen.disabled = true; // Deaktiviert den Hinzufügen-
-        btn_loeschen.disabled = true; // Deaktiviert den Löschen-Button
-        btn_save_changes.disabled = true; // Deaktiviert den Speichern-Button
-        selectSekunden.disabled = true; // Deaktiviert die Sekunden-Auswahl
-        btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
-        btn_deleteInfoSeite.disabled = true; // Deaktiviert den Löschen-Button für die Info-Seite   
-        selectSekunden.value = ""; // Setzt die Sekunden-Auswahl auf leer
-        tabelleDelete.innerHTML = ""; // Versteckt die Tabelle für das Löschen von Schemas
-    } else {
-        checkA.disabled = false; // Aktiviert die Aktiv-Checkbox
-        btn_hinzufuegen.disabled = false; // Aktiviert den Hinzufügen-Button
-        btn_loeschen.disabled = false; // Aktiviert den Löschen-Button
-        btn_save_changes.disabled = false; // Aktiviert den Speichern-Button
-        selectSekunden.disabled = false; // Deaktiviert die Sekunden-Auswahl
-        btn_deleteInfoSeite.disabled = false; // Aktiviert den Löschen-Button für die Info-Seite
-        panelForDateTime.style.display = "block"; // Zeigt das Panel für Datum und Uhrzeit an
-        elements.forEach(el => {
-            el.disabled = false;
-        });
-    }
-}
-function deaktivereCbx(aktiv) {
-    const cardContainer = document.getElementById('cardContainer');
-    if (cardContainer) {
-        const checkboxes = cardContainer.querySelectorAll('input[type="checkbox"]');
-        const labels = cardContainer.querySelectorAll('label[name^="label"]');
-        console.log(`Checkboxes gefunden: ${checkboxes.length}, Labels gefunden: ${labels.length}`);
-        checkboxes.forEach(checkbox => {
-            checkbox.disabled = aktiv;
-        });
-        labels.forEach(label => {
-            label.innerHTML = ""; // Clear the label text for unchecked checkboxes
-        });
-        Infoseite.selectedID = null; // Update the checkAllowed state
-        console.log(`${checkboxes.length} Checkboxes im cardContainer wurden deaktiviert`);
 
-    } else {
-        console.log("cardContainer nicht gefunden");
-    }
-}
+

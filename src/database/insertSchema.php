@@ -34,7 +34,7 @@ if (is_array($data)) {
             echo "Datensatz erfolgreich eingefügt";
         } else {
             echo "Fehler beim Einfügen: ";
-            print_r(sqlsrv_errors());
+            print_r(sqlsrv_errors()); 
         }
         // Statement schließen
         sqlsrv_free_stmt($stmt);

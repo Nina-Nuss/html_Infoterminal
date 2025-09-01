@@ -109,13 +109,16 @@ class Umgebung {
         // DOM nur einmal aktualisieren (bessere Performance)
         if (selector) {
             selector.innerHTML = selectorOptions;
+            let testOption = document.createElement("option");
+            testOption.value = "Test Anzeige";
+            testOption.text = "Test Anzeige";
+            selector.add(testOption);
             Array.from(selector.options).forEach(option => {
-                if (option.value.toLowerCase().trim() === "localhost") {
+                if (option.value.toLowerCase().trim() === "Test Anzeige".toLowerCase().trim()) {
                     option.selected = true;
                     option.innerHTML = "Test Anzeige";
                 }
             });
-
         }
         if (selectorForCards) {
             selectorForCards.innerHTML = selectorOptionsForCards;
