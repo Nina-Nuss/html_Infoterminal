@@ -678,10 +678,6 @@ class Infoseite {
         console.log(startDateID.value);
         console.log(endDateID.value);
 
-        if (!startTimeRange.value || !endTimeRange.value) {
-            alert("Bitte geben Sie sowohl Start- als auch Endzeit ein.");
-        }
-
         let startTime = "00:00";
         let endTime = "23:59";
 

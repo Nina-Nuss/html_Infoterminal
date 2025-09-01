@@ -125,18 +125,35 @@
             startCarousel(ort);
         } else {
             container.innerHTML = `<p class="text-danger">name ${ort} ist keiner gültigen IP-Adresse zugeordnet</p>`;
+            setTimeout(() => {
+                location.reload();
+            }, 10000);
         }
     });
-
-    function startCarousel(ort) {
+    async function startCarousel(ort) {
         const iframe = document.createElement('iframe');
-        // Variablen als Query-Parameter anhängen
-        let data = `out.php?ip=${encodeURIComponent(ort)}`;
-        // Wenn du weitere Variablen hast, einfach anhängen:
-        // data += `&foo=${encodeURIComponent(foo)}`;
-        iframe.src = data;
+        iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
+        iframe.onload = () => {
+            try {
+                // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
+                    console.error('404: Script gelöscht, versuche ort neu zu laden');
+                    // Entferne den alten iframe und versuche neu
+                    container.removeChild(iframe);
+                    setTimeout(() => startCarousel(ort), 10000); // Nach 1 Sekunde neu versuchen
+                }
+            } catch (error) {
+                console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
+                // Bei Fehler auch neu versuchen
+                container.removeChild(iframe);
+                setTimeout(() => startCarousel(ort), 30000);
+            }
+        };
         container.appendChild(iframe);
     }
+
+
     function showTestTemplate(template) {
         const iframe = document.createElement('iframe');
         // Variablen als Query-Parameter anhängen

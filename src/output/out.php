@@ -46,6 +46,31 @@
 </body>
 
 <script>
+
+    window.addEventListener('error', function (event) {
+        console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
+
+        // Hier deinen Code ausführen, z.B. Seite neu laden
+        setTimeout(() => {
+            location.reload(); // Seite neu laden nach 3 Sekunden
+        }, 3000);
+
+        // Optional: Verhindere, dass der Fehler weitergeitet wird
+        event.preventDefault();
+    });
+
+    // Für unhandled Promise-Rejections (z.B. bei fetch-Fehlern)
+    window.addEventListener('unhandledrejection', function (event) {
+        console.error('Unhandled Promise Rejection:', event.reason);
+
+        // Hier deinen Code ausführen, z.B. Seite neu laden
+        setTimeout(() => {
+            location.reload();
+        }, 3000);
+
+        event.preventDefault();
+    });
+
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -76,16 +101,22 @@
             });
 
             if (!response.ok) {
-                console.error('Error fetching data:', response.statusText);
+                if (response.status === 404) {
+                    console.error('404 Not Found: URL nicht gefunden');
+                    // Hier deinen Code ausführen, z.B. Reload
+                    setTimeout(() => location.reload(), 3000);
+                    return;
+                }
+                console.error('Error fetching data:', response.status, response.statusText);
                 return;
             }
 
-            let  data = await response.json();
+            let data = await response.json();
             console.log(data);
 
             while (data.length === 0) {
                 console.error('No data received or data is null/undefined');
-                await sleep(2000); // Warte 10 Sekunden, bevor du es erneut versuchst
+                await sleep(10000); // Warte 10 Sekunden, bevor du es erneut versuchst
                 const retryResponse = await fetch("../database/getSchemas.php", {
                     method: "POST",
                     headers: {
@@ -107,7 +138,7 @@
                     data = retryData; // Aktualisiere die Daten, wenn sie jetzt verfügbar sind
                 }
             }
-            
+
             console.log('Received data:', data);
             while (true) {
                 for (const element of data) {
@@ -119,7 +150,7 @@
                         createVid(element[1])
                         await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
                     }
-                    if(data.length === 0) {
+                    if (data.length === 0) {
                         location.reload();
                     }
                 }
@@ -144,6 +175,7 @@
         img.src = "../../uploads/img/" + element;
         img.className = "fullscreen";
         img.alt = "Image";
+       
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(img); // Add the new image to the body
     }
@@ -166,16 +198,10 @@
             location.reload();
         }, 1000 * 60 * time); // time in Minuten
     }
+
+
+
 </script>
-<?php
 
-// $dir = "../cardObjNew/uploads";
-// if (is_dir(filename: $dir)) {
-//     foreach (scandir($dir) as $file) {
-
-//         echo "<br>" . $dir . '/' . $file . "</br>";
-//     }
-// }
-?>
 
 </html>

@@ -54,12 +54,9 @@ class Beziehungen {
         if (Infoseite.selectedID != null) {
             this.createListForAnzeige();
         }
-
     }
 
     static createListForAnzeige() {
-
-
         var anzeigebereichA = document.getElementById("tabelleAdd");
         var anzeigebereichD = document.getElementById("tabelleDelete");
         var anzeigebereicht = document.getElementById("tabelleAdd");
