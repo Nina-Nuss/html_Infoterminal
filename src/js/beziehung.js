@@ -30,7 +30,6 @@ class Beziehungen {
     }
     static async update(cardObjID) {
         Beziehungen.list = [];
-
         const relationListe = await Beziehungen.getRelation();
         console.log(relationListe);
         relationListe.forEach(element => {
@@ -124,7 +123,7 @@ class Beziehungen {
 
         Beziehungen.list.forEach(ele => {
             if (ele.cardObjektID == cardObjID) {
-              
+
                 Beziehungen.temp_remove.push(ele.umgebungsID);
             }
         });
@@ -212,26 +211,24 @@ class Beziehungen {
     }
 
     static showBeziehungsList() {
-      
+
         const selectorInfoterminalForCards = document.getElementById('selectorInfoterminalForCards');
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
-                  debugger
+                debugger
                 const selectedValue = event.target.value;
-                
+
                 console.log(selectorInfoterminalForCards[0]);
 
                 console.log("Ausgewählter Wert:", selectedValue);
                 if (selectedValue) {
+
                     let cardContainer = document.getElementById("cardContainer");
                     console.log("Kartencontainer gefunden:", cardContainer);
                     cardContainer.innerHTML = ''
-
-              
-                    Infoseite.removeChanges();
-                    Infoseite.deaktiviereAllElements(true);
+                    Infoseite.selectedID = null;
                     Infoseite.überprüfenÄnderungen();
-                   
+                    Infoseite.deaktiviereAllElements(true);
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
                             let obj = findObj(Infoseite.list, beziehung.cardObjektID);
@@ -248,7 +245,6 @@ class Beziehungen {
                         });
                     }
                 }
-                Infoseite.selectedID = null;
             });
         }
     }

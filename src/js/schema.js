@@ -114,10 +114,6 @@ class Infoseite {
             });
         });
     }
-
-
-
-
     static event_remove(id) {
         var element = document.getElementById(`checkDelSchema${id}`);
         if (element.checked && !this.temp_remove.includes(id)) {
@@ -165,13 +161,16 @@ class Infoseite {
     }
 
     static deaktiviereAllElements(aktiv) {
+    
         const konfigContainer = document.getElementById("konfigContainer");
         const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
         const deleteInfoSeite = document.getElementById("btn_deleteInfoSeite")
         const tabelleDelete = document.getElementById("tabelleDelete")
         const checkbox = document.getElementById("checkA");
         console.log(bildschirmVerwaltung);
-
+        if (aktiv == true) {
+            this.removeChanges()
+        }
         if (konfigContainer) {
             console.log("DSAGFLKDSAFJLKDSFJLKSJFLKDSFLKJDSLK");
             let buttons = konfigContainer.querySelectorAll('button');
@@ -184,6 +183,7 @@ class Infoseite {
             });
             inputs.forEach(input => {
                 input.disabled = aktiv;
+
             });
             selects.forEach(select => {
                 select.disabled = aktiv;
@@ -192,8 +192,8 @@ class Infoseite {
                 checkbox.checked = false;
             }
         }
-        if (bildschirmVerwaltung) {
 
+        if (bildschirmVerwaltung) {
             var buttons = bildschirmVerwaltung.querySelectorAll('button');
             buttons.forEach(button => {
                 button.disabled = aktiv;
@@ -284,7 +284,6 @@ class Infoseite {
                 });
             });
             if (obj.changed) {
-
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
                     // Hier deine Methode aufrufen, z.B. speichern:
@@ -404,7 +403,6 @@ class Infoseite {
 
     }
     static async saveChanges(obj) {
-
         if (obj != null) {
             obj = findObj(Infoseite.list, obj.id);
             Infoseite.prepareSelectedTimer(obj);
@@ -417,15 +415,17 @@ class Infoseite {
             console.warn("Objekt nicht gefunden für ID:", Infoseite.selectedID);
             return;
         }
+        
         try {
+            debugger
+            
             Infoseite.checkAktiv(obj);
             Infoseite.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = Infoseite.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
+            
             await updateDataBase(preCardObj, "updateSchema");
-            if (Infoseite.selectedID) {
-                obj = findObj(Infoseite.list, Infoseite.selectedID);
-            }
             alert("Änderungen erfolgreich gespeichert!");
+
             Infoseite.loadChanges(obj); // Lade die Änderungen für das ausgewählte Infoseite
         } catch (error) {
             console.error("Fehler beim Speichern der Änderungen:", error);
@@ -547,7 +547,10 @@ class Infoseite {
     }
 
     static loadChanges(cardObj) {
-        
+        if (cardObj === undefined || cardObj === null || Infoseite.selectedID === null) {
+            return; // Keine ID ausgewählt, also nichts tun
+        }
+
         console.log("loadChanges aufgerufen für CardObjektID:", cardObj.id);
         var cardtimerLabel = document.getElementById(cardObj.selectedTimerLabel);
         // var timerbereich = document.getElementById("timerSelectRange");
@@ -558,24 +561,14 @@ class Infoseite {
 
         var timeLabel = document.getElementById(cardObj.timeLabel);
         var dateLabel = document.getElementById(cardObj.dateLabel);
-
+        var isAktiv = document.getElementById(`isAktiv${cardObj.id}`);
         var startDate = document.getElementById("startDate");
         var endDate = document.getElementById("endDate");
 
         var startTimeRange = document.getElementById("startTimeRange");
         var endTimeRange = document.getElementById("endTimeRange");
 
-        if (isAktiv != null) {
-
-
-        }
-
-
-        startDate.value = ""
-        endDate.value = ""
-        startTimeRange.value = ""
-        endTimeRange.value = ""
-        selectSekunden.value = ""
+        Infoseite.removeChanges() // Zuerst alle Felder leeren
 
         console.log("Startzeit:", cardObj.startTime);
         console.log("Endzeit:", cardObj.endTime);
@@ -623,20 +616,15 @@ class Infoseite {
             dateLabel.innerHTML = `Datum: ${formatDateToDayMonth(startDateStr)} - ${formatDateToDayMonth(endDateStr)}`;
             timeLabel.innerHTML = `Uhrzeit: ${cardObj.startTime} - ${cardObj.endTime}`;
             cardtimerLabel.innerHTML = `Dauer: ${anzeigeDauer.innerHTML}`; // Update the label with the selected time
-
-            var isAktiv = document.getElementById(`isAktiv${cardObj.id}`);
             var aktiv = `<span class="text-success ms-2" id="aktivIcon${cardObj.id}"><i class="fas fa-check-circle"></i></span>`;
             var inaktiv = `<span class="text-danger ms-2" id="inaktivIcon${cardObj.id}"><i class="fas fa-times-circle"></i></span>`;
-
             isAktiv.innerHTML = ""; // Clear previous content
-
             if (cardObj.aktiv) {
                 isAktiv.innerHTML = aktiv;
             } else {
                 isAktiv.innerHTML = inaktiv;
             }
         }
-
         startTimeRange.value = cardObj.startTime;
         endTimeRange.value = cardObj.endTime;
 
@@ -645,26 +633,26 @@ class Infoseite {
 
     }
     static removeChanges() {
-        if (Infoseite.selectedID === null) {
-            // var timerbereich = document.getElementById("timerSelectRange");
-            var titel = document.getElementById("websiteName");
-            var anzeigeDauer = document.getElementById("anzeigeDauer");
-            var checkA = document.getElementById("checkA");
-            var selectSekunden = document.getElementById("selectSekunden");
-            var startDate = document.getElementById("startDate");
-            var endDate = document.getElementById("endDate");
-            var startTimeRange = document.getElementById("startTimeRange");
-            var endTimeRange = document.getElementById("endTimeRange");
+        debugger
+        // var timerbereich = document.getElementById("timerSelectRange");
+        let titel = document.getElementById("websiteName");
+        let anzeigeDauer = document.getElementById("anzeigeDauer");
+        let checkA = document.getElementById("checkA");
+        let selectSekunden = document.getElementById("selectSekunden");
+        let startDate = document.getElementById("startDate");
+        let endDate = document.getElementById("endDate");
+        let startTimeRange = document.getElementById("startTimeRange");
+        let endTimeRange = document.getElementById("endTimeRange");
 
-            titel.innerHTML = ""
-            checkA.checked = false
-            anzeigeDauer.innerHTML = ""
-            startDate.value = ""
-            endDate.value = ""
-            startTimeRange.value = ""
-            endTimeRange.value = ""
-            selectSekunden.value = ""
-        }
+        titel.innerHTML = ""
+        checkA.checked = false
+        anzeigeDauer.innerHTML = ""
+        startDate.value = ""
+        endDate.value = ""
+        startTimeRange.value = ""
+        endTimeRange.value = ""
+        selectSekunden.value = ""
+
     }
     static setTimerRange(value) {
         console.log("Timer Range gesetzt auf:", value);
@@ -1112,8 +1100,7 @@ if (document.getElementById("selectSekunden")) {
 function erstelleFunktionForCardObj(objID) {
     if (!objID) return;
     Infoseite.selectedHistorys.push(objID);
-
-
+    Infoseite.lastSelectedID = objID;
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
@@ -1121,11 +1108,11 @@ function erstelleFunktionForCardObj(objID) {
     Infoseite.überprüfenÄnderungen();
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
-        Infoseite.deaktiviereAllElements(false)
+       
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
-        Infoseite.lastSelectedID = objID;
         Infoseite.selectedID = id; // Set the selected ID
+        Infoseite.deaktiviereAllElements(false)
         Infoseite.loadChanges(obj); // Load changes for the selected Infoseite
         // Infoseite.DateTimeHandler(obj);
         cbForSelectSchema.forEach(cb => {
@@ -1148,13 +1135,11 @@ function erstelleFunktionForCardObj(objID) {
             console.log("Checkbox mit ID " + labelId + " wurde deaktiviert.");
         }
     } else {
-        var checkA = document.getElementById("checkA");
         Infoseite.deaktiviereAllElements(true)
-        Infoseite.selectedID = null; // Reset the selected ID
         labelForSelectSchema.forEach(label => {
             label.innerHTML = ""; // Clear the label text for unchecked checkboxes
         });
-        checkA.checked = false;
+        Infoseite.selectedID = null; // Reset the selected ID
     }
     Beziehungen.update(Infoseite.selectedID);
 }
