@@ -558,13 +558,11 @@ class Infoseite {
         var anzeigeDauer = document.getElementById("anzeigeDauer");
         var checkA = document.getElementById("checkA");
         var selectSekunden = document.getElementById("selectSekunden");
-
         var timeLabel = document.getElementById(cardObj.timeLabel);
         var dateLabel = document.getElementById(cardObj.dateLabel);
         var isAktiv = document.getElementById(`isAktiv${cardObj.id}`);
         var startDate = document.getElementById("startDate");
         var endDate = document.getElementById("endDate");
-
         var startTimeRange = document.getElementById("startTimeRange");
         var endTimeRange = document.getElementById("endTimeRange");
 
