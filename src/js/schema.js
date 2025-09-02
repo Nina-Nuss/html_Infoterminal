@@ -75,7 +75,7 @@ class Infoseite {
             : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
 
         const body = `
-            <div class="card mb-2 text-wrap" style="width: 98%;" id="${this.cardObjekte}" onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
+            <div class="card mb-2 text-wrap border-2" id="${this.cardObjekte}" onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
                 <div id="cardHeader${this.id}" class="card-header p-1">
                 </div>
                 ${placeHolder}
