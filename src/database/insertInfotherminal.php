@@ -19,7 +19,7 @@ if ($ip !== '' && $name !== '' &&  $listelengthValue[1][1] < $listelengthValue[1
     if ($stmt) {
         // Statement ausführen
         if (sqlsrv_execute($stmt)) {
-            echo "Datensatz erfolgreich eingefügt";
+            // echo "Datensatz erfolgreich eingefügt";
             $ip = "";
             $name = "";
         } else {
@@ -29,7 +29,7 @@ if ($ip !== '' && $name !== '' &&  $listelengthValue[1][1] < $listelengthValue[1
         // Statement schließen
       
     } else {
-        echo "Fehler bei der Vorbereitung: ";
+        // echo "Fehler bei der Vorbereitung: ";
         print_r(sqlsrv_errors());
     }
 } else {

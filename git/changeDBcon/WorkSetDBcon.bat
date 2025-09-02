@@ -16,4 +16,5 @@ REM $Database ersetzen (egal was drinsteht)
 powershell -Command "(Get-Content -Raw '%file%') -replace '\$database\s*=\s*\".*?\";', '$database = \"testdbTerminal\";' | Set-Content '%file%'"
 
 echo Fertig! Die Datei wurde angepasst.
+@echo off
 pause

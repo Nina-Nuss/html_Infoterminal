@@ -13,4 +13,5 @@ REM $PWD ersetzen (egal was drinsteht)
 powershell -Command "(Get-Content -Raw '%file%') -replace '\$PWD\s*=\s*\".*?\";', '$PWD = \"\";' | Set-Content '%file%'"
 
 echo Fertig! Die Datei wurde angepasst.
+@echo off
 pause

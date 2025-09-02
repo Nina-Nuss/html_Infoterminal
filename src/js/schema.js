@@ -40,7 +40,6 @@ class Infoseite {
         this.infoCard = `infoCard${this.id}`
 
         this.checkSelect = `checkSelect${this.id}`
-
         //-------------------------------------    
 
         Infoseite.list.push(this)
@@ -342,7 +341,6 @@ class Infoseite {
         this.temp_remove = [];
         await Infoseite.createCardObj();
         console.log(this.list);
-
     }
     static async createCardObj() {
         console.log("createCardObj wurde aufgerufen");
@@ -382,10 +380,7 @@ class Infoseite {
         Infoseite.deaktiviereAllElements(true);
         console.log(Infoseite.list);
     }
-
-
     static checkAktiv(obj) {
-
         if (!obj) return;
         var checkA = document.getElementById("checkA");
         if (checkA.checked && obj !== null) {
@@ -401,7 +396,6 @@ class Infoseite {
             obj.aktiv = false;
             console.log("Checkbox deaktiviert für CardObjektID:", obj.id);
         }
-
     }
     static async saveChanges(obj) {
         if (obj != null) {
@@ -411,22 +405,16 @@ class Infoseite {
             obj = findObj(Infoseite.list, Infoseite.selectedID);
             Infoseite.prepareSelectedTimer(obj);
         }
-
         if (obj === null) {
             console.warn("Objekt nicht gefunden für ID:", Infoseite.selectedID);
             return;
         }
-
         try {
-
-
             Infoseite.checkAktiv(obj);
             Infoseite.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = Infoseite.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
-
             await updateDataBase(preCardObj, "updateSchema");
             alert("Änderungen erfolgreich gespeichert!");
-
             Infoseite.loadChanges(obj); // Lade die Änderungen für das ausgewählte Infoseite
         } catch (error) {
             console.error("Fehler beim Speichern der Änderungen:", error);
@@ -965,9 +953,13 @@ async function meow(event) {
             description
         )
         console.log(obj1.selectedTime);
-        await insertDatabase(obj1);
+        const result = await insertDatabase(obj1);
+    
         alert("Schema erfolgreich erstellt!");
         await Infoseite.update();
+        console.log(result);
+        
+       
 
     } catch (error) {
         console.error("Fehler beim erstellen des Infoseite:", error);
@@ -1029,8 +1021,6 @@ async function insertDatabase(cardObj) {
         dateAktiv: cardObj.dateAktiv
     };
     console.log(jsonData.selectedTime);
-
-    console.log(JSON.stringify(jsonData));
     // Senden der POST-Anfrage mit JSON-Daten
     const response = await fetch("../database/insertSchema.php", {
         method: "POST",
@@ -1042,8 +1032,10 @@ async function insertDatabase(cardObj) {
     if (!response.ok) {
         console.error("Fehler beim Einfügen:", response.statusText);
     } else {
-        const result = await response.text();
+        const result = await response.json();
         console.log(result);
+
+        return result; // Rückgabe der neuen ID
     }
 }
 function createBodyCardObj() {
