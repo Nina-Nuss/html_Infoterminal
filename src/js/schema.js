@@ -958,9 +958,7 @@ async function meow(event) {
         alert("Schema erfolgreich erstellt!");
         await Infoseite.update();
         console.log(result);
-        
-       
-
+        selectNewInfoseite();
     } catch (error) {
         console.error("Fehler beim erstellen des Infoseite:", error);
     }
@@ -1038,6 +1036,16 @@ async function insertDatabase(cardObj) {
         return result; // Rückgabe der neuen ID
     }
 }
+function selectNewInfoseite() {
+    if (Infoseite.list.length > 0) {
+        const lastObj = Infoseite.list[Infoseite.list.length - 1]; // Letztes Objekt in der Liste
+        document.getElementById(`cardObjekt${lastObj.id}`).click(); // Simuliere einen Klick auf das letzte Objekt
+        console.log("Letztes Objekt ausgewählt:", lastObj.id);
+    } else {
+        console.warn("Keine Objekte in der Liste vorhanden.");
+    }
+}
+
 function createBodyCardObj() {
     var cardContainer = document.getElementById("cardContainer");
     if (!cardContainer) {
