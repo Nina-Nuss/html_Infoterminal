@@ -33,7 +33,7 @@ window.onload = async function () {
     erstelleNavigation();
 
     try {
-        document.getElementById("flexCheck" + Infoseite.list[0].id).click();
+        document.getElementById("cardObjekt" + Infoseite.list[0].id).click();
 
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);

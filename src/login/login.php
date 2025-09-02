@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $sql = "SELECT * FROM login";
-    $result = sqlsrv_query($conn, $sql);
+    $result = sqlsrv_query(conn: $conn, $sql);
     if ($result === false) {
 
         die(print_r(sqlsrv_errors(), true));

@@ -211,31 +211,26 @@ class Beziehungen {
     }
 
     static showBeziehungsList() {
-
         const selectorInfoterminalForCards = document.getElementById('selectorInfoterminalForCards');
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
                 debugger
                 const selectedValue = event.target.value;
-
+                Infoseite.selectedID = null;
                 console.log(selectorInfoterminalForCards[0]);
-
                 console.log("Ausgewählter Wert:", selectedValue);
                 if (selectedValue) {
-
                     let cardContainer = document.getElementById("cardContainer");
                     console.log("Kartencontainer gefunden:", cardContainer);
                     cardContainer.innerHTML = ''
-                    Infoseite.selectedID = null;
-                    Infoseite.überprüfenÄnderungen();
                     Infoseite.deaktiviereAllElements(true);
+                    Infoseite.removeChanges();
                     Beziehungen.list.forEach(beziehung => {
                         if (selectedValue == beziehung.umgebungsID) {
                             let obj = findObj(Infoseite.list, beziehung.cardObjektID);
                             console.log(obj);
                             obj.htmlBody("cardContainer");
                         }
-
                         // Hier kannst du die Logik hinzufügen, um die Beziehung anzuzeigen
                     });
                     if (selectedValue == "alle") {

@@ -47,29 +47,29 @@
 
 <script>
 
-    window.addEventListener('error', function (event) {
-        console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
+    // window.addEventListener('error', function (event) {
+    //     console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
 
-        // Hier deinen Code ausführen, z.B. Seite neu laden
-        setTimeout(() => {
-            location.reload(); // Seite neu laden nach 3 Sekunden
-        }, 3000);
+    //     // Hier deinen Code ausführen, z.B. Seite neu laden
+    //     setTimeout(() => {
+    //         location.reload(); // Seite neu laden nach 3 Sekunden
+    //     }, 3000);
 
-        // Optional: Verhindere, dass der Fehler weitergeitet wird
-        event.preventDefault();
-    });
+    //     // Optional: Verhindere, dass der Fehler weitergeitet wird
+    //     event.preventDefault();
+    // });
 
-    // Für unhandled Promise-Rejections (z.B. bei fetch-Fehlern)
-    window.addEventListener('unhandledrejection', function (event) {
-        console.error('Unhandled Promise Rejection:', event.reason);
+    // // Für unhandled Promise-Rejections (z.B. bei fetch-Fehlern)
+    // window.addEventListener('unhandledrejection', function (event) {
+    //     console.error('Unhandled Promise Rejection:', event.reason);
 
-        // Hier deinen Code ausführen, z.B. Seite neu laden
-        setTimeout(() => {
-            location.reload();
-        }, 3000);
+    //     // Hier deinen Code ausführen, z.B. Seite neu laden
+    //     setTimeout(() => {
+    //         location.reload();
+    //     }, 3000);
 
-        event.preventDefault();
-    });
+    //     event.preventDefault();
+    // });
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -116,6 +116,7 @@
 
             while (data.length === 0) {
                 console.error('No data received or data is null/undefined');
+                document.body.innerHTML = '<p class="text-danger d-flex justify-content-center align-items-center vh-100">Kein Inhalt verfügbar, bitte haben Sie Geduld...</p>';
                 await sleep(10000); // Warte 10 Sekunden, bevor du es erneut versuchst
                 const retryResponse = await fetch("../database/getSchemas.php", {
                     method: "POST",

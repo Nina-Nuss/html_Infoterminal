@@ -215,11 +215,11 @@ label {
 #dokumente {
     overflow: scroll;
     height: 100%;
+    width: 100%;
 }
 
 /* kleine, standardisierte Höhe für card/modal body */
 /* kleine, standardisierte Höhe für card/modal body */
-
 
 #rowForCards {
     height: 100%;
@@ -228,6 +228,8 @@ label {
 .clock {
     text-align: center;
 }
+
+
 
 .clock h1 {
     margin: 0;

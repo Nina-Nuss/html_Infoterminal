@@ -75,15 +75,14 @@ class Infoseite {
             : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
 
         const body = `
-            <div class="card mb-2 text-wrap"  id="${this.cardObjekte}">
-                <div class="card-header p-1">
-                   
+            <div class="card mb-2 text-wrap" style="width: 98%;" id="${this.cardObjekte}" onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
+                <div id="cardHeader${this.id}" class="card-header p-1">
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
                     <h5 class="card-title m-0 p-0">${this.titel} <span id="isAktiv${this.id}">${aktivIcon}</span></h5> 
                     <p class="card-text m-0">${this.beschreibung}</p>
-                    <div class="form-check d-flex justify-content-center align-items-center">
+                    <div class="form-check d-none d-flex justify-content-center align-items-center">
                         <input class="form-check-input single-active-checkbox me-2" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
                         <label class="form-check-label mb-0" id="label${this.id}" name="label${this.id}" for="flexCheck${this.id}"></label>
                        
@@ -98,6 +97,8 @@ class Infoseite {
                 </div>
             </div>
     `;
+
+
         document.getElementById(umgebung).innerHTML += body;
     }
     removeHtmlElement() {
@@ -161,7 +162,7 @@ class Infoseite {
     }
 
     static deaktiviereAllElements(aktiv) {
-    
+
         const konfigContainer = document.getElementById("konfigContainer");
         const bildschirmVerwaltung = document.getElementById("bildschirmVerwaltung");
         const deleteInfoSeite = document.getElementById("btn_deleteInfoSeite")
@@ -208,6 +209,7 @@ class Infoseite {
         if (aktiv) {
             Infoseite.selectedID = null; // Update the checkAllowed state
         }
+       
     }
 
 
@@ -273,7 +275,6 @@ class Infoseite {
 
         }
         if (!obj) return;
-
         const konfigContainer = document.getElementById('konfigContainer');
         if (konfigContainer) {
             const inputs = konfigContainer.querySelectorAll('input');
@@ -283,7 +284,7 @@ class Infoseite {
                     obj.changed = true;
                 });
             });
-            if (obj.changed) {
+            if (obj.changed && Infoseite.selectedID) {
                 var confirmed = confirm("Konfigurationen von Infoseite " + obj.titel + " wurden geändert. Wollen Sie die änderungen speichern?");
                 if (confirmed) {
                     // Hier deine Methode aufrufen, z.B. speichern:
@@ -415,14 +416,14 @@ class Infoseite {
             console.warn("Objekt nicht gefunden für ID:", Infoseite.selectedID);
             return;
         }
-        
+
         try {
-            debugger
-            
+
+
             Infoseite.checkAktiv(obj);
             Infoseite.DateTimeHandler(obj); // Aktualisiere die Datums- und Zeitfelder
             var preCardObj = Infoseite.prepareObjForUpdate(obj); // Bereite das Objekt für die Aktualisierung vor
-            
+
             await updateDataBase(preCardObj, "updateSchema");
             alert("Änderungen erfolgreich gespeichert!");
 
@@ -578,8 +579,7 @@ class Infoseite {
         var selectedTime = cardObj.selectedTime / 1000; // Convert milliseconds to seconds
         var restSekunden = selectedTime % 60;
         var restMinuten = Math.floor(selectedTime / 60);
-        console.log("Rest Minuten:", restMinuten);
-        console.log("Rest Sekunden:", restSekunden);
+     
         anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
 
         let startDateStr = String(cardObj.startDate);
@@ -631,7 +631,7 @@ class Infoseite {
 
     }
     static removeChanges() {
-        debugger
+
         // var timerbereich = document.getElementById("timerSelectRange");
         let titel = document.getElementById("websiteName");
         let anzeigeDauer = document.getElementById("anzeigeDauer");
@@ -668,11 +668,12 @@ class Infoseite {
         let endDateID = document.getElementById("endDate");
         let startTimeRange = document.getElementById("startTimeRange");
         let endTimeRange = document.getElementById("endTimeRange");
-
+        debugger
         console.log(startTimeRange.value);
         console.log(endTimeRange.value);
         console.log(startDateID.value);
         console.log(endDateID.value);
+
 
         let startTime = "00:00";
         let endTime = "23:59";
@@ -1093,30 +1094,41 @@ if (document.getElementById("selectSekunden")) {
         }
     });
 }
-
-
 function erstelleFunktionForCardObj(objID) {
     if (!objID) return;
     Infoseite.selectedHistorys.push(objID);
     Infoseite.lastSelectedID = objID;
     const checkbox = document.getElementById(`flexCheck${objID}`);
     const label = document.getElementById(`label${objID}`);
+    const cardObj = document.getElementById(`cardObjekt${objID}`);
     const cbForSelectSchema = document.querySelectorAll('[id^="flexCheck"]');
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
+    const allCardObj = document.querySelectorAll(`[id^="cardObjekt"]`)
     Infoseite.überprüfenÄnderungen();
+
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
-       
         const id = extractNumberFromString(checkbox.id);
         var obj = findObj(Infoseite.list, id);
         Infoseite.selectedID = id; // Set the selected ID
         Infoseite.deaktiviereAllElements(false)
         Infoseite.loadChanges(obj); // Load changes for the selected Infoseite
         // Infoseite.DateTimeHandler(obj);
+
+        cardObj.style.border = "2px solid #006c99";
+        cardObj.style.marginBottom = "0.5rem";
+
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
             if (id !== extractNumberFromString(cb.id)) {
                 cb.checked = false;
+            }
+        });
+        debugger
+        allCardObj.forEach(cardObj => {
+            if (id !== extractNumberFromString(cardObj.id)) {
+                cardObj.style.border = "1px solid rgba(0,0,0,.125)";
+
             }
         });
         console.log("Checkbox mit ID " + id + " wurde aktiviert.");
@@ -1133,15 +1145,34 @@ function erstelleFunktionForCardObj(objID) {
             console.log("Checkbox mit ID " + labelId + " wurde deaktiviert.");
         }
     } else {
+        cardObj.style.border = "none";
         Infoseite.deaktiviereAllElements(true)
-        labelForSelectSchema.forEach(label => {
-            label.innerHTML = ""; // Clear the label text for unchecked checkboxes
+        // labelForSelectSchema.forEach(label => {
+        //     label.innerHTML = ""; // Clear the label text for unchecked checkboxes
+        // });
+        allCardObj.forEach(cardObj => {
+            cardObj.style.border = "1px solid rgba(0,0,0,.125)";
         });
         Infoseite.selectedID = null; // Reset the selected ID
     }
     Beziehungen.update(Infoseite.selectedID);
 }
 
+function handleCardClick(id) {
+    const cardObj = document.getElementById("cardObjekt" + id);
+    const flexCheck = document.getElementById("flexCheck" + id);
+    flexCheck.checked = !flexCheck.checked;
+    erstelleFunktionForCardObj(id)
+    debugger
+    // cardObj.style.border = checkbox.checked ? "2px solid #006c99" : "none";
+}
+function handleCardMouseOver(id) {
+    const cardObj = document.getElementById("cardObjekt" + id);
+    cardObj.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+    cardObj.style.cursor = "pointer";
+}
 
-
-
+function handleCardMouseOut(id) {
+    const cardObj = document.getElementById("cardObjekt" + id);
+    cardObj.style.boxShadow = "none";
+}

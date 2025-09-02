@@ -8,7 +8,7 @@ ob_end_clean(); // Uncomment if you want to clear the output buffer
 $ip = $_POST["infotherminalIp"] ?? '';
 $name = $_POST["infotherminalName"] ?? '';
 
-$patternIp = '/^[A-Za-z0-9._@-]+$/';
+$patternIp = '/^[A-Za-z0-9\._@\-\s]+$/';// Leerzeichen (\s) hinzugefügt
 
 // ...existing code...
 $patternIpFormat = '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/';
@@ -27,6 +27,7 @@ function checkZeichen($patternIp, $ip)
 {
     if (!preg_match($patternIp, $ip)) {
         echo "ungültiges Zeichen";
+        echo "Regex-Fehler: " . preg_last_error();
         exit;
     }
 }
