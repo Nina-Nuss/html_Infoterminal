@@ -1,18 +1,12 @@
 <?php
 session_start();
-// Prüfen ob Session-Cookie gesetzt ist (Name dynamisch holen)
-$sessionCookieValue = $_COOKIE['username'] ?? null;
-error_log('Session-Cookie vorhanden: ' . ($sessionCookieValue ? 'ja' : 'nein'));
-
-// Prüfen ob Session-Daten existieren
-if (!$sessionCookieValue) {
-    if (!isset($_SESSION['username'])) {
-        header("Location: ../login/index.php");
-        exit();
-    }
-}else{
-    $_SESSION['username'] = $sessionCookieValue;
+// ...existing code...
+$username = $_SESSION['username'] ?? ($_COOKIE['username'] ?? null);
+if (!$username) {
+    header('Location: ../login/index.php');
+    exit;
 }
+$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
 ?>
 
 <!DOCTYPE html>
