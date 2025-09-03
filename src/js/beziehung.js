@@ -214,7 +214,7 @@ class Beziehungen {
         const selectorInfoterminalForCards = document.getElementById('selectorInfoterminalForCards');
         if (selectorInfoterminalForCards != null) {
             selectorInfoterminalForCards.addEventListener('change', async (event) => {
-                debugger
+                Infoseite.überprüfenÄnderungen();
                 const selectedValue = event.target.value;
                 Infoseite.selectedID = null;
                 console.log(selectorInfoterminalForCards[0]);
@@ -239,6 +239,7 @@ class Beziehungen {
                             obj.htmlBody("cardContainer");
                         });
                     }
+                    wähleErstesInfoseite();
                 }
             });
         }

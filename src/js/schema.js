@@ -208,7 +208,7 @@ class Infoseite {
         if (aktiv) {
             Infoseite.selectedID = null; // Update the checkAllowed state
         }
-       
+
     }
 
 
@@ -220,6 +220,8 @@ class Infoseite {
         }
         await this.deleteCardObjDataBase(this.selectedID);
         await this.update();
+
+        wähleErstesInfoseite();
     }
 
     static async removeFromListLogik() {
@@ -253,6 +255,7 @@ class Infoseite {
         return temp;
     }
     static async überprüfenÄnderungen() {
+        debugger
         var zuletztAusgewählteObj = "";
         var obj = ""
         if (Infoseite.selectedHistorys.length === 0) {
@@ -567,7 +570,7 @@ class Infoseite {
         var selectedTime = cardObj.selectedTime / 1000; // Convert milliseconds to seconds
         var restSekunden = selectedTime % 60;
         var restMinuten = Math.floor(selectedTime / 60);
-     
+
         anzeigeDauer.innerHTML = restMinuten + " Min " + restSekunden + " Sek"; // Set the display duration
 
         let startDateStr = String(cardObj.startDate);
@@ -656,7 +659,7 @@ class Infoseite {
         let endDateID = document.getElementById("endDate");
         let startTimeRange = document.getElementById("startTimeRange");
         let endTimeRange = document.getElementById("endTimeRange");
-        debugger
+
         console.log(startTimeRange.value);
         console.log(endTimeRange.value);
         console.log(startDateID.value);
@@ -954,7 +957,7 @@ async function meow(event) {
         )
         console.log(obj1.selectedTime);
         const result = await insertDatabase(obj1);
-    
+
         alert("Schema erfolgreich erstellt!");
         await Infoseite.update();
         console.log(result);
@@ -1124,7 +1127,7 @@ function erstelleFunktionForCardObj(objID) {
                 cb.checked = false;
             }
         });
-        debugger
+
         allCardObj.forEach(cardObj => {
             if (id !== extractNumberFromString(cardObj.id)) {
                 cardObj.style.border = "1px solid rgba(0,0,0,.125)";
@@ -1163,7 +1166,7 @@ function handleCardClick(id) {
     const flexCheck = document.getElementById("flexCheck" + id);
     flexCheck.checked = !flexCheck.checked;
     erstelleFunktionForCardObj(id)
-    debugger
+
     // cardObj.style.border = checkbox.checked ? "2px solid #006c99" : "none";
 }
 function handleCardMouseOver(id) {
@@ -1175,4 +1178,16 @@ function handleCardMouseOver(id) {
 function handleCardMouseOut(id) {
     const cardObj = document.getElementById("cardObjekt" + id);
     cardObj.style.boxShadow = "none";
+}
+
+function wähleErstesInfoseite() {
+    if (Infoseite.list.length > 0) {
+        const erstesObjekt = Infoseite.list[0];
+        try {
+            document.getElementById(`cardObjekt${erstesObjekt.id}`).click(); // Simuliere einen Klick auf das erste Objekt
+        } catch (error) {
+            console.error("Erstes Objekt konnte nicht ausgewählt werden.", error);
+        }
+       
+    }
 }

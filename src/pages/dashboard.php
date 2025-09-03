@@ -90,7 +90,7 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
-                                                            <span class="me-3">Datum:</span>
+                                                            <span class="me-4">Datum:</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
 
                                                                 <input type="date"
@@ -122,7 +122,7 @@
                                                     <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-dark me-2"></i>
-                                                            <span class="me-2">Uhrzeit:</span>
+                                                            <span style="margin-right: 18px;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
@@ -142,7 +142,7 @@
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center" style="width: 50px;">
+                                                        <div class="d-flex align-items-center ms-3" style="width: 50px;">
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger btn-sm px-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">

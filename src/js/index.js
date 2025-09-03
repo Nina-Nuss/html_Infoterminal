@@ -25,15 +25,12 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Aktualisieren der Umgebung:", error);
     }
-
-
     // Modal Focus-Management hinzufügen
     setupModalFocusManagement();
     // Hier wird die startseite ausgewählt
     erstelleNavigation();
-
     try {
-        document.getElementById("cardObjekt" + Infoseite.list[0].id).click();
+        wähleErstesInfoseite();
 
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);

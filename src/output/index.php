@@ -135,7 +135,7 @@
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
   
         iframe.onload = () => {
-                  debugger
+            debugger
             try {
                 // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
