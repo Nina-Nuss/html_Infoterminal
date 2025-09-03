@@ -109,7 +109,9 @@
 
 
 <script>
+
     window.addEventListener('DOMContentLoaded', async () => {
+        debugger
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
         const template = params.get('template');
@@ -130,28 +132,27 @@
             }, 10000);
         }
     });
-    async function startCarousel(ort) {
+    function startCarousel(ort) {
+        debugger
         const iframe = document.createElement('iframe');
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
-  
-        iframe.onload = () => {
-            debugger
-            try {
-                // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
-                    console.error('404: Script gelöscht, versuche ort neu zu laden');
-                    // Entferne den alten iframe und versuche neu
-                    container.removeChild(iframe);
-                    setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
-                }
-            } catch (error) {
-                console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
-                // Bei Fehler auch neu versuchen
-                container.removeChild(iframe);
-                setTimeout(() => startCarousel(ort), 30000);
-            }
-        };
+        // iframe.onload = () => {
+        //     try {
+        //         // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
+        //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        //         if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
+        //             console.error('404: Script gelöscht, versuche ort neu zu laden');
+        //             // Entferne den alten iframe und versuche neu
+        //             container.removeChild(iframe);
+        //             setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
+        //         }
+        //     } catch (error) {
+        //         console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
+        //         // Bei Fehler auch neu versuchen
+        //         container.removeChild(iframe);
+        //         setTimeout(() => startCarousel(ort), 30000);
+        //     }
+        // };
         container.appendChild(iframe);
     }
 
@@ -172,11 +173,23 @@
         return clientIP; // Rückgabe der IP-Adresse für weitere Verwendung
     }
 
+    window.addEventListener('error', (event) => {
+        console.error('Uncaught Error:', event.error);
+        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
+    });
+
+    // Globaler Promise-Rejection-Handler
+    window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled Promise Rejection:', event.reason);
+        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
+    });
 
     // Seite nach 60 Minuten automatisch neu laden
     setTimeout(function () {
         window.location.reload();
     }, 3600000); // 3600000 ms = 60 Minuten
+
+
 </script>
 
 </html>

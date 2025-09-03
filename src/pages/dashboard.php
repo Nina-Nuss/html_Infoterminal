@@ -1,3 +1,15 @@
+<?php 
+session_start();
+ 
+// Prüfen, ob User eingeloggt ist
+if (!isset($_SESSION['username'])) {
+
+    header("Location: ../login/index.php");
+    exit();
+}?>
+
+
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -5,7 +17,6 @@
     <?php include '../assets/links.html'; ?>
     <?php include '../layout/modal/hinzufuegen.html'; ?>
     <?php include '../layout/modal/addInfoSeite.html'; ?>
-
 </head>
 
 
@@ -38,7 +49,8 @@
                         <div class="col-md-9" id="konfigContainer">
                             <div class="card">
                                 <div class="card-header p-1">
-                                    <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren</>
+                                    <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
+                                        </>
                                 </div>
 
                                 <div class="d-flex justify-content-center">
@@ -51,7 +63,7 @@
                                                 <div type="text" class="w-auto fw-bolder" id="websiteName" value="-">
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
 
                                         <div class="form-group">
@@ -72,7 +84,7 @@
                                                 </label>
 
                                                 <input class="form-check-input" type="checkbox" id="checkA"
-                                                    name="checkA" >
+                                                    name="checkA">
                                             </div>
 
                                         </div>
@@ -93,8 +105,7 @@
                                                             <span class="me-4">Datum:</span>
                                                             <div class="d-flex align-items-center" style="min-width:0;">
 
-                                                                <input type="date"
-                                                                    class="form-control form-control-sm"
+                                                                <input type="date" class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
                                                                     style="min-width:0;">
                                                             </div>
@@ -142,7 +153,8 @@
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center ms-3" style="width: 50px;">
+                                                        <div class="d-flex align-items-center ms-3"
+                                                            style="width: 50px;">
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger btn-sm px-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
@@ -207,29 +219,29 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3" id="bildschirmVerwaltung">
-                            <div class="card h-100" >
+                            <div class="card h-100">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
-                                <div class="card-body pb-0">
-                                    <div class="d-flex">
-                                        <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#modal_hinzufuegen" class="btn btn-success btn-sm me-2">
-                                            <i class="fas fa-plus"></i> Hinzufügen
+                                <div class="card-body d-flex w-100 p-0">
+                                    <div class="d-flex flex-column justify-content-center h-100 p-3 gap-2" >
+                                        <button id="btn_hinzufuegen"  type="button" data-bs-toggle="modal"
+                                            style="width: 40px; height: 40px;" data-bs-target="#modal_hinzufuegen"
+                                            class="btn btn-success btn-sm align-items-stretch m-0">
+                                            <i class="fas fa-plus"></i>
                                         </button>
-                                        <button id="btn_loeschen" type="button" class="btn btn-danger btn-sm"
+                                        <button id="btn_loeschen"  type="button" class="btn btn-danger btn-sm align-items-stretch m-0"
+                                            style="width: 40px; height: 40px;"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
-                                            <i class="fas fa-minus"></i> Entfernen
+                                            <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="mt-2">
-                                        <div style="height: 100px; overflow-y: auto;">
+                                    <div class="w-100">
+                                        <div style="height: 160px; overflow-y: auto;" class="pb-0 pt-0">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
@@ -244,6 +256,7 @@
                                             </table>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

@@ -45,3 +45,30 @@ CREATE TABLE infotherminal_schema (
     CONSTRAINT FK_infotherminal_schema_schemas FOREIGN KEY (fk_schema_id) 
         REFERENCES schemas(id)
 );
+
+
+drop table user_login;
+CREATE TABLE user_login (
+        id INT IDENTITY(1,1) PRIMARY KEY, -- Bleibt int für Auto-Inkrement
+        username VARCHAR(50),
+        password VARCHAR(255), -- Gehashte Passwörter
+        remember_me VARCHAR(1) DEFAULT '1', -- '1' = Angemeldet bleiben, '0' = Nein
+        is_admin VARCHAR(1) DEFAULT '0', -- '1' = Admin, '0' = Normaler User
+        is_active VARCHAR(1) DEFAULT '1', -- '1' = Aktiv, '0' = Deaktiviert
+        email VARCHAR(100),
+        failed_attempts VARCHAR(10) DEFAULT '0', -- Anzahl als String
+        last_failed_attempt VARCHAR(50), -- Datum als String (z.B. '2023-10-01 12:00:00')
+        lockout_until VARCHAR(50), -- Datum als String
+        last_login VARCHAR(50), -- Datum als String
+        verification_code VARCHAR(10), -- Für Passwort-Reset
+        verification_expires VARCHAR(50), -- Datum als String
+        created_at DATETIME DEFAULT GETDATE() -- Einfaches Datum mit Default NOW
+ );
+
+
+CREATE TABLE error_logs (
+        message VARCHAR(500) NOT NULL, -- Fehler-Nachricht
+        datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
+);
+INSERT INTO user_login(username, password, remember_me, is_admin)
+VALUES ('admin', '0000', '1', '1');

@@ -2,7 +2,7 @@
 <div id="rowForCards" class="col-md-2 text-center">
 
         <div class="d-flex flex-column" >
-            <select id="selectorInfoterminalForCards" class="form-select " aria-label="Default select example">
+            <select id="selectorInfoterminalForCards" class="form-select shadow-sm" aria-label="Default select example">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
