@@ -65,10 +65,10 @@ CREATE TABLE user_login (
         created_at DATETIME DEFAULT GETDATE() -- Einfaches Datum mit Default NOW
  );
 
+INSERT INTO user_login(username, password, remember_me, is_admin)
+VALUES ('admin', '0000', '1', '1');
 
 CREATE TABLE error_logs (
         message VARCHAR(500) NOT NULL, -- Fehler-Nachricht
         datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
 );
-INSERT INTO user_login(username, password, remember_me, is_admin)
-VALUES ('admin', '0000', '1', '1');

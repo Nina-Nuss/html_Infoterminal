@@ -62,7 +62,6 @@
             });
             const response = await result.json();
             console.log(response);
-            
             if (response) {
                 window.location.href = "../pages/dashboard.php";
             }else{

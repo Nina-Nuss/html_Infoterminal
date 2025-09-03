@@ -1,14 +1,22 @@
-<?php 
+<?php
 session_start();
- 
-// Prüfen, ob User eingeloggt ist
-if (!isset($_SESSION['username'])) {
+// Prüfen ob Session-Cookie gesetzt ist (Name dynamisch holen)
+$sessionCookieValue = $_COOKIE['username'] ?? null;
+error_log('Session-Cookie vorhanden: ' . ($sessionCookieValue ? 'ja' : 'nein'));
 
+// Prüfen ob Session-Daten existieren
+if (!$sessionCookieValue) {
+    if (isset($_SESSION['username'])) {
+        // Session-Daten vorhanden -> weiter zur Dashboard-Seite
+    }
     header("Location: ../login/index.php");
     exit();
-}?>
+}
 
 
+// Kein Cookie -> direkt weiterleiten
+
+?>
 
 <!DOCTYPE html>
 <html lang="de">
@@ -54,7 +62,7 @@ if (!isset($_SESSION['username'])) {
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width: 25%;">
+                                    <div class="card-body" style="width: 20%;">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -91,11 +99,11 @@ if (!isset($_SESSION['username'])) {
                                     </div>
 
 
-                                    <div class="card-body" style="width: 15%;">
+                                    <div class="card-body" style="width: 5%;">
 
                                     </div>
 
-                                    <div class="card-body" style="width: 50%;">
+                                    <div class="card-body" style="width: 50%; overflow-y: auto;">
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel">
@@ -228,13 +236,14 @@ if (!isset($_SESSION['username'])) {
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
                                 <div class="card-body d-flex w-100 p-0">
-                                    <div class="d-flex flex-column justify-content-center h-100 p-3 gap-2" >
-                                        <button id="btn_hinzufuegen"  type="button" data-bs-toggle="modal"
+                                    <div class="d-flex flex-column justify-content-center h-100 p-3 gap-2">
+                                        <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             style="width: 40px; height: 40px;" data-bs-target="#modal_hinzufuegen"
                                             class="btn btn-success btn-sm align-items-stretch m-0">
                                             <i class="fas fa-plus"></i>
                                         </button>
-                                        <button id="btn_loeschen"  type="button" class="btn btn-danger btn-sm align-items-stretch m-0"
+                                        <button id="btn_loeschen" type="button"
+                                            class="btn btn-danger btn-sm align-items-stretch m-0"
                                             style="width: 40px; height: 40px;"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>

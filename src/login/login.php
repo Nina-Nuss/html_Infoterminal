@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['remember'] = $remember;
         $_SESSION['username'] = $username;
         if ($remember) {
-            setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage
+            setcookie('username', $username, time() + 86400 * 30); // 30 Tage
         }
         echo json_encode($userExist);
         exit();

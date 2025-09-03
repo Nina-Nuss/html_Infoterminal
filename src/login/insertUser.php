@@ -5,8 +5,8 @@ session_start();
 include("../../config/php/connection.php");
 
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
-$username = 'maxmustermann'; // Beispiel-Username
-$password = '123'; // Beispiel-Password
+$username = 'admin'; // Beispiel-Username
+$password = '0000'; // Beispiel-Password
 $isActive = '1'; // Beispiel-is_active
 
 $username = trim($username);
