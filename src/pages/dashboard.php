@@ -6,16 +6,13 @@ error_log('Session-Cookie vorhanden: ' . ($sessionCookieValue ? 'ja' : 'nein'));
 
 // Prüfen ob Session-Daten existieren
 if (!$sessionCookieValue) {
-    if (isset($_SESSION['username'])) {
-        // Session-Daten vorhanden -> weiter zur Dashboard-Seite
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../login/index.php");
+        exit();
     }
-    header("Location: ../login/index.php");
-    exit();
+}else{
+    $_SESSION['username'] = $sessionCookieValue;
 }
-
-
-// Kein Cookie -> direkt weiterleiten
-
 ?>
 
 <!DOCTYPE html>
