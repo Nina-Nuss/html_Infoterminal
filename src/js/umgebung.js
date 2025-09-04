@@ -234,10 +234,10 @@ class Umgebung {
         button.addEventListener('click', function () {
             console.log("Button zum Öffnen des Terminals wurde geklickt");
             const selectedTerminal = selector.value;
-                     debugger
+                     
             console.log("Ausgewähltes Infoterminal:", selectedTerminal);
             if (selectedTerminal.toLowerCase().trim() === "localhost" || selectedTerminal.toLowerCase().trim() === "test anzeige") {
-                debugger
+                
                 var obj = findObj(Infoseite.list, Infoseite.selectedID);
                 const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
                 window.open(url, '_blank');
@@ -380,7 +380,7 @@ function createList(cfg, select, defaultValue) {
     select.appendChild(bitteWaehlen);
 
     cfg.forEach(i => {
-        debugger
+        
         const opt = document.createElement('option');
         opt.value = i.value;
         opt.textContent = i.name;

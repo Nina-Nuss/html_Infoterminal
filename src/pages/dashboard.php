@@ -53,7 +53,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width: 20%;">
+                                    <div class="card-body" style="width: 15vw">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -73,7 +73,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                     Sekunden:</div>
                                                 <input type="text" id="selectSekunden"
                                                     class="form-control form-control-sm ms-2 me-auto" maxlength="4"
-                                                    style="width: 70px;">
+                                                    style="width: 50px;">
                                                 <div class="fw-bolder w-auto" id="anzeigeDauer"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-start gap-2">
@@ -90,38 +90,38 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                     </div>
 
 
-                                    <div class="card-body" style="width: 5%;">
+                                    <div class="card-body" style="width: 5vw;">
 
                                     </div>
 
-                                    <div class="card-body" style="width: 50%; overflow-y: auto;">
+                                    <div class="card-body" style="width: 40vw; overflow-y: auto;">
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel">
-                                                    <div class="d-flex align-items-center mb-3">
+                                                    <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas text-dark  fa-calendar-alt me-2"></i>
-                                                            <span class="me-4">Datum:</span>
-                                                            <div class="d-flex align-items-center" style="min-width:0;">
-
+                                                            <i class="fas text-dark  fa-calendar-alt"
+                                                              ></i>
+                                                            <span style="margin-left: 0.5rem;">Datum:</span>
+                                                            <div class="d-flex align-items-center" >
                                                                 <input type="date" class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
-                                                                    style="min-width:0;">
+                                                                    style="margin-left: 1.3rem;">
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center">
-                                                            <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-center" style="margin-left: 1rem;">
                                                                 <label for="endDate"
-                                                                    class="form-label mb-0 ms-5 mx-2 text-secondary">bis</label>
+                                                                    class="form-label mb-0 text-secondary"  style="margin-left: 0.8rem; margin-right: 0.5rem;">bis</label>
                                                                 <input type="date"
                                                                     class="form-control form-control-sm w-auto"
-                                                                    id="endDate" name="endDate" style="min-width:0;">
+                                                                    id="endDate" name="endDate" >
                                                             </div>
                                                         </div>
-                                                        <div class="d-flex align-items-center ms-2"
-                                                            style="width: 50px;">
+                                                        <div class="d-flex align-items-center"
+                                                            style="margin-left: 1rem;" style="width: 4vw;">
                                                             <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger btn-sm px-3"
+                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw;"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -129,10 +129,11 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                     </div>
 
                                                     <!-- Uhrzeit -->
-                                                    <div class="d-flex align-items-center mb-3">
+                                                    <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas fa-clock text-dark me-2"></i>
-                                                            <span style="margin-right: 18px;">Uhrzeit:</span>
+                                                            <i class="fas fa-clock text-dark" style="margin-right: 0.5rem;"
+                                                               ></i>
+                                                            <span style="margin-right: 1rem;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
@@ -141,7 +142,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                                 class="form-label mb-0 mx-2 text-secondary">Uhr</label>
                                                         </div>
                                                         <div class="d-flex align-items-center"
-                                                            style="margin-left: 3.8rem;">
+                                                            style="margin-left: 2.5rem;">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width: auto;">bis</label>
@@ -150,31 +151,33 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                                 id="endTimeRange" name="endTimeRange"
                                                                 style="min-width:0;">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 mx-2 text-secondary">Uhr</label>
+                                                                class="form-label mb-0 text-secondary" style="margin-left: 0.5rem;"> Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center ms-3"
-                                                            style="width: 50px;">
+                                                        <div class="d-flex align-items-center"
+                                                        >
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger btn-sm px-3"
+                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw; margin-left: 2.5rem;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group mt-2">
+                                                <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
-                                                        <label for="openTerminalBtn" class="form-label mb-0 me-2">
-                                                            <i class="fas fa-desktop me-2"></i>Anzeige:
+                                                        <label for="openTerminalBtn" class="form-label ">
+                                                            <i class="fas fa-desktop mb-0" style="margin-right: 0.5rem;"
+                                                               ></i>Anzeige:
                                                         </label>
-                                                        <select class="form-control form-select-sm w-25"
+                                                        <select class="form-control form-select-sm" style="width: 6vw; margin-left: 0.5rem;"
                                                             id="infotherminalSelect">
                                                             <option value="">auswählen</option>
                                                         </select>
                                                         <button id="openTerminalBtn"
                                                             class="btn text-dark start-btn btn-sm"
-                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 40px;">
-                                                            <i class="fas fa-external-link-alt me-1"></i>
+                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 1.5vw;">
+                                                            <i class="fas fa-external-link-alt"
+                                                               ></i>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -183,12 +186,12 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                     style="display:none;">
                                                     <div class="row d-flex g-2">
                                                         <div class="col-6">
-                                                            <div class="d-flex align-items-center" style="min-width:0;">
+                                                            <div class="d-flex align-items-center" style="margin-left: 1rem;">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6">
-                                                            <div class="d-flex align-items-center" style="min-width:0;">
+                                                            <div class="d-flex align-items-center" style="margin-left: 1rem;">
 
                                                             </div>
                                                         </div>
@@ -203,11 +206,11 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                     style="display:none;">
                                                     <div class="row g-2 justify-content-center">
                                                         <div class="col-6 d-flex align-items-center"
-                                                            style="min-width:0;">
+                                                            >
 
                                                         </div>
                                                         <div class="col-6 d-flex align-items-center"
-                                                            style="min-width:0;">
+                                                           >
 
                                                         </div>
 

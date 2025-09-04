@@ -255,7 +255,7 @@ class Infoseite {
         return temp;
     }
     static async überprüfenÄnderungen() {
-        debugger
+
         var zuletztAusgewählteObj = "";
         var obj = ""
         if (Infoseite.selectedHistorys.length === 0) {
