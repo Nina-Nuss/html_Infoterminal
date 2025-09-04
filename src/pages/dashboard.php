@@ -53,7 +53,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width: 15vw">
+                                    <div class="card-body" style="width: 17vw">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -119,7 +119,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center"
-                                                            style="margin-left: 1rem;" style="width: 4vw;">
+                                                            style="margin-left: 1rem;">
                                                             <button id="btnDelDateTime"
                                                                 class="btn btn-outline-danger btn-sm" style="width: 2vw;"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
