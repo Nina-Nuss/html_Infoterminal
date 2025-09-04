@@ -82,7 +82,7 @@
                                             <i class="fas fa-list me-2"></i> Infoterminal auswählen:
                                         </label>
                                     </div>
-                                    <div style="max-height: 300px; overflow-y: auto;">
+                                    <div style="max-height: 200px; overflow-y: auto;">
                                         <table class="table table-hover position-relative">
                                             <thead>
                                                 <tr>
@@ -122,7 +122,7 @@
                                             <!-- Optionen werden per JS aus config.json befüllt -->
                                     <!-- </select> -->
                                     <!-- </div> -->
-                                    <div class="form-group mb-3">
+                                    <div class="form-group ">
                                         <label for="cardCounterLimit" class="form-label">
                                             <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
                                         </label>

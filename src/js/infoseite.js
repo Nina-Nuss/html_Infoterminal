@@ -560,6 +560,8 @@ class Infoseite {
 
         Infoseite.removeChanges() // Zuerst alle Felder leeren
 
+        
+
         console.log("Startzeit:", cardObj.startTime);
         console.log("Endzeit:", cardObj.endTime);
         console.log("Startdatum:", cardObj.startDate);
