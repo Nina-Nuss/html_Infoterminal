@@ -1,6 +1,14 @@
 <?php
+<<<<<<< HEAD
 include 'connection.php';
 
+=======
+
+ob_start();
+include '../../config/php/connection.php';
+include '../php/selectUploads.php';
+ob_clean();
+>>>>>>> origin/main
 
 $sql = "SELECT * FROM schemas";
 $result = sqlsrv_query($conn, $sql);
@@ -22,6 +30,10 @@ $schemaList1 = [];
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
     if (isset($row['id']) && $row['id'] !== null) {
         array_push($schemaList1, array(

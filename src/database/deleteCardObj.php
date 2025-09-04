@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 
 // Abrufen der JSON-Daten aus der Anfrage
 $data = json_decode(file_get_contents('php://input'), true);

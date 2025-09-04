@@ -1,7 +1,11 @@
 <?php
 // filepath: c:\xampp\htdocs\Infotherminal\dashboard\database\delete_All_Relations_For_Schema.php
 
+<<<<<<< HEAD
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 // Abrufen der JSON-Daten aus der Anfrage
 $input = json_decode(file_get_contents('php://input'), true);
 

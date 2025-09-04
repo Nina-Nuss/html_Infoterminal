@@ -33,7 +33,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+<<<<<<< HEAD
         width: 74vw;
+=======
+        width: 75vw;
+>>>>>>> origin/main
         height: 75vh;
         /* border: 1px solid black; */
 
@@ -43,8 +47,13 @@
 
 
     .iframe-container iframe {
+<<<<<<< HEAD
         height: 74vh;
         width: 74vw;
+=======
+        height: 75vh;
+        width: 75vw;
+>>>>>>> origin/main
         border: none;
         object-fit: cover;
         display: block;
@@ -64,8 +73,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+<<<<<<< HEAD
             width: 74.5vw;
             height: 74.5vh;
+=======
+            width: 75vw;
+            height: 75vh;
+>>>>>>> origin/main
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -80,8 +94,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+<<<<<<< HEAD
             width: 74.5vw;
             height: 74.5vh;
+=======
+            width: 75vw;
+            height: 75vh;
+>>>>>>> origin/main
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -90,7 +109,11 @@
     }
 </style>
 </head>
+<<<<<<< HEAD
 <?php include '../assets/links.html'; ?> 
+=======
+<?php include '../assets/links.html'; ?>
+>>>>>>> origin/main
 
 <header>
     <?php include '../layout/logo.php'; ?>
@@ -104,21 +127,43 @@
 </body>
 
 <footer class="p-0">
+<<<<<<< HEAD
     <?php include  '../layout/footer.php'; ?>
+=======
+    <?php include '../layout/footer.php'; ?>
+>>>>>>> origin/main
 </footer>
 
 
 <script>
+<<<<<<< HEAD
     window.addEventListener('DOMContentLoaded', async () => {
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
         const container = document.getElementById('container');
         const ip = await checkIP(ort);
         console.log(ip);
+=======
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        debugger
+        const params = new URLSearchParams(window.location.search);
+        const ort = params.get('ip');
+        const template = params.get('template');
+        const container = document.getElementById('container');
+        const ip = await checkIP(ort);
+        console.log(ip);
+        if (template) {
+            console.log("Template geladen");
+            showTestTemplate(template);
+            return;
+        }
+>>>>>>> origin/main
         if (ort && container != null && ip != false) {
             startCarousel(ort);
         } else {
             container.innerHTML = `<p class="text-danger">name ${ort} ist keiner gültigen IP-Adresse zugeordnet</p>`;
+<<<<<<< HEAD
         }
     });
 
@@ -126,18 +171,78 @@
         const iframe = document.createElement('iframe');
         // Variablen als Query-Parameter anhängen
         let data = `out.php?ip=${encodeURIComponent(ort)}`;
+=======
+            setTimeout(() => {
+                location.reload();
+            }, 10000);
+        }
+    });
+    function startCarousel(ort) {
+        debugger
+        const iframe = document.createElement('iframe');
+        iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
+        // iframe.onload = () => {
+        //     try {
+        //         // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
+        //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        //         if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
+        //             console.error('404: Script gelöscht, versuche ort neu zu laden');
+        //             // Entferne den alten iframe und versuche neu
+        //             container.removeChild(iframe);
+        //             setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
+        //         }
+        //     } catch (error) {
+        //         console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
+        //         // Bei Fehler auch neu versuchen
+        //         container.removeChild(iframe);
+        //         setTimeout(() => startCarousel(ort), 30000);
+        //     }
+        // };
+        container.appendChild(iframe);
+    }
+
+
+    function showTestTemplate(template) {
+        const iframe = document.createElement('iframe');
+        // Variablen als Query-Parameter anhängen
+        let data = `out.php?template=${encodeURIComponent(template)}`;
+>>>>>>> origin/main
         // Wenn du weitere Variablen hast, einfach anhängen:
         // data += `&foo=${encodeURIComponent(foo)}`;
         iframe.src = data;
         container.appendChild(iframe);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     async function checkIP(ort) {
         const response = await fetch("../php/checkURL.php?ip=" + ort);
         const clientIP = await response.text();
         return clientIP; // Rückgabe der IP-Adresse für weitere Verwendung
     }
+<<<<<<< HEAD
+=======
+
+    window.addEventListener('error', (event) => {
+        console.error('Uncaught Error:', event.error);
+        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
+    });
+
+    // Globaler Promise-Rejection-Handler
+    window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled Promise Rejection:', event.reason);
+        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
+    });
+
+    // Seite nach 60 Minuten automatisch neu laden
+    setTimeout(function () {
+        window.location.reload();
+    }, 3600000); // 3600000 ms = 60 Minuten
+
+
+>>>>>>> origin/main
 </script>
 
 </html>

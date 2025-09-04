@@ -1,7 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 include 'connection.php';
 
+=======
+ob_start();
+
+include '../../config/php/connection.php';
+
+ob_clean();
+>>>>>>> origin/main
 // JSON-Daten aus der Anfrage abrufen
 $data = json_decode(file_get_contents('php://input'), true);
 

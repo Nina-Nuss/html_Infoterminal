@@ -13,6 +13,7 @@ window.onload = async function () {
     const ipAdress = await getSystemPath();
     console.log("IP-Adresse:", ipAdress);
 
+<<<<<<< HEAD
 
 
     try {
@@ -28,12 +29,45 @@ window.onload = async function () {
     }
 
    
+=======
+    if (document.getElementById("dokumente")) {
+        try {
+            await Infoseite.update();
+
+        } catch (error) {
+            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
+        }
+    }
+
+    try {
+        await Infoterminal.update();
+        Infoterminal.erstelleSelector();
+        Infoterminal.erstelleSelectorForCardObj();
+
+    } catch (error) {
+        console.error("Fehler beim Aktualisieren der Infoterminal:", error);
+    }
+>>>>>>> origin/main
     // Modal Focus-Management hinzufügen
     setupModalFocusManagement();
     // Hier wird die startseite ausgewählt
     erstelleNavigation();
+<<<<<<< HEAD
 }
 
+=======
+    try {
+        wähleErstesInfoseite();
+
+    } catch (error) {
+        console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
+    }
+
+}
+
+
+
+>>>>>>> origin/main
 function getSekMin(ms) {
     const minutes = Math.floor(ms / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
@@ -69,7 +103,11 @@ function erstelleNavigation() {
     const homeBereich = document.getElementById("homeBereich");
     if (infoterminalBereich) {
         infoterminalBereich.addEventListener("click", async function (event) {
+<<<<<<< HEAD
             window.location.href = 'startSeite.php';
+=======
+            window.location.href = 'dashboard.php';
+>>>>>>> origin/main
         });
     }
 
@@ -102,8 +140,13 @@ async function getSystemPath() {
 
 
 function checkAnzahl() {
+<<<<<<< HEAD
     const anzahlInfo = Umgebung.list.length;
     const anzahlCardObj = CardObj.list.length;
+=======
+    const anzahlInfo = Infoterminal.list.length;
+    const anzahlCardObj = Infoseite.list.length;
+>>>>>>> origin/main
     console.log("Anzahl der Umgebungen:", anzahlInfo);
     console.log("Anzahl der CardObjekte:", anzahlCardObj);
     if (anzahlInfo > 0) {
@@ -114,6 +157,29 @@ function checkAnzahl() {
 
 }
 
+<<<<<<< HEAD
+=======
+function bereinigeDatenbankUndFolder() {
+    if (confirm("Möchten Sie wirklich die Datenbank und den Upload-Ordner bereinigen? Diese Aktion kann nicht rückgängig gemacht werden.")) {
+        fetch('../database/deleteFileFolder.php', {
+            method: 'POST'
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Erfolg:', data);
+                alert("Datenbank und Upload-Ordner wurden erfolgreich bereinigt.");
+                location.reload(); // Seite neu laden, um Änderungen anzuzeigen
+            })
+            .catch((error) => {
+                console.error('Fehler:', error);
+                alert("Fehler beim Bereinigen der Datenbank und des Upload-Ordners.");
+            });
+    } else {
+        console.log("Bereinigung abgebrochen.");
+    }
+}
+
+>>>>>>> origin/main
 
 
 function extractNumberFromString(str) {
@@ -143,13 +209,29 @@ function getJsonData(key) {
 function showDateTime(type) {
     const zeitspannePanel = document.getElementById("zeitspannePanel");
     const uhrzeitPanel = document.getElementById("uhrzeitPanel");
+<<<<<<< HEAD
+=======
+    const dateTimeInfoPanel = document.getElementById("dateTimeInfoPanel");
+>>>>>>> origin/main
 
     if (type === 'zeitspanne') {
         zeitspannePanel.style.display = "block";
         uhrzeitPanel.style.display = "none";
+<<<<<<< HEAD
     } else if (type === 'uhrzeit') {
         zeitspannePanel.style.display = "none";
         uhrzeitPanel.style.display = "block";
+=======
+        dateTimeInfoPanel.style.display = "none";
+    } else if (type === 'uhrzeit') {
+        zeitspannePanel.style.display = "none";
+        uhrzeitPanel.style.display = "block";
+        dateTimeInfoPanel.style.display = "none";
+    } else if (type === 'dateTimeInfoPanel') {
+        dateTimeInfoPanel.style.display = "block";
+        zeitspannePanel.style.display = "none";
+        uhrzeitPanel.style.display = "none";
+>>>>>>> origin/main
     }
 }
 
@@ -215,12 +297,17 @@ async function selectObj(select) {
         }
         return response.json();
     } catch (error) {
+<<<<<<< HEAD
         console.error("Fehler beim Laden der Umgebung:", error);
+=======
+        console.error("Fehler beim Laden der Infoterminal:", error);
+>>>>>>> origin/main
         return null;
     }
 }
 
 function saveTempAddDatabase() {
+<<<<<<< HEAD
     Umgebung.tempListForSaveCards.forEach(cardObj => {
         insertDatabase(cardObj)
         console.log(cardObj.imagePath);
@@ -230,6 +317,17 @@ function saveTempAddDatabase() {
 
 function saveCardObj() {
     umgebung.allCardList.forEach(cardObjlist => {
+=======
+    Infoterminal.tempListForSaveCards.forEach(cardObj => {
+        insertDatabase(cardObj)
+        console.log(cardObj.imagePath);
+    });
+    Infoterminal.tempListForSaveCards = []
+}
+
+function saveCardObj() {
+    Infoterminal.allCardList.forEach(cardObjlist => {
+>>>>>>> origin/main
         cardObjlist.forEach(cardObj => {
             console.log(cardObj);
         });
@@ -304,11 +402,19 @@ function uncheckAllTableCheckboxes() {
     });
 
     // Reset auch die temp_remove Liste
+<<<<<<< HEAD
     if (Umgebung.temp_remove) {
         Umgebung.temp_remove = [];
     }
     if (CardObj.temp_remove) {
         CardObj.temp_remove = [];
+=======
+    if (Infoterminal.temp_remove) {
+        Infoterminal.temp_remove = [];
+    }
+    if (Infoseite.temp_remove) {
+        Infoseite.temp_remove = [];
+>>>>>>> origin/main
     }
 
 

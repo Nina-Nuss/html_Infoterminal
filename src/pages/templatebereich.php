@@ -64,7 +64,11 @@
                                             </table>
                                         </div>
 
+<<<<<<< HEAD
                                         <button type="button" class="btn btn-danger shadow-sm" id="deleteBtnForSchemas" onclick="CardObj.remove_generate()">
+=======
+                                        <button type="button" class="btn btn-danger shadow-sm" id="deleteBtnForSchemas" onclick="Infoseite.remove_generate()">
+>>>>>>> origin/main
                                             <i class="fas fa-trash me-2"></i> löschen
                                         </button>
                                     </div>

@@ -1,6 +1,10 @@
 <?php
+<<<<<<< HEAD
 include 'connection.php';
 
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 $sql = "SELECT * FROM infotherminals";
 $result = sqlsrv_query($conn, $sql);
 
@@ -19,14 +23,25 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         ));
     }
 }
+<<<<<<< HEAD
 sqlsrv_free_stmt($result);
 
 
+=======
+
+sqlsrv_free_stmt($result);
+
+sqlsrv_close($conn);
+>>>>>>> origin/main
 
 $infotherminalList = json_encode($infotherminalList1);
 echo $infotherminalList;
 
+<<<<<<< HEAD
 sqlsrv_close($conn);
+=======
+
+>>>>>>> origin/main
 
 
 

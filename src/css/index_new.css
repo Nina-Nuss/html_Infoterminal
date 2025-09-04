@@ -215,12 +215,19 @@ label {
 #dokumente {
     overflow: scroll;
     height: 100%;
+<<<<<<< HEAD
+=======
+    width: 100%;
+>>>>>>> origin/main
 }
 
 /* kleine, standardisierte Höhe für card/modal body */
 /* kleine, standardisierte Höhe für card/modal body */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 #rowForCards {
     height: 100%;
 }
@@ -229,6 +236,11 @@ label {
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main
 .clock h1 {
     margin: 0;
     color: #333;
@@ -336,4 +348,34 @@ hr {
 
 .button_time:hover {
     background-color: grey;
+<<<<<<< HEAD
+=======
+}
+
+#tabelleDelete td {
+  padding: 5px; /* rem verwenden */
+}
+
+
+
+.btn-custom-outline {
+    border-color: #006c99 !important;
+    background-color: rgba(255,255,255,0.952) !important;
+    color: #006c99 !important;
+    transition: background-color .15s, color .15s;
+}
+.btn-custom-outline:hover,
+.btn-custom-outline:focus {
+    background-color: #006c99 !important;
+    color: #fff !important;
+}
+.center-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1rem; /* Abstand vom unteren Rand anpassen (z.B. 1rem, 2vh, etc.) */
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+>>>>>>> origin/main
 }

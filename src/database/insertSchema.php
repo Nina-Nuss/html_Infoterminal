@@ -1,7 +1,14 @@
 <?php
+<<<<<<< HEAD
 include("../php/checkJson.php");
 include 'connection.php';
 
+=======
+ob_start();
+include("../php/checkJson.php");
+include '../../config/php/connection.php';
+ob_clean();
+>>>>>>> origin/main
 
 $file = file_get_contents('php://input');
 
@@ -31,18 +38,36 @@ if (is_array($data)) {
     if ($stmt) {
         // Statement ausführen
         if (sqlsrv_execute($stmt)) {
+<<<<<<< HEAD
             echo "Datensatz erfolgreich eingefügt";
         } else {
             echo "Fehler beim Einfügen: ";
             print_r(sqlsrv_errors());
+=======
+            // echo "Datensatz erfolgreich eingefügt";
+        } else {
+            // echo "Fehler beim Einfügen: ";
+            print_r(sqlsrv_errors()); 
+>>>>>>> origin/main
         }
         // Statement schließen
         sqlsrv_free_stmt($stmt);
     } else {
+<<<<<<< HEAD
         echo "Fehler bei der Vorbereitung: ";
         print_r(sqlsrv_errors());
     }
 } else {
     echo "Fehler beim Abrufen der Daten";
 }
+=======
+        // echo "Fehler bei der Vorbereitung: ";
+        print_r(sqlsrv_errors());
+    }
+} else {
+    // echo "Fehler beim Abrufen der Daten";
+}
+
+
+>>>>>>> origin/main
 sqlsrv_close($conn);

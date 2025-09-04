@@ -1,7 +1,11 @@
 <?php
 // filepath: c:\Infotherminal\database\insert_Relation.php
 
+<<<<<<< HEAD
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 
 $input = json_decode(file_get_contents('php://input'), true);
 

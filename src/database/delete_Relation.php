@@ -1,7 +1,11 @@
 <?php
 // filepath: c:\Infotherminal\database\delete_Relation.php
+<<<<<<< HEAD
 
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 // Abrufen der JSON-Daten aus der Anfrage
 $input = json_decode(file_get_contents('php://input'), true);
 

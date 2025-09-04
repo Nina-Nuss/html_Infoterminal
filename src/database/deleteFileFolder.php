@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 
 $imageListPath = [];
 $videoListPath = [];
@@ -61,7 +65,11 @@ if ($stmt) {
 
         // echo "<br>Insgesamt $deletedCount verwaiste Datensätze gelöscht.<br>";
     } else {
+<<<<<<< HEAD
         // echo "Fehler beim Ausführen der Abfrage: ";
+=======
+        sqlsrv_free_stmt($stmt);
+>>>>>>> origin/main
         // print_r(sqlsrv_errors());
     }
     sqlsrv_free_stmt($stmt);

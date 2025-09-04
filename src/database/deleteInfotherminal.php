@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 include 'connection.php';
+=======
+include '../../config/php/connection.php';
+>>>>>>> origin/main
 
 if (!isset($_GET['idDelete'])) {
     echo 'Fehler: Keine Daten empfangen';
