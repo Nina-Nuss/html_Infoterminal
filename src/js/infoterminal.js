@@ -284,8 +284,7 @@ window.addEventListener("load", async function () {
     } catch (error) {
         console.error("Fehler beim Senden der Anfrage:", error);
     }
-
-
+   
 
     var formID = document.getElementById('formID');
     if (formID) {
@@ -332,29 +331,29 @@ function cutAndCreate(responseText) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const select = document.getElementById('refreshSelect');
+
+    debugger;
     const infoCounterLimit = document.getElementById('infoCounterLimit');
     const cardCounterLimit = document.getElementById('cardCounterLimit');
-    if (!select) return;  // Nur auf der Admin-Seite ausführen
+
 
     // Config laden
     try {
         console.log("Config wird geladen");
-        console.log("select: ", select);
 
         const res = await fetch('../../config/config.json');
         if (!res.ok) throw new Error(`Config nicht gefunden (Status ${res.status})`);
         const cfg = await res.json();
 
         // Dropdown befüllen
-        createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
+        // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
         createList(cfg.maxCountForInfoPages, infoCounterLimit, cfg.defaultMaxCountForInfoPages + " " + "Info-Seiten");
         createList(cfg.maxCountForInfoTerminals, cardCounterLimit, cfg.defaultMaxCountForInfoTerminals + " " + "Terminals");
 
         console.log(cfg);
 
 
-        saveList(select, "default");
+        // saveList(select, "default");
         saveList(infoCounterLimit, "defaultMaxCountForInfoPages");
         saveList(cardCounterLimit, "defaultMaxCountForInfoTerminals");
 
@@ -413,3 +412,4 @@ function saveList(select, name) {
         }
     });
 }
+

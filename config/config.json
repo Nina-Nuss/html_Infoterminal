@@ -72,7 +72,7 @@
             "value": 100
         }
     ],
-    "defaultMaxCountForInfoPages": 10,
+    "defaultMaxCountForInfoPages": 100,
     "maxCountForInfoTerminals": [
         {
             "name": "5 Terminals",
@@ -91,5 +91,5 @@
             "value": 30
         }
     ],
-    "defaultMaxCountForInfoTerminals": 5
+    "defaultMaxCountForInfoTerminals": 30
 }
