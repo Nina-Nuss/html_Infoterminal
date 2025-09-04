@@ -169,7 +169,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                             <i class="fas fa-desktop mb-0" style="margin-right: 0.5rem;"
                                                                ></i>Anzeige:
                                                         </label>
-                                                        <select class="form-control form-select-sm" style="width: 6vw; margin-left: 0.5rem;"
+                                                        <select class="form-control form-select-sm" style="width: 7vw; margin-left: 0.5rem;"
                                                             id="infotherminalSelect">
                                                             <option value="">auswählen</option>
                                                         </select>
