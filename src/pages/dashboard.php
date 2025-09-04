@@ -1,12 +1,9 @@
 <?php
 session_start();
-// ...existing code...
-$username = $_SESSION['username'] ?? ($_COOKIE['username'] ?? null);
-if (!$username) {
+if (!isset($_SESSION['username'])) {
     header('Location: ../login/index.php');
     exit;
 }
-$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
 ?>
 
 <!DOCTYPE html>

@@ -38,19 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($row['username'] == $username && password_verify($password, $row['password']) && $row['is_active'] == 1) {
                 $userExist = true;
             }
+            
         }
     }
 
     if ($userExist == true) {
         $_SESSION['remember'] = $remember;
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $username; 
         if ($remember) {
-            setcookie('username', $username, time() + 86400 * 30); // 30 Tage
+            
+            
         }
-        echo json_encode($userExist);
+        echo json_encode([
+            'success' => $userExist,
+            'message' => 'Login erfolgreich'
+        ]);
         exit();
     } else {
-        echo json_encode($userExist);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Login fehlgeschlagen'
+        ]);
     }
 
 }

@@ -4,10 +4,15 @@ session_start();
 
 include("../../config/php/connection.php");
 
+if($_SERVER["REQUEST_METHOD"] != "POST"){
+    echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);
+    exit;
+}
+
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
-$username = 'admin'; // Beispiel-Username
-$password = '0000'; // Beispiel-Password
-$isActive = '1'; // Beispiel-is_active
+$username = $_POST['username'] ?? 'admin'; // Beispiel-Username
+$password = $_POST['password'] ?? '0000'; // Beispiel-Password
+$role = $_POST['role'] ?? 'user'; // Beispiel-Rolle
 
 $username = trim($username);
 if (strpos($username, ' ') !== false) {

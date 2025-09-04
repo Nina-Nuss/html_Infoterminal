@@ -1,0 +1,8 @@
+<?php
+    $cookie_name = $_COOKIE['username'] ?? null;
+    if ($cookie_name) {
+        unset($_COOKIE[$cookie_name]);
+        $res = setcookie($cookie_name, '', time() - 3600);
+    }
+    $_SESSION = []; 
+    session_destroy();
