@@ -101,7 +101,7 @@
                                     </div>
 
                                     <button type="button" class="btn btn-danger shadow-sm"
-                                        onclick="Umgebung.remove_generate()">
+                                        onclick="Infoterminal.remove_generate()">
                                         <i class="fas fa-trash me-2"></i> löschen
                                     </button>
                                 </div>
@@ -115,14 +115,14 @@
                                     </h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group mb-3">
+                                    <!-- <div class="form-group mb-3">
                                         <label for="refreshSelect" class="form-label">
                                             <i class="fas fa-clock me-2"></i> Refresh-Zeit:
                                         </label>
                                         <select id="refreshSelect" class="form-select" style="padding: 5px;">
                                             <!-- Optionen werden per JS aus config.json befüllt -->
-                                        </select>
-                                    </div>
+                                        <!-- </select> -->
+                                    <!-- </div> --> 
                                     <div class="form-group mb-3">
                                         <label for="cardCounterLimit" class="form-label">
                                             <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:

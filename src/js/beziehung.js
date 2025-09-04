@@ -36,10 +36,10 @@ class Beziehungen {
             new Beziehungen(element[0], element[1], element[2]);
         });
 
-        if (Umgebung.list.length !== 0) {
+        if (Infoterminal.list.length !== 0) {
             console.log("Umgebungsliste ist nicht leer, führe createList aus");
         }
-        console.log(Umgebung.list);
+        console.log(Infoterminal.list);
 
         this.temp_remove = [];
         this.temp_list_add = [];
@@ -128,14 +128,14 @@ class Beziehungen {
             }
         });
         // Find available umgebungsIDs (not connected to this cardObjID)
-        Umgebung.list.forEach(umgebung => {
+        Infoterminal.list.forEach(umgebung => {
             if (!Beziehungen.temp_remove.includes(umgebung.id)) {
                 Beziehungen.temp_add.push(umgebung.id);
             }
         });
         console.log("Temp Remove:", Beziehungen.temp_remove);
         console.log("Temp Add:", Beziehungen.temp_add);
-        console.log("Beziehungen Temp Add:", Umgebung.list);
+        console.log("Beziehungen Temp Add:", Infoterminal.list);
 
     }
 
@@ -308,7 +308,7 @@ window.addEventListener("load", async () => {
 
 function erstelleObj(element) {
     let obj = undefined;
-    Umgebung.list.forEach(umgebung => {
+    Infoterminal.list.forEach(umgebung => {
         if (umgebung.id === element) {
             obj = {
                 titel: umgebung.titel,

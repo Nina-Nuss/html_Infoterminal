@@ -340,6 +340,10 @@ hr {
     background-color: grey;
 }
 
+#tabelleDelete td {
+  padding: 5px; /* rem verwenden */
+}
+
 
 
 .btn-custom-outline {

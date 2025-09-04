@@ -156,7 +156,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                         <div class="d-flex align-items-center"
                                                         >
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw; margin-left: 2.5rem;"
+                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw; margin-left: 3em;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -175,7 +175,7 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                                         </select>
                                                         <button id="openTerminalBtn"
                                                             class="btn text-dark start-btn btn-sm"
-                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 1.5vw;">
+                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
                                                             <i class="fas fa-external-link-alt"
                                                                ></i>
                                                         </button>
@@ -232,13 +232,13 @@ $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
                                 <div class="card-body d-flex w-100 p-0">
                                     <div class="d-flex flex-column justify-content-center h-100 p-3 gap-2">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                            style="width: 40px; height: 40px;" data-bs-target="#modal_hinzufuegen"
+                                            style="width: 35px; height: 35px;" data-bs-target="#modal_hinzufuegen"
                                             class="btn btn-success btn-sm align-items-stretch m-0">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <button id="btn_loeschen" type="button"
                                             class="btn btn-danger btn-sm align-items-stretch m-0"
-                                            style="width: 40px; height: 40px;"
+                                            style="width: 35px; height: 35px;"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>

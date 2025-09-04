@@ -12,18 +12,23 @@ window.onload = async function () {
 
     const ipAdress = await getSystemPath();
     console.log("IP-Adresse:", ipAdress);
-    
-  
-    try {
-        await Infoseite.update();
-    } catch (error) {
-        console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
+
+    if (document.getElementById("dokumente")) {
+        try {
+            await Infoseite.update();
+
+        } catch (error) {
+            console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
+        }
     }
+
     try {
-        await Umgebung.update();
+        await Infoterminal.update();
+        Infoterminal.erstelleSelector();
+        Infoterminal.erstelleSelectorForCardObj();
 
     } catch (error) {
-        console.error("Fehler beim Aktualisieren der Umgebung:", error);
+        console.error("Fehler beim Aktualisieren der Infoterminal:", error);
     }
     // Modal Focus-Management hinzufügen
     setupModalFocusManagement();
@@ -35,7 +40,7 @@ window.onload = async function () {
     } catch (error) {
         console.error("Fehler beim Klicken auf das Kontrollkästchen:", error);
     }
-  
+
 }
 
 
@@ -108,7 +113,7 @@ async function getSystemPath() {
 
 
 function checkAnzahl() {
-    const anzahlInfo = Umgebung.list.length;
+    const anzahlInfo = Infoterminal.list.length;
     const anzahlCardObj = Infoseite.list.length;
     console.log("Anzahl der Umgebungen:", anzahlInfo);
     console.log("Anzahl der CardObjekte:", anzahlCardObj);
@@ -248,21 +253,21 @@ async function selectObj(select) {
         }
         return response.json();
     } catch (error) {
-        console.error("Fehler beim Laden der Umgebung:", error);
+        console.error("Fehler beim Laden der Infoterminal:", error);
         return null;
     }
 }
 
 function saveTempAddDatabase() {
-    Umgebung.tempListForSaveCards.forEach(cardObj => {
+    Infoterminal.tempListForSaveCards.forEach(cardObj => {
         insertDatabase(cardObj)
         console.log(cardObj.imagePath);
     });
-    Umgebung.tempListForSaveCards = []
+    Infoterminal.tempListForSaveCards = []
 }
 
 function saveCardObj() {
-    umgebung.allCardList.forEach(cardObjlist => {
+    Infoterminal.allCardList.forEach(cardObjlist => {
         cardObjlist.forEach(cardObj => {
             console.log(cardObj);
         });
@@ -337,8 +342,8 @@ function uncheckAllTableCheckboxes() {
     });
 
     // Reset auch die temp_remove Liste
-    if (Umgebung.temp_remove) {
-        Umgebung.temp_remove = [];
+    if (Infoterminal.temp_remove) {
+        Infoterminal.temp_remove = [];
     }
     if (Infoseite.temp_remove) {
         Infoseite.temp_remove = [];

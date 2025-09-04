@@ -1,7 +1,7 @@
-class Umgebung {
+class Infoterminal {
     ipAdresse = ""
     static id = 1;
-    static umgebungsListe = [];
+    static InfoterminalsListe = [];
     static allCardList = [];
     static currentSelect = 0;
     check = false;
@@ -24,13 +24,13 @@ class Umgebung {
         this.tempListForDeleteCards = [];
         this.htmlCardObjList = [];
         this.listAnzeige = [];
-        this.umgebungsBodyList = [];
+        this.InfoterminalsBodyList = [];
         //-------------------------------------
-        this.htmlUmgebungsBody = `umgebungsBody${this.id}`;
-        // this.ladeUmgebung(this.htmlUmgebungsBody);
-        Umgebung.ipList.push(this.ipAdresse);
-        Umgebung.allCardList.push(this.cardObjList);
-        Umgebung.list.push(this);
+        this.htmlInfoterminalsBody = `InfoterminalsBody${this.id}`;
+        // this.ladeInfoterminal(this.htmlInfoterminalsBody);
+        Infoterminal.ipList.push(this.ipAdresse);
+        Infoterminal.allCardList.push(this.cardObjList);
+        Infoterminal.list.push(this);
     }
 
 
@@ -48,10 +48,10 @@ class Umgebung {
             list.splice(index, 1);
         }
     }
-    ladeUmgebung(htmlUmgebungsBody) {
+    ladeInfoterminal(htmlInfoterminalsBody) {
         rowForCards = document.getElementById("rowForCards");
         rowForCards.innerHTML += `
-            <div id="${htmlUmgebungsBody}"></div>  
+            <div id="${htmlInfoterminalsBody}"></div>  
         `
     }
     lengthListCardObj() {
@@ -80,21 +80,21 @@ class Umgebung {
         let selectorOptionsForCards = '<option value="alle">-- wähle Infoterminal --</option>';
         this.list = [];
         this.temp_remove = [];
-        console.log("Update wird aufgerufen von Umgebung.js");
+        console.log("Update wird aufgerufen von Infoterminal.js");
 
         const result = await readDatabase("selectInfotherminal");
 
         console.log("result: ", result);
         // Performance: Normale forEach statt await forEach
         result.forEach(listInfo => {
-            // Neue Umgebung-Objekte erzeugen
-            new Umgebung(listInfo[0], listInfo[1], listInfo[2]);
+            // Neue Infoterminal-Objekte erzeugen
+            new Infoterminal(listInfo[0], listInfo[1], listInfo[2]);
             // Tabellencontent sammeln
             delInfoRows += `<tr class="border-bottom">
                     <td class="p-2">${listInfo[0]}</td>
                     <td class="p-2">${listInfo[2]}</td>
                     <td class="p-2">${listInfo[1]}</td>
-                    <td class="p-2 text-center"><input type="checkbox" name="${listInfo[0]}" id="checkDelInfo${listInfo[0]}" onchange="Umgebung.event_remove(${listInfo[0]})"></td>
+                    <td class="p-2 text-center"><input type="checkbox" name="${listInfo[0]}" id="checkDelInfo${listInfo[0]}" onchange="Infoterminal.event_remove(${listInfo[0]})"></td>
                 </tr>`;
             // Selector-Optionen sammeln
             selectorOptions += `<option value="${listInfo[1]}">${listInfo[1]}</option>`
@@ -234,10 +234,10 @@ class Umgebung {
         button.addEventListener('click', function () {
             console.log("Button zum Öffnen des Terminals wurde geklickt");
             const selectedTerminal = selector.value;
-                     
+
             console.log("Ausgewähltes Infoterminal:", selectedTerminal);
             if (selectedTerminal.toLowerCase().trim() === "localhost" || selectedTerminal.toLowerCase().trim() === "test anzeige") {
-                
+
                 var obj = findObj(Infoseite.list, Infoseite.selectedID);
                 const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
                 window.open(url, '_blank');
@@ -251,15 +251,15 @@ class Umgebung {
     }
 
     static erstelleSelectorForCardObj() {
-        
+
         var selectorInfoterminal = document.getElementById("selectorInfoterminal");
         if (selectorInfoterminal != null) {
             selectorInfoterminal.innerHTML = ""
             selectorInfoterminal.innerHTML = `<option value="">Alle Infoterminals</option>`;
-            console.log(Umgebung.list.length);
-            console.log("Infoterminals vorhanden:", Umgebung.list);
-            Umgebung.list.forEach(umgebung => {
-                selectorInfoterminal.innerHTML += `<option value="${umgebung.id}">${umgebung.name}</option>`;
+            console.log(Infoterminal.list.length);
+            console.log("Infoterminals vorhanden:", Infoterminal.list);
+            Infoterminal.list.forEach(Infoterminal => {
+                selectorInfoterminal.innerHTML += `<option value="${Infoterminal.id}">${Infoterminal.name}</option>`;
             });
             selectorInfoterminal.addEventListener("change", function (event) {
                 console.log("ruby chaaaaaaaaany haaay");
@@ -274,7 +274,7 @@ class Umgebung {
 
 
 window.addEventListener("load", async function () {
-    Umgebung.temp_remove = [];
+    Infoterminal.temp_remove = [];
     // Sende POST-Request zu php/sendingToPage.php
     try {
         const adminBereich = document.getElementById("adminBereich");
@@ -285,9 +285,7 @@ window.addEventListener("load", async function () {
         console.error("Fehler beim Senden der Anfrage:", error);
     }
 
-    Umgebung.erstelleSelector();
 
-    Umgebung.erstelleSelectorForCardObj();
 
     var formID = document.getElementById('formID');
     if (formID) {
@@ -305,15 +303,12 @@ window.addEventListener("load", async function () {
                 .then(response => response.text())
                 .then(result => {
                     // Optional: Rückmeldung anzeigen
-
                     alert(result); // Hier können Sie eine Erfolgsmeldung anzeigen
                     // z.B. Erfolgsmeldung anzeigen oder UI aktualisieren
-                    if (result.includes("Datensatz erfolgreich eingefügt")) {
-                        Umgebung.update();
-                        document.querySelectorAll(".addInfotherminal input[type='text']").forEach(input => {
-                            input.value = ""; // Eingabefelder leeren
-                        });
-                    }
+                    Infoterminal.update();
+                    document.querySelectorAll(".addInfotherminal input[type='text']").forEach(input => {
+                        input.value = ""; // Eingabefelder leeren
+                    });
                 })
                 .catch(error => {
                     console.error('Fehler beim Hinzufügen:', error);
@@ -332,7 +327,7 @@ function cutAndCreate(responseText) {
     for (let i = 0; i < obj.length; i++) {
         var zeile = obj[i].replace("[[", "").replace("]]", "").replace("[", "").replace("]", "").replace(/"/g, '')
         const inZeile = zeile.split(",");
-        // new Umgebung(inZeile[0], inZeile[1], inZeile[2])
+        // new Infoterminal(inZeile[0], inZeile[1], inZeile[2])
     }
 }
 
@@ -380,7 +375,7 @@ function createList(cfg, select, defaultValue) {
     select.appendChild(bitteWaehlen);
 
     cfg.forEach(i => {
-        
+
         const opt = document.createElement('option');
         opt.value = i.value;
         opt.textContent = i.name;
