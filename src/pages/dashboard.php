@@ -29,7 +29,7 @@
                         data-bs-toggle="modal" data-bs-target="#addInfoSeite">
                         <i class="fas fa-pen-to-square"></i> Erstellen
                     </button>
-                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
+                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button" 
                         class="btn btn-danger btn-sm">
                         <i class="fas fa-trash"></i> Löschen
                     </button>

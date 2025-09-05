@@ -41,7 +41,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <button type="button" class="btn btn-danger shadow-sm" id="deleteBtnForSchemas" onclick="Infoseite.remove_generate()">
+                                        <button type="button" class="btn btn-danger shadow-sm" id="deleteBtnForSchemas"  onclick="Infoseite.remove_generate()">
                                             <i class="fas fa-trash me-2"></i> löschen
                                         </button>
                                     </div>

@@ -94,12 +94,12 @@ if ($_SESSION['is_admin'] != 1) {
                                         </div>
                                         <div class="center-bottom d-flex justify-content-center">
                                             <div class="">
-                                                <button type="submit" class="btn btn-sm btn-success shadow-sm" style="width: 150px;" onclick="User.add_user()">
+                                                <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;" onclick="User.add_user()">
                                                     <i class="fas fa-plus me-2"></i> Hinzufügen
                                                 </button>
                                             </div>
                                             <button type="button" data-bs-placement="top"
-                                                class="btn btn-lg btn-secondary" style="width: 40px;"
+                                                class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
                                                 data-bs-toggle="popover" title="Popover title"
                                                 data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
                                             <script>
@@ -130,7 +130,7 @@ if ($_SESSION['is_admin'] != 1) {
                                             <i class="fas fa-list me-2"></i> Infoterminal auswählen:
                                         </label>
                                     </div>
-                                    <div style="height: 200px; overflow-y: auto;">
+                                    <div style="height: 230px; overflow-y: auto;">
                                         <table class="table table-hover position-relative">
                                             <thead>
                                                 <tr>
@@ -147,7 +147,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </table>
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-danger shadow-sm"
+                                        <button type="button" class="btn btn-sm  btn-danger  shadow-sm" style="width: 150px;"
                                             onclick="Infoterminal.remove_generate()">
                                             <i class="fas fa-trash me-2"></i> löschen
                                         </button>
@@ -259,7 +259,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </div>
                                     </div>
                                     <div class="center-bottom d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
+                                        <button type="submit" class="btn btn-sm btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
                                             <i class="fas fa-user-plus me-2"></i> Hinzufügen
                                         </button>
                                     </div>
@@ -270,7 +270,7 @@ if ($_SESSION['is_admin'] != 1) {
                     <div class="col-md-3">
                         <div class="card h-100">
                             <div class="card-header">
-                                <h6 class="card-title mb-0 d-flex justify-content-center">
+                                <h6 class="card-title mb-0 d-flex justify-content-center"> 
                                     <i class="fas fa-user-minus me-2"></i> Nutzer löschen
                                 </h6>
                             </div>
@@ -299,9 +299,9 @@ if ($_SESSION['is_admin'] != 1) {
                                     </table>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-danger shadow-sm  mt-3"
+                                    <button type="button" class="btn btn-sm btn-danger shadow-sm  mt-3" style="width: 150px;"
                                         onclick="Crud.remove_generate(User.temp_remove, User.list)">
-                                        <i class="fas fa-user-minus me-2"></i> löschen
+                                        <i class="fas fa-user-minus me-2"></i> löschen 
                                     </button>
                                 </div>
                             </div>

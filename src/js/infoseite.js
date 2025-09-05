@@ -374,7 +374,7 @@ class Infoseite {
                     <td class="p-2">${cardObj.id}</td>
                     <td class="p-2">${cardObj.titel}</td>
                     <td class="p-2">${cardObj.beschreibung}</td>
-                    <td class="p-2 text-center"><input type="checkbox" name="${cardObj.id}" id="checkDelSchema${cardObj.id}" onchange="Infoseite.event_remove(${cardObj.id})"></td>
+                    <td class="p-2"><input type="checkbox" name="${cardObj.id}" id="checkDelSchema${cardObj.id}" onchange="Infoseite.event_remove(${cardObj.id})"></td>
                 </tr>`;
                 }
             }
