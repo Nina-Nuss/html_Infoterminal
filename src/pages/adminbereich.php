@@ -14,6 +14,7 @@ if ($_SESSION['is_admin'] != 1) {
 <head>
     <?php include '../assets/links.html'; ?>
     <?php include '../assets/scripts.html'; ?>
+  
 
     <title>Adminbereich</title>
 </head>
@@ -93,7 +94,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </div>
                                         <div class="center-bottom d-flex justify-content-center">
                                             <div class="">
-                                                <button type="submit" class="btn btn-sm btn-success shadow-sm" style="width: 150px;">
+                                                <button type="submit" class="btn btn-sm btn-success shadow-sm" style="width: 150px;" onclick="User.add_user()">
                                                     <i class="fas fa-plus me-2"></i> Hinzufügen
                                                 </button>
                                             </div>
@@ -223,7 +224,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 </h6>
                             </div>
                             <div class="card-body position-relative" style="overflow-y: auto;">
-                                <form id="formUser" method="post">
+                                <form id="formUser">
                                     <div style="height: 270px;">
                                         <div class="form-group mb-3">
                                             <label for="username" class="form-label">
@@ -243,7 +244,7 @@ if ($_SESSION['is_admin'] != 1) {
                                             <label for="password" class="form-label">
                                                 <i class="fas fa-lock me-2"></i> Passwort:
                                             </label>
-                                            <input class="form-control" type="password" id="password"
+                                            <input class="form-control" id="password"
                                                 name="password" placeholder="Passwort" required>
                                         </div>
                                         <div class="form-group mb-3">
@@ -258,7 +259,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </div>
                                     </div>
                                     <div class="center-bottom d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success shadow-sm">
+                                        <button type="submit" class="btn btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
                                             <i class="fas fa-user-plus me-2"></i> Hinzufügen
                                         </button>
                                     </div>
@@ -299,7 +300,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <button type="button" class="btn btn-danger shadow-sm  mt-3"
-                                        onclick="User.remove_generate()">
+                                        onclick="Crud.remove_generate(User.temp_remove, User.list)">
                                         <i class="fas fa-user-minus me-2"></i> löschen
                                     </button>
                                 </div>
@@ -327,4 +328,7 @@ if ($_SESSION['is_admin'] != 1) {
 </body>
 
 </html>
+
 <script src="../js/user.js"></script>
+
+<script src="../js/crud.js"></script>

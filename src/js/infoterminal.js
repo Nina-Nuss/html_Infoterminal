@@ -227,7 +227,7 @@ class Infoterminal {
         const selector = document.getElementById('infotherminalSelect');
         const button = document.getElementById('openTerminalBtn');
         if (!selector || !button) {
-            console.error("Selector oder Button nicht gefunden.");
+
             return;
         }
         // Event-Listener nur einmal hinzufügen (außerhalb der forEach-Schleife)
@@ -380,7 +380,7 @@ function createList(cfg, select, defaultValue) {
         opt.value = i.value;
         opt.textContent = i.name;
         select.appendChild(opt);
-        console.log(`Option hinzugefügt: ${i.name} (${i.value})`);
+ 
     });
 }
 
