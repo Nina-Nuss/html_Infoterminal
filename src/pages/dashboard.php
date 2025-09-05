@@ -60,11 +60,10 @@ if (!isset($_SESSION['user_id'])) {
                                                 <div type="text" class="w-auto fw-bolder" id="websiteName" value="-">
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="d-flex align-items-center  justify-content-between mb-2 ">
+                                            <div class="d-flex  align-items-center  justify-content-start mb-2 ">
                                                 <i class="fas fa-hourglass-half"></i>
                                                 <!-- Uhr-Icon für Sekunden -->
                                                 <div for="anzeigeDauer" class="mb-0 ms-2">
@@ -75,7 +74,6 @@ if (!isset($_SESSION['user_id'])) {
                                                 <div class="fw-bolder w-auto" id="anzeigeDauer"></div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-start gap-2">
-
                                                 <label class="form-check-label mb-0" for="checkA">
                                                     Aktiv:
                                                 </label>
