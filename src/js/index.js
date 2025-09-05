@@ -91,6 +91,19 @@ function erstelleNavigation() {
     }
 }
 
+var logoutbtn = document.getElementById("logout");
+if (logoutbtn) {
+    logoutbtn.addEventListener("click", async function (event) {
+        event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+        try {
+            await fetch('../login/logout.php');
+            location.reload(); // Seite neu laden nach Logout
+        } catch (error) {
+            console.error("Fehler beim Logout:", error);
+        }
+    });
+}
+
 function warten(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

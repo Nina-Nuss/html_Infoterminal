@@ -99,7 +99,7 @@
                                         </table>
                                     </div>
 
-                                    <button type="button" class="btn btn-danger shadow-sm d-flex justify-content-center"
+                                    <button type="button" class="btn btn-danger shadow-sm d-flex justify-content-center mt-3 mx-auto"
                                         onclick="Infoterminal.remove_generate()">
                                         <i class="fas fa-trash me-2"></i> löschen
                                     </button>

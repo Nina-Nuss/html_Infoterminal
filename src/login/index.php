@@ -1,15 +1,12 @@
-<?php
-session_start();
-
-if (isset($_SESSION['username'])) {
-    header('Location: /src/pages/dashboard.php');
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- <?php
+
+// session_start();
+
+// echo $_SESSION['user_id'];
+?> -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,7 +59,7 @@ if (isset($_SESSION['username'])) {
             alert('Bitte füllen Sie alle Felder aus.');
             event.preventDefault();
         }
-
+        debugger
         try {
             const result = await fetch('login.php', {
                 method: 'POST',
@@ -71,9 +68,9 @@ if (isset($_SESSION['username'])) {
             });
             const response = await result.json();
             console.log(response);
-            if (response) {
+            if (response['success'] === true) {
                 window.location.href = "../pages/dashboard.php";
-            }else{
+            } else {
                 messageDiv.innerHTML = '<div class="alert alert-danger">Falscher Benutzername oder Passwort.</div>';
             }
 

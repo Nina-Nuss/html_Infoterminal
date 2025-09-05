@@ -15,8 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $data['password'] ?? ''; // Leerzeichen entfernen, Default leer
     $remember = $data['remember'] ?? false; // Boolean konvertieren
 
-    
-
     // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
     //     echo "Ungültige Email-Adresse.";
     //     exit();
@@ -37,18 +35,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($row['username']) && isset($row['password'])) {
             if ($row['username'] == $username && password_verify($password, $row['password']) && $row['is_active'] == 1) {
                 $userExist = true;
-            }
-            
+                $rememberDB = $row['remember_me'];
+                $userId = $row['id'];
+                $_SESSION['remember'] = $rememberDB;
+                $_SESSION['user_id'] = $userId;
+                if ($rememberDB != $remember) {
+                    $updateSql = "UPDATE user_login SET remember_me = ? WHERE id = ?";
+                    $params = [$remember, $userId];
+                    $updateResult = sqlsrv_query($conn, $updateSql, $params);
+                    if ($updateResult === false) {
+                        die(print_r(sqlsrv_errors(), true));
+                    }
+                }
+            } 
         }
     }
 
     if ($userExist == true) {
-        $_SESSION['remember'] = $remember;
-        $_SESSION['username'] = $username; 
-        if ($remember) {
-            
-            
-        }
         echo json_encode([
             'success' => $userExist,
             'message' => 'Login erfolgreich'
@@ -59,6 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'success' => false,
             'message' => 'Login fehlgeschlagen'
         ]);
+        exit();
     }
-
 }
