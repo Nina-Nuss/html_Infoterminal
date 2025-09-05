@@ -17,7 +17,7 @@ $data = json_decode($file, true);
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
 $username = $data['username'] ?? 'admin'; // Beispiel-Username
 $password = $data['password'] ?? '0000'; // Beispiel-Password
-$role = $data['is_admin'] ?? 0; // Beispiel-Rolle
+$role = $data['is_admin']; // Beispiel-Rolle
 $isActive = $data['is_active'] ?? 1; // Beispiel-Aktivstatus (1 = aktiv, 0 = inaktiv)
 
 $username = trim($username);

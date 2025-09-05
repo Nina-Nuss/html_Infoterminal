@@ -15,11 +15,16 @@ class User {
         const listUsers = await this.get_all_users()
         listUsers.forEach(user => {
             new User(user.id, user.username, user.is_admin)
+            if (user.is_admin == 1) {
+                var isAdmin = "Ja"
+            }else{
+                var isAdmin = "Nein"
+            }
             deleteUserTable.innerHTML += `
                     <tr class="border-bottom">
                         <td class="p-2">${user.id}</td>
                         <td class="p-2">${user.username}</td>
-                        <td class="p-2">${user.is_admin ? 'Ja' : 'Nein'}</td>
+                        <td class="p-2">${isAdmin}</td>
                         <td class="p-2"><input type="checkbox" id="checkDelUser${user.id}" onchange="Crud.event_remove_user(${user.id})"></td>
                     </tr>
                 `;

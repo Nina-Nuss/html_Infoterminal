@@ -23,10 +23,8 @@ class Crud {
             });
     }
     static event_remove_user(id) {
-
         var element = document.getElementById(`checkDelUser${id}`);
         console.log(element);
-
         if (element.checked && !User.temp_remove.includes(id)) {
             User.list.forEach(checkID => {
                 if (checkID.id == id) {
@@ -56,6 +54,7 @@ class Crud {
         }
         console.log(User.temp_remove);
     };
+    
 
     static async removeFromListLogik(list, temp_remove) {
         // DIese Methode wird aufgerufen sobald wir auf Minus (-) klicken
@@ -100,7 +99,9 @@ class Crud {
         debugger;
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        var isAdmin = document.getElementById("isAdmin").checked ? 1 : 0;
+        var is_admin = document.getElementById("isAdmin").value;
+        console.log(is_admin);
+        
         if (username === "" || password === "") {
             alert("Bitte füllen Sie alle Felder aus.");
             return;
@@ -110,7 +111,7 @@ class Crud {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password, isAdmin })
+            body: JSON.stringify({ username, password, is_admin })
         });
         if (response.ok) {
             const data = await response.json();

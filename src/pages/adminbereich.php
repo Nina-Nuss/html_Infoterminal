@@ -252,9 +252,9 @@ if ($_SESSION['is_admin'] != 1) {
                                                 <i class="fas fa-user-shield me-2"></i> Administrator:
                                             </label>
                                             <select class="form-select" id="isAdmin" name="isAdmin" required>
-                                                <option value="">Bitte wählen</option>
+                                               
                                                 <option value="1">Ja</option>
-                                                <option value="0">Nein</option>
+                                                <option value="0" selected>Nein</option>
                                             </select>
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         <i class="fas fa-list me-2"></i> Nutzer auswählen:
                                     </label>
                                 </div>
-                                <div style="height: 200px;">
+                                <div style="height: 200px; overflow-y: auto;">
                                     <table class="table table-hover position-relative">
                                         <thead>
                                             <tr>
