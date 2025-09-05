@@ -284,7 +284,7 @@ window.addEventListener("load", async function () {
     } catch (error) {
         console.error("Fehler beim Senden der Anfrage:", error);
     }
-   
+
 
     var formID = document.getElementById('formID');
     if (formID) {
@@ -331,11 +331,12 @@ function cutAndCreate(responseText) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-
-    debugger;
-    const infoCounterLimit = document.getElementById('infoCounterLimit');
-    const cardCounterLimit = document.getElementById('cardCounterLimit');
-
+    if (document.getElementById('infoCounterLimit') && document.getElementById('cardCounterLimit')) {
+        const infoCounterLimit = document.getElementById('infoCounterLimit');
+        const cardCounterLimit = document.getElementById('cardCounterLimit');
+    }else{
+        return;
+    }
 
     // Config laden
     try {

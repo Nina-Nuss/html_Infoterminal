@@ -12,7 +12,7 @@ ob_clean();
 // }
 
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
-$username = $_POST['username'] ?? 'admin'; // Beispiel-Username
+$username = $_POST['username'] ?? 'user'; // Beispiel-Username
 $password = $_POST['password'] ?? '0000'; // Beispiel-Password
 $role = $_POST['role'] ?? 'user'; // Beispiel-Rolle
 $isActive = $_POST['is_active'] ?? 1; // Beispiel-Aktivstatus (1 = aktiv, 0 = inaktiv)

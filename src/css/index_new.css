@@ -358,9 +358,9 @@ hr {
     color: #fff !important;
 }
 .center-bottom {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+    justify-content: center;
+
   bottom: 1rem; /* Abstand vom unteren Rand anpassen (z.B. 1rem, 2vh, etc.) */
   display: inline-flex;
   gap: 0.5rem;

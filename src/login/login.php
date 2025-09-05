@@ -14,15 +14,17 @@ $data = json_decode($file, true);
 
 $userExist = false;
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($data['username'] ?? 'admin'); // Leerzeichen entfernen, Default leer
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($data['username'] ?? 'user'); // Leerzeichen entfernen, Default leer
     $email = trim($data['email'] ?? ''); // Leerzeichen entfernen
     $password = $data['password'] ?? '0000'; // Leerzeichen entfernen, Default leer
-    $remember = $data['remember'] ?? false; // Boolean konvertieren
+    $remember = $data['remember']; // Boolean konvertieren
     // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
     //     echo "Ungültige Email-Adresse.";
     //     exit();
     // }
+
+
 
     // if (strlen($password) < 4) {
     //     echo "Passwort muss mindestens 4 Zeichen haben.";
@@ -38,7 +40,7 @@ $userExist = false;
                 $_SESSION['is_active'] = $row['is_active'];
                 if ($row['remember_me'] != $remember) {
                     $updateSql = "UPDATE user_login SET remember_me = ? WHERE id = ?";
-                    $params = [$remember, $userId];
+                    $params = [$row['remember_me'],  $row['id']];
                     $updateResult = sqlsrv_query($conn, $updateSql, $params);
                     sqlsrv_free_stmt($updateResult);
                     if ($updateResult === false) {
@@ -49,7 +51,6 @@ $userExist = false;
         }
     }
     if ($userExist == true) {
-
         echo json_encode([
             'success' => $userExist,
             'message' => 'Login erfolgreich'
@@ -62,5 +63,5 @@ $userExist = false;
         ]);
         exit();
     }
-// }
+}
 

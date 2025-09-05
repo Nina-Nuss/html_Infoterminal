@@ -1,9 +1,9 @@
 <?php include '../php/auth.php'; ?>
 <?php
-    if($_SESSION['is_admin'] != 1){
-        header('Location: ../pages/dashboard.php');
-        exit;
-    }
+if ($_SESSION['is_admin'] != 1) {
+    header('Location: ../pages/dashboard.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
 <head>
     <?php include '../assets/links.html'; ?>
     <?php include '../assets/scripts.html'; ?>
+
     <title>Adminbereich</title>
 </head>
 <html>
@@ -28,7 +29,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <select id="adminSectionSelector" class="form-select w-auto">
                     <option value="infoterminal">Infoterminal verwalten</option>
-                    <option value="user">Nutzer verwalten</option>
+                    <option value="user" selected>Nutzer verwalten</option>
                 </select>
             </div>
         </div>
@@ -52,7 +53,7 @@
                 updateSections();
             });
         </script>
-        <div class="row mt-3" id="infoterminalVerwaltung" style="display: none;">
+        <div class="row mt-3" id="infoterminalVerwaltung" style="display: block;">
             <div class="col-12">
                 <!-- <div class="col-12">
                     <div class="card shadow-sm">
@@ -68,30 +69,34 @@
                         <div class="col-md-4">
                             <div class="card h-100">
                                 <div class="card-header">
-                                    <h6 class="card-title mb-0">
+                                    <h6 class="card-title mb-0 d-flex justify-content-center">
                                         <i class="fas fa-plus me-2"></i> Infoterminals hinzufügen
                                     </h6>
                                 </div>
                                 <div class="card-body position-relative" style="overflow-y: auto;">
                                     <form id="formID" action="../php/bereitsVorhanden.php" method="post">
-                                        <div class="form-group mb-3">
-                                            <label for="infotherminalIp" class="form-label">
-                                                <i class="fas fa-network-wired me-2"></i> IP-Adresse:
-                                            </label>
-                                            <input class="form-control" type="text" id="infotherminalIp"
-                                                name="infotherminalIp" placeholder="z.B. 10.5.0.100" required>
+                                        <div style="height: 270px;">
+                                            <div class="form-group mb-3">
+                                                <label for="infotherminalIp" class="form-label">
+                                                    <i class="fas fa-network-wired me-2"></i> IP-Adresse:
+                                                </label>
+                                                <input class="form-control" type="text" id="infotherminalIp"
+                                                    name="infotherminalIp" placeholder="z.B. 10.5.0.100" required>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="infotherminalName" class="form-label">
+                                                    <i class="fas fa-tag me-2"></i> Name:
+                                                </label>
+                                                <input class="form-control" type="text" id="infotherminalName"
+                                                    name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
+                                            </div>
                                         </div>
-                                        <div class="form-group mb-3">
-                                            <label for="infotherminalName" class="form-label">
-                                                <i class="fas fa-tag me-2"></i> Name:
-                                            </label>
-                                            <input class="form-control" type="text" id="infotherminalName"
-                                                name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
-                                        </div>
-                                        <div class="center-bottom">
-                                            <button type="submit" class="btn btn-success shadow-sm">
-                                                <i class="fas fa-plus me-2"></i> Hinzufügen
-                                            </button>
+                                        <div class="center-bottom d-flex justify-content-center">
+                                            <div class="">
+                                                <button type="submit" class="btn btn-success shadow-sm">
+                                                    <i class="fas fa-plus me-2"></i> Hinzufügen
+                                                </button>
+                                            </div>
                                             <button type="button" data-bs-placement="top"
                                                 class="btn btn-lg btn-secondary" style="width: 40px;"
                                                 data-bs-toggle="popover" title="Popover title"
@@ -114,7 +119,7 @@
                         <div class="col-md-6">
                             <div class="card h-100">
                                 <div class="card-header">
-                                    <h6 class="card-title mb-0">
+                                    <h6 class="card-title mb-0 d-flex justify-content-center">
                                         <i class="fas fa-trash me-2"></i> Infoterminals löschen
                                     </h6>
                                 </div>
@@ -124,7 +129,7 @@
                                             <i class="fas fa-list me-2"></i> Infoterminal auswählen:
                                         </label>
                                     </div>
-                                    <div style="max-height: 200px; overflow-y: auto;">
+                                    <div style="height: 200px; overflow-y: auto;">
                                         <table class="table table-hover position-relative">
                                             <thead>
                                                 <tr>
@@ -134,17 +139,19 @@
                                                     <th>Auswahl</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="deleteInfotherminal" style="height: 250px; overflow-y: auto;">
+                                            <tbody id="deleteInfotherminal">
                                             </tbody>
                                             <!-- Infotherminal-Liste wird hier dynamisch geladen -->
                                             </tbody>
                                         </table>
                                     </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button" class="btn btn-danger shadow-sm"
+                                            onclick="Infoterminal.remove_generate()">
+                                            <i class="fas fa-trash me-2"></i> löschen
+                                        </button>
+                                    </div>
 
-                                    <button type="button" class="btn btn-danger shadow-sm d-flex justify-content-center mt-3 mx-auto"
-                                        onclick="Infoterminal.remove_generate()">
-                                        <i class="fas fa-trash me-2"></i> löschen
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -211,44 +218,46 @@
                     <div class="col-md-4">
                         <div class="card h-100">
                             <div class="card-header">
-                                <h6 class="card-title mb-0">
+                                <h6 class="card-title mb-0 d-flex justify-content-center">
                                     <i class="fas fa-user-plus me-2"></i> Nutzer hinzufügen
                                 </h6>
                             </div>
                             <div class="card-body position-relative" style="overflow-y: auto;">
-                                <form id="formUser" action="../php/userHinzufuegen.php" method="post">
-                                    <div class="form-group mb-3">
-                                        <label for="username" class="form-label">
-                                            <i class="fas fa-user me-2"></i> Benutzername:
-                                        </label>
-                                        <input class="form-control" type="text" id="username"
-                                            name="username" placeholder="z.B. MaxMustermann" required>
-                                    </div>
-                                    <!-- <div class="form-group mb-3">
+                                <form id="formUser" method="post">
+                                    <div style="height: 270px;">
+                                        <div class="form-group mb-3">
+                                            <label for="username" class="form-label">
+                                                <i class="fas fa-user me-2"></i> Benutzername:
+                                            </label>
+                                            <input class="form-control" type="text" id="username"
+                                                name="username" placeholder="z.B. MaxMustermann" required>
+                                        </div>
+                                        <!-- <div class="form-group mb-3">
                                         <label for="email" class="form-label">
                                             <i class="fas fa-envelope me-2"></i> E-Mail:
                                         </label>
                                         <input class="form-control" type="email" id="email"
                                             name="email" placeholder="z.B. max@mustermann.de" required>
-                                    </div> -->
-                                    <div class="form-group mb-3">
-                                        <label for="password" class="form-label">
-                                            <i class="fas fa-lock me-2"></i> Passwort:
-                                        </label>
-                                        <input class="form-control" type="password" id="password"
-                                            name="password" placeholder="Passwort" required>
+                                         </div> -->
+                                        <div class="form-group mb-3">
+                                            <label for="password" class="form-label">
+                                                <i class="fas fa-lock me-2"></i> Passwort:
+                                            </label>
+                                            <input class="form-control" type="password" id="password"
+                                                name="password" placeholder="Passwort" required>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="isAdmin" class="form-label">
+                                                <i class="fas fa-user-shield me-2"></i> Administrator:
+                                            </label>
+                                            <select class="form-select" id="isAdmin" name="isAdmin" required>
+                                                <option value="">Bitte wählen</option>
+                                                <option value="1">Ja</option>
+                                                <option value="0">Nein</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label for="isAdmin" class="form-label">
-                                            <i class="fas fa-user-shield me-2"></i> Administrator:
-                                        </label>
-                                        <select class="form-select" id="isAdmin" name="isAdmin" required>
-                                            <option value="">Bitte wählen</option>
-                                            <option value="1">Ja</option>
-                                            <option value="0">Nein</option>
-                                        </select>
-                                    </div>
-                                    <div class="center-bottom">
+                                    <div class="center-bottom d-flex justify-content-center">
                                         <button type="submit" class="btn btn-success shadow-sm">
                                             <i class="fas fa-user-plus me-2"></i> Hinzufügen
                                         </button>
@@ -260,7 +269,7 @@
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-header">
-                                <h6 class="card-title mb-0">
+                                <h6 class="card-title mb-0 d-flex justify-content-center">
                                     <i class="fas fa-user-minus me-2"></i> Nutzer löschen
                                 </h6>
                             </div>
@@ -271,25 +280,29 @@
                                         <i class="fas fa-list me-2"></i> Nutzer auswählen:
                                     </label>
                                 </div>
-                                <div style="max-height: 200px;">
+                                <div style="height: 200px;">
                                     <table class="table table-hover position-relative">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Benutzername</th>
+                                                <th>Admin</th>
                                                 <th>Auswahl</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="deleteUser" style="height: 250px; overflow-y: auto;">
+                                        <tbody id="deleteUser">
+
                                         </tbody>
-                                        <!-- Infotherminal-Liste wird hier dynamisch geladen -->
-                                        </tbody>
+
+
                                     </table>
                                 </div>
-                                <button type="button" class="btn btn-danger shadow-sm d-flex justify-content-center mt-3 mx-auto"
-                                    onclick="User.remove_generate()">
-                                    <i class="fas fa-user-minus me-2"></i> löschen
-                                </button>
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-danger shadow-sm  mt-3"
+                                        onclick="User.remove_generate()">
+                                        <i class="fas fa-user-minus me-2"></i> löschen
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -307,10 +320,11 @@
                                         <i class="fas fa-hashtag me-2"></i> Nutzer-Limit:
                                     </label>
                                     <input type="number" id="userCounterLimit" class="form-control" min="1" value="10">
-                                </div>  
+                                </div>
                             </div>
+                        </div>
                     </div>
-                </div>
-            </body>
+</body>
 
 </html>
+<script src="../js/user.js"></script>
