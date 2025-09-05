@@ -10,11 +10,15 @@ ob_clean();
 //     echo json_encode(['success' => false, 'message' => 'Nur POST erlaubt.']);
 //     exit;
 // }
+$file = file_get_contents('php://input');
+
+// Abrufen der JSON-Daten aus der Anfrage
+$data = json_decode($file, true);
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
-$username = $_POST['username'] ?? 'admsien'; // Beispiel-Username
-$password = $_POST['password'] ?? '0000'; // Beispiel-Password
-$role = $_POST['is_admin'] ?? 0; // Beispiel-Rolle
-$isActive = $_POST['is_active'] ?? 1; // Beispiel-Aktivstatus (1 = aktiv, 0 = inaktiv)
+$username = $data['username'] ?? 'admin'; // Beispiel-Username
+$password = $data['password'] ?? '0000'; // Beispiel-Password
+$role = $data['is_admin'] ?? 0; // Beispiel-Rolle
+$isActive = $data['is_active'] ?? 1; // Beispiel-Aktivstatus (1 = aktiv, 0 = inaktiv)
 
 $username = trim($username);
 if (strpos($username, ' ') !== false) {
