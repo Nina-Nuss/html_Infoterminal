@@ -3,10 +3,11 @@
 
 <!-- <?php
 
-// session_start();
+        // session_start();
 
-// echo $_SESSION['user_id'];
-?> -->
+        // echo $_SESSION['user_id'];
+        ?> -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,14 @@
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
+
+    <div class="d-flex justify-content-center flex-column align-items-center vh-100">
+        <div class="mb-4">
+            <img src="../images/logo.png" alt="Logo" style="max-width: 200px;">
+        </div>
+
         <div class="card w-25">
+            <h5 class="card-header text-center">Infoterminal Dashboard</h5>
             <div class="card-body">
                 <form class="d-flex flex-column justify-content-center" method="POST" action="login.php">
                     <div class="mb-3">
@@ -34,7 +41,10 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Angemeldet bleiben</label>
                     </div>
-                    <button  type="submit" id="loginForm" class="btn btn-primary">Einloggen</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" id="loginForm" class="btn btn-primary">Einloggen</button>
+                    </div>
+
                 </form>
                 <div id="message" class="mt-3"></div>
             </div>
@@ -42,7 +52,7 @@
     </div>
 </body>
 <script>
-    document.getElementById('loginForm').addEventListener('click', async function (event) {
+    document.getElementById('loginForm').addEventListener('click', async function(event) {
         event.preventDefault();
         console.log("wurde geklickt");
 
@@ -63,8 +73,14 @@
         try {
             const result = await fetch('login.php', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, remember })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    remember
+                })
             });
             const response = await result.json();
             console.log(response);
@@ -80,7 +96,6 @@
         }
 
     });
-
 </script>
 
 </html>

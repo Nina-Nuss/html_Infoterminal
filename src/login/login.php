@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($data['username'] ?? 'user'); // Leerzeichen entfernen, Default leer
     $email = trim($data['email'] ?? ''); // Leerzeichen entfernen
     $password = $data['password'] ?? '0000'; // Leerzeichen entfernen, Default leer
-    $remember = $data['remember']; // Boolean konvertieren
+    $remember = $data['remember'] ?? false; // Boolean konvertieren
     // if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
     //     echo "Ungültige Email-Adresse.";
     //     exit();
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['is_active'] = $row['is_active'];
                 if ($row['remember_me'] != $remember) {
                     $updateSql = "UPDATE user_login SET remember_me = ? WHERE id = ?";
-                    $params = [$row['remember_me'],  $row['id']];
+                    $params = [$remember, $row['id']];
                     $updateResult = sqlsrv_query($conn, $updateSql, $params);
                     sqlsrv_free_stmt($updateResult);
                     if ($updateResult === false) {

@@ -53,7 +53,7 @@ if ($_SESSION['is_admin'] != 1) {
                 updateSections();
             });
         </script>
-        <div class="row mt-3" id="infoterminalVerwaltung" style="display: block;">
+        <div class="row mt-3" id="infoterminalVerwaltung" style="display: none;">
             <div class="col-12">
                 <!-- <div class="col-12">
                     <div class="card shadow-sm">
@@ -65,8 +65,8 @@ if ($_SESSION['is_admin'] != 1) {
                     </div>
                 </div> -->
                 <div class="card-body mt-3">
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-2">
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -93,7 +93,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </div>
                                         <div class="center-bottom d-flex justify-content-center">
                                             <div class="">
-                                                <button type="submit" class="btn btn-success shadow-sm">
+                                                <button type="submit" class="btn btn-sm btn-success shadow-sm" style="width: 150px;">
                                                     <i class="fas fa-plus me-2"></i> Hinzufügen
                                                 </button>
                                             </div>
@@ -116,7 +116,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -187,7 +187,7 @@ if ($_SESSION['is_admin'] != 1) {
                                             <!-- Optionen werden per JS aus config.json befüllt -->
                                         </select>
                                     </div>
-                                    <div class="form-group mb-3 center-bottom">
+                                    <div class="form-group mb-3  center-bottom d-flex justify-content-center">
                                         <button type="button" class="btn btn-danger"
                                             onclick="bereinigeDatenbankUndFolder()">
                                             <i class="fas fa-broom me-2"></i></i> Daten bereinigen
@@ -202,6 +202,7 @@ if ($_SESSION['is_admin'] != 1) {
                 <!-- </div> -->
             </div>
         </div>
+        
         <div class="row mt-3" id="userVerwaltung" style="display: none;">
             <!-- <div class="col-12">
                 <div class="card shadow-sm">
@@ -213,9 +214,8 @@ if ($_SESSION['is_admin'] != 1) {
                 </div>
             </div> -->
             <div class="col-12 mt-3">
-
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-2">
                         <div class="card h-100">
                             <div class="card-header">
                                 <h6 class="card-title mb-0 d-flex justify-content-center">
@@ -266,7 +266,7 @@ if ($_SESSION['is_admin'] != 1) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card h-100">
                             <div class="card-header">
                                 <h6 class="card-title mb-0 d-flex justify-content-center">
