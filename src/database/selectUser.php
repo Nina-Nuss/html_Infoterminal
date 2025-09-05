@@ -14,16 +14,30 @@ if ($result === false) {
 
 $userList = [];
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    $values = [];
-    foreach ($row as $col => $val) {
-        $values[] = $val ?? '';
-    }
-    $userList[] = $values;
+    array_push($userList, [
+        'id' => $row['id'],
+        'username' => $row['username'],
+        'is_active' => $row['is_active'],
+        'is_admin' => $row['is_admin'],
+        'created_at' => $row['created_at'],
+        'last_login' => $row['last_login'],
+        'remember_me' => $row['remember_me'],
+        'email' => $row['email'],
+        'is_admin' => $row['is_admin'],
+        'verification_code' => $row['verification_code'],
+        'verification_expires' => $row['verification_expires'],
+        'lockout_until' => $row['lockout_until'],
+        'failed_attempts' => $row['failed_attempts'],
+        'password' => $row['password'],
+        'created_at' => $row['created_at'],
+    ]);
 }
 sqlsrv_free_stmt($result);
+
 sqlsrv_close($conn);
 
 
-
 echo json_encode($userList);
+
+
 ?>

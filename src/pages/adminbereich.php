@@ -263,7 +263,7 @@
                                         <i class="fas fa-list me-2"></i> Nutzer auswählen:
                                     </label>
                                 </div>
-                                <div style="max-height: 200px; overflow-y: auto;">
+                                <div style="max-height: 200px;">
                                     <table class="table table-hover position-relative">
                                         <thead>
                                             <tr>

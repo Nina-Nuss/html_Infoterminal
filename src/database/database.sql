@@ -62,11 +62,9 @@ CREATE TABLE user_login (
         last_login VARCHAR(50), -- Datum als String
         verification_code VARCHAR(10), -- Für Passwort-Reset
         verification_expires VARCHAR(50), -- Datum als String
-        created_at VARCHAR(50)
+        created_at VARCHAR(50) DEFAULT GETDATE(), -- Erstellungsdatum
  );
 
-INSERT INTO user_login(username, password, remember_me, is_admin)
-VALUES ('admin', '0000', '1', '1');
 
 CREATE TABLE error_logs (
         message VARCHAR(500) NOT NULL, -- Fehler-Nachricht

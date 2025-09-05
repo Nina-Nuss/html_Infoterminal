@@ -22,10 +22,6 @@ if (!$absolutePath || !is_dir($absolutePath)) {
 
 // Tabelle für die Ergebnisse
 $schemaList1 = [];
-
-
-
-
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
     if (isset($row['id']) && $row['id'] !== null) {
         array_push($schemaList1, array(
@@ -43,8 +39,6 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             $row["beschreibung"],
         ));
     }
-    
-    
 }
 
 // Upload-Ordner bereinigen (nur echte Dateien löschen)
