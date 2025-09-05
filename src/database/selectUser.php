@@ -1,6 +1,8 @@
 <?php
 // ...existing code...
 
+
+
 include '../../config/php/connection.php';
 
 $sql = "SELECT * FROM user_login";
@@ -20,6 +22,7 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         'is_active' => $row['is_active'],
         'is_admin' => $row['is_admin'],
         'created_at' => $row['created_at'],
+        'password' => $row['password'],
         'last_login' => $row['last_login'],
         'remember_me' => $row['remember_me'],
         'email' => $row['email'],
@@ -28,7 +31,6 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         'verification_expires' => $row['verification_expires'],
         'lockout_until' => $row['lockout_until'],
         'failed_attempts' => $row['failed_attempts'],
-        'password' => $row['password'],
         'created_at' => $row['created_at'],
     ]);
 }
@@ -38,6 +40,3 @@ sqlsrv_close($conn);
 
 
 echo json_encode($userList);
-
-
-?>

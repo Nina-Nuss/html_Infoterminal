@@ -61,8 +61,8 @@ CREATE TABLE user_login (
         lockout_until VARCHAR(50), -- Datum als String
         last_login VARCHAR(50), -- Datum als String
         verification_code VARCHAR(10), -- Für Passwort-Reset
-        verification_expires VARCHAR(50), -- Datum als String
-        created_at VARCHAR(50) DEFAULT GETDATE(), -- Erstellungsdatum
+        verification_expires DATETIME, -- Ablaufdatum als echtes DATETIME
+        created_at DATETIME DEFAULT GETDATE(), -- Erstellungsdatum im Format yyyy-mm-dd hh:mi:ss
  );
 
 

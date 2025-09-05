@@ -1,16 +1,10 @@
 <?php
 session_start();
 
-$username = "nina";
+setcookie("username", "Alice", time() + 3600, "/");
 
-setcookie('username', $username, time() + 86400 * 30); // 30 Tage
-// ...existing code...
-$username = $_SESSION['username'] ?? ($_COOKIE['username'] ?? null);
-if (!$username) {
-    header('Location: ../login/index.php');
-    exit;
+// Cookie auslesen
+if (isset($_COOKIE['username'])) {
+    echo "Hallo, " . htmlspecialchars($_COOKIE['username']);
 }
-$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-
-echo $username;
 ?>

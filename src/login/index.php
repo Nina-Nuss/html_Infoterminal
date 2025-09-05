@@ -42,7 +42,7 @@
                         <label class="form-check-label" for="exampleCheck1">Angemeldet bleiben</label>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" id="loginForm" class="btn btn-primary">Einloggen</button>
+                        <button type="submit" id="loginForm" class="btn btn-primary" style="background-color: #006c99;">Einloggen</button>
                     </div>
 
                 </form>
