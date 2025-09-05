@@ -42,15 +42,15 @@ if (!isset($_SESSION['username'])) {
                 <div class="pt-2"></div>
                 <div class="card-body h-100">
                     <div class="row">
-                        <div class="col-md-9" id="konfigContainer">
+                        <div class="col-md-9" id="konfigContainer" style=" overflow-y: auto;">
                             <div class="card">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                         </>
                                 </div>
 
-                                <div class="d-flex justify-content-center">
-                                    <div class="card-body" style="width: 17vw">
+                                <div class="d-flex justify-content-center " >
+                                    <div class="card-body" style="width: 20vw">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -86,12 +86,11 @@ if (!isset($_SESSION['username'])) {
                                         </div>
                                     </div>
 
-
                                     <div class="card-body" style="width: 5vw;">
 
                                     </div>
 
-                                    <div class="card-body" style="width: 40vw; overflow-y: auto;">
+                                    <div class="card-body" style="width: 40vw;  overflow-y: auto;">
                                         <div class="d-flex">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel">
