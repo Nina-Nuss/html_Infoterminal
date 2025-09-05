@@ -62,7 +62,7 @@ CREATE TABLE user_login (
         last_login VARCHAR(50), -- Datum als String
         verification_code VARCHAR(10), -- Für Passwort-Reset
         verification_expires VARCHAR(50), -- Datum als String
-        created_at DATETIME DEFAULT GETDATE() -- Einfaches Datum mit Default NOW
+        created_at VARCHAR(50)
  );
 
 INSERT INTO user_login(username, password, remember_me, is_admin)
