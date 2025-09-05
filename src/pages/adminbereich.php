@@ -1,3 +1,11 @@
+<?php include '../php/auth.php'; ?>
+<?php
+    if($_SESSION['is_admin'] != 1){
+        header('Location: ../pages/dashboard.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 

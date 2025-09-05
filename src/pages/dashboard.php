@@ -1,11 +1,5 @@
-<?php
-session_start();
+<?php include '../php/auth.php'; ?>
 
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login/index.php');
-    exit;
-}
-?>
 
 <!DOCTYPE html>
 <html lang="de">

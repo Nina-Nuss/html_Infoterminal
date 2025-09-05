@@ -14,7 +14,7 @@ $data = json_decode($file, true);
 
 $userExist = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($data['username'] ?? 'admin'); // Leerzeichen entfernen, Default leer
     $email = trim($data['email'] ?? ''); // Leerzeichen entfernen
     $password = $data['password'] ?? '0000'; // Leerzeichen entfernen, Default leer
@@ -32,11 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($row['username']) && isset($row['password'])) {
             if ($row['username'] == $username && password_verify($password, $row['password']) && $row['is_active'] == 1) {
                 $userExist = true;
-                $rememberDB = $row['remember_me'];
-                $userId = $row['id'];
-                $_SESSION['remember'] = $rememberDB;
-                $_SESSION['user_id'] = $userId;
-                if ($rememberDB != $remember) {
+                $_SESSION['remember'] = $row['remember_me'];
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['is_admin'] = $row['is_admin'];
+                $_SESSION['is_active'] = $row['is_active'];
+                if ($row['remember_me'] != $remember) {
                     $updateSql = "UPDATE user_login SET remember_me = ? WHERE id = ?";
                     $params = [$remember, $userId];
                     $updateResult = sqlsrv_query($conn, $updateSql, $params);
@@ -62,5 +62,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
         exit();
     }
-}
+// }
 
