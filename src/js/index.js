@@ -370,13 +370,13 @@ function uncheckAllTableCheckboxes() {
 }
 
 
-async function insertErrorLog(message) {
-    await fetch('../database/insertError.php', {
+function insertErrorLog(message) {
+    fetch('../database/insertError.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ error: message })
+        body: JSON.stringify({ message: message })
     }).then(response => response.json()
     ).then(data => {
         if (data.success) {

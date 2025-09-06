@@ -14,9 +14,8 @@ if ($_SESSION['is_admin'] != 1) {
 <head>
     <?php include '../assets/links.html'; ?>
     <?php include '../assets/scripts.html'; ?>
-
-
     <title>Adminbereich</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <html>
 

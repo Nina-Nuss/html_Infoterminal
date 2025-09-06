@@ -456,7 +456,7 @@ class Infoseite {
         if (!resultMinuteBool || !resultSekundenBool) {
             alert("Bitte geben Sie gültige Werte für Minuten und Sekunden ein.");
             selectSekunden.value = "";
-            if (!selectMinuten) {
+            if (selectMinuten) {
                 selectMinuten.value = "";
             }
             return;
@@ -743,6 +743,7 @@ class Infoseite {
                 if (startTimeOnly > endTimeOnly) {
                     alert("Die Startzeit muss vor der Endzeit liegen.");
                     console.error("Ungültige Eingabe: Startzeit ist größer oder gleich der Endzeit.");
+                    insertErrorLog("Ungültige Eingabe: Startzeit ist größer oder gleich der Endzeit.");
                     return;
                 } else {
                     cardObj.startTime = startTimeRange.value;

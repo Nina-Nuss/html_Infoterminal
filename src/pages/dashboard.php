@@ -10,6 +10,7 @@
     <?php include '../assets/links.html'; ?>
     <?php include '../layout/modal/hinzufuegen.html'; ?>
     <?php include '../layout/modal/addInfoSeite.html'; ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
@@ -27,32 +28,30 @@
 
                     <div class="row justify-content-center">
 
-                        <div class="col-md-7">
-                            <div>
-                                <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
-                                    class="btn btn-success btn-sm me-2">
-                                    <i class="fas fa-save"></i> Speichern
-                                </button>
-                                <!--  -->
-                                <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
-                                    data-bs-toggle="modal" data-bs-target="#addInfoSeite">
-                                    <i class="fas fa-pen-to-square"></i> Erstellen
-                                </button>
-                                <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
-                                    class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Löschen
-                                </button>
-                            </div>
-                            <div class="pt-2"></div>
+                        <div class="col-md-8">
+                             <div>
+                                    <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
+                                        class="btn btn-success btn-sm me-2">
+                                        <i class="fas fa-save"></i> Speichern
+                                    </button>
+                                    <!--  -->
+                                    <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
+                                        data-bs-toggle="modal" data-bs-target="#addInfoSeite">
+                                        <i class="fas fa-pen-to-square"></i> Erstellen
+                                    </button>
+                                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Löschen
+                                    </button>
+                                </div>
+                                <div class="pt-2"></div>
                             <div class="card">
-
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
 
                                 </div>
-
                                 <div class="d-flex justify-content-center ">
-                                    <div class="card-body" style="width: 20vw">
+                                    <div class="card-body" style="width: 30%">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
                                                 <i class="fas fa-file-alt me-2"></i>
@@ -86,12 +85,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="card-body" style="width: 5vw;">
+                                    <div class="card-body ">
 
                                     </div>
-
-                                    <div class="card-body" style="width: 40vw;  overflow-y: auto;">
-                                        <div class="d-flex">
+                                    <div class="card-body" style="width: 60%;  overflow-y: auto;">
+                                        <div class="d-flex flex-column justify-content-center">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel">
                                                     <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
@@ -200,27 +198,21 @@
 
                                                         </div>
                                                         <div class="col-6 d-flex align-items-center">
-
                                                         </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
-                        <div class="col-md-2 mt-auto " id="bildschirmVerwaltung">
-                            <div class="card">
+                        <div class="col-md-3 mt-auto" id="bildschirmVerwaltung">
+                            <div class="card" style="height: 190px;">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
-                                <div class="card-body d-flex w-100">
+                                <div class="card-body d-flex w-100 overflow-auto">
                                     <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
@@ -234,7 +226,7 @@
                                         </button>
                                     </div>
                                     <div class="w-100">
-                                        <div style="height: 135px; overflow-y: auto;" class="">
+                                        <div style="height: auto; overflow-y: auto;" class="">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">

@@ -18,7 +18,7 @@ $errorMessange = $data['message'] ?? ''; // Beispiel-Username
 
 
 // INSERT mit Prepared Statement
-$insertSql = "INSERT INTO user_login (message) VALUES (?)";
+$insertSql = "INSERT INTO error_logs (message) VALUES (?)";
 $insertParams = array($errorMessange);
 $insertResult = sqlsrv_query($conn, $insertSql, $insertParams);
 

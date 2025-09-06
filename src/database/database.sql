@@ -66,8 +66,8 @@ CREATE TABLE user_login (
  );
 
 
-
+drop table error_logs;
 CREATE TABLE error_logs (
-        message VARCHAR(500) NOT NULL, -- Fehler-Nachricht
+        message VARCHAR(255) NOT NULL, -- Fehler-Nachricht
         datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
 );
