@@ -28,7 +28,7 @@
 
                     <div class="row justify-content-center">
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 ">
                              <div>
                                     <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                                         class="btn btn-success btn-sm me-2">
@@ -45,7 +45,7 @@
                                     </button>
                                 </div>
                                 <div class="pt-2"></div>
-                            <div class="card">
+                            <div class="card overflow-auto"  style="height: auto;">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
 
@@ -208,7 +208,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 mt-auto" id="bildschirmVerwaltung">
-                            <div class="card" style="height: 190px;">
+                            <div class="card">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
@@ -225,8 +225,8 @@
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100">
-                                        <div style="height: auto; overflow-y: auto;" class="">
+                                    <div class="w-100" style="min-height: 130px; height: 130px; max-height: 170px; overflow-y: auto;">
+                                        <div style="height: auto; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
