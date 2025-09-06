@@ -217,11 +217,11 @@
 
                         <div class="col-md-2 mt-auto " id="bildschirmVerwaltung">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
                                 <div class="card-body d-flex w-100">
-                                    <div class="d-flex flex-column justify-content-center h-100 gap-2">
+                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
                                             class="btn btn-success btn-sm align-items-stretch m-0 würfelbtn">
@@ -234,7 +234,7 @@
                                         </button>
                                     </div>
                                     <div class="w-100">
-                                        <div style="height: 130px; overflow-y: auto;" class="">
+                                        <div style="height: 135px; overflow-y: auto;" class="">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
