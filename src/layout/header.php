@@ -1,4 +1,3 @@
-
 <style>
     .clock {
         text-align: center;
@@ -26,7 +25,7 @@
 
 <div class="parallelogram">
     <div class=" text d-flex justify-content-between align-items-center px-5 gap-2">
-        <div class="clock"> Infoterminal CJD Offenburg</div>
+        <div id="headerTitle" class="clock"> Infoterminal CJD Offenburg</div>
         <div class="clock">
             <div id="time"></div>
             <div>/</div>
@@ -36,6 +35,13 @@
     </div>
 </div>
 <script>
+    if (document.getElementById("headerTitle") ) {
+        if(window.location.pathname.includes("dashboard.php") || window.location.pathname.includes("adminbereich.php")) {
+            var headerTitle = document.getElementById("headerTitle")
+            headerTitle.innerText = "Infoterminal CJD Dashboard"
+        }
+    }
+
     function updateTime() {
         const dateTime = new Date();
         const timeElement = document.getElementById('time');

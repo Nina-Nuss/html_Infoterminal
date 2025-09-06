@@ -21,32 +21,37 @@
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
-                <div class="d-flex justify-content-center">
-                    <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
-                        class="btn btn-success btn-sm me-2">
-                        <i class="fas fa-save"></i> Speichern
-                    </button>
-                    <!--  -->
-                    <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
-                        data-bs-toggle="modal" data-bs-target="#addInfoSeite">
-                        <i class="fas fa-pen-to-square"></i> Erstellen
-                    </button>
-                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button" 
-                        class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash"></i> Löschen
-                    </button>
-                </div>
-                <div class="pt-2"></div>
-                <div class="card-body h-100">
-                    <div class="row">
-                        <div class="col-md-9" id="konfigContainer" style=" overflow-y: auto;">
+
+                <div class="" id="konfigContainer">
+
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-7">
+                            <div>
+                                <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
+                                    class="btn btn-success btn-sm me-2">
+                                    <i class="fas fa-save"></i> Speichern
+                                </button>
+                                <!--  -->
+                                <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
+                                    data-bs-toggle="modal" data-bs-target="#addInfoSeite">
+                                    <i class="fas fa-pen-to-square"></i> Erstellen
+                                </button>
+                                <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
+                                    class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Löschen
+                                </button>
+                            </div>
+                            <div class="pt-2"></div>
                             <div class="card">
+
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
-                                        </>
+
                                 </div>
 
-                                <div class="d-flex justify-content-center " >
+                                <div class="d-flex justify-content-center ">
                                     <div class="card-body" style="width: 20vw">
                                         <div class="form-group mt-0">
                                             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -91,10 +96,9 @@
                                                 <div id="dateTimeInfoPanel">
                                                     <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas text-dark  fa-calendar-alt"
-                                                              ></i>
+                                                            <i class="fas text-dark  fa-calendar-alt"></i>
                                                             <span style="margin-left: 0.5rem;">Datum:</span>
-                                                            <div class="d-flex align-items-center" >
+                                                            <div class="d-flex align-items-center">
                                                                 <input type="date" class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
                                                                     style="margin-left: 1.3rem;">
@@ -103,16 +107,16 @@
                                                         <div class="d-flex align-items-center">
                                                             <div class="d-flex align-items-center" style="margin-left: 1rem;">
                                                                 <label for="endDate"
-                                                                    class="form-label mb-0 text-secondary"  style="margin-left: 0.8rem; margin-right: 0.5rem;">bis</label>
+                                                                    class="form-label mb-0 text-secondary" style="margin-left: 0.8rem; margin-right: 0.5rem;">bis</label>
                                                                 <input type="date"
                                                                     class="form-control form-control-sm w-auto"
-                                                                    id="endDate" name="endDate" >
+                                                                    id="endDate" name="endDate">
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center"
                                                             style="margin-left: 1rem;">
                                                             <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw;"
+                                                                class="btn btn-outline-danger btn-sm würfelbtn"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -122,8 +126,7 @@
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas fa-clock text-dark" style="margin-right: 0.5rem;"
-                                                               ></i>
+                                                            <i class="fas fa-clock text-dark" style="margin-right: 0.5rem;"></i>
                                                             <span style="margin-right: 1rem;">Uhrzeit:</span>
 
                                                             <input type="time"
@@ -144,10 +147,9 @@
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 text-secondary" style="margin-left: 0.5rem;"> Uhr</label>
                                                         </div>
-                                                        <div class="d-flex align-items-center"
-                                                        >
+                                                        <div class="d-flex align-items-center">
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger btn-sm" style="width: 2vw; margin-left: 3em;"
+                                                                class="btn btn-outline-danger btn-sm würfelbtn" style="margin-left: 3em;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -157,18 +159,16 @@
                                                 <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label ">
-                                                            <i class="fas fa-desktop mb-0" style="margin-right: 0.5rem;"
-                                                               ></i>Anzeige:
+                                                            <i class="fas fa-desktop mb-0" style="margin-right: 0.5rem;"></i>Anzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm" style="width: 7vw; margin-left: 0.5rem;"
                                                             id="infotherminalSelect">
                                                             <option value="">auswählen</option>
                                                         </select>
                                                         <button id="openTerminalBtn"
-                                                            class="btn text-dark start-btn btn-sm"
+                                                            class="btn text-dark start-btn btn-sm würfelbtn "
                                                             style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
-                                                            <i class="fas fa-external-link-alt"
-                                                               ></i>
+                                                            <i class="fas fa-external-link-alt"></i>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -196,12 +196,10 @@
                                                 <div id="uhrzeitPanel" class="border rounded-3 shadow-sm p-3 bg-light"
                                                     style="display:none;">
                                                     <div class="row g-2 justify-content-center">
-                                                        <div class="col-6 d-flex align-items-center"
-                                                            >
+                                                        <div class="col-6 d-flex align-items-center">
 
                                                         </div>
-                                                        <div class="col-6 d-flex align-items-center"
-                                                           >
+                                                        <div class="col-6 d-flex align-items-center">
 
                                                         </div>
 
@@ -213,29 +211,30 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-                        <div class="col-md-3" id="bildschirmVerwaltung">
-                            <div class="card h-100">
-                                <div class="card-header p-1">
+
+                        <div class="col-md-2 mt-auto " id="bildschirmVerwaltung">
+                            <div class="card">
+                                <div class="card-header">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
-                                <div class="card-body d-flex w-100 p-0">
-                                    <div class="d-flex flex-column justify-content-center h-100 p-3 gap-2">
+                                <div class="card-body d-flex w-100">
+                                    <div class="d-flex flex-column justify-content-center h-100 gap-2">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                            style="width: 35px; height: 35px;" data-bs-target="#modal_hinzufuegen"
-                                            class="btn btn-success btn-sm align-items-stretch m-0">
+                                            data-bs-target="#modal_hinzufuegen"
+                                            class="btn btn-success btn-sm align-items-stretch m-0 würfelbtn">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <button id="btn_loeschen" type="button"
-                                            class="btn btn-danger btn-sm align-items-stretch m-0"
-                                            style="width: 35px; height: 35px;"
+                                            class="btn btn-danger btn-sm align-items-stretch m-0 würfelbtn"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
                                     <div class="w-100">
-                                        <div style="height: 160px; overflow-y: auto;" class="pb-0 pt-0">
+                                        <div style="height: 130px; overflow-y: auto;" class="">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">
@@ -256,6 +255,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

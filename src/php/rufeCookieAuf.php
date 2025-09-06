@@ -6,7 +6,7 @@
 // setcookie('username', $username, time() + (86400 * 30), "/");
 // // damit dieselbe Anfrage das Cookie sieht:
 // $_COOKIE['username'] = $username;
-$username = 'nico'; // Beispielwert
+$username = 'b'; // Beispielwert
 
 $remember = true; // Beispielwert, ob "Remember Me" aktiviert
 
@@ -18,10 +18,7 @@ if ($remember) {
         } else {
             // Cookie ist schon korrekt gesetzt, nichts zu tun
         }
-    } else {
-        setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
-        $_COOKIE['username'] = $username; // damit gleiche Anfrage das Cookie sieht
-    }
+    } 
 } else {
     setcookie('username', '', time() - 3600, "/"); // Cookie löschen
 }

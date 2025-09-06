@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('infoCounterLimit') && document.getElementById('cardCounterLimit')) {
         const infoCounterLimit = document.getElementById('infoCounterLimit');
         const cardCounterLimit = document.getElementById('cardCounterLimit');
-    }else{
+    } else {
         return;
     }
 
@@ -380,7 +380,7 @@ function createList(cfg, select, defaultValue) {
         opt.value = i.value;
         opt.textContent = i.name;
         select.appendChild(opt);
- 
+
     });
 }
 
@@ -413,4 +413,3 @@ function saveList(select, name) {
         }
     });
 }
-
