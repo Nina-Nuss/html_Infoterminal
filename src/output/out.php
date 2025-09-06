@@ -116,7 +116,7 @@
 
             while (data.length === 0) {
                 console.error('No data received or data is null/undefined');
-                document.body.innerHTML = '<p class="text-danger d-flex justify-content-center align-items-center vh-100">Kein Inhalt verfügbar, bitte haben Sie Geduld...</p>';
+                document.body.innerHTML = '<h5 class="text-danger d-flex justify-content-center align-items-center vh-100">Kein Inhalt verfügbar, bitte haben Sie Geduld...</h5>';
                 await sleep(10000); // Warte 10 Sekunden, bevor du es erneut versuchst
                 const retryResponse = await fetch("../database/getSchemas.php", {
                     method: "POST",

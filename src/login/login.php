@@ -38,18 +38,31 @@ foreach ($userList as $row) {
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['is_admin'] = $row['is_admin'];
                 $_SESSION['is_active'] = $row['is_active'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['last_login'] = $row['last_login'];
+                $_SESSION['login_success'] = true; // Setze den Login-Erfolgsstatus
                 if ($row['remember_me'] != $remember) {
                     $updateSql = "UPDATE user_login SET remember_me = ? WHERE id = ?";
                     $params = [$remember, $row['id']];
                     $updateResult = sqlsrv_query($conn, $updateSql, $params);
-                    sqlsrv_free_stmt($updateResult);
                     if ($updateResult === false) {
                         die(print_r(sqlsrv_errors(), true));
                     }
+                    sqlsrv_free_stmt($updateResult);
                     $updateSql = null;
                 }
                 if ($remember) {
-                    setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
+                    if(isset($_COOKIE['username'])) {
+                        if($_COOKIE['username'] !== $username) {
+                            setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
+                            $_COOKIE['username'] = $username; // damit gleiche Anfrage das Cookie sieht
+                        }else{
+                            // Cookie ist schon korrekt gesetzt, nichts zu tun
+                        }
+                    } else {
+                        setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
+                        $_COOKIE['username'] = $username; // damit gleiche Anfrage das Cookie sieht
+                    }
                 } else {
                     setcookie('username', '', time() - 3600, "/"); // Cookie löschen
                 }
@@ -58,10 +71,11 @@ foreach ($userList as $row) {
                 $updateSql = "UPDATE user_login SET failed_attempts = 0, lockout_until = NULL, last_login = ? WHERE id = ?";
                 $params = [$now->format('Y-m-d H:i:s'), $row['id']];
                 $updateResult = sqlsrv_query($conn, $updateSql, $params);
-                sqlsrv_free_stmt($updateResult);
+
                 if ($updateResult === false) {
                     die(print_r(sqlsrv_errors(), true));
                 }
+                sqlsrv_free_stmt($updateResult);
                 $updateSql = null;
                 echo json_encode([
                     'success' => $userExist,
@@ -73,10 +87,11 @@ foreach ($userList as $row) {
                 $updateSql = "UPDATE user_login SET failed_attempts += 1, last_failed_attempt = ? WHERE id = ?";
                 $params = [date('Y-m-d H:i:s'), $row['id']];
                 $updateResult = sqlsrv_query($conn, $updateSql, $params);
-                sqlsrv_free_stmt($updateResult);
+
                 if ($updateResult === false) {
                     die(print_r(sqlsrv_errors(), true));
                 }
+                sqlsrv_free_stmt($updateResult);
                 $updateSql = null;
                 if ($row['failed_attempts'] + 1 >= 5) {
                     $lockoutMinutes = 5;

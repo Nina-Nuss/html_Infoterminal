@@ -11,11 +11,17 @@
                 <button id="adminBereich" type="button" class="btn text-dark start-btn"
                     style="border-color: #006c99; border-radius: 8px; background-color: rgba(255, 255, 255, 0.952);">Administration</button>
             </div>
-            <button id="logout" type="button" onclick="logout()" class="btn text-dark start-btn position-absolute ms-auto end-0 me-4"
-                style="width: 40px; border-color: #006c99; border-radius: 8px; background-color: rgba(255, 255, 255, 0.952);"
-                aria-label="Logout" title="Logout">
-                <i class="bi bi-box-arrow-right"></i>
-            </button>
+            <div class="d-flex align-items-center justify-content-center position-absolute ms-auto end-0 me-4">
+
+                <div>Eingeloggt als: <span id="usernameDisplay"><?php if(isset($_SESSION['username'])){ echo $_SESSION['username']; } ?></span></div>
+                <button id="logout" type="button" onclick="logout()" class="btn text-dark start-btn "
+                    style="width: 40px; border-color: #006c99; border-radius: 8px; background-color: rgba(255, 255, 255, 0.952);"
+                    aria-label="Logout" title="Logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+
+            </div>
+
         </div>
     </div>
 </div>

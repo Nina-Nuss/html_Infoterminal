@@ -367,3 +367,22 @@ function uncheckAllTableCheckboxes() {
 
     console.log(`${checkboxes.length} Tabellen-Checkboxes wurden ausgeschaltet`);
 }
+
+async function insertErrorLog(message) {
+    await fetch('../database/insertError.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ error: message })
+    }).then(response => response.json() 
+    ).then(data => {
+        if (data.success) {
+            console.log('Fehler erfolgreich protokolliert:', data.message);
+        } else {
+            console.error('Fehler beim Protokollieren des Fehlers:', data.message);
+        }
+    }).catch(error => {
+        console.error('Fetch-Fehler:', error);
+    });
+}
