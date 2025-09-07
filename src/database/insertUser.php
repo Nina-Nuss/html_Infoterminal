@@ -17,12 +17,13 @@ $data = json_decode($file, true);
 // Beispiel-Werte (ersetze mit echten Daten aus POST oder Form)
 $username = $data['username'] ?? 'admin'; // Beispiel-Username
 $password = $data['password'] ?? '0000'; // Beispiel-Password
-$role = $data['is_admin']; // Beispiel-Rolle
+$role = $data['is_admin'] ?? 0; // Beispiel-Rolle
 $isActive = $data['is_active'] ?? 1; // Beispiel-Aktivstatus (1 = aktiv, 0 = inaktiv)
 
-$username = trim($username);
+
+
 if (strpos($username, ' ') !== false) {
-    echo "Im Benutzernamen befindet sich ein Leerzeichen.";
+    echo json_encode(['success' => false, 'message' => "Im Benutzernamen befindet sich ein Leerzeichen."]);
     exit;
 }
 foreach ($userList as $row) {
@@ -32,6 +33,7 @@ foreach ($userList as $row) {
     }
 }
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 
 // INSERT mit Prepared Statement
 $insertSql = "INSERT INTO user_login (username, password, is_admin) VALUES (?, ?, ?)";
@@ -43,6 +45,7 @@ if ($insertResult === false) {
 } else {
     echo json_encode(['success' => true, 'message' => 'User erfolgreich eingefügt.']);
 }
+sqlsrv_free_stmt($insertResult);
 
 sqlsrv_close($conn);
 ?>

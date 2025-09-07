@@ -1,7 +1,17 @@
-<?php include '../php/auth.php'; ?>
+<?php
+    include '../php/auth.php';
 
-
-
+?> 
+<?php
+// if (isset($_COOKIE['username'])) {
+//     $username = $_COOKIE['username'];
+//     echo 'Hallo ' . htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+// } else {
+//     echo 'Kein Cookie vorhanden';
+// }
+// echo '<br>';
+// echo $_SESSION['login_success'];
+?>
 
 <!DOCTYPE html>
 <html lang="de">
@@ -11,7 +21,7 @@
     <?php include '../layout/modal/hinzufuegen.html'; ?>
     <?php include '../layout/modal/addInfoSeite.html'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+</head> 
 
 
 <body>

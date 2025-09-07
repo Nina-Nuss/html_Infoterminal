@@ -52,19 +52,11 @@ foreach ($userList as $row) {
                     $updateSql = null;
                 }
                 if ($remember) {
-                    if(isset($_COOKIE['username'])) {
-                        if($_COOKIE['username'] !== $username) {
-                            setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
-                            $_COOKIE['username'] = $username; // damit gleiche Anfrage das Cookie sieht
-                        }else{
-                            // Cookie ist schon korrekt gesetzt, nichts zu tun
-                        }
-                    } else {
-                        setcookie('username', $username, time() + (86400 * 30), "/"); // 30 Tage Gültigkeit
-                        $_COOKIE['username'] = $username; // damit gleiche Anfrage das Cookie sieht
-                    }
+                    setcookie('username', $username, time() + 86400 * 30, "/");
+                    $_COOKIE['username'] = $username; // optional für aktuelle Anfrage
                 } else {
                     setcookie('username', '', time() - 3600, "/"); // Cookie löschen
+                    unset($_COOKIE['username']);
                 }
                 // Erfolgreicher Login: Fehlversuche zurücksetzen
                 $now = new DateTime();
@@ -81,6 +73,7 @@ foreach ($userList as $row) {
                     'success' => $userExist,
                     'message' => 'Login erfolgreich'
                 ]);
+            
                 // Setze last_login auf aktuelle Zeit
             }
             if ($row['username'] == $username && !password_verify($password, $row['password'])) {

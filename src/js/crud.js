@@ -39,11 +39,11 @@ class Crud {
                 if (checkID.id == id) {
                     checkID.check = false
                     // console.log(checkID)
-               
+
                 }
             });
-               
-                
+
+
             User.temp_remove.forEach(idd => {
                 if (id != idd) {
                     User.eleListe.push(idd)
@@ -54,7 +54,7 @@ class Crud {
         }
         console.log(User.temp_remove);
     };
-    
+
 
     static async removeFromListLogik(list, temp_remove) {
         // DIese Methode wird aufgerufen sobald wir auf Minus (-) klicken
@@ -97,13 +97,11 @@ class Crud {
 
     static async add_user() {
         debugger;
-
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        var is_admin = document.getElementById("isAdmin").value;
+        var username = document.getElementById("username");
+        var password = document.getElementById("password");
+        var is_admin = document.getElementById("isAdmin");
         console.log(is_admin);
-        
-        if (username === "" || password === "") {
+        if (username.value === "" || password.value === "") {
             alert("Bitte füllen Sie alle Felder aus.");
             return;
         }
@@ -112,14 +110,20 @@ class Crud {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password, is_admin })
+            body: JSON.stringify({ username: username.value, password: password.value, is_admin: is_admin.value })
         });
         if (response.ok) {
             const data = await response.json();
             console.log('User erfolgreich hinzugefügt:', data);
+            await User.update(); // Aktualisieren der Benutzerliste
+            // Formular zurücksetzen
+
         } else {
             console.error('Fehler beim Hinzufügen des Users:', response.statusText);
         }
+        username.value = '';
+        password.value = '';
+        is_admin.selectedIndex = 1;
     }
-    
+
 }

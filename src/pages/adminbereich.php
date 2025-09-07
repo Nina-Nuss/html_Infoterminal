@@ -71,7 +71,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
-                                            <i class="fas fa-plus me-2"></i> Infoterminals hinzufügen
+                                            <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
                                         </h6>
                                     </div>
                                     <div class="card-body position-relative" style="overflow-y: auto;">
@@ -121,7 +121,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
-                                            <i class="fas fa-trash me-2"></i> Infoterminals löschen
+                                            <i class="fas fa-tv me-2"></i> Infoterminals löschen
                                         </h6>
                                     </div>
                                     <div class="card-body">
@@ -149,7 +149,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-sm  btn-danger  shadow-sm" style="width: 150px;"
                                                 onclick="Infoterminal.remove_generate()">
-                                                <i class="fas fa-tv me-2"></i> löschen
+                                                <i class="fas fa-trash me-2"></i> löschen
                                             </button>
                                         </div>
 
@@ -228,8 +228,8 @@ if ($_SESSION['is_admin'] != 1) {
                                     </h6>
                                 </div>
                                 <div class="card-body position-relative">
-                                    <form id="formUser" method="post">
-                                        <div style="height: 270px;">
+                                    <div id="formUser">
+                                        <div class="form-group mb-3" style="height: 270px;">
                                             <div class="form-group mb-3">
                                                 <label for="username" class="form-label">
                                                     <i class="fas fa-user me-2"></i> Benutzername:
@@ -263,11 +263,11 @@ if ($_SESSION['is_admin'] != 1) {
                                             </div>
                                         </div>
                                         <div class="center-bottom d-flex justify-content-center">
-                                            <button  type="submit" class="btn btn-sm btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
+                                            <button class="btn btn-sm btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
                                                 <i class="fas fa-user-plus me-2"></i> Hinzufügen
                                             </button>
                                         </div>
-                                    </form>
+                                                </div>
                                 </div>
                             </div>
                         </div>

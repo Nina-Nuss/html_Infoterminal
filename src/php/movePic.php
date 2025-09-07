@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         // Erlaubte Dateierweiterungen
-        $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php'];
+        $allowedImageTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf'];
         $allowedVideoTypes = ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm'];
         $allowedTypes = array_merge($allowedImageTypes, $allowedVideoTypes);
 

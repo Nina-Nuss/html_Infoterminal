@@ -2,13 +2,17 @@
 session_start();
 
 
-if (!isset($_SESSION['user_id']) && $_SESSION['is_active'] != 1) {
+
+if (!isset($_COOKIE['username'])) {
+  if (!isset($_SESSION['user_id']) && $_SESSION['is_active'] != 1) {
     header('Location: ../login/index.php');
     exit;
+  }
 }
 
+
 if (!empty($_SESSION['login_success'])) {
-    echo '
+  echo '
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
           <div id="loginToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -27,5 +31,5 @@ if (!empty($_SESSION['login_success'])) {
           });
         </script>
         ';
-    unset($_SESSION['login_success']);
+  unset($_SESSION['login_success']);
 }

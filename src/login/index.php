@@ -73,6 +73,7 @@
         try {
             const result = await fetch('login.php', {
                 method: 'POST',
+                credentials: 'same-origin', // WICHTIG
                 headers: {
                     'Content-Type': 'application/json'
                 },
