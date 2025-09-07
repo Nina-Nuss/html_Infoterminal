@@ -22,30 +22,26 @@
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
-
-                <div class="" id="konfigContainer">
-
-
-                    <div class="row justify-content-center">
-
-                        <div class="col-md-8 ">
-                             <div>
-                                    <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
-                                        class="btn btn-success btn-sm me-2">
-                                        <i class="fas fa-save"></i> Speichern
-                                    </button>
-                                    <!--  -->
-                                    <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
-                                        data-bs-toggle="modal" data-bs-target="#addInfoSeite">
-                                        <i class="fas fa-pen-to-square"></i> Erstellen
-                                    </button>
-                                    <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
-                                        class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i> Löschen
-                                    </button>
-                                </div>
-                                <div class="pt-2"></div>
-                            <div class="card overflow-auto"  style="height: auto;">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 ">
+                        <div>
+                            <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
+                                class="btn btn-success btn-sm me-2">
+                                <i class="fas fa-save"></i> Speichern
+                            </button>
+                            <!--  -->
+                            <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
+                                data-bs-toggle="modal" data-bs-target="#addInfoSeite">
+                                <i class="fas fa-pen-to-square"></i> Erstellen
+                            </button>
+                            <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
+                                class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> Löschen
+                            </button>
+                        </div>
+                        <div class="" id="konfigContainer">
+                            <div class="pt-2"></div>
+                            <div class="card overflow-auto" style="height: auto;">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
 
@@ -207,42 +203,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 mt-auto" id="bildschirmVerwaltung">
-                            <div class="card">
-                                <div class="card-header p-1">
-                                    <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
+
+                    </div>
+                    <div class="col-md-3 mt-auto" id="bildschirmVerwaltung">
+                        <div class="card">
+                            <div class="card-header p-1">
+                                <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
+                            </div>
+                            <div class="card-body d-flex w-100 overflow-auto">
+                                <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
+                                    <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modal_hinzufuegen"
+                                        class="btn btn-success btn-sm align-items-stretch m-0 würfelbtn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button id="btn_loeschen" type="button"
+                                        class="btn btn-danger btn-sm align-items-stretch m-0 würfelbtn"
+                                        onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
-                                <div class="card-body d-flex w-100 overflow-auto">
-                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
-                                        <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#modal_hinzufuegen"
-                                            class="btn btn-success btn-sm align-items-stretch m-0 würfelbtn">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        <button id="btn_loeschen" type="button"
-                                            class="btn btn-danger btn-sm align-items-stretch m-0 würfelbtn"
-                                            onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="w-100" style="min-height: 130px; height: 130px; max-height: 170px; overflow-y: auto;">
-                                        <div style="height: auto; overflow-y: auto;">
-                                            <table class="table table-hover w-100 mb-0 p-0">
-                                                <thead class="table-light"
-                                                    style="position: sticky; top: 0; z-index: 2;">
-                                                    <!-- <tr>
+                                <div class="w-100" style="min-height: 130px; height: 130px; max-height: 170px; overflow-y: auto;">
+                                    <div style="height: auto; overflow-y: auto;">
+                                        <table class="table table-hover w-100 mb-0 p-0">
+                                            <thead class="table-light"
+                                                style="position: sticky; top: 0; z-index: 2;">
+                                                <!-- <tr>
                                                     <th style="background: #fff;">Titel</th>
                                                     <th style="background: #fff;">auswählen</th>
                                                 </tr> -->
-                                                </thead>
-                                                <tbody id="tabelleDelete">
-                                                    <!-- Tabellenzeilen hier -->
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </thead>
+                                            <tbody id="tabelleDelete">
+                                                <!-- Tabellenzeilen hier -->
+                                            </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
