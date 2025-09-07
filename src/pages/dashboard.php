@@ -171,7 +171,7 @@
                                                         </select>
                                                         <button id="openTerminalBtn"
                                                             class="btn text-dark start-btn btn-sm würfelbtn "
-                                                            style="border-color: #006c99;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
+                                                            style="border-color: #08445f;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
                                                             <i class="fas fa-external-link-alt"></i>
                                                         </button>
                                                     </div>

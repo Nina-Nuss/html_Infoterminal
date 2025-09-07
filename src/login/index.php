@@ -18,12 +18,12 @@
 <body>
 
     <div class="d-flex justify-content-center flex-column align-items-center vh-100">
-        <div class="mb-4">
-            <img src="../images/logo.png" alt="Logo" style="max-width: 200px;">
-        </div>
 
-        <div class="card w-25">
-            <h5 class="card-header text-center">Infoterminal Dashboard</h5>
+
+        <div class="card mx-auto shadow p-4" style="width: 30rem;">
+            <div class="d-flex justify-content-center mt-3 align-items-center ">
+                <img src="../images/logo.png" alt="Logo" style="max-width: 200px;">
+            </div>
             <div class="card-body">
                 <form class="d-flex flex-column justify-content-center" method="POST" action="login.php">
                     <div class="mb-3">

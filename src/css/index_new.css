@@ -193,7 +193,7 @@ label {
 }
 
 .start-btn:hover {
-    background-color: #006c99 !important;
+    background-color: #006b99 !important;
     color: white !important;
 }
 
@@ -208,8 +208,8 @@ label {
 .list-group-item.active:hover {
     z-index: 2;
     color: white !important;
-    background-color: #006c99;
-    border-color: #006c99;
+    background-color: #006b99;
+    border-color: #006b99;
 }
 
 #dokumente {
@@ -347,14 +347,14 @@ hr {
 
 
 .btn-custom-outline {
-    border-color: #006c99 !important;
+    border-color: #006b99 !important;
     background-color: rgba(255,255,255,0.952) !important;
-    color: #006c99 !important;
+    color: #006b99 !important;
     transition: background-color .15s, color .15s;
 }
 .btn-custom-outline:hover,
 .btn-custom-outline:focus {
-    background-color: #006c99 !important;
+    background-color: #006b99 !important;
     color: #fff !important;
 }
 .center-bottom {
