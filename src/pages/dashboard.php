@@ -16,8 +16,8 @@ include '../php/auth.php';
 // echo $_SESSION['login_success'];
 ?>
 
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE ht
+    <html lang="de">
 
 <head>
     <?php include '../assets/links.html'; ?>
@@ -29,7 +29,7 @@ include '../php/auth.php';
 
 <body>
     <?php include '../layout/header.php'; ?>
-    <div class="container-fluid pt-3" >
+    <div class="container-fluid pt-3">
         <div class="row" style="height:90vh;">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
             <div class="col-md-10 text-center">
@@ -60,8 +60,8 @@ include '../php/auth.php';
                                     <div class="card-header p-1">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                     </div>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="card-body" style="width: 30%">
+                                    <div class="d-flex ">
+                                        <div class="card-body" style="width: 25%;">
                                             <div class="form-group mt-0">
                                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                                     <i class="fas fa-file-alt me-2"></i>
@@ -94,9 +94,9 @@ include '../php/auth.php';
 
                                             </div>
                                         </div>
-                                        <div class="card-body" style="width: 2%;"></div>
-                                        <div class="card-body" style="width: 65%;  overflow-y: auto;">
-                                            <div class="d-flex flex-column justify-content-center">
+                                        <div class="card-body" style="width: auto;"></div>
+                                        <div class="card-body" style="width: 50%;  overflow-y: auto;">
+                                            <div class="d-flex flex-column " >
                                                 <div id="panelForDateTime" class="w-100">
                                                     <div id="dateTimeInfoPanel">
                                                         <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
@@ -109,23 +109,25 @@ include '../php/auth.php';
                                                                         style="margin-left: 1.3rem;">
                                                                 </div>
                                                             </div>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="d-flex align-items-center" style="margin-left: 1rem;">
-                                                                    <label for="endDate"
-                                                                        class="form-label mb-0 text-secondary" style="margin-left: 0.8rem; margin-right: 0.5rem;">bis</label>
-                                                                    <input type="date"
-                                                                        class="form-control form-control-sm w-auto"
-                                                                        id="endDate" name="endDate">
-                                                                </div>
+
+                                                            <div class="d-flex align-items-center justify-content-between" style="margin-left: 1rem;">
+                                                                <label for="endDate"
+                                                                    class="form-label mb-0 text-secondary" style="margin-left: 0.8rem; margin-right: 0.5rem;">bis</label>
+                                                                <input type="date"
+                                                                    class="form-control form-control-sm w-auto"
+                                                                    id="endDate" name="endDate">
                                                             </div>
-                                                            <div class="d-flex align-items-center"
-                                                                style="margin-left: 0.9rem;">
+
+                                                            <div class="d-flex align-items-center ml-auto">
                                                                 <button id="btnDelDateTime"
                                                                     class="btn btn-outline-danger btn-sm würfelbtn"
                                                                     onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
                                                             </div>
+
+
+
                                                         </div>
 
                                                         <!-- Uhrzeit -->
@@ -152,9 +154,9 @@ include '../php/auth.php';
                                                                 <label for="endTimeRange"
                                                                     class="form-label mb-0 text-secondary" style="margin-left: 0.5rem;"> Uhr</label>
                                                             </div>
-                                                            <div class="d-flex align-items-center">
+                                                            <div class="d-flex align-items-center ">
                                                                 <button id="delTimeRange"
-                                                                    class="btn btn-outline-danger btn-sm würfelbtn" style="margin-left: 3em;"
+                                                                    class="btn btn-outline-danger btn-sm würfelbtn" style="margin-left: 1.7rem;"
                                                                     onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
@@ -216,8 +218,8 @@ include '../php/auth.php';
                             </div>
 
                         </div>
-                        <div class="col-md-3" id="bildschirmVerwaltung" >
-                            <div class="card" style="max-height: 1000px; min-height: 180px;" >
+                        <div class="col-md-3" id="bildschirmVerwaltung">
+                            <div class="card">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
@@ -234,7 +236,7 @@ include '../php/auth.php';
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100 overflow-auto" style="height: 133px;">
+                                    <div class="w-100 overflow-auto" style="height: 130px;">
                                         <div style="height: auto; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
