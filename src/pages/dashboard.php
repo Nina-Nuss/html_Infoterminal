@@ -1,5 +1,8 @@
 <?php
+include '../php/noCache.php';
 include '../php/auth.php';
+
+
 
 ?>
 <?php
@@ -26,15 +29,15 @@ include '../php/auth.php';
 
 <body>
     <?php include '../layout/header.php'; ?>
-    <div class="container-fluid pt-3" style="height:100vh;">
+    <div class="container-fluid pt-3" >
         <div class="row" style="height:90vh;">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
                 <div class="row justify-content-center">
-                    <div class="col-md-12 pb-2">
-                        <div class="col-md-8">
+                    <div class="col-md-10 pb-2">
+                        <div class="col-md-8 flex-wrap">
                             <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                                 class="btn btn-success btn-sm me-2">
                                 <i class="fas fa-save"></i> Speichern
@@ -51,7 +54,7 @@ include '../php/auth.php';
                         </div>
                     </div>
                     <div class="d-flex justify-content-center gap-2 col-md-12">
-                        <div class="col-md-8 ">
+                        <div class="col-md-8">
                             <div id="konfigContainer">
                                 <div class="card">
                                     <div class="card-header p-1">
@@ -213,8 +216,8 @@ include '../php/auth.php';
                             </div>
 
                         </div>
-                        <div class="col-md-3" id="bildschirmVerwaltung">
-                            <div class="card"  >
+                        <div class="col-md-3" id="bildschirmVerwaltung" >
+                            <div class="card" style="max-height: 1000px; min-height: 180px;" >
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>

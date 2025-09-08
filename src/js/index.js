@@ -389,16 +389,3 @@ function insertErrorLog(message) {
     });
 }
 
-// Alle Buttons mit der Klasse 'start-btn' auswählen
-const buttons = document.querySelectorAll('.start-btn');
-
-// Für jeden Button einen Klick-Event-Listener hinzufügen
-buttons.forEach(button => {
-    button.addEventListener('click', function () {
-        // Entferne die Klasse von allen Buttons (um nur einen aktiven zu haben)
-        buttons.forEach(btn => btn.classList.remove('btn-active'));
-
-        // Füge die Klasse zum geklickten Button hinzu
-        this.classList.add('btn-active');
-    });
-});
