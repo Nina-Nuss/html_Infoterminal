@@ -24,7 +24,7 @@
             <div class="d-flex justify-content-center mt-3 align-items-center ">
                 <img src="../images/logo.png" alt="Logo" style="max-width: 200px;">
             </div>
-            <div class="card-body">
+            <div class="card-body p-4 pb-0">
                 <form class="d-flex flex-column justify-content-center" method="POST" action="login.php">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Benutzername</label>

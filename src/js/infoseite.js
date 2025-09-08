@@ -961,7 +961,7 @@ async function meow(event) {
         console.log(obj1.selectedTime);
         const result = await insertDatabase(obj1);
 
-        alert("Schema erfolgreich erstellt!");
+        alert("Infoseite erfolgreich erstellt!");
         await Infoseite.update();
         console.log(result);
         selectNewInfoseite();

@@ -29,18 +29,16 @@ class Beziehungen {
         }
     }
     static async update(cardObjID) {
+        if(Infoterminal.list == null){
+            console.log("Infoterminal.list ist null, update wird abgebrochen.");
+            return;
+        }
         Beziehungen.list = [];
         const relationListe = await Beziehungen.getRelation();
         console.log(relationListe);
         relationListe.forEach(element => {
             new Beziehungen(element[0], element[1], element[2]);
         });
-
-        if (Infoterminal.list.length !== 0) {
-            console.log("Umgebungsliste ist nicht leer, führe createList aus");
-        }
-        console.log(Infoterminal.list);
-
         this.temp_remove = [];
         this.temp_list_add = [];
         this.temp_list_remove = [];

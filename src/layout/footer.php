@@ -40,9 +40,11 @@
 
 <body>
     <div class="parallelogram">
-        <div class="para_inhalt text d-flex justify-content-between align-items-center px-5 gap-2">
-            <div class="me-3 pr-3">Tagesschau.de</div>
-            <div>
+        <div class="para_inhalt text d-flex justify-content-between align-items-center gap-2" style="margin-left: 3%; margin-right: 3%;">
+            <div class="me-3">
+                <div>Tagesschau.de</div>
+            </div>
+            <div >
                 <div id="ticker">
                     <span>Lade Nachrichten...</span>
                 </div>

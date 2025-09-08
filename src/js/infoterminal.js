@@ -277,9 +277,11 @@ window.addEventListener("load", async function () {
     Infoterminal.temp_remove = [];
     // Sende POST-Request zu php/sendingToPage.php
     try {
+   
         const adminBereich = document.getElementById("adminBereich");
         adminBereich.addEventListener('click', async function () {
             window.location.href = 'adminbereich.php';
+
         });
     } catch (error) {
         console.error("Fehler beim Senden der Anfrage:", error);

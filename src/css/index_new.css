@@ -196,6 +196,15 @@ label {
     background-color: #006b99 !important;
     color: white !important;
 }
+/* ...existing code... */
+
+/* Neue Klasse für aktiven Button-Zustand */
+.btn-active {
+    background-color: #006b99 !important;
+    color: white !important;
+}
+
+/* ...existing code... */
 
 .center-block {
     display: block;

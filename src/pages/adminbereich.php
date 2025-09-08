@@ -21,10 +21,11 @@ if ($_SESSION['is_admin'] != 1) {
 
 <body class="bg-light">
     <?php include '../layout/header.php'; ?>
-    <div class="container-fluid py-2">
-        <div class="col-md-12 text-center pt-2">
+    <div class="container-fluid pt-3">
+        <div class="col-md-12 text-center">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
         </div>
+        <hr>
         <div class="row mt-3 mb-3">
             <div class="col-12 d-flex justify-content-center">
                 <select id="adminSectionSelector" class="form-select w-auto">
@@ -76,7 +77,7 @@ if ($_SESSION['is_admin'] != 1) {
                                     </div>
                                     <div class="card-body position-relative" style="overflow-y: auto;">
                                         <form id="formID" action="../php/bereitsVorhanden.php" method="post">
-                                            <div style="height: 270px;">
+                                            <div style="height: 275px;">
                                                 <div class="form-group mb-3">
                                                     <label for="infotherminalIp" class="form-label">
                                                         <i class="fas fa-network-wired me-2"></i> IP-Adresse:
@@ -149,7 +150,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         <div class="d-flex justify-content-center">
                                             <button type="button" class="btn btn-sm  btn-danger  shadow-sm" style="width: 150px;"
                                                 onclick="Infoterminal.remove_generate()">
-                                                <i class="fas fa-trash me-2"></i> löschen
+                                                <i class="fas fa-trash me-2"></i> Löschen
                                             </button>
                                         </div>
 
@@ -229,7 +230,7 @@ if ($_SESSION['is_admin'] != 1) {
                                 </div>
                                 <div class="card-body position-relative">
                                     <div id="formUser">
-                                        <div class="form-group mb-3" style="height: 270px;">
+                                        <div class="form-group mb-3" style="height: 260px;">
                                             <div class="form-group mb-3">
                                                 <label for="username" class="form-label">
                                                     <i class="fas fa-user me-2"></i> Benutzername:
@@ -248,7 +249,7 @@ if ($_SESSION['is_admin'] != 1) {
                                                 <label for="password" class="form-label">
                                                     <i class="fas fa-lock me-2"></i> Passwort:
                                                 </label>
-                                                <input class="form-control" id="password"
+                                                <input type="password" class="form-control" id="password"
                                                     name="password" placeholder="Passwort" required>
                                             </div>
                                             <div class="form-group mb-3">
@@ -267,8 +268,10 @@ if ($_SESSION['is_admin'] != 1) {
                                                 <i class="fas fa-user-plus me-2"></i> Hinzufügen
                                             </button>
                                         </div>
-                                                </div>
+
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -285,7 +288,7 @@ if ($_SESSION['is_admin'] != 1) {
                                             <i class="fas fa-list me-2"></i> Nutzer auswählen:
                                         </label>
                                     </div>
-                                    <div style="height: 210px; overflow-y: auto;">
+                                    <div style="height: 230px; overflow-y: auto;">
                                         <table class="table table-hover position-relative">
                                             <thead>
                                                 <tr>
@@ -303,7 +306,7 @@ if ($_SESSION['is_admin'] != 1) {
                                         </table>
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-sm btn-danger shadow-sm  mt-3" style="width: 150px;"
+                                        <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;"
                                             onclick="Crud.remove_generate(User.temp_remove, User.list)">
                                             <i class="fas fa-user-minus me-2"></i> löschen
                                         </button>
