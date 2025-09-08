@@ -96,11 +96,11 @@ include '../php/auth.php';
                                         </div>
                                         <div class="card-body" style="width: auto;"></div>
                                         <div class="card-body" style="width: 50%;  overflow-y: auto;">
-                                            <div class="d-flex flex-column " >
+                                           
                                                 <div id="panelForDateTime" class="w-100">
-                                                    <div id="dateTimeInfoPanel">
-                                                        <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
-                                                            <div class="d-flex align-items-center">
+                                                    <div id="dateTimeInfoPanel ">
+                                                        <div class="d-flex" style="margin-bottom: 1rem;">
+                                                            <div class="d-flex  align-items-center">
                                                                 <i class="fas text-dark  fa-calendar-alt"></i>
                                                                 <span style="margin-left: 0.5rem;">Datum:</span>
                                                                 <div class="d-flex align-items-center">
@@ -120,7 +120,7 @@ include '../php/auth.php';
 
                                                             <div class="d-flex align-items-center ml-auto">
                                                                 <button id="btnDelDateTime"
-                                                                    class="btn btn-outline-danger btn-sm würfelbtn"
+                                                                    class="btn btn-outline-danger btn-sm trashBtn "
                                                                     onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
@@ -156,7 +156,7 @@ include '../php/auth.php';
                                                             </div>
                                                             <div class="d-flex align-items-center ">
                                                                 <button id="delTimeRange"
-                                                                    class="btn btn-outline-danger btn-sm würfelbtn" style="margin-left: 1.7rem;"
+                                                                    class="btn btn-outline-danger btn-sm trashBtn" style="margin-left: 1.7rem;"
                                                                     onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </button>
@@ -173,7 +173,7 @@ include '../php/auth.php';
                                                                 <option value="">auswählen</option>
                                                             </select>
                                                             <button id="openTerminalBtn"
-                                                                class="btn text-dark start-btn btn-sm würfelbtn "
+                                                                class="btn text-dark start-btn btn-sm trashBtn "
                                                                 style="border-color: #08445f;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
                                                                 <i class="fas fa-external-link-alt"></i>
                                                             </button>
@@ -211,7 +211,7 @@ include '../php/auth.php';
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

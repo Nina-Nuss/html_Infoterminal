@@ -377,7 +377,11 @@ hr {
 }
 
 .würfelbtn {
-    width: 2.6rem;
-    height: 2.0rem;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
+.trashBtn{
+    width: 2.5rem;
+    height: 1.9rem;
+}
