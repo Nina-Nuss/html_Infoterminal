@@ -385,5 +385,6 @@ hr {
 .trashBtn{
     width: 2.5rem !important;
     height: 1.9rem !important;
-   
+    border-radius: 0.25rem !important;
+    padding: 7px !important;
 }

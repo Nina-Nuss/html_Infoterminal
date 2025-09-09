@@ -125,7 +125,7 @@ include '../php/auth.php';
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fas fa-clock text-dark" style="margin-right: 0.5rem;"></i>
-                                                            <span style="margin-right: 1rem;">Uhrzeit:</span>
+                                                            <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill mx-2"
@@ -144,7 +144,7 @@ include '../php/auth.php';
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 text-secondary mx-2" > Uhr</label>
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger trashBtn"  style="margin-left: 1.3rem; padding: 7px !important;"
+                                                                class="btn btn-outline-danger trashBtn "  style="margin-left: 1.3rem;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -203,7 +203,7 @@ include '../php/auth.php';
                                                 </div>
                                             </div>
                                         </div>
-                                         <div style="width: 20%;"> </div>
+                                         <div style="width: 15%;"> </div>
 
                                     </div>
                                 </div>
@@ -228,7 +228,7 @@ include '../php/auth.php';
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100 overflow-auto" style="height: 130px;">
+                                    <div class="w-100 overflow-auto" style="height: 127px;">
                                         <div style="height: auto; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
