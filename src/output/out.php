@@ -13,7 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-
+    <script src="../js/error.js"></script>
 </head>
 <style>
     html,
@@ -47,29 +47,7 @@
 
 <script>
 
-    // window.addEventListener('error', function (event) {
-    //     console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
-
-    //     // Hier deinen Code ausführen, z.B. Seite neu laden
-    //     setTimeout(() => {
-    //         location.reload(); // Seite neu laden nach 3 Sekunden
-    //     }, 3000);
-
-    //     // Optional: Verhindere, dass der Fehler weitergeitet wird
-    //     event.preventDefault();
-    // });
-
-    // // Für unhandled Promise-Rejections (z.B. bei fetch-Fehlern)
-    // window.addEventListener('unhandledrejection', function (event) {
-    //     console.error('Unhandled Promise Rejection:', event.reason);
-
-    //     // Hier deinen Code ausführen, z.B. Seite neu laden
-    //     setTimeout(() => {
-    //         location.reload();
-    //     }, 3000);
-
-    //     event.preventDefault();
-    // });
+  
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

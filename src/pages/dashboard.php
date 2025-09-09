@@ -59,7 +59,7 @@ include '../php/auth.php';
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                     </div>
                                     <div class="d-flex ">
-                                        <div class="card-body" style="width: 40%;">
+                                        <div class="p-3" style="width: 20rem;">
                                             <div class="form-group mt-0">
                                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                                     <i class="fas fa-file-alt me-2"></i>
@@ -92,11 +92,11 @@ include '../php/auth.php';
 
                                             </div>
                                         </div>
-                                        <div style="margin: 2rem"> </div>
-                                        <div class="card-body" style="width: 60%;  overflow-y: auto;">
+                                        <div style="width: 1rem;"> </div>
+                                        <div class="p-3" style="width: 35rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
-                                                    <div class="d-flex" style="margin-bottom: 1rem;">
+                                                    <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
                                                         <div class="d-flex  align-items-center">
                                                             <i class="fas text-dark  fa-calendar-alt"></i>
                                                             <span style="margin-left: 0.5rem;">Datum:</span>
@@ -104,7 +104,7 @@ include '../php/auth.php';
                                                                 <input type="date" class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
                                                                     style="margin-left: 1.3rem;">
-                                                            </div>
+                                                            </div>  
                                                         </div>
 
                                                         <div class="d-flex align-items-center justify-content-between ms-auto">
@@ -139,20 +139,17 @@ include '../php/auth.php';
                                                                 style="width: auto;">bis</label>
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill"
-                                                                id="endTimeRange" name="endTimeRange"
-                                                               >
+                                                                id="endTimeRange" name="endTimeRange">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 text-secondary mx-2" > Uhr</label>
+                                                                class="form-label mb-0 text-secondary mx-2"> Uhr</label>
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger trashBtn me-auto "  style="margin-left: 1.3rem;"
+                                                                class="btn btn-outline-danger trashBtn me-auto " style="margin-left: 1.3rem;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
-
                                                         </div>
-
                                                     </div>
-                                                  
+
                                                 </div>
                                                 <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
@@ -203,8 +200,6 @@ include '../php/auth.php';
                                                 </div>
                                             </div>
                                         </div>
-                                         <div style="margin: 2rem;" > </div>
-
                                     </div>
                                 </div>
                             </div>

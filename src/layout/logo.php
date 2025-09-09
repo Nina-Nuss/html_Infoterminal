@@ -1,10 +1,9 @@
 
-
-<div id="header" style="background-color: white;display: flex; height: 13vh; padding-left: 0%">
-    <div style="display: flex; ">
+<div id="header" class="ms-3 d-flex" style="background-color: white; height: 13vh; padding: 0% ">
+    <div class="d-flex">
         <img src="../images/bild.png" alt="bild"
-            style="margin-right: 2.5%;  margin-left: 2.5%; margin-bottom: 2px; border-radius: 2vh;">
-        <img src="../images/logo.png" alt="logo" style="padding-bottom: 25px;">
+           class="mx-4 mb-1 rounded" style="border-radius: 2vh;">
+        <img src="../images/logo.png" alt="logo" class="w-75 h-75 align-self-center"   >
     </div>
     <link rel="stylesheet" href="../css/index_new.css">
 

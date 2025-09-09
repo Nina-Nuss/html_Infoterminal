@@ -9,8 +9,6 @@ var anzeigebereichV = document.getElementById("anzeigebereichV");
 
 window.onload = async function () {
     console.log("window.onload von index.js läuft!");
-
-
     const ipAdress = await getSystemPath();
     console.log("IP-Adresse:", ipAdress);
 
@@ -370,22 +368,4 @@ function uncheckAllTableCheckboxes() {
 }
 
 
-function insertErrorLog(message) {
-    fetch('../database/insertError.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message: message })
-    }).then(response => response.json()
-    ).then(data => {
-        if (data.success) {
-            console.log('Fehler erfolgreich protokolliert:', data.message);
-        } else {
-            console.error('Fehler beim Protokollieren des Fehlers:', data.message);
-        }
-    }).catch(error => {
-        console.error('Fetch-Fehler:', error);
-    });
-}
 
