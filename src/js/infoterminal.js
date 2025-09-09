@@ -272,7 +272,6 @@ class Infoterminal {
 
 }
 
-
 window.addEventListener("load", async function () {
     Infoterminal.temp_remove = [];
     // Sende POST-Request zu php/sendingToPage.php
@@ -347,7 +346,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch('../../config/config.json');
         if (!res.ok) throw new Error(`Config nicht gefunden (Status ${res.status})`);
         const cfg = await res.json();
-
+        
         // Dropdown befüllen
         // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
         createList(cfg.maxCountForInfoPages, infoCounterLimit, cfg.defaultMaxCountForInfoPages + " " + "Info-Seiten");
