@@ -53,11 +53,15 @@ class Infoseite {
 
         let placeHolder;
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
-
+        console.log(src);
+        
+       
+        debugger;
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
             placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null;this.src='/img/bild.png'">`;
-        }
+            
+        }   
         else if (videoExts.includes(ext)) {
             placeHolder = `
     <video class="card-img-small w-100" autoplay muted loop  >
@@ -68,6 +72,7 @@ class Infoseite {
         else {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
             placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
+        
         }
         const aktivIcon = this.aktiv
             ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`

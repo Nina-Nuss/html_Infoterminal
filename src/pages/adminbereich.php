@@ -2,7 +2,13 @@
 <?php include '../php/auth.php'; ?>
 
 <?php
-if ($_SESSION['is_admin'] != 1) {
+
+if (isset($_COOKIE['isAdmin']) && $_COOKIE['isAdmin'] == 1) {
+    // Admin-Bereich anzeigen
+} else if ($_SESSION['is_admin'] != 1) {
+    header('Location: ../pages/dashboard.php');
+    exit;
+} else {
     header('Location: ../pages/dashboard.php');
     exit;
 }

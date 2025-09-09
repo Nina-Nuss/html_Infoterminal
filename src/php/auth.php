@@ -13,10 +13,6 @@ if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION
   }
 }
 
-// if (isset($_COOKIE['username'])) {
-//  echo "Cookie gesetzt: " . $_COOKIE['username'];
-
-//   }
 if (!empty($_SESSION['login_success'])) {
   echo '
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
