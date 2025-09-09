@@ -3,10 +3,9 @@ session_start();
 
 
 
-
-if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != '1') {
+if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != '1' || $_SESSION['is_active'] == 0) {
   if (isset($_COOKIE['username'])) {
-    // echo "Cookie gesetzt: " . $_COOKIE['username'];
+
   } else {
     header('Location: ../login/index.php');
     exit;

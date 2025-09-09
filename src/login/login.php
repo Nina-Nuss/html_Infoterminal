@@ -58,7 +58,7 @@ foreach ($userList as $row) {
                     setcookie('username', '', time() - 3600, "/"); // Cookie löschen
                     unset($_COOKIE['username']);
                 }
-                if ($row['is_admin']) {
+                if ($row['is_admin'] == 1) {
                     setcookie('isAdmin', $row['is_admin'], time() + 86400 * 30, "/");
                     $_COOKIE['isAdmin'] = $row['is_admin']; // optional für aktuelle Anfrage
                 }else{

@@ -17,12 +17,11 @@ function insertErrorLog(message) {
     });
 }
 window.addEventListener('error', function (event) {
-    console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
-    insertErrorLog(`Kritischer Fehler: ${event.message} in ${event.filename} Zeile ${event.lineno}`);
-    setTimeout(() => {
-        this.alert('Ein kritischer Fehler ist aufgetreten. Die Seite wird neu geladen.');
-        location.reload(); // Seite neu laden nach 5 Sekunden
-    }, 1000);
+    console.error( event.error, 'in', event.filename, 'Zeile', event.lineno);
+    insertErrorLog(event.message, 'in', event.filename, 'Zeile', event.lineno);
+    // setTimeout(() => {
+    //     location.reload(); // Seite neu laden nach 10 Sekunden
+    // }, 10000);
     // Optional: Verhindere, dass der Fehler weitergeitet wird
     event.preventDefault();
 });
@@ -32,11 +31,10 @@ window.addEventListener('unhandledrejection', function (event) {
     console.error('Unhandled Promise Rejection:', event.reason);
     // Hier deinen Code ausführen, z.B. Seite neu laden
     console.error('Kritischer Fehler aufgetreten:', event.error, 'in', event.filename, 'Zeile', event.lineno);
-    setTimeout(() => {
-         this.alert('Ein kritischer Fehler ist aufgetreten. Die Seite wird neu geladen.');
-        location.reload(); // Seite neu laden nach 5 Sekunden
-    }, 10000);
-    insertErrorLog(`Kritischer Fehler: ${event.message} in ${event.filename} Zeile ${event.lineno}`);
+    // setTimeout(() => {
+    //     location.reload(); // Seite neu laden nach 5 Sekunden
+    // }, 10000);
+    insertErrorLog(event.message, 'in', event.filename, 'Zeile', event.lineno);
 
     event.preventDefault();
 });

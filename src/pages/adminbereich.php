@@ -3,7 +3,7 @@
 
 <?php
 
-if (isset($_COOKIE['isAdmin']) && $_COOKIE['isAdmin'] == 1) {
+if (isset($_COOKIE['isAdmin'])) {
     // Admin-Bereich anzeigen
 } else if ($_SESSION['is_admin'] != 1) {
     header('Location: ../pages/dashboard.php');

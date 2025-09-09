@@ -91,5 +91,5 @@
             "value": 30
         }
     ],
-    "defaultMaxCountForInfoTerminals": 5
+    "defaultMaxCountForInfoTerminals": 30
 }

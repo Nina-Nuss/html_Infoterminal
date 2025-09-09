@@ -52,14 +52,14 @@ include '../php/auth.php';
                         </div>
                     </div>
                     <div class="d-flex justify-content-center gap-2 col-md-12">
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div id="konfigContainer">
                                 <div class="card">
                                     <div class="card-header p-1">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                     </div>
-                                    <div class="d-flex ">
-                                        <div class="p-3" style="width: 20rem;">
+                                    <div class="d-flex justify-content-center ">
+                                        <div class="p-3" style="width: 18rem;">
                                             <div class="form-group mt-0">
                                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                                     <i class="fas fa-file-alt me-2"></i>
@@ -92,18 +92,18 @@ include '../php/auth.php';
 
                                             </div>
                                         </div>
-                                        <div style="width: 1rem;"> </div>
-                                        <div class="p-3" style="width: 35rem;  overflow-y: auto;">
+                                        <div style="width: 2rem;"> </div>
+                                        <div class="p-3" style="width: 31rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
-                                                    <div class="d-flex align-items-center" style="margin-bottom: 1rem;">
+                                                    <div class="d-flex align-items-center mb-3">
                                                         <div class="d-flex  align-items-center">
-                                                            <i class="fas text-dark  fa-calendar-alt"></i>
-                                                            <span style="margin-left: 0.5rem;">Datum:</span>
-                                                            <div class="d-flex align-items-center">
+                                                            <i class="fas text-dark  fa-calendar-alt me-2"></i>
+                                                            <span>Datum:</span>
+                                                            <div class="d-flex align-items-center ms-4">
                                                                 <input type="date" class="form-control form-control-sm"
                                                                     id="startDate" name="startDate"
-                                                                    style="margin-left: 1.3rem;">
+                                                                   >
                                                             </div>  
                                                         </div>
 
@@ -114,7 +114,7 @@ include '../php/auth.php';
                                                                 class="form-control form-control-sm"
                                                                 id="endDate" name="endDate">
                                                             <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger btn-sm trashBtn"
+                                                                class="btn btn-outline-danger trashbtn btn-sm"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -124,14 +124,14 @@ include '../php/auth.php';
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas fa-clock text-dark" style="margin-right: 0.5rem;"></i>
+                                                            <i class="fas fa-clock text-dark me-2"></i>
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill mx-2"
                                                                 id="startTimeRange" name="startTimeRange">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 mx-2 text-secondary">Uhr</label>
+                                                                class="form-label mb-0 me-2 text-secondary">Uhr</label>
                                                         </div>
                                                         <div class="d-flex align-items-center ms-auto">
                                                             <label for="endTimeRange"
@@ -143,7 +143,7 @@ include '../php/auth.php';
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 text-secondary mx-2"> Uhr</label>
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger trashBtn me-auto " style="margin-left: 1.3rem;"
+                                                                class="btn btn-outline-danger trashBtn me-auto ms-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
@@ -154,7 +154,7 @@ include '../php/auth.php';
                                                 <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label ">
-                                                            <i class="fas fa-desktop mb-0" style="margin-right: 0.5rem;"></i>Anzeige:
+                                                            <i class="fas fa-desktop mb-0 me-2" ></i>Anzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm" style="width: 7vw; margin-left: 0.5rem;"
                                                             id="infotherminalSelect">
@@ -223,7 +223,7 @@ include '../php/auth.php';
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100 overflow-auto" style="height: 127px;">
+                                    <div class="w-100 overflow-auto" style="height: 125px;">
                                         <div style="height: auto; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
