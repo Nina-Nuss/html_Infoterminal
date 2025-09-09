@@ -203,7 +203,7 @@ include '../php/auth.php';
                                                 </div>
                                             </div>
                                         </div>
-                                         <div style="margin: 1rem;" > </div>
+                                         <div style="margin: 2rem;" > </div>
 
                                     </div>
                                 </div>
