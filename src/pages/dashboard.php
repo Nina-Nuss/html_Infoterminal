@@ -144,7 +144,7 @@ include '../php/auth.php';
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 text-secondary mx-2" > Uhr</label>
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger trashBtn "  style="margin-left: 1.3rem;"
+                                                                class="btn btn-outline-danger trashBtn me-auto "  style="margin-left: 1.3rem;"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
