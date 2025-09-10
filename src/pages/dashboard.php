@@ -206,7 +206,7 @@ include '../php/auth.php';
 
                         </div>
                         <div class="col-md-3" id="bildschirmVerwaltung">
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="card-header p-1">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
                                 </div>
@@ -223,7 +223,7 @@ include '../php/auth.php';
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100 overflow-auto" style="height: 125px;">
+                                    <div class="w-100 overflow-auto">
                                         <div style="height: auto; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
@@ -239,11 +239,11 @@ include '../php/auth.php';
                                             </table>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="mt-3"></div>
                 </div>
 
             </div>
