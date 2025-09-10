@@ -211,7 +211,7 @@ include '../php/auth.php';
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm verwalten</h6>
                                 </div>
                                 <div class="card-body d-flex">
-                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
+                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3" style="height: 120px;">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
                                             class="btn btn-success align-items-stretch m-0 würfelbtn">
@@ -224,7 +224,7 @@ include '../php/auth.php';
                                         </button>
                                     </div>
                                     <div class="w-100 overflow-auto">
-                                        <div style="height: auto; overflow-y: auto;">
+                                        <div style="height: 120px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
                                                     style="position: sticky; top: 0; z-index: 2;">

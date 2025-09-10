@@ -1,3 +1,4 @@
+
 function insertErrorLog(message) {
     fetch('../database/insertError.php', {
         method: 'POST',
@@ -17,8 +18,10 @@ function insertErrorLog(message) {
     });
 }
 window.addEventListener('error', function (event) {
+
     console.error( event.error, 'in', event.filename, 'Zeile', event.lineno);
     insertErrorLog(event.message, 'in', event.filename, 'Zeile', event.lineno);
+    // window.location.href = "../../errorInfoterminal.php";
     // setTimeout(() => {
     //     location.reload(); // Seite neu laden nach 10 Sekunden
     // }, 10000);
@@ -35,6 +38,8 @@ window.addEventListener('unhandledrejection', function (event) {
     //     location.reload(); // Seite neu laden nach 5 Sekunden
     // }, 10000);
     insertErrorLog(event.message, 'in', event.filename, 'Zeile', event.lineno);
-
+    // window.location.href = "../../errorInfoterminal.php";
     event.preventDefault();
 });
+
+

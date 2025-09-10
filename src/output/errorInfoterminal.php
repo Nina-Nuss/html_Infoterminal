@@ -15,8 +15,7 @@ include '../assets/links.html';
     <div class="text-center w-100">
         <img class="img-fluid" style="max-width: 300px;" src="/src/images/logo.png" alt="">
     </div>
-    <br>
-     <div class="mt-4"></div>
+    <div class="mt-4"></div>
     <div id="error-message">
 
     </div>
@@ -29,9 +28,10 @@ include '../assets/links.html';
             .then(response => response.text())
             .then(data => {
                 console.log('IP-Adresse:', data);
-                document.getElementById("error-message").innerHTML = "<p>ihre IP-Adresse: " + data + " wurde nicht gefunden. Bitte kontaktieren Sie den Administrator.</p>";
+                document.getElementById("error-message").innerHTML = "<p>Reparaturarbeiten werden durchgeführt. Bitte haben Sie Geduld.</p>";
             });
     });
+
     setInterval(() => {
         window.location.href = "index.php";
     }, 10000);
