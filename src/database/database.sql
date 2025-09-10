@@ -49,21 +49,26 @@ CREATE TABLE infotherminal_schema (
 
 drop table user_login;
 CREATE TABLE user_login (
-        id INT IDENTITY(1,1) PRIMARY KEY, -- Bleibt int für Auto-Inkrement
-        username VARCHAR(50),
-        password VARCHAR(255), -- Gehashte Passwörter
-        remember_me VARCHAR(1) DEFAULT '1', -- '1' = Angemeldet bleiben, '0' = Nein
-        is_admin VARCHAR(1) DEFAULT '0', -- '1' = Admin, '0' = Normaler User
-        is_active VARCHAR(1) DEFAULT '1', -- '1' = Aktiv, '0' = Deaktiviert
-        email VARCHAR(100),
-        failed_attempts VARCHAR(10) DEFAULT '0', -- Anzahl als String
-        last_failed_attempt VARCHAR(50), -- Datum als String (z.B. '2023-10-01 12:00:00')
-        lockout_until VARCHAR(50), -- Datum als String
-        last_login VARCHAR(50), -- Datum als String
-        verification_code VARCHAR(10), -- Für Passwort-Reset
-        verification_expires DATETIME, -- Ablaufdatum als echtes DATETIME
-        created_at DATETIME DEFAULT GETDATE(), -- Erstellungsdatum im Format yyyy-mm-dd hh:mi:ss
+    id INT IDENTITY(1,1) PRIMARY KEY, -- Bleibt int für Auto-Inkrement
+    username VARCHAR(50),
+    password VARCHAR(255), -- Gehashte Passwörter
+    remember_me VARCHAR(1) DEFAULT '1', -- '1' = Angemeldet bleiben, '0' = Nein
+    is_admin VARCHAR(1) DEFAULT '0', -- '1' = Admin, '0' = Normaler User
+    is_active VARCHAR(1) DEFAULT '1', -- '1' = Aktiv, '0' = Deaktiviert
+    email VARCHAR(100),
+    failed_attempts VARCHAR(10) DEFAULT '0', -- Anzahl als String
+    last_failed_attempt VARCHAR(50), -- Datum als String (z.B. '2023-10-01 12:00:00')
+    lockout_until VARCHAR(50), -- Datum als String
+    last_login VARCHAR(50), -- Datum als String
+    verification_code VARCHAR(10), -- Für Passwort-Reset
+    verification_expires DATETIME, -- Ablaufdatum als echtes DATETIME
+    created_at DATETIME DEFAULT GETDATE(), -- Erstellungsdatum im Format yyyy-mm-dd hh:mi:ss
  );
+
+INSERT INTO user_login (username, password, is_admin)
+VALUES ('admin', '0000', '1'),
+       ('user', '0000', '0');
+
 
 
 drop table error_logs;
@@ -71,3 +76,4 @@ CREATE TABLE error_logs (
         message VARCHAR(255) NOT NULL, -- Fehler-Nachricht
         datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
 );
+
