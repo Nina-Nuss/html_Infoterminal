@@ -377,8 +377,8 @@ hr {
 }
 
 .würfelbtn {
-    width: 2.5rem ;
-    height: 2.3rem;
+    width: 50px !important;
+    height: 38px !important;
 
 }
 
@@ -388,3 +388,4 @@ hr {
     border-radius: 0.25rem !important;
     padding: 7px !important;
 }
+

@@ -124,12 +124,12 @@ include '../php/auth.php';
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fas fa-clock text-dark me-2"></i>
+                                                            <i class="fa fa-clock text-dark me-2"  aria-hidden="true"></i>
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill mx-2"
-                                                                id="startTimeRange" name="startTimeRange">
+                                                                id="startTimeRange" name="startTimeRange" >
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary">Uhr</label>
                                                         </div>
@@ -141,7 +141,7 @@ include '../php/auth.php';
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 text-secondary mx-2"> Uhr</label>
+                                                                class="form-label mb-0 text-secondary mx-2 "> Uhr</label>
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger trashBtn me-auto ms-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
