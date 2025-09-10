@@ -56,7 +56,7 @@ include '../php/auth.php';
                         <div class="col-md-7">
                             <div id="konfigContainer">
                                 <div class="card">
-                                    <div class="card-header p-1">
+                                    <div class="card-header p-2">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                     </div>
                                     <div class="d-flex justify-content-center ">
@@ -128,7 +128,7 @@ include '../php/auth.php';
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
-                                                                class="form-control form-control-sm flex-fill mx-2" style="width: 4rem;"
+                                                                class="form-control form-control-sm flex-fill mx-2" style="width: 6rem;"
                                                                 id="startTimeRange" name="startTimeRange">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary">Uhr</label>
@@ -137,11 +137,11 @@ include '../php/auth.php';
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width: auto;">bis</label>
-                                                            <input type="time" style="width: 4rem;"
+                                                            <input type="time" style="width: 6rem;"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 text-secondary me-5 mx-2"> Uhr</label>
+                                                                class="form-label mb-0 text-secondary me-3 mx-2"> Uhr</label>
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger trashBtn me-auto ms-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
@@ -207,18 +207,18 @@ include '../php/auth.php';
                         </div>
                         <div class="col-md-3" id="bildschirmVerwaltung">
                             <div class="card h-100">
-                                <div class="card-header p-1">
-                                    <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm Verwaltung</h6>
+                                <div class="card-header  p-2">
+                                    <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm verwalten</h6>
                                 </div>
                                 <div class="card-body d-flex">
                                     <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
-                                            class="btn btn-success btn-sm align-items-stretch m-0 würfelbtn">
+                                            class="btn btn-success align-items-stretch m-0 würfelbtn">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <button id="btn_loeschen" type="button"
-                                            class="btn btn-danger btn-sm align-items-stretch m-0 würfelbtn"
+                                            class="btn btn-danger align-items-stretch m-0 würfelbtn"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>

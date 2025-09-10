@@ -15,9 +15,19 @@
             </div>
             <div class="d-flex align-items-center justify-content-center position-absolute ms-auto end-0 me-4">
 
-                <div>Eingeloggt als: <span id="usernameDisplay"><?php if(isset($_SESSION['username'])){ echo $_SESSION['username']; }else if(isset($_COOKIE['username'])){ echo $_COOKIE['username']; } ?></span></div>
-                <button id="logout" type="button" onclick="logout()" class="btn text-dark start-btn würfelbtn"
-                    style="border-color: #006b99; border-radius: 8px; background-color: rgba(255, 255, 255, 0.952);"
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+                    <span id="usernameDisplay">
+                        <?php 
+                            if(isset($_SESSION['username'])) {
+                                echo $_SESSION['username']; 
+                            } else if(isset($_COOKIE['username'])) {
+                                echo $_COOKIE['username']; 
+                            } 
+                        ?>
+                    </span>
+                </div>    <button id="logout" type="button" onclick="logout()" class="btn text-dark start-btn" 
+                    style="border-color: #006b99; width: 2.5rem; height: 2.3rem;  background-color: rgba(255, 255, 255, 0.952);"
                     aria-label="Logout" title="Logout">
                     <i class="bi bi-box-arrow-right"></i>
                 </button>

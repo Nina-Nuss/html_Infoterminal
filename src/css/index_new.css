@@ -377,9 +377,9 @@ hr {
 }
 
 .würfelbtn {
-    width: 50px !important;
-    height: 38px !important;
-
+    width: 2.5rem !important;
+    height: auto !important;
+    padding: 7px !important;
 }
 
 .trashBtn{
