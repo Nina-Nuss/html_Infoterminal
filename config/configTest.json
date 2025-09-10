@@ -1,13 +1,15 @@
 {
     "webpageSettings": [
         {
-            "maxCountForInfoPages": "EE",
-            "maxCountForInfoTerminals": "SDFSDFSDF",
-            "maxUsers": "fsdfsdf",
+            "defaultMaxCountForInfoPages": "60",
+            "defaultMaxCountForInfoTerminals": "50",
+            "maxUsers": "40",
             "darkMode": "1",
             "sdfsdf": null,
             "fsdfsd": null,
-            "": "1bcvbvcb"
+            "": "1bcvbvcb",
+            "maxCountForInfoTerminals": "110",
+            "maxCountForInfoPages": "100"
         }
     ]
 }

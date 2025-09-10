@@ -276,7 +276,7 @@ window.addEventListener("load", async function () {
     Infoterminal.temp_remove = [];
     // Sende POST-Request zu php/sendingToPage.php
     try {
-   
+
         const adminBereich = document.getElementById("adminBereich");
         adminBereich.addEventListener('click', async function () {
             window.location.href = 'adminbereich.php';
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch('../../config/config.json');
         if (!res.ok) throw new Error(`Config nicht gefunden (Status ${res.status})`);
         const cfg = await res.json();
-        
+
         // Dropdown befüllen
         // createList(cfg.intervals, select, cfg.default + " " + "minuten"); // falls du einen Default-Wert hast
         createList(cfg.maxCountForInfoPages, infoCounterLimit, cfg.defaultMaxCountForInfoPages + " " + "Info-Seiten");
@@ -414,3 +414,38 @@ function saveList(select, name) {
         }
     });
 }
+
+
+async function getData() {
+    const result = await fetch('../../config/configTest.json')
+    return await result.json();
+
+}
+async function setData() {
+    try {
+        var data = await getData();
+        document.getElementById("val1").value = data.webpageSettings[0].maxCountForInfoPages
+        document.getElementById("val3").value = data.webpageSettings[0].maxUsers
+        document.getElementById("val2").value = data.webpageSettings[0].darkMode
+    } catch (err) {
+        console.error("Error fetching data:", err);
+    }
+}
+
+async function update(key, value) {
+
+    console.log(value);
+    const result = await fetch("saveValue.php", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([{
+            "key": key,
+            "value": value
+        }])
+    });
+    const res = await result.json();
+    console.log(res);
+}
+

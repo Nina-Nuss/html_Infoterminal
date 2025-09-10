@@ -10,11 +10,11 @@
 <body>
     <h1>Test Page</h1>
     <div id="form">
-        <input type="text" id="val1" value="">
+        <select id="val1" value=""></select>
         <button id="submit" onclick="update('maxCountForInfoPages', document.getElementById('val1').value)">Submit</button>
-        <input type="text" id="val2" value="">
+        <select id="val2" value=""></select>
         <button id="submit" onclick="update('maxCountForInfoTerminals', document.getElementById('val2').value)">Submit</button>
-        <input type="text" id="val3" value="">
+        <select id="val3" value=""></select>
         <button id="submit" onclick="update('maxUsers', document.getElementById('val3').value)">Submit</button>
 
     </div>
@@ -27,22 +27,52 @@
         return await result.json();
 
     }
+
+    function setValue(val1) {
+        var val1 = document.getElementById(val1)
+        for (var i = 0; i < 20; i++) {
+            val = i * 10;
+            ele = document.createElement("option");
+            ele.text = val;
+            ele.value = val;
+            val1.appendChild(ele);
+        }
+    }
+
     async function setData() {
-        var data = await getData();
-        document.getElementById("val1").value = data.webpageSettings[0].maxCountForInfoPages
-        document.getElementById("val3").value = data.webpageSettings[0].maxUsers
-        document.getElementById("val2").value = data.webpageSettings[0].darkMode
+
+        setValue("val1")
+        setValue("val2")
+        setValue("val3")
+
+        var val1 = document.getElementById("val1")
+        var val2 = document.getElementById("val2")
+        var val3 = document.getElementById("val3")
+
+
+        val1.appendChild(ele);
+
+        try {
+            var data = await getData();
+            val1.value = data.webpageSettings[0].maxCountForInfoPages
+            val3.value = data.webpageSettings[0].maxUsers
+            val2.value = data.webpageSettings[0].darkMode
+        } catch (err) {
+            console.error("Error fetching data:", err);
+        }
     }
 
     async function update(key, value) {
-
         console.log(value);
         const result = await fetch("saveValue.php", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify([{"key": key, "value": value}])
+            body: JSON.stringify([{
+                "key": key,
+                "value": value
+            }])
         });
         const res = await result.json();
         console.log(res);
@@ -51,13 +81,7 @@
 
     setData()
 
-    // console.log(data);
-
-    document.getElementById("submit").addEventListener("click", function() {
-        let text = document.getElementById("val1").value
-
-
-    });
+    // console.log(dat
 </script>
 
 </html>
