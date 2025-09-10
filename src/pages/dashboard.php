@@ -94,7 +94,7 @@ include '../php/auth.php';
                                             </div>
                                         </div>
                                         <div style="width: 2rem;"> </div>
-                                        <div class="p-3" style="width: 31rem;  overflow-y: auto;">
+                                        <div class="p-3" style="width: 32rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
                                                     <div class="d-flex align-items-center mb-3">
@@ -102,16 +102,16 @@ include '../php/auth.php';
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
                                                             <span>Datum:</span>
                                                             <div class="d-flex align-items-center ms-4">
-                                                                <input type="date" class="form-control form-control-sm"
+                                                                <input type="date" class="form-control form-control-sm" style="width: 9rem; "
                                                                     id="startDate" name="startDate">
                                                             </div>
                                                         </div>
 
                                                         <div class="d-flex align-items-center justify-content-between ms-auto">
                                                             <label for="endDate"
-                                                                class="form-label mb-0 text-secondary me-2">bis</label>
+                                                                class="form-label mb-0 text-secondary mx-2">bis</label>
                                                             <input type="date"
-                                                                class="form-control form-control-sm"
+                                                                class="form-control form-control-sm"  style="width: 9rem; "
                                                                 id="endDate" name="endDate">
                                                             <button id="btnDelDateTime"
                                                                 class="btn btn-outline-danger trashbtn btn-sm"
@@ -128,7 +128,7 @@ include '../php/auth.php';
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
-                                                                class="form-control form-control-sm flex-fill mx-2"
+                                                                class="form-control form-control-sm flex-fill mx-2" style="width: 4rem;"
                                                                 id="startTimeRange" name="startTimeRange">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary">Uhr</label>
@@ -137,11 +137,11 @@ include '../php/auth.php';
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary"
                                                                 style="width: auto;">bis</label>
-                                                            <input type="time"
+                                                            <input type="time" style="width: 4rem;"
                                                                 class="form-control form-control-sm flex-fill"
                                                                 id="endTimeRange" name="endTimeRange">
                                                             <label for="endTimeRange"
-                                                                class="form-label mb-0 text-secondary mx-2 "> Uhr</label>
+                                                                class="form-label mb-0 text-secondary me-5 mx-2"> Uhr</label>
                                                             <button id="delTimeRange"
                                                                 class="btn btn-outline-danger trashBtn me-auto ms-3"
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
