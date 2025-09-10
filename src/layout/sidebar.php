@@ -15,7 +15,7 @@
      <div id="dokumente" class="w-100">
             <h2 id="titelUmgebung" class="text-center"></h2>
             <div id="umgebungsContainer" class="w-100">
-                <div id="cardContainer" class="cardContainer" style="width: 97%; margin-left: 6px;"></div>
+                <div id="cardContainer" class="cardContainer" style="width: 95%; margin-left: 6px;"></div>
             </div>
         </div>
        

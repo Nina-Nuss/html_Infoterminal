@@ -121,6 +121,7 @@ input[type="checkbox"] {
 .start-btn {
     border-width: 2px !important;
     border-color: 006c99 !important;
+     border-radius: 8px !important; 
 }
 
 
