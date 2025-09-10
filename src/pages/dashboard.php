@@ -114,7 +114,7 @@ include '../php/auth.php';
                                                                 class="form-control form-control-sm"  style="width: 9rem; "
                                                                 id="endDate" name="endDate">
                                                             <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger trashbtn btn-sm"
+                                                                class="btn btn-outline-danger trashbtn btn-sm ms-3"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
