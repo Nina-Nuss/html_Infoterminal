@@ -19,14 +19,15 @@ include '../php/auth.php';
 
 <head>
     <?php include '../assets/links.html'; ?>
-    <?php include '../layout/modal/hinzufuegen.html'; ?>
-    <?php include '../layout/modal/addInfoSeite.html'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
 <body>
     <?php include '../layout/header.php'; ?>
+
+    <?php include '../layout/modal/hinzufuegen.html'; ?>
+    <?php include '../layout/modal/addInfoSeite.html'; ?>
     <div class="container-fluid pt-3">
         <div class="row" style="height:90vh;">
             <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/sidebar.php'; ?>
@@ -102,9 +103,8 @@ include '../php/auth.php';
                                                             <span>Datum:</span>
                                                             <div class="d-flex align-items-center ms-4">
                                                                 <input type="date" class="form-control form-control-sm"
-                                                                    id="startDate" name="startDate"
-                                                                   >
-                                                            </div>  
+                                                                    id="startDate" name="startDate">
+                                                            </div>
                                                         </div>
 
                                                         <div class="d-flex align-items-center justify-content-between ms-auto">
@@ -124,12 +124,12 @@ include '../php/auth.php';
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fa fa-clock text-dark me-2"  aria-hidden="true"></i>
+                                                            <i class="fa fa-clock text-dark me-2" aria-hidden="true"></i>
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill mx-2"
-                                                                id="startTimeRange" name="startTimeRange" >
+                                                                id="startTimeRange" name="startTimeRange">
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 me-2 text-secondary">Uhr</label>
                                                         </div>
@@ -154,7 +154,7 @@ include '../php/auth.php';
                                                 <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
                                                         <label for="openTerminalBtn" class="form-label ">
-                                                            <i class="fas fa-desktop mb-0 me-2" ></i>Anzeige:
+                                                            <i class="fas fa-desktop mb-0 me-2"></i>Anzeige:
                                                         </label>
                                                         <select class="form-control form-select-sm" style="width: 7vw; margin-left: 0.5rem;"
                                                             id="infotherminalSelect">
