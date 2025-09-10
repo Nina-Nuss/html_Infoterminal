@@ -56,7 +56,7 @@ class Infoseite {
         console.log(src);
         
        
-        debugger;
+        
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
             placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null;this.src='/img/bild.png'">`;

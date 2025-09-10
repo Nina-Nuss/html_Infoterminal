@@ -112,7 +112,7 @@
 <script>
 
     window.addEventListener('DOMContentLoaded', async () => {
-        debugger
+   
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
         const template = params.get('template');
@@ -134,7 +134,7 @@
         }
     });
     function startCarousel(ort) {
-        debugger
+ 
         const iframe = document.createElement('iframe');
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
         // iframe.onload = () => {
