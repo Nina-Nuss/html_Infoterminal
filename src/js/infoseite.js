@@ -54,14 +54,14 @@ class Infoseite {
         let placeHolder;
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
         console.log(src);
-        
-       
-        
+
+
+
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
             placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null;this.src='/img/bild.png'">`;
-            
-        }   
+
+        }
         else if (videoExts.includes(ext)) {
             placeHolder = `
     <video class="card-img-small w-100" autoplay muted loop  >
@@ -72,7 +72,7 @@ class Infoseite {
         else {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
             placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
-        
+
         }
         const aktivIcon = this.aktiv
             ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`
@@ -565,7 +565,7 @@ class Infoseite {
 
         Infoseite.removeChanges() // Zuerst alle Felder leeren
 
-        
+
 
         console.log("Startzeit:", cardObj.startTime);
         console.log("Endzeit:", cardObj.endTime);
@@ -889,39 +889,33 @@ function getCurrentTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     return `${hours}:${minutes}`;
 }
-function imgVideoPreview() {
-    if (document.getElementById('img') !== null) {
-        document.getElementById('img').addEventListener('change', function (event) {
-            const [file] = event.target.files;
-            const imgPreview = document.getElementById('imgPreview');
-            const videoPreview = document.getElementById('videoPreview');
-            // Beide Vorschauen verstecken
-            if (imgPreview) {
-                imgPreview.style.display = 'none';
-                imgPreview.src = '#';
-            }
-            if (videoPreview) {
+function previewFile() {
+    const fileInput = document.getElementById('img');
+    const imgPreview = document.getElementById('imgPreview');
+    const videoPreview = document.getElementById('videoPreview');
+    const previewContainer = document.getElementById('previewContainer');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const fileType = file.type;
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            if (fileType.startsWith('image/')) {
+                imgPreview.src = e.target.result;
+                imgPreview.style.display = 'block';
                 videoPreview.style.display = 'none';
-                videoPreview.src = '#';
+            } else if (fileType.startsWith('video/')) {
+                videoPreview.src = e.target.result;
+                videoPreview.style.display = 'block';
+                imgPreview.style.display = 'none';
             }
-            if (file) {
-                console.log(file.name);
-                if (file.type.startsWith('image/')) {
-                    // Bild-Vorschau anzeigen
-                    if (imgPreview) {
-                        imgPreview.src = URL.createObjectURL(file);
-                        imgPreview.style.display = 'block';
-                    }
-                } else if (file.type.startsWith('video/')) {
-                    // Video-Vorschau anzeigen
-                    if (videoPreview) {
-                        videoPreview.src = URL.createObjectURL(file);
-                        videoPreview.style.display = 'block';
-                        videoPreview.load(); // Video neu laden
-                    }
-                }
-            }
-        });
+            previewContainer.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        previewContainer.style.display = 'none';
     }
 }
 async function meow(event) {
@@ -1196,6 +1190,6 @@ function wähleErstesInfoseite() {
         } catch (error) {
             console.error("Erstes Objekt konnte nicht ausgewählt werden.", error);
         }
-       
+
     }
 }

@@ -9,40 +9,32 @@
             </div>
             <div class="modal-body">
                 <form action="../php/movePic.php" method="post" enctype="multipart/form-data">
-                    
-                    
+
+
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
-                        <button type="submit" class="btn btn-success shadow-sm" onclick="meow(event)"
-                           >
+                        <button type="submit" class="btn btn-success shadow-sm" onclick="meow(event)">
                             <i class="fas fa-plus me-2"></i> Hinzufügen
                         </button>
                     </div>
 
-                    <div class="mt-3 overflow-auto" >
-                        <!-- <div class="alert alert-info" role="alert">
-                            <h6 class="alert-heading">
-                                <i class="fas fa-info-circle me-2"></i> Wichtige Hinweise:
-                            </h6>
-                            <ul class="mb-0">
-                                <li>Maximal 50 Infoseiten</li>
-                                <li>Es sind jpg, png und gif Dateien erlaubt</li>
-                            </ul>
-                        </div> -->
-
-
+                    <div class="mt-3">
+                      
                         <div class="form-group mb-3">
                             <label for="img" class="form-label">
                                 <i class="fas fa-image me-2"></i> Bild auswählen
                             </label>
-                            <input type="file" id="img" name="img" accept="image/*,video/*">
-                            <img id="imgPreview" src="#"
-                                style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
-                            <video id="videoPreview" controls muted
-                                style="display:none; max-width:100%; max-height:200px; margin-top:10px;">
-                                <source src="#" type="video/mp4">
-                                Ihr Browser unterstützt das Video-Element nicht.
-                            </video>
+                            <input type="file" class="form-control" id="img" name="img" accept="image/*,video/*"
+                                onchange="previewFile()">
+                            <div id="previewContainer" style="display:none; margin-top:10px;">
+                                <img id="imgPreview" src="#" alt="Bild-Vorschau"
+                                    style="max-width:100%; max-height:200px; display:none;">
+                                <video id="videoPreview" controls muted
+                                    style="max-width:100%; max-height:200px; display:none;">
+                                    <source src="#" type="video/mp4">
+                                    Ihr Browser unterstützt das Video-Element nicht.
+                                </video>
+                            </div>
                         </div>
 
 
