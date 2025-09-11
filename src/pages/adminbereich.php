@@ -76,16 +76,16 @@ if (isset($_COOKIE['isAdmin'])) {
                 </div> -->
                     <div class="card-body mt-3">
                         <div class="row d-flex justify-content-center">
-                            <div class="col-md-2">
+                            <div class="col-md-2 ">
                                 <div class="card h-100">
                                     <div class="card-header">
                                         <h6 class="card-title mb-0 d-flex justify-content-center">
                                             <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
                                         </h6>
                                     </div>
-                                    <div class="card-body position-relative" style="overflow-y: auto;">
+                                    <div class="card-body position-relative">
                                         <form id="formID" action="../php/bereitsVorhanden.php" method="post">
-                                            <div style="height: 275px;">
+                                            <div class="d-flex flex-column " style="height: 280px;">
                                                 <div class="form-group mb-3">
                                                     <label for="infotherminalIp" class="form-label">
                                                         <i class="fas fa-network-wired me-2"></i> IP-Adresse:
@@ -139,9 +139,9 @@ if (isset($_COOKIE['isAdmin'])) {
                                                 <i class="fas fa-list me-2"></i> Infoterminal auswählen:
                                             </label>
                                         </div>
-                                        <div style="height: 230px; overflow-y: auto;">
-                                            <table class="table table-hover position-relative">
-                                                <thead>
+                                        <div class="mb-3" style="height: 200px; overflow-y: auto;">
+                                            <table class="table table-hover mb-0">
+                                                <thead class="" style="position: sticky; top: 0; z-index: 1;">
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>IP-Adresse</th>
@@ -150,18 +150,15 @@ if (isset($_COOKIE['isAdmin'])) {
                                                     </tr>
                                                 </thead>
                                                 <tbody id="deleteInfotherminal">
-                                                </tbody>
-                                                <!-- Infotherminal-Liste wird hier dynamisch geladen -->
+                                                    <!-- Infoterminal-Liste wird hier dynamisch geladen -->
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn btn-sm  btn-danger  shadow-sm" style="width: 150px;"
-                                                onclick="Infoterminal.remove_generate()">
+                                            <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;" onclick="Infoterminal.remove_generate()">
                                                 <i class="fas fa-trash me-2"></i> Löschen
                                             </button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +178,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                             <!-- Optionen werden per JS aus config.json befüllt -->
                                         <!-- </select> -->
                                         <!-- </div> -->
-                                        <div style="height: 260px;">
+                                        <div>
                                             <div class="form-group ">
                                                 <label for="cardCounterLimit" class="form-label">
                                                     <i class="fas fa-hashtag me-2"></i> Infoterminal-Limit:
@@ -283,21 +280,21 @@ if (isset($_COOKIE['isAdmin'])) {
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card h-100">
+                            <div class="card h-100 ">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
                                         <i class="fas fa-user-minus me-2"></i> Nutzer löschen
                                     </h6>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body flex-column" >
                                     <div class="form-group
                                     mb-3">
                                         <label for="userSelect" class="form-label">
                                             <i class="fas fa-list me-2"></i> Nutzer auswählen:
                                         </label>
                                     </div>
-                                    <div style="height: 230px; overflow-y: auto;">
-                                        <table class="table table-hover position-relative">
+                                    <div style="height: 210px; overflow-y: auto;">
+                                        <table class="table table-hover position-relative " >
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -306,14 +303,11 @@ if (isset($_COOKIE['isAdmin'])) {
                                                     <th>Auswahl</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="deleteUser">
-
+                                            <tbody id="deleteUser" >
                                             </tbody>
-
-
                                         </table>
                                     </div>
-                                    <div class="d-flex justify-content-center">
+                                    <div class="d-flex justify-content-center mt-3 align-self-end">
                                         <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;"
                                             onclick="Crud.remove_generate(User.temp_remove, User.list)">
                                             <i class="fas fa-user-minus me-2"></i> löschen

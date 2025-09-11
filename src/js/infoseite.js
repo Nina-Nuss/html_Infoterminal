@@ -830,7 +830,7 @@ class Infoseite {
 
 }
 window.addEventListener("load", async function () {
-    imgVideoPreview();
+
     const templatebereich = document.getElementById("templateBereich");
     if (templatebereich !== null) {
         templatebereich.addEventListener("click", async function (event) {
