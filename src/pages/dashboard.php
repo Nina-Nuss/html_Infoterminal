@@ -59,7 +59,7 @@ include '../php/auth.php';
                                     <div class="card-header p-2">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
                                     </div>
-                                    <div class="d-flex justify-content-center ">
+                                    <div class="d-flex justify-content-around">
                                         <div class="p-3" style="width: 18rem;">
                                             <div class="form-group mt-0">
                                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -93,7 +93,7 @@ include '../php/auth.php';
 
                                             </div>
                                         </div>
-                                        <div style="width: 2rem;"> </div>
+                                      
                                         <div class="p-3" style="width: 32rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">

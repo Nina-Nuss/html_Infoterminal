@@ -48,26 +48,21 @@ class Infoseite {
     htmlBody(umgebung) {
         // Bestimme den korrekten Bildpfad basierend auf dem imagePathb
         const ext = this.imagePath.split('.').pop().toLowerCase();
-        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php']; // gängige Bildformate
+        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf']; // gängige Bildformate
         const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
-
         let placeHolder;
         let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
         console.log(src);
-
-
-
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
-            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null;this.src='/img/bild.png'">`;
-
+            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src='/img/bild.png'">`;
         }
         else if (videoExts.includes(ext)) {
             placeHolder = `
-    <video class="card-img-small w-100" autoplay muted loop  >
-      <source src="${src}">
-      Ihr Browser unterstützt das Video-Tag nicht.
-    </video>`;
+                <video class="card-img-small w-100" autoplay muted loop  >
+                  <source src="${src}">
+                  Ihr Browser unterstützt das Video-Tag nicht.  
+                </video>`;
         }
         else {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
@@ -1156,6 +1151,12 @@ function erstelleFunktionForCardObj(objID) {
         }
     } else {
         cardObj.style.border = "none";
+        cardObj.style.transition = "border 0.2s ease-in-out";
+        const cardHeader = document.getElementById("cardHeader" + objID);
+        cardHeader.style.backgroundColor = "#ffffff";
+
+        console.log("Checkbox mit ID " + objID + " wurde deaktiviert.");
+
         Infoseite.deaktiviereAllElements(true)
         // labelForSelectSchema.forEach(label => {
         //     label.innerHTML = ""; // Clear the label text for unchecked checkboxes

@@ -77,3 +77,25 @@ CREATE TABLE error_logs (
         datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
 );
 
+
+CREATE table templates (
+    id INT NOT NULL IDENTITY(1,1),
+    templateName VARCHAR(50),
+    text1 VARCHAR(255),
+    text2 VARCHAR(255),
+    text3 VARCHAR(255),
+    text4 VARCHAR(255),
+    text5 VARCHAR(255),
+    text6 VARCHAR(255),
+    bild1 VARCHAR(255),
+    bild2 VARCHAR(255),
+    bild3 VARCHAR(255),
+    bild4 VARCHAR(255),
+    bild5 VARCHAR(255),
+    bild6 VARCHAR(255),
+    video1 VARCHAR(255),
+    video2 VARCHAR(255),
+    video3 VARCHAR(255),
+    video4 VARCHAR(255),
+    CONSTRAINT PK_templates PRIMARY KEY (id)
+);
