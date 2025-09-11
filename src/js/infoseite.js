@@ -687,7 +687,7 @@ class Infoseite {
             console.log("End DateTime:", endDateTime);
 
             if (startDateTime > endDateTime) {
-                alert("Ungültige Eingabe: Bis-Datum/Zeit kann nicht vor Von-Datum/Zeit liegen.");
+                alert("Ungültige Eingabe: das Enddatum kann nicht vor dem Startdatum liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist größer oder gleich dem Enddatum.");
                 return;
             }
@@ -708,7 +708,7 @@ class Infoseite {
             alert("Nur Enddatum und Endzeit gesetzt");
             var endDateTime = new Date(endDate + " " + endTime);
             if (endDateTime < new Date()) {
-                alert("Das Enddatum und die Endzeit müssen in der Zukunft liegen.");
+                alert("Ungültige Eingabe: Das Enddatum und die Endzeit müssen in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Enddatum ist in der Vergangenheit.");
                 return;
             }
@@ -723,7 +723,7 @@ class Infoseite {
             alert("Nur Startdatum und Startzeit gesetzt");
             let startDateTime = new Date(startDate + " " + startTime);
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
-                alert("Das Startdatum muss in der Zukunft liegen.");
+                alert("Ungültige Eingabe: Das Startdatum muss in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
                 return;
             }
@@ -746,7 +746,7 @@ class Infoseite {
                 const endTimeOnly = combineDateTime("1970-01-01", endTimeRange.value);
 
                 if (startTimeOnly > endTimeOnly) {
-                    alert("Die Startzeit muss vor der Endzeit liegen.");
+                    alert("Ungültige Eingabe: Die Startzeit muss vor der Endzeit liegen.");
                     console.error("Ungültige Eingabe: Startzeit ist größer oder gleich der Endzeit.");
                     insertErrorLog("Ungültige Eingabe: Startzeit ist größer oder gleich der Endzeit.");
                     return;

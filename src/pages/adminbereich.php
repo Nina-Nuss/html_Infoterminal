@@ -38,7 +38,7 @@ if (isset($_COOKIE['isAdmin'])) {
             <div class="col-12 d-flex justify-content-center">
                 <select id="adminSectionSelector" class="form-select w-auto">
                     <option value="infoterminal" selected>Infoterminal verwalten</option>
-                    <option value="user">Nutzer verwalten</option>
+                    <option value="user">Benutzer verwalten</option>
                 </select>
             </div>
         </div>
@@ -101,28 +101,25 @@ if (isset($_COOKIE['isAdmin'])) {
                                                         name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
                                                 </div>
                                             </div>
-                                            <div class="center-bottom d-flex justify-content-center">
-                                                <div class="">
-                                                    <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
-                                                        <i class="fas fa-plus me-2"></i> Hinzufügen
-                                                    </button>
-                                                </div>
-                                                <button type="button" data-bs-placement="top"
-                                                    class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
-                                                    data-bs-toggle="popover" title="Popover title"
-                                                    data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
-                                                <script>
-                                                    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                                        new bootstrap.Popover(el, {
-                                                            trigger: 'hover',
-                                                            html: true,
-                                                            placement: el.getAttribute('data-bs-placement') || 'top'
-                                                        });
-                                                    });
-                                                </script>
-                                            </div>
                                         </form>
-
+                                    </div>
+                                    <div class="center-bottom d-flex justify-content-center card-footer bg-white p-3" style="border-top: none;">
+                                        <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
+                                            <i class="fas fa-plus me-2"></i> Hinzufügen
+                                        </button>
+                                        <button type="button" data-bs-placement="top"
+                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
+                                            data-bs-toggle="popover" title="Popover title"
+                                            data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
+                                        <script>
+                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                new bootstrap.Popover(el, {
+                                                    trigger: 'hover',
+                                                    html: true,
+                                                    placement: el.getAttribute('data-bs-placement') || 'top'
+                                                });
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -154,11 +151,12 @@ if (isset($_COOKIE['isAdmin'])) {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="d-flex justify-content-center">
-                                            <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;" onclick="Infoterminal.remove_generate()">
-                                                <i class="fas fa-trash me-2"></i> Löschen
-                                            </button>
-                                        </div>
+
+                                    </div>
+                                    <div class="card-footer bg-white d-flex justify-content-center p-3" style="border-top: none;">
+                                        <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;" onclick="Infoterminal.remove_generate()">
+                                            <i class="fas fa-trash me-2"></i> Löschen
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -199,10 +197,10 @@ if (isset($_COOKIE['isAdmin'])) {
 
 
                                     </div>
-                                    <div class="card-footer center-bottom d-flex justify-content-center">
-                                        <button type="button" class="btn btn-sm btn-danger mb-0" style="width: 150px;"
+                                    <div class="card-footer bg-white center-bottom d-flex justify-content-center p-3" style="border-top: none;">
+                                        <button type="button" class="btn btn-sm btn-danger" style="width: 150px;"
                                             onclick="bereinigeDatenbankUndFolder()">
-                                            <i class="fas fa-broom me-2"></i></i> Daten bereinigen
+                                            <i class="fas fa-broom me-2"></i> Daten bereinigen
                                         </button>
                                     </div>
                                 </div>
@@ -230,10 +228,10 @@ if (isset($_COOKIE['isAdmin'])) {
                             <div class="card h-100">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
-                                        <i class="fas fa-user-plus me-2"></i> Nutzer hinzufügen
+                                        <i class="fas fa-user-plus me-2"></i> Benutzer hinzufügen
                                     </h6>
                                 </div>
-                                <div class="card-body position-relative">
+                                <div class="card-body">
                                     <div id="formUser">
                                         <div class="form-group mb-3" style="height: 260px;">
                                             <div class="form-group mb-3">
@@ -268,14 +266,15 @@ if (isset($_COOKIE['isAdmin'])) {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="center-bottom d-flex justify-content-center">
-                                            <button class="btn btn-sm btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
-                                                <i class="fas fa-user-plus me-2"></i> Hinzufügen
-                                            </button>
-                                        </div>
-
                                     </div>
+
                                 </div>
+                                <div class="center-bottom d-flex justify-content-center p-3">
+                                    <button class="btn btn-sm btn-success shadow-sm" onclick="Crud.add_user()" style="width: 150px;">
+                                        <i class="fas fa-user-plus me-2"></i> Hinzufügen
+                                    </button>
+                                </div>
+
 
                             </div>
                         </div>
@@ -283,18 +282,18 @@ if (isset($_COOKIE['isAdmin'])) {
                             <div class="card h-100 ">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0 d-flex justify-content-center">
-                                        <i class="fas fa-user-minus me-2"></i> Nutzer löschen
+                                        <i class="fas fa-user-minus me-2"></i> Benutzer löschen
                                     </h6>
                                 </div>
-                                <div class="card-body flex-column" >
+                                <div class="card-body flex-column">
                                     <div class="form-group
                                     mb-3">
                                         <label for="userSelect" class="form-label">
-                                            <i class="fas fa-list me-2"></i> Nutzer auswählen:
+                                            <i class="fas fa-list me-2"></i> Benutzer auswählen:
                                         </label>
                                     </div>
-                                    <div style="height: 210px; overflow-y: auto;">
-                                        <table class="table table-hover position-relative " >
+                                    <div style="height: 200px; overflow-y: auto;">
+                                        <table class="table table-hover position-relative ">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -303,11 +302,14 @@ if (isset($_COOKIE['isAdmin'])) {
                                                     <th>Auswahl</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="deleteUser" >
+                                            <tbody id="deleteUser">
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="d-flex justify-content-center mt-3 align-self-end">
+
+                                </div>
+                                <div class="card-footer bg-white p-3" style="border-top: none;">
+                                    <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;"
                                             onclick="Crud.remove_generate(User.temp_remove, User.list)">
                                             <i class="fas fa-user-minus me-2"></i> löschen
@@ -327,7 +329,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                 <div class="card-body">
                                     <div class="form-group mb-3">
                                         <label for="userCounterLimit" class="form-label">
-                                            <i class="fas fa-hashtag me-2"></i> Nutzer-Limit:
+                                            <i class="fas fa-hashtag me-2"></i> Benutzer-Limit:
                                         </label>
                                         <input type="number" id="userCounterLimit" class="form-control" min="1" value="10">
                                     </div>

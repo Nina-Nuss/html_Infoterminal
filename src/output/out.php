@@ -13,7 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-    <!-- <script src="../js/error.js"></script> -->
+
 </head>
 <style>
     html,
@@ -46,9 +46,6 @@
 </body>
 
 <script>
-
-  
-
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -138,23 +135,24 @@
 
         } catch (error) {
             console.error('Fetch failed:', error);
+            setTimeout(() => location.reload(), 10000);
         }
     }
-    async function statReload() {
-        const loadTime = await fetch("../../config/config.json");
-        console.log("Reload-Intervall:", loadTime);
-        const config = await loadTime.json();
-        console.log("Reload-Intervall:", config.default);
-        timerRefresh(config.default); // Alle 15 Sekunden neu laden
-    }
-    carousel();
-
+    window.addEventListener('DOMContentLoaded', async () => {
+        try {
+            carousel();
+        } catch (error) {
+            console.error('Fetch error:', error);
+            setTimeout(() => location.reload(), 10000);
+        }
+     
+    });
     function createPic(element) {
         const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;
         img.className = "fullscreen";
         img.alt = "Image";
-       
+
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(img); // Add the new image to the body
     }
@@ -171,15 +169,6 @@
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(video); // Add the new video to the body
     }
-
-    function timerRefresh(time) {
-        setTimeout(() => {
-            location.reload();
-        }, 1000 * 60 * time); // time in Minuten
-    }
-
-
-
 </script>
 
 

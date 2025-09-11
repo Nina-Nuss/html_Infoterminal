@@ -23,6 +23,8 @@ include '../assets/links.html';
 
 </html>
 <script>
+    var params = new URLSearchParams(window.location.search);
+    var ort = params.get('ip');
     document.addEventListener("DOMContentLoaded", function() {
         fetch("../php/getClientIP.php")
             .then(response => response.text())
@@ -33,6 +35,6 @@ include '../assets/links.html';
     });
 
     setInterval(() => {
-        window.location.href = "index.php";
+        window.location.href = "index.php?ip=" + ort;
     }, 10000);
 </script>

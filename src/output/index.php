@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Site</title>
-    <script src="../js/error.js"></script>
+    <script src="errorDisplay.js"></script>
 </head>
 <style>
     html,
@@ -93,6 +93,7 @@
 </head>
 <?php include '../assets/links.html'; ?>
 
+
 <header>
     <?php include '../layout/logo.php'; ?>
     <?php include '../layout/header.php'; ?>
@@ -137,23 +138,23 @@
  
         const iframe = document.createElement('iframe');
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
-        // iframe.onload = () => {
-        //     try {
-        //         // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
-        //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        //         if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
-        //             console.error('404: Script gelöscht, versuche ort neu zu laden');
-        //             // Entferne den alten iframe und versuche neu
-        //             container.removeChild(iframe);
-        //             setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
-        //         }
-        //     } catch (error) {
-        //         console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
-        //         // Bei Fehler auch neu versuchen
-        //         container.removeChild(iframe);
-        //         setTimeout(() => startCarousel(ort), 30000);
-        //     }
-        // };
+        iframe.onload = () => {
+            try {
+                // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                if (iframeDoc && iframeDoc.body && iframeDoc.body.innerText.includes('Not Found')) {
+                    console.error('404: Script gelöscht, versuche ort neu zu laden');
+                    // Entferne den alten iframe und versuche neu
+                    container.removeChild(iframe);
+                    setTimeout(() => startCarousel(ort), 10000); // Nach 10 Sekunden neu versuchen
+                }
+            } catch (error) {
+                console.error('Fehler beim Prüfen des iframe-Inhalts:', error);
+                // Bei Fehler auch neu versuchen
+                container.removeChild(iframe);
+                setTimeout(() => startCarousel(ort), 10000);
+            }
+        };
         container.appendChild(iframe);
     }
 
@@ -173,17 +174,6 @@
         const clientIP = await response.text();
         return clientIP; // Rückgabe der IP-Adresse für weitere Verwendung
     }
-
-    window.addEventListener('error', (event) => {
-        console.error('Uncaught Error:', event.error);
-        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
-    });
-
-    // Globaler Promise-Rejection-Handler
-    window.addEventListener('unhandledrejection', (event) => {
-        console.error('Unhandled Promise Rejection:', event.reason);
-        setTimeout(() => location.reload(), 10000); // Neu laden nach 5 Sekunden
-    });
 
     // Seite nach 60 Minuten automatisch neu laden
     setTimeout(function () {
