@@ -1121,7 +1121,10 @@ function erstelleFunktionForCardObj(objID) {
         // Infoseite.DateTimeHandler(obj);
 
         cardObj.style.border = "2px solid #006c99";
-        cardObj.style.marginBottom = "0.5rem";
+        cardObj.style.transition = "border 0.2s ease-in-out";
+        cardObj.style.borderRadius = "8px";
+        const cardHeader = document.getElementById("cardHeader" + id);
+        cardHeader.style.backgroundColor = "#006c99";
 
         cbForSelectSchema.forEach(cb => {
             console.log(id + " " + extractNumberFromString(cb.id));
@@ -1131,8 +1134,10 @@ function erstelleFunktionForCardObj(objID) {
         });
 
         allCardObj.forEach(cardObj => {
+            const cardHeader = document.getElementById("cardHeader" + extractNumberFromString(cardObj.id));
             if (id !== extractNumberFromString(cardObj.id)) {
                 cardObj.style.border = "1px solid rgba(0,0,0,.125)";
+                cardHeader.style.backgroundColor = "#ffffff";
 
             }
         });

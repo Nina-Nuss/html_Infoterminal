@@ -390,3 +390,9 @@ hr {
     padding: 7px !important;
 }
 
+
+.infoseiteSelect {
+    background-color: #006c99;
+    border: 2px solid #006c99;
+    border-radius: 0.25rem;
+}

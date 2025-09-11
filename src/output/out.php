@@ -49,22 +49,26 @@
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    function errorAnzeige() {
+        document.body.innerHTML = '<h5 class="text-danger d-flex justify-content-center align-items-center vh-100">Fehler beim Laden der Inhalte, versuche es erneut...</h5>';
+        setTimeout(() => location.reload(), 10000);
+    }
     async function carousel() {
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
         const template = params.get('template');
-
-        if (template) {
-            console.log("Template geladen");
-            if (template.includes('img_')) {
-                createPic(template);
-            } else if (template.includes('video_')) {
-                createVid(template);
-            }
-            return;
-        }
-
         try {
+            if (template) {
+                console.log("Template geladen");
+                if (template.includes('img_')) {
+                    createPic(template);
+                } else if (template.includes('video_')) {
+                    createVid(template);
+                }
+                return;
+            }
+
             const response = await fetch("../database/getSchemas.php", {
                 method: "POST",
                 headers: {
@@ -79,7 +83,7 @@
                 if (response.status === 404) {
                     console.error('404 Not Found: URL nicht gefunden');
                     // Hier deinen Code ausführen, z.B. Reload
-                    setTimeout(() => location.reload(), 3000);
+                    errorAnzeige();
                     return;
                 }
                 console.error('Error fetching data:', response.status, response.statusText);
@@ -119,6 +123,7 @@
             while (true) {
                 for (const element of data) {
                     if (element[1].includes('img_')) {
+
                         createPic(element[1])
                         // const img = document.createElement('img');
                         await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
@@ -132,10 +137,10 @@
                 }
                 location.reload();
             }
-
         } catch (error) {
-            console.error('Fetch failed:', error);
-            setTimeout(() => location.reload(), 10000);
+            console.error('Fetch error:', error);
+            errorAnzeige();
+
         }
     }
     window.addEventListener('DOMContentLoaded', async () => {
@@ -143,10 +148,11 @@
             carousel();
         } catch (error) {
             console.error('Fetch error:', error);
-            setTimeout(() => location.reload(), 10000);
+            errorAnzeige();
         }
-     
+
     });
+
     function createPic(element) {
         const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;
