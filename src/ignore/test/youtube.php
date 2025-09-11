@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="">
 </head>
+
 
 <body>
     <iframe src="" frameborder="0"></iframe>
     <select class="form-select" aria-label="Default select example">
         <option selected>Open this select menu</option>
-        <option value="1">Video 1</option>
-        <option value="2">Video 2</option>
-        <option value="3">Video 3</option>
+        <option value="img" selected>Bilder Video</option>
+        <option value="yt">Youtube</option>
+
     </select>
 </body>
 <script>
