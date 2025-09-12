@@ -35,8 +35,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 76vw;
-        height: 76vh;
+        width: 77vw;
+        height: 77vh;
         /* border: 1px solid black; */
 
         box-sizing: border-box;
@@ -45,8 +45,8 @@
 
 
     .iframe-container iframe {
-        height: 76vh;
-        width: 76vw;
+        height: 77vh;
+        width: 77vw;
         border: none;
         object-fit: cover;
         display: block;
@@ -66,8 +66,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 76vw;
-            height: 76vh;
+             height: 77vh;
+            width: 77vw;
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -82,8 +82,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 76vw;
-            height: 76vh;
+            width: 77vw;
+            height: 77vh;
+           
             /* border: 1px solid black; */
 
             box-sizing: border-box;

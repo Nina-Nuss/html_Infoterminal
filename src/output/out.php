@@ -38,14 +38,15 @@
 
     .textYoutube {
         position: absolute;
-        bottom: 1px;
+        top: 1px;
         left: 1px;
         font-size: 2vh;
+        padding: 1px;
         font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(228, 215, 215, 0.48);
         /* transparenter */
-
-        border-radius: 5px;
+        color: black;
+        border-radius: 10px;
         z-index: 10;
         max-width: 100vw;
         max-height: 10vh;
