@@ -128,8 +128,8 @@ if (document.getElementById('addInfoSeite')) {
     document.addEventListener('DOMContentLoaded', function () {
         const modalElement = document.getElementById('addInfoSeite');
         if (modalElement) {
-            const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
-            modalInstance.show(); // Öffnet das Modal automatisch
+            // const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+            // modalInstance.show(); // Öffnet das Modal automatisch
         } else {
             console.error('Modal-Element nicht gefunden.');
         }
@@ -373,9 +373,6 @@ function uncheckAllTableCheckboxes() {
     if (Infoseite.temp_remove) {
         Infoseite.temp_remove = [];
     }
-
-
-
     console.log(`${checkboxes.length} Tabellen-Checkboxes wurden ausgeschaltet`);
 }
 

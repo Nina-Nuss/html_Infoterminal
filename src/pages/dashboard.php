@@ -224,7 +224,9 @@ header('Access-Control-Allow-Origin: *');
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                    <div class="w-100 overflow-auto">
+                                   
+                                    <div  class="w-100 overflow-auto border rounded-3" >
+                                      
                                         <div style="height: 120px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
