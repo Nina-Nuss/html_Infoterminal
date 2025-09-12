@@ -47,19 +47,17 @@ class Infoseite {
     }
     htmlBody(umgebung) {
         let placeHolder;
+        let icon;
         // Bestimme den korrekten Bildpfad basierend auf dem imagePath
         placeHolder = Infoseite.preparePlaceHolder(this.imagePath);
-        const aktivIcon = this.aktiv
-            ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`
-            : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
-
+        icon = Infoseite.iconHTML(this.aktiv);
         const body = `
             <div class="card mb-2 text-wrap border-2" id="${this.cardObjekte}" onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
                 <div id="cardHeader${this.id}" class="card-header p-1">
                 </div>
                 ${placeHolder}
                 <div class="card-body p-2 overflow-hidden">
-                    <h5 class="card-title m-0 p-0">${this.titel} <span id="isAktiv${this.id}">${aktivIcon}</span></h5> 
+                    <h5 class="card-title m-0 p-0">${this.titel} <span id="isAktiv${this.id}">${icon}</span></h5> 
                     <p class="card-text m-0">${this.beschreibung}</p>
                     <div class="form-check d-none d-flex justify-content-center align-items-center">
                         <input class="form-check-input single-active-checkbox me-2" type="checkbox" value="" id="flexCheck${this.id}" onclick="erstelleFunktionForCardObj(${this.id})">
@@ -76,8 +74,6 @@ class Infoseite {
                 </div>
             </div>
     `;
-
-
         document.getElementById(umgebung).innerHTML += body;
     }
     removeHtmlElement() {
@@ -101,7 +97,7 @@ class Infoseite {
             // Prüfe, ob es eine YouTube-URL ist, und wandle sie in Embed-URL um
             const embedUrl = Infoseite.getEmbedUrl(imagePath);
             if (embedUrl) {
-                return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>`;
+                return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media"  allowfullscreen></iframe>`;
             } else {
                 // Für andere Webseiten: Zeige einen Hinweis, da iframes oft blockiert werden
                 return placeHolder = `
@@ -122,7 +118,7 @@ class Infoseite {
         console.log(src);
         if (imageExts.includes(ext)) {
             // Remove the onerror handler before setting fallback to avoid infinite error loop
-            return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src='/img/bild.png'">`;
+            return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
         }
         else if (videoExts.includes(ext)) {
             return placeHolder = `
@@ -133,7 +129,7 @@ class Infoseite {
         }
         else {
             // Ensure a src is present for the fallback so the image element doesn't remain empty
-            return placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
+            return placeHolder = `<img class="card-img-small" src="" alt="Fallback">`;
 
         }
     }
@@ -183,6 +179,11 @@ class Infoseite {
         }
         console.log(this.temp_remove);
     };
+    static iconHTML(aktiv) {
+        return aktiv
+            ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`
+            : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
+    }
     static async remove_generate() {
         if (this.temp_remove.length == 0) {
             alert("Bitte wählen Sie mindestens ein Schema aus, um es zu löschen.");

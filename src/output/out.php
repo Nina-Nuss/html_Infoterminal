@@ -13,7 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-    <meta http-equiv="Permissions-Policy" content="compute-pressure=()">
+    <!-- <meta http-equiv="Permissions-Policy" content="compute-pressure=()"> -->
 
 </head>
 <style>
@@ -40,7 +40,7 @@
 
     .fullscreenYoutube {
         width: 100vw;
-        height: calc(100vh - 4vh);
+        height: calc(100vh - 7vh);
         /* Ziehe Text-Höhe ab, um Platz zu lassen */
         display: block;
         object-fit: contain;
@@ -187,6 +187,7 @@
         }
 
     });
+
     function createPic(element) {
         const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;
@@ -196,6 +197,7 @@
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(img); // Add the new image to the body
     }
+
     function createYoutubeVid(element) {
         if (element.includes("v=")) {
             var strSplit = element.split("v=");
@@ -211,7 +213,8 @@
         iframe.style.border = "none";
         // Hide YouTube progress bar and controls
         iframe.allowFullscreen = true;
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}`;
+        // In createYoutubeVid:
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de`;
         iframe.className = "fullscreenYoutube";
         iframe.frameBorder = "0";
         document.body.innerHTML = ''; // Clear the body content
@@ -223,6 +226,7 @@
         document.body.appendChild(iframe); // Add the new iframe to the body
         document.body.appendChild(text);
     }
+
     function createVid(element) {
         const video = document.createElement('video');
         video.src = "../../uploads/video/" + element;

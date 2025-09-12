@@ -28,15 +28,15 @@
         flex-direction: column;
         padding: 0%;
         z-index: 1;
-
+      
     }
 
     .iframe-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 75vw;
-        height: 75vh;
+        width: 76vw;
+        height: 76vh;
         /* border: 1px solid black; */
 
         box-sizing: border-box;
@@ -45,8 +45,8 @@
 
 
     .iframe-container iframe {
-        height: 75vh;
-        width: 75vw;
+        height: 76vh;
+        width: 76vw;
         border: none;
         object-fit: cover;
         display: block;
@@ -66,8 +66,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 75vw;
-            height: 75vh;
+            width: 76vw;
+            height: 76vh;
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -82,8 +82,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 75vw;
-            height: 75vh;
+            width: 76vw;
+            height: 76vh;
             /* border: 1px solid black; */
 
             box-sizing: border-box;
