@@ -139,17 +139,19 @@ class Infoseite {
     }
     static getEmbedUrl(url) {
         // YouTube
-        const youtubeMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+        // Unterstützt normale YouTube-Links, youtu.be-Links und Shorts-Links
+        const youtubeMatch = url.match(
+            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
+        );
+        console.log(youtubeMatch);
         if (youtubeMatch) {
             return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
         }
-
         // Vimeo (falls du es erweitern möchtest)
         const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)/);
         if (vimeoMatch) {
             return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
         }
-
         // Weitere Plattformen können hier hinzugefügt werden
         return null; // Keine unterstützte Plattform
     }
@@ -964,7 +966,7 @@ async function meow(event, selectedValue, youtubeLink) {
         const result = checkYoutubeUrl(youtubeLink);
         if (result) {
             console.log("Gültiger YouTube-Link.");
-            debugger;
+        
 
             let { selectedTime, aktiv, titel, description } = prepareFormData(event);
             if (titel === "" || selectedTime === null || aktiv === null) {
@@ -1038,17 +1040,17 @@ async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, d
 }
 
 function checkYoutubeUrl(url) {
+        debugger;
     const harmfulChars = /[<>"';]/;
     if (harmfulChars.test(url)) {
         return false;
     }
-    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[A-Za-z0-9_-]{11}(\S*)?$/;
+    // Erlaubt normale YouTube-Links, youtu.be-Links und Shorts-Links
+    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)[A-Za-z0-9_-]{11}(\S*)?$/;
     if (pattern.test(url)) {
-        var strSplit = url.split("v=");
-        var videoId = strSplit[1];
-        console.log(videoId);
         return true;
     }
+  
     return false;
 }
 

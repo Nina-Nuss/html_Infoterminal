@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
+    <meta http-equiv="Permissions-Policy" content="compute-pressure=()">
 
 </head>
 <style>
@@ -37,13 +38,23 @@
         display: none !important;
     }
 
-
     .fullscreenYoutube {
         width: 100vw;
-        height: 97vh;
+        height: calc(100vh - 4vh);
+        /* Ziehe Text-Höhe ab, um Platz zu lassen */
         display: block;
         object-fit: contain;
     }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Scrollbar ausblenden für Firefox */
+    * {
+        scrollbar-width: none;
+    }
+
 
     /* iframe::-webkit-media-controls {
         display: none !important;
@@ -52,10 +63,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: 5vh;
+        /* Skaliert mit Viewport-Höhe — passe an (z.B. 3vh bis 10vh) */
         font-weight: bold;
         background-color: white;
-
     }
 </style>
 
@@ -176,7 +187,6 @@
         }
 
     });
-
     function createPic(element) {
         const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;
@@ -186,21 +196,26 @@
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(img); // Add the new image to the body
     }
-
     function createYoutubeVid(element) {
-        var strSplit = element.split("v=");
-        var videoId = strSplit[1];
+        if (element.includes("v=")) {
+            var strSplit = element.split("v=");
+            videoId = strSplit[1].split('&')[0]; // Nimm nur bis zum nächsten "&"
+        } else if (element.includes("shorts/")) {
+            var strSplit = element.split("shorts/");
+            videoId = strSplit[1].split('&')[0]; // Auch hier, falls Shorts Parameter haben
+        }
         console.log(videoId);
+
         var iframe = document.createElement("iframe");
         iframe.allow = "autoplay; encrypted-media; picture-in-picture";
         iframe.style.border = "none";
         // Hide YouTube progress bar and controls
         iframe.allowFullscreen = true;
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=1&rel=0&controls=1&enablejsapi=1`;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}`;
         iframe.className = "fullscreenYoutube";
         iframe.frameBorder = "0";
         document.body.innerHTML = ''; // Clear the body content
-        var text = document.createElement("div");
+        var text = document.createElement("h1");
         text.classList = "textYoutube";
         text.innerHTML = "Quelle: " + iframe.src;
         text.className = "text";
@@ -208,7 +223,6 @@
         document.body.appendChild(iframe); // Add the new iframe to the body
         document.body.appendChild(text);
     }
-
     function createVid(element) {
         const video = document.createElement('video');
         video.src = "../../uploads/video/" + element;

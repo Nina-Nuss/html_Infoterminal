@@ -34,7 +34,7 @@ $nowDateTime = $now->format('Y-m-d H:i');
 
 // $clientIP = $_SERVER['REMOTE_ADDR'];
 
-$ip = $input['ip'] ?? 'test';
+$ip = $input['ip'] ?? 'test1';
 
 $therminal = array();
 

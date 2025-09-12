@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Site</title>
     <script src="errorDisplay.js"></script>
+    <meta http-equiv="Permissions-Policy" content="compute-pressure=()">
 </head>
 <style>
     html,
@@ -111,9 +112,8 @@
 
 
 <script>
-
     window.addEventListener('DOMContentLoaded', async () => {
-   
+
         const params = new URLSearchParams(window.location.search);
         const ort = params.get('ip');
         const template = params.get('template');
@@ -134,8 +134,9 @@
             }, 10000);
         }
     });
+
     function startCarousel(ort) {
- 
+
         const iframe = document.createElement('iframe');
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
         iframe.onload = () => {
@@ -176,11 +177,9 @@
     }
 
     // Seite nach 60 Minuten automatisch neu laden
-    setTimeout(function () {
+    setTimeout(function() {
         window.location.reload();
     }, 3600000); // 3600000 ms = 60 Minuten
-
-
 </script>
 
 </html>
