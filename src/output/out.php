@@ -42,8 +42,9 @@
         left: 1px;
         font-size: 2vh;
         font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.3); /* transparenter */
-        padding: 1px;
+        background-color: rgba(255, 255, 255, 0.3);
+        /* transparenter */
+
         border-radius: 5px;
         z-index: 10;
         max-width: 100vw;
@@ -55,7 +56,7 @@
         scroll-behavior: smooth;
     }
 
-  
+
 
     .fullscreen {
         width: 100vw;
@@ -218,7 +219,7 @@
             videoId = strSplit[1].split('&')[0]; // Auch hier, falls Shorts Parameter haben
         }
         console.log(videoId);
-       
+
         var iframe = document.createElement("iframe");
         iframe.allow = "autoplay; encrypted-media; picture-in-picture";
         iframe.style.border = "none";
@@ -229,10 +230,10 @@
         iframe.className = "fullscreenYoutube";
         iframe.frameBorder = "0";
         document.body.innerHTML = ''; // Clear the body content
-        document.body.appendChild(iframe); // Add the new iframe to the body
         var text = document.createElement("div");
         text.classList = "textYoutube";
-        text.innerHTML = "Quelle: " + iframe.src;
+        text.innerHTML = "Quelle: https://www.youtube.com/watch?v=" + videoId;
+        document.body.appendChild(iframe); // Add the new iframe to the body
         iframe.parentNode.appendChild(text); // Text als Child des iframes hinzufügen
     }
 
