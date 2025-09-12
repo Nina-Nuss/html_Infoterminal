@@ -9,8 +9,6 @@ CREATE DATABASE dbTerminal
 ; 
 
 
-
-
 USE dbTerminal;
 CREATE TABLE infotherminals (
     id INT NOT NULL IDENTITY(1,1),
@@ -81,7 +79,6 @@ CREATE TABLE error_logs (
 CREATE table templates (
     id INT NOT NULL IDENTITY(1,1),
     templateName VARCHAR(50),
-    urlSettings VARCHAR(255),
     text1 VARCHAR(255),
     text2 VARCHAR(255),
     text3 VARCHAR(255),
