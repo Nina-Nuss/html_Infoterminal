@@ -22,52 +22,61 @@
         height: 100%;
         margin: 0;
         padding: 0;
-    }
-
-
-
-    .fullscreen {
-        width: 100vw;
-        height: 100vh;
-        display: block;
-        object-fit: contain;
-    }
-
-
-    video::-webkit-media-controls {
-        display: none !important;
+        overflow: hidden;
+        /* Verhindert Scrolling */
     }
 
     .fullscreenYoutube {
         width: 100vw;
-        height: calc(100vh - 7vh);
-        /* Ziehe Text-Höhe ab, um Platz zu lassen */
+        height: 100vh;
+        /* Volle Höhe */
+        display: block;
+        object-fit: contain;
+        position: relative;
+        /* Für absoluten Text */
+    }
+
+    .textYoutube {
+        position: absolute;
+        bottom: 1px;
+        left: 1px;
+        font-size: 2vh;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.3); /* transparenter */
+        padding: 1px;
+        border-radius: 5px;
+        z-index: 10;
+        max-width: 100vw;
+        max-height: 10vh;
+        overflow-y: auto;
+        overflow-x: auto;
+        white-space: pre-line;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+    }
+
+  
+
+    .fullscreen {
+        width: 100vw;
+        height: 100vh;
+        /* Volle Höhe für Bilder/Videos */
         display: block;
         object-fit: contain;
     }
 
+    /* Scrollbar ausblenden (bereits vorhanden) */
     ::-webkit-scrollbar {
         display: none;
     }
 
-    /* Scrollbar ausblenden für Firefox */
     * {
         scrollbar-width: none;
     }
 
-
     /* iframe::-webkit-media-controls {
         display: none !important;
     } */
-    .textYoutube {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 5vh;
-        /* Skaliert mit Viewport-Höhe — passe an (z.B. 3vh bis 10vh) */
-        font-weight: bold;
-        background-color: white;
-    }
 </style>
 
 <body>
@@ -167,6 +176,8 @@
                         await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
                     }
                     if (data.length === 0) {
+                        console.error('Daten sind leer, versuche Seite neu zu laden');
+
                         location.reload();
                     }
                 }
@@ -207,7 +218,7 @@
             videoId = strSplit[1].split('&')[0]; // Auch hier, falls Shorts Parameter haben
         }
         console.log(videoId);
-
+       
         var iframe = document.createElement("iframe");
         iframe.allow = "autoplay; encrypted-media; picture-in-picture";
         iframe.style.border = "none";
@@ -218,13 +229,11 @@
         iframe.className = "fullscreenYoutube";
         iframe.frameBorder = "0";
         document.body.innerHTML = ''; // Clear the body content
-        var text = document.createElement("h1");
+        document.body.appendChild(iframe); // Add the new iframe to the body
+        var text = document.createElement("div");
         text.classList = "textYoutube";
         text.innerHTML = "Quelle: " + iframe.src;
-        text.className = "text";
-
-        document.body.appendChild(iframe); // Add the new iframe to the body
-        document.body.appendChild(text);
+        iframe.parentNode.appendChild(text); // Text als Child des iframes hinzufügen
     }
 
     function createVid(element) {
