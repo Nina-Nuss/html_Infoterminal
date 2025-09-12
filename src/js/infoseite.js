@@ -913,29 +913,33 @@ function previewFile() {
         previewContainer.style.display = 'none';
     }
 }
-async function meow(event) {
+async function meow(event, selectedValue, youtubeLink) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
-    const form = event.target.form;
-    const formData = new FormData(form);
-    const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
-    const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
-    const titel = formData.get('title');
-    const description = formData.get('description');
-    console.log("Selected Time:", selectedTime);
-    const imgFile = formData.get("img");
+    console.log("Selected Value:", selectedValue);
+    if (selectedValue === "img") {
+        const result = await sendDatei(event);
+        console.log("SDFSDFDSFSD");
+        if (result) {
+            console.log("Infoseite wurde erfolgreich erstellt.");
+        } else {
+            console.log("Fehler beim Erstellen der Infoseite.");
+            return;
+        }
+    } else if (selectedValue === "yt") {
+        console.log("Youtube Link ausgewählt");
+        console.log("Youtube Link:", youtubeLink);
+        const result = checkYoutubeUrl(youtubeLink);
+        if (result) {
+            console.log("Gültiger YouTube-Link.");
+            const serverVideoName = youtubeLink; // YouTube-Link direkt verwenden
+        } else {
+            console.log("Ungültiger YouTube-Link.");
+        }
+    }
+}
 
-    if (imgFile === null || selectedTime === null || aktiv === null || titel === "") {
-        alert("Bitte füllen Sie alle Felder aus inkl Bild.");
-        return;
-    }
-    // Bild hochladen und vom Server den Dateinamen erhalten
-    const serverImageName = await sendPicture(formData);
-    // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
-    if (serverImageName === "") {
-        console.error("Bild konnte nicht hochgeladen werden.");
-        alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
-        return;
-    }
+async function createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, titel, description) {
+    debugger;
     try {
         // Lokalen Dateinamen in den Infoseite einfügen
         const obj1 = new Infoseite(
@@ -963,8 +967,56 @@ async function meow(event) {
         console.error("Fehler beim erstellen des Infoseite:", error);
     }
 
-    form.reset(); // Formular zurücksetzen
+}
 
+function checkYoutubeUrl(url) {
+    const harmfulChars = /[<>"';]/;
+    if (harmfulChars.test(url)) {
+        return false;
+    }
+    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[A-Za-z0-9_-]{11}(\S*)?$/;
+    if (pattern.test(url)) {
+        var strSplit = url.split("v=");
+        var videoId = strSplit[1];
+        console.log(videoId);
+        return true;
+    }
+    return false;
+}
+
+function prepareFormData(event) {
+    event.preventDefault();
+    const form = event.target.form;
+    const formData = new FormData(form);
+    const selectedTime = String(formData.get('selectedTime')); // Wert als Zahl
+    const aktiv = formData.get('aktiv'); // Wert der ausgewählten Option
+    const titel = formData.get('title');
+    const description = formData.get('description');
+    return { formData, selectedTime, aktiv, titel, description };
+}
+
+async function sendDatei(event) {
+    debugger;
+    let { formData, selectedTime, aktiv, titel, description } = prepareFormData(event); // Formulardaten vorbereiten
+    const form = event.target.form;
+    console.log("Selected Time:", selectedTime);
+    const imgFile = formData.get("img");
+
+    if (imgFile === null || selectedTime === null || aktiv === null || titel === "") {
+        alert("Bitte füllen Sie alle Felder aus inkl Bild.");
+        return false;
+    }
+    // Bild hochladen und vom Server den Dateinamen erhalten
+    const serverImageName = await sendPicture(formData);
+    console.log("Server Image Name:", serverImageName);
+    // Infoseite mit dem vom Server erhaltenen Bildnamen erstellen
+    if (serverImageName === "") {
+        console.error("Bild konnte nicht hochgeladen werden.");
+        alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
+        return false;
+    }
+    await createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, titel, description);
+    form.reset(); // Formular zurücksetzen
     const imgPreview = document.getElementById('imgPreview');
     imgPreview.src = '#'; // Bildvorschau zurücksetzen
     imgPreview.style.display = 'none';
@@ -977,8 +1029,9 @@ async function meow(event) {
     const modalElement = document.getElementById('addInfoSeite');
     const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
     modalInstance.hide();
-
+    return true;
 }
+
 async function sendPicture(formData) {
     try {
         const response = await fetch("../php/movePic.php", {
@@ -1004,6 +1057,7 @@ async function sendPicture(formData) {
 }
 
 async function insertDatabase(cardObj) {
+    debugger;
     // Erstellen eines JSON-Objekts
     const jsonData = {
         titel: cardObj.titel,
