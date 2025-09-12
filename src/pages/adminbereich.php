@@ -83,8 +83,8 @@ if (isset($_COOKIE['isAdmin'])) {
                                             <i class="fas fa-tv me-2"></i> Infoterminals hinzufügen
                                         </h6>
                                     </div>
-                                    <div class="card-body position-relative">
-                                        <form id="formID" action="../php/bereitsVorhanden.php" method="post">
+                                    <form id="formID" action="../php/bereitsVorhanden.php" method="post">
+                                        <div class="card-body position-relative">
                                             <div class="d-flex flex-column " style="height: 280px;">
                                                 <div class="form-group mb-3">
                                                     <label for="infotherminalIp" class="form-label">
@@ -101,26 +101,27 @@ if (isset($_COOKIE['isAdmin'])) {
                                                         name="infotherminalName" placeholder="z.B. Terminal Empfang" required>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="center-bottom d-flex justify-content-center card-footer bg-white p-3" style="border-top: none;">
-                                        <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
-                                            <i class="fas fa-plus me-2"></i> Hinzufügen
-                                        </button>
-                                        <button type="button" data-bs-placement="top"
-                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
-                                            data-bs-toggle="popover" title="Popover title"
-                                            data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
-                                        <script>
-                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                                new bootstrap.Popover(el, {
-                                                    trigger: 'hover',
-                                                    html: true,
-                                                    placement: el.getAttribute('data-bs-placement') || 'top'
+
+                                        </div>
+                                        <div class="center-bottom d-flex justify-content-center card-footer bg-white p-3" style="border-top: none;">
+                                            <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
+                                                <i class="fas fa-plus me-2"></i> Hinzufügen
+                                            </button>
+                                            <button type="button" data-bs-placement="top"
+                                                class="btn btn-lg btn-secondary  btn-sm" style="width: 40px;"
+                                                data-bs-toggle="popover" title="Popover title"
+                                                data-bs-content="IP-Adresse soll dem Format 000.000.000.000 entsprechen">i</button>
+                                            <script>
+                                                document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                    new bootstrap.Popover(el, {
+                                                        trigger: 'hover',
+                                                        html: true,
+                                                        placement: el.getAttribute('data-bs-placement') || 'top'
+                                                    });
                                                 });
-                                            });
-                                        </script>
-                                    </div>
+                                            </script>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-md-3">

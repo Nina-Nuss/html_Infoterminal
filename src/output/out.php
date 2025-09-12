@@ -178,7 +178,7 @@
     });
 
     function createPic(element) {
-        const img = document.C('img');
+        const img = document.createElement('img');
         img.src = "../../uploads/img/" + element;
         img.className = "fullscreen";
         img.alt = "Image";
