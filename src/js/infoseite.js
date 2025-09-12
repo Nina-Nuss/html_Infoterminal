@@ -46,29 +46,9 @@ class Infoseite {
 
     }
     htmlBody(umgebung) {
-        // Bestimme den korrekten Bildpfad basierend auf dem imagePathb
-        const ext = this.imagePath.split('.').pop().toLowerCase();
-        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf']; // gängige Bildformate
-        const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
         let placeHolder;
-        let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${this.imagePath}`;
-        console.log(src);
-        if (imageExts.includes(ext)) {
-            // Remove the onerror handler before setting fallback to avoid infinite error loop
-            placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src='/img/bild.png'">`;
-        }
-        else if (videoExts.includes(ext)) {
-            placeHolder = `
-                <video class="card-img-small w-100" autoplay muted loop  >
-                  <source src="${src}">
-                  Ihr Browser unterstützt das Video-Tag nicht.  
-                </video>`;
-        }
-        else {
-            // Ensure a src is present for the fallback so the image element doesn't remain empty
-            placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
-
-        }
+        // Bestimme den korrekten Bildpfad basierend auf dem imagePath
+        placeHolder = Infoseite.preparePlaceHolder(this.imagePath);
         const aktivIcon = this.aktiv
             ? `<span class="text-success ms-2" id="aktivIcon${this.id}"><i class="fas fa-check-circle"></i></span>`
             : `<span class="text-danger ms-2" id="inaktivIcon${this.id}"><i class="fas fa-times-circle"></i></span>`;
@@ -113,6 +93,65 @@ class Infoseite {
                 this.aktiv = event.target.checked;
             });
         });
+    }
+
+    static preparePlaceHolder(imagePath) {
+        let placeHolder = '';
+        if (imagePath.includes("yt_http://") || imagePath.includes("yt_https://")) {
+            // Prüfe, ob es eine YouTube-URL ist, und wandle sie in Embed-URL um
+            const embedUrl = Infoseite.getEmbedUrl(imagePath);
+            if (embedUrl) {
+                return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>`;
+            } else {
+                // Für andere Webseiten: Zeige einen Hinweis, da iframes oft blockiert werden
+                return placeHolder = `
+                <div class="card-img-small d-flex align-items-center justify-content-center bg-light text-center p-3">
+                    <div>
+                        <i class="fas fa-link fa-2x text-secondary mb-2"></i>
+                        <p class="mb-1">Webseite: <a href="${imagePath}" target="_blank">${imagePath}</a></p>
+                        <p class="text-muted small">Hinweis: Einbetten in iframe blockiert (X-Frame-Options).</p>
+                    </div>
+                </div>`;
+            }
+        }
+        const ext = imagePath.split('.').pop().toLowerCase();
+        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf']; // gängige Bildformate
+        const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
+
+        let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
+        console.log(src);
+        if (imageExts.includes(ext)) {
+            // Remove the onerror handler before setting fallback to avoid infinite error loop
+            return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src='/img/bild.png'">`;
+        }
+        else if (videoExts.includes(ext)) {
+            return placeHolder = `
+                <video class="card-img-small w-100" autoplay muted loop  >
+                  <source src="${src}">
+                  Ihr Browser unterstützt das Video-Tag nicht.  
+                </video>`;
+        }
+        else {
+            // Ensure a src is present for the fallback so the image element doesn't remain empty
+            return placeHolder = `<img class="card-img-small" src="/img/bild.png" alt="Fallback">`;
+
+        }
+    }
+    static getEmbedUrl(url) {
+        // YouTube
+        const youtubeMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+        if (youtubeMatch) {
+            return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+        }
+
+        // Vimeo (falls du es erweitern möchtest)
+        const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)/);
+        if (vimeoMatch) {
+            return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+        }
+
+        // Weitere Plattformen können hier hinzugefügt werden
+        return null; // Keine unterstützte Plattform
     }
     static event_remove(id) {
         var element = document.getElementById(`checkDelSchema${id}`);
@@ -426,17 +465,14 @@ class Infoseite {
     }
 
     static prepareSelectedTimer(obj) {
-
         const selectSekunden = document.getElementById("selectSekunden");
         let selectMinuten = null;
         let selectMinutenInt = null;
-
         if (document.getElementById("selectMinuten")) {
             selectMinuten = document.getElementById("selectMinuten");
         } else {
             selectMinuten = null; // Wenn selectMinuten nicht existiert, setze es auf null
         }
-
         if (selectMinuten != null) {
             if (selectSekunden.value == "" && selectMinuten.value == "") {
                 return; //keine Eingabe, also nichts tun
@@ -446,7 +482,6 @@ class Infoseite {
                 return; //keine Eingabe, also nichts tun
             }
         }
-
         if (selectMinuten) {
             var resultMinuteBool = isParseableNumber(selectMinuten.value)
         } else {
@@ -462,7 +497,6 @@ class Infoseite {
             return;
         }
         let selectSekundenInt = parseInt(selectSekunden.value)
-
         if (selectMinuten) {
             selectMinutenInt = parseInt(selectMinuten.value)
             console.log("Minuten:", selectMinuten);
@@ -479,7 +513,6 @@ class Infoseite {
             }
             return;
         }
-
         // if (min != 0 && sek) {
         //     obj.selectedTime = (min * 60 + sek) * 1000; // Minuten und Sekunden in Millisekunden umrechnen
         //     console.log("Selected Time in Millisekunden: ", obj.selectedTime);
@@ -931,14 +964,49 @@ async function meow(event, selectedValue, youtubeLink) {
         const result = checkYoutubeUrl(youtubeLink);
         if (result) {
             console.log("Gültiger YouTube-Link.");
-            const serverVideoName = youtubeLink; // YouTube-Link direkt verwenden
+            debugger;
+
+            let { selectedTime, aktiv, titel, description } = prepareFormData(event);
+            if (titel === "" || selectedTime === null || aktiv === null) {
+                alert("Bitte füllen Sie alle Felder aus inkl YouTube Link.");
+                return;
+            }
+            youtubeLink = "yt_" + youtubeLink;
+            try {
+                await createInfoseiteObj(youtubeLink, selectedTime, aktiv, titel, description);
+                resetForm("infoSeiteForm");
+
+            } catch (error) {
+                console.error("Fehler beim erstellen des Infoseite:", error);
+                alert("Fehler beim Erstellen der Infoseite. Bitte versuchen Sie es erneut.");
+                return;
+            }
         } else {
-            console.log("Ungültiger YouTube-Link.");
+            alert("Ungültiger YouTube-Link.");
         }
     }
 }
 
-async function createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, titel, description) {
+function resetForm(formType) {
+    debugger
+    const form = document.getElementById(formType);
+    if (formType === "infoSeiteForm") {
+        const imgPreview = document.getElementById('imgPreview');
+        imgPreview.src = '#'; // Bildvorschau zurücksetzen
+        imgPreview.style.display = 'none';
+        imgPreview.alt = 'Bildvorschau';
+        const videoPreview = document.getElementById('videoPreview');
+        videoPreview.src = '#'; // Video-Vorschau zurücksetzen
+        videoPreview.style.display = 'none';
+        videoPreview.alt = 'Video-Vorschau';
+        form.reset(); // Formular zurücksetzen
+        const modalElement = document.getElementById('addInfoSeite');
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+        modalInstance.hide();
+    }
+}
+
+async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
     debugger;
     try {
         // Lokalen Dateinamen in den Infoseite einfügen
@@ -958,7 +1026,6 @@ async function createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, tit
         )
         console.log(obj1.selectedTime);
         const result = await insertDatabase(obj1);
-
         alert("Infoseite erfolgreich erstellt!");
         await Infoseite.update();
         console.log(result);
@@ -966,6 +1033,7 @@ async function createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, tit
     } catch (error) {
         console.error("Fehler beim erstellen des Infoseite:", error);
     }
+
 
 }
 
@@ -1015,20 +1083,10 @@ async function sendDatei(event) {
         alert("Fehler beim Hochladen des Bildes. Bitte versuchen Sie es erneut. Bitte keine ungültigen Zeichen verwenden.");
         return false;
     }
-    await createInfoseiteObjDatei(serverImageName, selectedTime, aktiv, titel, description);
+    await createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description);
     form.reset(); // Formular zurücksetzen
-    const imgPreview = document.getElementById('imgPreview');
-    imgPreview.src = '#'; // Bildvorschau zurücksetzen
-    imgPreview.style.display = 'none';
-    imgPreview.alt = 'Bildvorschau';
-    const videoPreview = document.getElementById('videoPreview');
-    videoPreview.src = '#'; // Video-Vorschau zurücksetzen
-    videoPreview.style.display = 'none';
-    videoPreview.alt = 'Video-Vorschau';
+    resetForm("infoSeiteForm");
 
-    const modalElement = document.getElementById('addInfoSeite');
-    const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
-    modalInstance.hide();
     return true;
 }
 

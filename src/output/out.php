@@ -36,6 +36,27 @@
     video::-webkit-media-controls {
         display: none !important;
     }
+
+
+    .fullscreenYoutube {
+        width: 100vw;
+        height: 97vh;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* iframe::-webkit-media-controls {
+        display: none !important;
+    } */
+    .textYoutube {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background-color: white;
+
+    }
 </style>
 
 <body>
@@ -65,10 +86,11 @@
                     createPic(template);
                 } else if (template.includes('video_')) {
                     createVid(template);
+                } else if (template.includes('yt_')) {
+                    createYoutubeVid(template);
                 }
                 return;
             }
-
             const response = await fetch("../database/getSchemas.php", {
                 method: "POST",
                 headers: {
@@ -123,12 +145,14 @@
             while (true) {
                 for (const element of data) {
                     if (element[1].includes('img_')) {
-
                         createPic(element[1])
                         // const img = document.createElement('img');
                         await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
                     } else if (element[1].includes('video_')) {
                         createVid(element[1])
+                        await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
+                    } else if (element[1].includes('yt_')) {
+                        createYoutubeVid(element[1])
                         await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
                     }
                     if (data.length === 0) {
@@ -154,13 +178,35 @@
     });
 
     function createPic(element) {
-        const img = document.createElement('img');
+        const img = document.C('img');
         img.src = "../../uploads/img/" + element;
         img.className = "fullscreen";
         img.alt = "Image";
 
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(img); // Add the new image to the body
+    }
+
+    function createYoutubeVid(element) {
+        var strSplit = element.split("v=");
+        var videoId = strSplit[1];
+        console.log(videoId);
+        var iframe = document.createElement("iframe");
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+        iframe.style.border = "none";
+        // Hide YouTube progress bar and controls
+        iframe.allowFullscreen = true;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=1&rel=0&controls=1&enablejsapi=1`;
+        iframe.className = "fullscreenYoutube";
+        iframe.frameBorder = "0";
+        document.body.innerHTML = ''; // Clear the body content
+        var text = document.createElement("div");
+        text.classList = "textYoutube";
+        text.innerHTML = "Quelle: " + iframe.src;
+        text.className = "text";
+
+        document.body.appendChild(iframe); // Add the new iframe to the body
+        document.body.appendChild(text);
     }
 
     function createVid(element) {

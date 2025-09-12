@@ -1,4 +1,3 @@
-<!-- Modal -->
 <div class="modal fade" id="addInfoSeite" tabindex="-1" role="dialog" aria-labelledby="addInfoSeiteLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -8,9 +7,8 @@
 
             </div>
             <div class="modal-body">
-                <form action="../php/movePic.php" method="post" enctype="multipart/form-data">
 
-
+                <form action="../php/movePic.php" method="post" enctype="multipart/form-data" id="infoSeiteForm">
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
                         <button type="submit" class="btn btn-success shadow-sm"
@@ -18,7 +16,6 @@
                             <i class="fas fa-plus me-2"></i> Hinzufügen
                         </button>
                     </div>
-
                     <div class="input-group form-group mb-3 mt-3">
                         <label class="input-group-text" for="inputGroupSelect01">Template</label>
                         <select class="form-select" id="inputGroupSelect01">
@@ -26,39 +23,17 @@
                             <option selected value="yt">Youtube</option>
                         </select>
                     </div>
-                    <script>
-                        
-                        var selectItem = document.getElementById('inputGroupSelect01')
-                        var youtubeUrl = document.getElementById('youtubeUrl');
-                        selectItem.addEventListener('change', function () {
-                            var selectedValue = this.value;
-
-                            var Youtube = document.getElementById('YoutubeContainer');
-                            var datai = document.getElementById('dataiContainer');
-
-                            if (selectedValue === 'yt') {
-                                Youtube.style.display = 'block';
-                                datai.style.display = 'none';
-                            } else {
-                                Youtube.style.display = 'none';
-                                datai.style.display = 'block';
-                            }
-                        });
-
-                    </script>
-
                     <div id="YoutubeContainer" style="display:none;">
                         <label for="img" class="form-label">
                             <i class="fab fa-youtube me-2"></i> Link auswählen
                         </label>
-
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">URL:</span>
                             <input type="text" class="form-control" id="youtubeUrl" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
                     </div>
-                  
+
                     <div id="dataiContainer" style="display:block;">
                         <div class="form-group mb-3">
                             <label for="img" class="form-label">
@@ -132,3 +107,35 @@
         </div>
     </div>
 </div>
+<script>
+    var selectItem;
+    var youtubeUrl;
+    var selectItem = document.getElementById('inputGroupSelect01')
+    var youtubeUrl = document.getElementById('youtubeUrl');
+    var youtubeContainer = document.getElementById('YoutubeContainer');
+    var dataiContainer = document.getElementById('dataiContainer');
+    if (selectItem.value === 'yt') {
+        youtubeContainer.style.display = 'block';
+        dataiContainer.style.display = 'none';
+    } else if (selectItem.value === 'img') {
+        youtubeContainer.style.display = 'none';
+        dataiContainer.style.display = 'block';
+
+    }
+    selectItem.addEventListener('change', function () {
+        var selectedValue = this.value;
+        debugger
+        var Youtube = document.getElementById('YoutubeContainer');
+        var datai = document.getElementById('dataiContainer');
+
+        if (selectedValue === 'yt') {
+            Youtube.style.display = 'block';
+            datai.style.display = 'none';
+        } else {
+            Youtube.style.display = 'none';
+            datai.style.display = 'block';
+        }
+
+    });
+
+</script>

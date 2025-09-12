@@ -124,6 +124,15 @@ async function getSystemPath() {
     return path;
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const modalElement = document.getElementById('addInfoSeite');
+    if (modalElement) {
+        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+        modalInstance.show(); // Öffnet das Modal automatisch
+    } else {
+        console.error('Modal-Element nicht gefunden.');
+    }
+});
 
 function checkAnzahl() {
     const anzahlInfo = Infoterminal.list.length;

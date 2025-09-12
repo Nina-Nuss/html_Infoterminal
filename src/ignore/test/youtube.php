@@ -34,23 +34,7 @@
 
 </body>
 <script>
-    var str = "https://www.youtube.com/watch?v=liJVSwOiiwg";
-    var strSplit = str.split("v=");
-    var videoId = strSplit[1];
-    console.log(videoId);
-    var iframe = document.querySelector("iframe");
-    iframe.allow = "autoplay; encrypted-media";
-    iframe.style.border = "none";
-    // Hide YouTube progress bar and controls
-
-    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1&modestbranding=1&rel=0&controls=1&enablejsapi=1";
-    iframe.className = "fullscreen";
-    iframe.frameBorder = "0";
-
-    var text = document.createElement("div");
-    text.innerHTML = "Quelle: " + str;
-    text.className = "text";
-    document.body.appendChild(text);
+   
 
     // Hide the select menu on page load
 

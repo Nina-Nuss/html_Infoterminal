@@ -94,6 +94,9 @@ foreach ($images as $image) {
                     }
                 }
             }
+        } else if (str_starts_with($schema[1], 'yt_')) {
+            // Wenn das Schema nicht aktiv ist, aber das Bild vorhanden ist
+           
         }
     }
 };
