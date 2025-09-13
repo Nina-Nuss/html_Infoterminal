@@ -93,31 +93,31 @@ class Infoseite {
 
     static preparePlaceHolder(imagePath) {
         let placeHolder = '';
-
+        debugger
         // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
         const embedUrl = Infoseite.getEmbedUrl(imagePath);
         if (embedUrl) {
             return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="Embedded content" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        } else {
-            // Prüfe, ob es ein Bild oder Video ist
-            const ext = imagePath.split('.').pop().toLowerCase();
-            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf'];
-            const videoExts = ['mp4', 'webm'];
+        }
+        // Prüfe, ob es ein Bild oder Video ist
+        const ext = imagePath.split('.').pop().toLowerCase();
+        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf'];
+        const videoExts = ['mp4', 'webm'];
 
-            let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
-            console.log(src);
+        let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
+        console.log(src);
 
-            if (imageExts.includes(ext)) {
-                return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
-            } else if (videoExts.includes(ext)) {
-                return placeHolder = `
+        if (imageExts.includes(ext)) {
+            return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
+        } else if (videoExts.includes(ext)) {
+            return placeHolder = `
                 <video class="card-img-small w-100" autoplay muted loop>
                   <source src="${src}">
                   Ihr Browser unterstützt das Video-Tag nicht.
                 </video>`;
-            } else {
-                // Fallback für andere Webseiten
-                return placeHolder = `
+        } else {
+            // Fallback für andere Webseiten
+            return placeHolder = `
             <div class="card-img-small d-flex align-items-center justify-content-center bg-light text-center p-3">
                 <div>
                     <i class="fas fa-link fa-2x text-secondary mb-2"></i>
@@ -125,50 +125,27 @@ class Infoseite {
                     <p class="text-muted small">Hinweis: Einbetten in iframe blockiert (X-Frame-Options).</p>
                 </div>
             </div>`;
+        }
+    }
+
+
+    static getEmbedUrl(url) {
+        // YouTube: prüfe auf youtube.com oder youtu.be und extrahiere die Video-ID (11 Zeichen)
+        if (typeof url !== "string") return null;
+        if (url.includes("youtube.com")) {
+            // Nur youtube.com-Links, KEIN youtu.be!
+            const match = url.match(/(?:v=|\/embed\/|\/v\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+            if (match) {
+                return `https://www.youtube.com/embed/${match[1]}`;
             }
         }
-
-    }
-    static getEmbedUrl(url) {
-        // YouTube
-        const youtubeMatch = url.match(
-            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
-        );
-        if (youtubeMatch) {
-            return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
+        // TikTok: prüfe auf tiktok.com
+        if (url.includes("tiktok.com")) {
+            const match = url.match(/(?:video\/|embed\/v2\/)([0-9]+)/);
+            if (match) {
+                return `https://www.tiktok.com/embed/v2/${match[1]}`;
+            }
         }
-
-        // Vimeo (falls du es erweitern möchtest)
-        const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)/);
-        if (vimeoMatch) {
-            return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
-        }
-
-        // TikTok
-        const tiktokMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:tiktok\.com\/(?:@[\w.-]+\/video\/|embed\/v2\/)|vm\.tiktok\.com\/)([A-Za-z0-9_-]{19})/);
-        if (tiktokMatch) {
-            return `https://www.tiktok.com/embed/v2/${tiktokMatch[1]}`;
-        }
-
-        // Instagram (für Posts/Reels)
-        const instagramMatch = url.match(/(?:https?:\/\/)?(?:www\.)?instagram\.com\/(p|reel)\/([A-Za-z0-9_-]+)/);
-        if (instagramMatch) {
-            return `https://www.instagram.com/${instagramMatch[1]}/${instagramMatch[2]}/embed/`;
-        }
-
-        // ZDF
-        const zdfMatch = url.match(/(?:https?:\/\/)?(?:www\.)?zdf\.de\/(?:[\w\/-]+\/)?([a-z0-9-]+)\.html/);
-        if (zdfMatch) {
-            return `https://www.zdf.de/embed/video/${zdfMatch[1]}`;
-        }
-
-        // Tagesschau
-        const tagesschauMatch = url.match(/(?:https?:\/\/)?(?:www\.)?tagesschau\.de\/(?:[\w\/-]+\/)?([a-z0-9-]+)\.html/);
-        if (tagesschauMatch) {
-            return `https://www.tagesschau.de/embed/video/${tagesschauMatch[1]}`;
-        }
-
-        // Weitere Plattformen können hier hinzugefügt werden
         return null; // Keine unterstützte Plattform
     }
     static event_remove(id) {
