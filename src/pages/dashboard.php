@@ -36,26 +36,24 @@ header('Access-Control-Allow-Origin: *');
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
                 <div class="row justify-content-center">
-                    <div class="col-md-10 pb-2">
-                        <div class="col-md-8 flex-wrap">
-                            <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
-                                class="btn btn-success btn-sm me-2">
-                                <i class="fas fa-save"></i> Speichern
-                            </button>
-                            <!--  -->
-                            <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
-                                data-bs-toggle="modal" data-bs-target="#addInfoSeite">
-                                <i class="fas fa-pen-to-square"></i> Erstellen
-                            </button>
-                            <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
-                                class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i> Löschen
-                            </button>
-                        </div>
+                    <div class="pb-2 d-flex flex-wrap justify-content-center" style="margin-right: 25rem;">
+                        <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
+                            class="btn btn-success btn-sm me-2">
+                            <i class="fas fa-save"></i> Speichern
+                        </button>
+                        <!--  -->
+                        <button id="btn_addInfoSeite" type="button" class="btn btn-success btn-sm me-2"
+                            data-bs-toggle="modal" data-bs-target="#addInfoSeite">
+                            <i class="fas fa-pen-to-square"></i> Erstellen
+                        </button>
+                        <button id="btn_deleteInfoSeite" onclick="Infoseite.deleteCardObj()" type="button"
+                            class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i> Löschen
+                        </button>
                     </div>
                     <div class="d-flex justify-content-center gap-2 col-md-12">
-                        <div class="col-md-7">
-                            <div id="konfigContainer">
+                        <div class="overflow-auto">
+                            <div id="konfigContainer ">
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
@@ -67,7 +65,7 @@ header('Access-Control-Allow-Origin: *');
                                                     <i class="fas fa-file-alt me-2"></i>
                                                     <div class="mb-0 me-auto">Infoseite Name:
                                                     </div>
-                                                    <div type="text" class="w-auto fw-bolder" id="websiteName" value="-">
+                                                    <div type="text" class="w-auto fw-bolder text-break" id="websiteName" value="-" style="word-break: break-word; max-width: 200px;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,7 +92,7 @@ header('Access-Control-Allow-Origin: *');
 
                                             </div>
                                         </div>
-                                      
+
                                         <div class="p-3" style="width: 32rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
@@ -112,7 +110,7 @@ header('Access-Control-Allow-Origin: *');
                                                             <label for="endDate"
                                                                 class="form-label mb-0 text-secondary mx-2">bis</label>
                                                             <input type="date"
-                                                                class="form-control form-control-sm"  style="width: 9rem; "
+                                                                class="form-control form-control-sm" style="width: 9rem; "
                                                                 id="endDate" name="endDate">
                                                             <button id="btnDelDateTime"
                                                                 class="btn btn-outline-danger trashbtn btn-sm ms-3"
@@ -224,9 +222,9 @@ header('Access-Control-Allow-Origin: *');
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-                                   
-                                    <div  class="w-100 overflow-auto border rounded-3" >
-                                      
+
+                                    <div class="w-100 overflow-auto border rounded-3">
+
                                         <div style="height: 120px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
