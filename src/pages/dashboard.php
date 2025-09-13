@@ -51,9 +51,9 @@ header('Access-Control-Allow-Origin: *');
                             <i class="fas fa-trash"></i> Löschen
                         </button>
                     </div>
-                    <div class="d-flex justify-content-center gap-2 col-md-12">
-                        <div class="overflow-auto">
-                            <div id="konfigContainer ">
+                    <div class="d-flex justify-content-center gap-2 col-md-12" >
+                        <div class="overflow-auto col-md-7">
+                            <div id="konfigContainer">
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <h6 class="mb-0"><i class="fas fa-cog me-2 font-bold"></i> Infoseite konfigurieren
