@@ -93,61 +93,81 @@ class Infoseite {
 
     static preparePlaceHolder(imagePath) {
         let placeHolder = '';
-        if (imagePath.includes("yt_http://") || imagePath.includes("yt_https://")) {
-            // Prüfe, ob es eine YouTube-URL ist, und wandle sie in Embed-URL um
-            const embedUrl = Infoseite.getEmbedUrl(imagePath);
-            if (embedUrl) {
-                return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media"  allowfullscreen></iframe>`;
-            } else {
-                // Für andere Webseiten: Zeige einen Hinweis, da iframes oft blockiert werden
+
+        // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
+        const embedUrl = Infoseite.getEmbedUrl(imagePath);
+        if (embedUrl) {
+            return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="Embedded content" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        } else {
+            // Prüfe, ob es ein Bild oder Video ist
+            const ext = imagePath.split('.').pop().toLowerCase();
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf'];
+            const videoExts = ['mp4', 'webm'];
+
+            let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
+            console.log(src);
+
+            if (imageExts.includes(ext)) {
+                return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
+            } else if (videoExts.includes(ext)) {
                 return placeHolder = `
-                <div class="card-img-small d-flex align-items-center justify-content-center bg-light text-center p-3">
-                    <div>
-                        <i class="fas fa-link fa-2x text-secondary mb-2"></i>
-                        <p class="mb-1">Webseite: <a href="${imagePath}" target="_blank">${imagePath}</a></p>
-                        <p class="text-muted small">Hinweis: Einbetten in iframe blockiert (X-Frame-Options).</p>
-                    </div>
-                </div>`;
+                <video class="card-img-small w-100" autoplay muted loop>
+                  <source src="${src}">
+                  Ihr Browser unterstützt das Video-Tag nicht.
+                </video>`;
+            } else {
+                // Fallback für andere Webseiten
+                return placeHolder = `
+            <div class="card-img-small d-flex align-items-center justify-content-center bg-light text-center p-3">
+                <div>
+                    <i class="fas fa-link fa-2x text-secondary mb-2"></i>
+                    <p class="mb-1">Webseite: <a href="${imagePath}" target="_blank">${imagePath}</a></p>
+                    <p class="text-muted small">Hinweis: Einbetten in iframe blockiert (X-Frame-Options).</p>
+                </div>
+            </div>`;
             }
         }
-        const ext = imagePath.split('.').pop().toLowerCase();
-        const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'html', 'php', 'docx', 'pdf']; // gängige Bildformate
-        const videoExts = ['mp4', 'webm']; // nur Formate, die der Browser direkt kann
 
-        let src = `../../uploads/${imageExts.includes(ext) ? 'img' : 'video'}/${imagePath}`;
-        console.log(src);
-        if (imageExts.includes(ext)) {
-            // Remove the onerror handler before setting fallback to avoid infinite error loop
-            return placeHolder = `<img class="card-img-small" src="${src}" alt="Bild" onerror="this.onerror=null; this.src=''">`;
-        }
-        else if (videoExts.includes(ext)) {
-            return placeHolder = `
-                <video class="card-img-small w-100" autoplay muted loop  >
-                  <source src="${src}">
-                  Ihr Browser unterstützt das Video-Tag nicht.  
-                </video>`;
-        }
-        else {
-            // Ensure a src is present for the fallback so the image element doesn't remain empty
-            return placeHolder = `<img class="card-img-small" src="" alt="Fallback">`;
-
-        }
     }
     static getEmbedUrl(url) {
         // YouTube
-        // Unterstützt normale YouTube-Links, youtu.be-Links und Shorts-Links
         const youtubeMatch = url.match(
             /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/
         );
-        console.log(youtubeMatch);
         if (youtubeMatch) {
             return `https://www.youtube.com/embed/${youtubeMatch[1]}`;
         }
+
         // Vimeo (falls du es erweitern möchtest)
         const vimeoMatch = url.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)/);
         if (vimeoMatch) {
             return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
         }
+
+        // TikTok
+        const tiktokMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:tiktok\.com\/(?:@[\w.-]+\/video\/|embed\/v2\/)|vm\.tiktok\.com\/)([A-Za-z0-9_-]{19})/);
+        if (tiktokMatch) {
+            return `https://www.tiktok.com/embed/v2/${tiktokMatch[1]}`;
+        }
+
+        // Instagram (für Posts/Reels)
+        const instagramMatch = url.match(/(?:https?:\/\/)?(?:www\.)?instagram\.com\/(p|reel)\/([A-Za-z0-9_-]+)/);
+        if (instagramMatch) {
+            return `https://www.instagram.com/${instagramMatch[1]}/${instagramMatch[2]}/embed/`;
+        }
+
+        // ZDF
+        const zdfMatch = url.match(/(?:https?:\/\/)?(?:www\.)?zdf\.de\/(?:[\w\/-]+\/)?([a-z0-9-]+)\.html/);
+        if (zdfMatch) {
+            return `https://www.zdf.de/embed/video/${zdfMatch[1]}`;
+        }
+
+        // Tagesschau
+        const tagesschauMatch = url.match(/(?:https?:\/\/)?(?:www\.)?tagesschau\.de\/(?:[\w\/-]+\/)?([a-z0-9-]+)\.html/);
+        if (tagesschauMatch) {
+            return `https://www.tagesschau.de/embed/video/${tagesschauMatch[1]}`;
+        }
+
         // Weitere Plattformen können hier hinzugefügt werden
         return null; // Keine unterstützte Plattform
     }
@@ -949,44 +969,60 @@ function previewFile() {
         previewContainer.style.display = 'none';
     }
 }
-async function meow(event, selectedValue, youtubeLink) {
+function detectLinkType(link) {
+    if (checkYoutubeUrl(link)) return "yt";
+    if (checkTikTokUrl(link)) return "tiktok";
+
+    return null; // Unbekannter Typ
+}
+
+// Erweitere meow
+async function meow(event, selectedValue, link) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
     console.log("Selected Value:", selectedValue);
+    console.log("Link:", link);
+
+    let { selectedTime, aktiv, titel, description } = prepareFormData(event);
+    if (titel === "" || selectedTime === null || aktiv === null) {
+        alert("Bitte füllen Sie alle Felder aus.");
+        return;
+    }
+
+    let validLink = "";
+    let prefix = "";
+
     if (selectedValue === "img") {
         const result = await sendDatei(event);
-        console.log("SDFSDFDSFSD");
         if (result) {
             console.log("Infoseite wurde erfolgreich erstellt.");
         } else {
             console.log("Fehler beim Erstellen der Infoseite.");
+        }
+        return; // Für Bilder ist es anders, daher return
+    } else if (selectedValue === "yt") {
+        console.log("Externe Video-Quelle ausgewählt");
+        const linkType = detectLinkType(link);
+        if (linkType) {
+            validLink = link;
+            prefix = linkType + "_"; // z.B. "yt_", "tiktok_"
+        } else {
+            alert("Ungültiger Link. Unterstützt: YouTube, TikTok, Instagram, ZDF, Tagesschau.");
             return;
         }
-    } else if (selectedValue === "yt") {
-        console.log("Youtube Link ausgewählt");
-        console.log("Youtube Link:", youtubeLink);
-        const result = checkYoutubeUrl(youtubeLink);
-        if (result) {
-            console.log("Gültiger YouTube-Link.");
-        
+    } else {
+        alert("Unbekannter Typ ausgewählt.");
+        return;
+    }
 
-            let { selectedTime, aktiv, titel, description } = prepareFormData(event);
-            if (titel === "" || selectedTime === null || aktiv === null) {
-                alert("Bitte füllen Sie alle Felder aus inkl YouTube Link.");
-                return;
-            }
-            youtubeLink = "yt_" + youtubeLink;
-            try {
-                await createInfoseiteObj(youtubeLink, selectedTime, aktiv, titel, description);
-                resetForm("infoSeiteForm");
-
-            } catch (error) {
-                console.error("Fehler beim erstellen des Infoseite:", error);
-                alert("Fehler beim Erstellen der Infoseite. Bitte versuchen Sie es erneut.");
-                return;
-            }
-        } else {
-            alert("Ungültiger YouTube-Link.");
-        }
+    // Gemeinsame Logik für Links
+    const prefixedLink = prefix + validLink;
+    try {
+        await createInfoseiteObj(prefixedLink, selectedTime, aktiv, titel, description);
+        resetForm("infoSeiteForm");
+        console.log("Infoseite wurde erfolgreich erstellt.");
+    } catch (error) {
+        console.error("Fehler beim Erstellen der Infoseite:", error);
+        alert("Fehler beim Erstellen der Infoseite. Bitte versuchen Sie es erneut.");
     }
 }
 
@@ -1041,18 +1077,23 @@ async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, d
 }
 
 function checkYoutubeUrl(url) {
-        debugger;
     const harmfulChars = /[<>"';]/;
     if (harmfulChars.test(url)) {
         return false;
     }
-    // Erlaubt normale YouTube-Links, youtu.be-Links und Shorts-Links
-    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)[A-Za-z0-9_-]{11}(\S*)?$/;
-    if (pattern.test(url)) {
-        return true;
+    // Erlaubt normale YouTube-Links (watch, embed, shorts, youtu.be)
+    const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})(\S*)?$/;
+    return pattern.test(url);
+}
+
+function checkTikTokUrl(url) {
+    const harmfulChars = /[<>"';]/;
+    if (harmfulChars.test(url)) {
+        return false;
     }
-  
-    return false;
+    // Erlaubt normale TikTok-Links und vm.tiktok.com-Links
+    const pattern = /^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[\w.-]+\/video\/|embed\/v2\/)|vm\.tiktok\.com\/)[A-Za-z0-9_-]{19}(\S*)?$/;
+    return pattern.test(url);
 }
 
 function prepareFormData(event) {

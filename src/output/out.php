@@ -212,31 +212,45 @@
     }
 
     function createYoutubeVid(element) {
-        if (element.includes("v=")) {
-            var strSplit = element.split("v=");
-            videoId = strSplit[1].split('&')[0]; // Nimm nur bis zum nächsten "&"
-        } else if (element.includes("shorts/")) {
-            var strSplit = element.split("shorts/");
-            videoId = strSplit[1].split('&')[0]; // Auch hier, falls Shorts Parameter haben
+        if (element.includes('tiktok') || element.includes('vm.tiktok.com')) {
+            isTikTok = true;
+            // VIDEO_ID extrahieren
+            let videoId = '';
+            if (element.includes('/video/')) {
+                videoId = element.split('/video/')[1].split('?')[0];
+            } else if (element.includes('vm.tiktok.com/')) {
+                videoId = element.split('vm.tiktok.com/')[1].split('/')[0];
+            }
+            embedSrc = `https://www.tiktok.com/embed/v2/${videoId}`;
+            sourceText = "Quelle: " + element;
+        } else {
+            // YouTube (Standard)
+            isYouTube = true;
+            let videoId = '';
+            if (element.includes("v=")) {
+                videoId = element.split("v=")[1].split('&')[0];
+            } else if (element.includes("shorts/")) {
+                videoId = element.split("shorts/")[1].split('&')[0];
+            }
+            embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de`;
+            sourceText = "Quelle: https://www.youtube.com/watch?v=" + videoId;
         }
-        console.log(videoId);
 
-        var iframe = document.createElement("iframe");
-        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-        iframe.style.border = "none";
-        // Hide YouTube progress bar and controls
-        iframe.allowFullscreen = true;
-        // In createYoutubeVid:
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de`;
+        const iframe = document.createElement("iframe");
+        iframe.src = embedSrc;
         iframe.className = "fullscreenYoutube";
         iframe.frameBorder = "0";
-        document.body.innerHTML = ''; // Clear the body content
-        var text = document.createElement("div");
+        iframe.style.border = "none";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+
+        document.body.appendChild(iframe);
+
+        const text = document.createElement("div");
         text.classList = "textYoutube";
-        text.innerHTML = "Quelle: https://www.youtube.com/watch?v=" + videoId;
-        document.body.appendChild(iframe); // Add the new iframe to the body
-        iframe.parentNode.appendChild(text); // Text als Child des iframes hinzufügen
-  
+        text.innerHTML = sourceText;
+        iframe.parentNode.appendChild(text);
+
     }
 
     function createVid(element) {
