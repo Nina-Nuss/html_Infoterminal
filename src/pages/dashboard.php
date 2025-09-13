@@ -36,7 +36,7 @@ header('Access-Control-Allow-Origin: *');
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
                 <div class="row justify-content-center ">
-                    <div class="pb-2 d-flex flex-wrap justify-content-center overflow-auto" style="margin-right: 25 %;">
+                    <div class="pb-2 d-flex flex-wrap justify-content-center overflow-auto" style="margin-right: 25%;">
                         <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                             class="btn btn-success btn-sm me-2">
                             <i class="fas fa-save"></i> Speichern
