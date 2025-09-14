@@ -378,5 +378,3 @@ function uncheckAllTableCheckboxes() {
 
 
 
-
-

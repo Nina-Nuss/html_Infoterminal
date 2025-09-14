@@ -168,14 +168,14 @@
                 for (const element of data) {
                     if (element[1].includes('img_')) {
                         createPic(element[1])
-                        // const img = document.createElement('img');
-                        await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
+                       
+                        await sleep(element[2]); 
                     } else if (element[1].includes('video_')) {
                         createVid(element[1])
-                        await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
+                        await sleep(element[2]); 
                     } else if (element[1].includes('yt_')) {
                         createYoutubeVid(element[1])
-                        await sleep(element[2]); //wartet bis nächstes Bild angeziegt wird
+                        await sleep(element[2]); 
                     }
                     if (data.length === 0) {
                         console.error('Daten sind leer, versuche Seite neu zu laden');

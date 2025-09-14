@@ -28,7 +28,7 @@
         flex-direction: column;
         padding: 0%;
         z-index: 1;
-      
+
     }
 
     .iframe-container {
@@ -66,7 +66,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-             height: 77vh;
+            height: 77vh;
             width: 77vw;
             /* border: 1px solid black; */
 
@@ -84,7 +84,7 @@
             align-items: center;
             width: 77vw;
             height: 77vh;
-           
+
             /* border: 1px solid black; */
 
             box-sizing: border-box;
@@ -137,9 +137,9 @@
     });
 
     function startCarousel(ort) {
-
         const iframe = document.createElement('iframe');
         iframe.src = `out.php?ip=${encodeURIComponent(ort)}`;
+        container.appendChild(iframe);
         iframe.onload = () => {
             try {
                 // Prüfe, ob der Inhalt des iframes eine 404-Seite ist
@@ -157,7 +157,7 @@
                 setTimeout(() => startCarousel(ort), 10000);
             }
         };
-        container.appendChild(iframe);
+
     }
 
 
