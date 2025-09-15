@@ -97,6 +97,7 @@ header('Access-Control-Allow-Origin: *');
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
                                                     <div class="d-flex align-items-center mb-3">
+
                                                         <div class="d-flex  align-items-center">
                                                             <i class="fas text-dark  fa-calendar-alt me-2"></i>
                                                             <span>Datum:</span>
@@ -118,10 +119,10 @@ header('Access-Control-Allow-Origin: *');
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
-                                                        <button type="button" data-bs-placement="bottom"
+                                                        <div type="button" data-bs-placement="bottom"
                                                             class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
                                                             data-bs-toggle="popover" title="Information zum Datum"
-                                                            data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></button>
+                                                            data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></div>
                                                         <script>
                                                             document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
                                                                 new bootstrap.Popover(el, {
@@ -131,6 +132,7 @@ header('Access-Control-Allow-Origin: *');
                                                                 });
                                                             });
                                                         </script>
+
                                                     </div>
 
                                                     <!-- Uhrzeit -->
@@ -239,6 +241,19 @@ header('Access-Control-Allow-Origin: *');
                                 </div>
                                 <div class="card-body d-flex">
                                     <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3" style="height: 120px;">
+                                        <button type="button" data-bs-placement="bottom"
+                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
+                                            data-bs-toggle="popover" title="Information zur Bildschirm verwalten"
+                                            data-bs-content="Hier können die Infoseiten zu den Terminals hinzugefügt werden. Dieses Fenster dient zur übersicht,  wo die Infoseiten zum welchem Terminal zugeordnet sind."> <i class="bi bi-info-circle"></i></i></button>
+                                        <script>
+                                            document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
+                                                new bootstrap.Popover(el, {
+                                                    trigger: 'hover',
+                                                    html: true,
+                                                    placement: el.getAttribute('data-bs-placement') || 'top'
+                                                });
+                                            });
+                                        </script>
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
                                             class="btn btn-success align-items-stretch m-0 würfelbtn">
@@ -249,22 +264,10 @@ header('Access-Control-Allow-Origin: *');
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                         <button type="button" data-bs-placement="bottom"
-                                        class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
-                                        data-bs-toggle="popover" title="Information zur Uhrzeit"
-                                        data-bs-content="Hier können die Infoseiten zum Terminal hinzugefügt werden. Dieses Fenster dient zur übersicht wo die Infoseiten zum welchem Terminal."> <i class="bi bi-info-circle"></i></i></button>
-                                    <script>
-                                        document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
-                                            new bootstrap.Popover(el, {
-                                                trigger: 'hover',
-                                                html: true,
-                                                placement: el.getAttribute('data-bs-placement') || 'top'
-                                            });
-                                        });
-                                    </script>
+
 
                                     </div>
-                                   
+
                                     <div class="w-100 overflow-auto border rounded-3">
 
                                         <div style="height: 120px; overflow-y: auto;">
