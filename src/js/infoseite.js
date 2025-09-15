@@ -961,6 +961,7 @@ async function meow(event, selectedValue, link, start, end) {
     console.log("Link:", link);
     console.log("Start:", start);
     console.log("End:", end);
+    debugger;
     var start = Number(start) ?? "";
     var end = Number(end) ?? "";
     if(start > end){
