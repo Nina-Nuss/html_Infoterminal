@@ -168,14 +168,14 @@
                 for (const element of data) {
                     if (element[1].includes('img_')) {
                         createPic(element[1])
-                       
-                        await sleep(element[2]); 
+
+                        await sleep(element[2]);
                     } else if (element[1].includes('video_')) {
                         createVid(element[1])
-                        await sleep(element[2]); 
+                        await sleep(element[2]);
                     } else if (element[1].includes('yt_')) {
                         createYoutubeVid(element[1])
-                        await sleep(element[2]); 
+                        await sleep(element[2]);
                     }
                     if (data.length === 0) {
                         console.error('Daten sind leer, versuche Seite neu zu laden');
@@ -225,21 +225,28 @@
             embedSrc = `https://www.tiktok.com/embed/v2/${videoId}`;
             sourceText = "Quelle: " + element;
         } else {
-        
             isYouTube = true;
             let videoId = '';
             if (element.includes("v=")) {
-                videoId = element.split("v=")[1].split('&')[0];
+                videoId = element.split("v=")[1];
+                console.log(videoId);
+
+                if (videoId.includes('&start=')) {
+                    start = videoId.split('&start=')[1].split('&')[0];
+                }
+                if (videoId.includes('&end=')) {
+                    end = videoId.split('&end=')[1].split('&')[0];
+                }
+                console.log(start);
+                console.log(end);
             } else if (element.includes("shorts/")) {
                 videoId = element.split("shorts/")[1].split('&')[0];
             }
-
             embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&start=${start}&end=${end}&rel=0&controls=1&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de
-
 (Source: socialmediaone.de)`;
-            sourceText = "Quelle: https://www.youtube.com/watch?v=" + videoId;
-        }
+            sourceText = "Quelle: https://www.youtube.com/watch?v=" + videoId.split('&')[0];
 
+        }
         const iframe = document.createElement("iframe");
         iframe.src = embedSrc;
         iframe.className = "fullscreenYoutube";

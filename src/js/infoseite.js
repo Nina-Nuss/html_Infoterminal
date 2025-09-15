@@ -955,17 +955,23 @@ function detectLinkType(link) {
 }
 
 // Erweitere meow
-async function meow(event, selectedValue, link) {
+async function meow(event, selectedValue, link, start, end) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
     console.log("Selected Value:", selectedValue);
     console.log("Link:", link);
-
+    console.log("Start:", start);
+    console.log("End:", end);
+    var start = Number(start) ?? "";
+    var end = Number(end) ?? "";
+    if(start > end){
+        alert("Die Startzeit darf nicht größer als die Endzeit sein.");
+        return;
+    }
     let { selectedTime, aktiv, titel, description } = prepareFormData(event);
     if (titel === "" || selectedTime === null || aktiv === null) {
         alert("Bitte füllen Sie alle Felder aus.");
         return;
     }
-
     let validLink = "";
     let prefix = "";
 
@@ -981,8 +987,14 @@ async function meow(event, selectedValue, link) {
         console.log("Externe Video-Quelle ausgewählt");
         const linkType = detectLinkType(link);
         if (linkType) {
-            validLink = link;
+            if (start || end) {
+                validLink = link + `&start=${start}&end=${end}`;
+            }else{
+                validLink = link;
+            }
             prefix = linkType + "_"; // z.B. "yt_", "tiktok_"
+            console.log("Valid Link:", validLink);
+            
         } else {
             alert("Ungültiger Link. Unterstützt: YouTube, TikTok, Instagram, ZDF, Tagesschau.");
             return;
@@ -994,6 +1006,8 @@ async function meow(event, selectedValue, link) {
 
     // Gemeinsame Logik für Links
     const prefixedLink = prefix + validLink;
+    console.log("Prefixed Link:", prefixedLink);
+    
     try {
         await createInfoseiteObj(prefixedLink, selectedTime, aktiv, titel, description);
         resetForm("infoSeiteForm");
