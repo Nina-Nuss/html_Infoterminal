@@ -962,9 +962,14 @@ async function meow(event, selectedValue, link, start, end) {
     console.log("Start:", start);
     console.log("End:", end);
     debugger;
-    var start = Number(start) ?? "";
-    var end = Number(end) ?? "";
-    if(start > end){
+    var start = Number(start);
+    var end = Number(end);
+    if(isNaN(start) || isNaN(end)){
+        alert("Start- und Endzeit müssen Zahlen sein.");
+        return;
+    }
+
+    if (start > end) {
         alert("Die Startzeit darf nicht größer als die Endzeit sein.");
         return;
     }
@@ -1348,3 +1353,10 @@ function wähleErstesInfoseite() {
 
     }
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+    const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
+    if (btnAddInfoSeite) {
+        btnAddInfoSeite.click();
+    }
+});

@@ -211,6 +211,7 @@
         document.body.appendChild(img); // Add the new image to the body
     }
 
+
     function createYoutubeVid(element) {
         var start; // Standard Startzeit
         var end; // Standard Endzeit
@@ -242,7 +243,7 @@
             } else if (element.includes("shorts/")) {
                 videoId = element.split("shorts/")[1].split('&')[0];
             }
-            embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&start=${start}&end=${end}&rel=0&controls=1&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de
+            embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&start=${start}&end=${end}&rel=0&controls=0&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de
 (Source: socialmediaone.de)`;
             sourceText = "Quelle: https://www.youtube.com/watch?v=" + videoId.split('&')[0];
 
@@ -254,7 +255,7 @@
         iframe.style.border = "none";
         iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
         iframe.allowFullscreen = true;
-
+        document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(iframe);
 
         const text = document.createElement("div");
