@@ -244,7 +244,7 @@ header('Access-Control-Allow-Origin: *');
                                         <button type="button" data-bs-placement="bottom"
                                             class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
                                             data-bs-toggle="popover" title="Information zur Bildschirm verwalten"
-                                            data-bs-content="Hier können die Infoseiten zu den Terminals hinzugefügt werden. Dieses Fenster dient zur übersicht,  wo die Infoseiten zum welchem Terminal zugeordnet sind."> <i class="bi bi-info-circle"></i></i></button>
+                                            data-bs-content="Hier können die Infoseiten zu den Terminals hinzugefügt werden. Dieses Fenster dient zur übersicht,  wo die Infoseiten zu welchem Terminal zugeordnet sind."> <i class="bi bi-info-circle"></i></i></button>
                                         <script>
                                             document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) {
                                                 new bootstrap.Popover(el, {

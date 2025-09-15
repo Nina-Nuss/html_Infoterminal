@@ -22,7 +22,7 @@ class Infoseite {
         this.dateAktiv = dateAktiv //True or false
         this.aktiv = aktiv //true or false
         this.titel = titel //Der Titel des Objektes
-        this.beschreibung = beschreibung //Die Beschreibung des Objektes
+        this.beschreibung = beschreibung == null ? "" : beschreibung //Die Beschreibung des Objektes
         //-------------------------------------
         //HTMLOBJEKTE-------------------------
         this.changed = false;
@@ -48,11 +48,12 @@ class Infoseite {
     htmlBody(umgebung) {
         let placeHolder;
         let icon;
+        debugger
         // Bestimme den korrekten Bildpfad basierend auf dem imagePath
         placeHolder = Infoseite.preparePlaceHolder(this.imagePath);
         icon = Infoseite.iconHTML(this.aktiv);
         const body = `
-            <div class="card mb-2 text-wrap border-2" id="${this.cardObjekte}" onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
+            <div class="card mb-2 text-wrap border-2" id="${this.cardObjekte}"  onclick="handleCardClick(${this.id})" onmouseover="handleCardMouseOver(${this.id})" onmouseout="handleCardMouseOut(${this.id})">
                 <div id="cardHeader${this.id}" class="card-header p-1">
                 </div>
                 ${placeHolder}
@@ -97,7 +98,7 @@ class Infoseite {
         // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
         const embedUrl = Infoseite.getEmbedUrl(imagePath);
         if (embedUrl) {
-            return placeHolder = `<iframe class="w-100" height="auto" src="${embedUrl}" title="Embedded content" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            return placeHolder = `<iframe class="w-100 card-img-small"  src="${embedUrl}" title="Embedded content" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         }
         // Prüfe, ob es ein Bild oder Video ist
         const ext = imagePath.split('.').pop().toLowerCase();

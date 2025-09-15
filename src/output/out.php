@@ -212,9 +212,10 @@
     }
 
     function createYoutubeVid(element) {
+        var start; // Standard Startzeit
+        var end; // Standard Endzeit
         if (element.includes('tiktok') || element.includes('vm.tiktok.com')) {
             isTikTok = true;
-            // VIDEO_ID extrahieren
             let videoId = '';
             if (element.includes('/video/')) {
                 videoId = element.split('/video/')[1].split('?')[0];
@@ -224,7 +225,7 @@
             embedSrc = `https://www.tiktok.com/embed/v2/${videoId}`;
             sourceText = "Quelle: " + element;
         } else {
-            // YouTube (Standard)
+        
             isYouTube = true;
             let videoId = '';
             if (element.includes("v=")) {
@@ -232,7 +233,10 @@
             } else if (element.includes("shorts/")) {
                 videoId = element.split("shorts/")[1].split('&')[0];
             }
-            embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de`;
+
+            embedSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&start=${start}&end=${end}&rel=0&controls=1&loop=1&playlist=${videoId}&cc_load_policy=1&cc_lang_pref=de
+
+(Source: socialmediaone.de)`;
             sourceText = "Quelle: https://www.youtube.com/watch?v=" + videoId;
         }
 
@@ -261,7 +265,7 @@
         video.autoplay = true; // Video automatisch starten
         video.loop = true; // Video in einer Schleife abspielen
         video.playsInline = true; // Für mobile Geräte
-        video.muted = true; // Meistens erforderlich für Autoplay in Browsern
+        video.muted = false; // Meistens erforderlich für Autoplay in Browsern
         document.body.innerHTML = ''; // Clear the body content
         document.body.appendChild(video); // Add the new video to the body
     }
