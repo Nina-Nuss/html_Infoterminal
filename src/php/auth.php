@@ -1,14 +1,19 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != '1') {
-  if (isset($_COOKIE['username'])) {
+$cookieIsSet = false;
 
-  } else {
+if (isset($_COOKIE['username'])) {
+  $cookieIsSet = true;
+}
+
+if (!$cookieIsSet) {
+  if (!isset($_SESSION['user_id'])  || !isset($_SESSION['is_active']) || $_SESSION['is_active'] != 1) {
     header('Location: ../login/index.php');
     exit;
   }
 }
+
 
 if (!empty($_SESSION['login_success'])) {
   echo '
