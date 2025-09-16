@@ -27,7 +27,14 @@ if ($stmt) {
             } elseif (strpos($imagePath, 'video_') !== false) {
                 $fullPath = $uploadFolder2 . $imagePath;
                 array_push($videoListPath, $imagePath);
+            }elseif (strpos($imagePath, 'yt_' )  !== false) {
+                // YouTube-Link, kein physischer Pfad
+                continue;
+            } else {
+                // Unbekanntes Format, überspringen
+                continue;
             }
+
             array_push($idList, $id);
 
             if (!file_exists($fullPath)) {
