@@ -3,9 +3,9 @@ CREATE DATABASE dbTerminal
 ; 
 
 USE testdbTerminal;
-
-drop table if exists templates;
 drop table if exists schemas;
+drop table if exists templates;
+
 drop table if exists infotherminal_schema;
 
 drop table if exists user_login;
