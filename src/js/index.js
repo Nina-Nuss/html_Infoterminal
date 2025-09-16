@@ -14,6 +14,7 @@ window.onload = async function () {
 
     if (document.getElementById("dokumente")) {
         try {
+            debugger;
             await Infoseite.update();
 
         } catch (error) {

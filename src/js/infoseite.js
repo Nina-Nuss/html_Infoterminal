@@ -131,11 +131,10 @@ class Infoseite {
 
 
     static getEmbedUrl(url) {
-        // YouTube: prüfe auf youtube.com oder youtu.be und extrahiere die Video-ID (11 Zeichen)
         if (typeof url !== "string") return null;
         if (url.includes("youtube.com")) {
-            // Nur youtube.com-Links, KEIN youtu.be!
-            const match = url.match(/(?:v=|\/embed\/|\/v\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+        // Unterstützt auch youtu.be Kurzlinks
+        const match = url.match(/(?:v=|\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
             if (match) {
                 return `https://www.youtube.com/embed/${match[1]}`;
             }
@@ -147,7 +146,8 @@ class Infoseite {
                 return `https://www.tiktok.com/embed/v2/${match[1]}`;
             }
         }
-        return null; // Keine unterstützte Plattform
+        if(url.includes("youtube"))
+        return null; 
     }
     static event_remove(id) {
         var element = document.getElementById(`checkDelSchema${id}`);
@@ -375,6 +375,7 @@ class Infoseite {
         }
     }
     static async update() {
+        debugger
         var delSchema = document.getElementById("deleteSchema")
         console.log("bin in delschema drin");
         if (delSchema != null) {
@@ -386,6 +387,7 @@ class Infoseite {
         console.log(this.list);
     }
     static async createCardObj() {
+        debugger
         console.log("createCardObj wurde aufgerufen");
         var delSchema = document.getElementById("deleteSchema")
         const response = await readDatabase("selectSchemas");

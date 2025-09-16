@@ -1,21 +1,55 @@
 
-drop table infotherminal_schema;
-drop table schemas;
-drop table infotherminals; 
-
- 
-
 CREATE DATABASE dbTerminal
 ; 
 
+USE testdbTerminal;
 
-USE dbTerminal;
+drop table if exists templates;
+drop table if exists schemas;
+drop table if exists infotherminal_schema;
+
+drop table if exists user_login;
+drop table if exists infotherminals; 
+
+drop table if exists error_logs;
+
+
+
+
 CREATE TABLE infotherminals (
     id INT NOT NULL IDENTITY(1,1),
     titel VARCHAR(50),
     ipAdresse VARCHAR(50),
     CONSTRAINT PK_infotherminals PRIMARY KEY (id)
 );
+
+
+CREATE table templates (
+    id INT NOT NULL IDENTITY(1,1),
+    fk_schema_id INT NOT NULL,
+    templateName VARCHAR(50),
+    text1 VARCHAR(255),
+    text2 VARCHAR(255),
+    text3 VARCHAR(255),
+    text4 VARCHAR(255),
+    text5 VARCHAR(255),
+    text6 VARCHAR(255),
+    bild1 VARCHAR(255),
+    bild2 VARCHAR(255),
+    bild3 VARCHAR(255),
+    bild4 VARCHAR(255),
+    bild5 VARCHAR(255),
+    bild6 VARCHAR(255),
+    video1 VARCHAR(255),
+    video2 VARCHAR(255),
+    video3 VARCHAR(255),
+    video4 VARCHAR(255),
+    CONSTRAINT FK_templates_schemas FOREIGN KEY (fk_schema_id)
+        REFERENCES schemas(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
 
 CREATE TABLE schemas (
     id INT NOT NULL IDENTITY(1,1),
@@ -45,7 +79,7 @@ CREATE TABLE infotherminal_schema (
 );
 
 
-drop table user_login;
+
 CREATE TABLE user_login (
     id INT IDENTITY(1,1) PRIMARY KEY, -- Bleibt int für Auto-Inkrement
     username VARCHAR(50),
@@ -63,37 +97,11 @@ CREATE TABLE user_login (
     created_at DATETIME DEFAULT GETDATE(), -- Erstellungsdatum im Format yyyy-mm-dd hh:mi:ss
  );
 
-INSERT INTO user_login (username, password, is_admin)
-VALUES ('admin', '0000', '1'),
-       ('user', '0000', '0');
 
 
-
-drop table error_logs;
 CREATE TABLE error_logs (
         message VARCHAR(255) NOT NULL, -- Fehler-Nachricht
         datum DATETIME DEFAULT GETDATE(), -- Aktuelles Datum und Zeit
 );
 
 
-CREATE table templates (
-    id INT NOT NULL IDENTITY(1,1),
-    templateName VARCHAR(50),
-    text1 VARCHAR(255),
-    text2 VARCHAR(255),
-    text3 VARCHAR(255),
-    text4 VARCHAR(255),
-    text5 VARCHAR(255),
-    text6 VARCHAR(255),
-    bild1 VARCHAR(255),
-    bild2 VARCHAR(255),
-    bild3 VARCHAR(255),
-    bild4 VARCHAR(255),
-    bild5 VARCHAR(255),
-    bild6 VARCHAR(255),
-    video1 VARCHAR(255),
-    video2 VARCHAR(255),
-    video3 VARCHAR(255),
-    video4 VARCHAR(255),
-    CONSTRAINT PK_templates PRIMARY KEY (id)
-);
