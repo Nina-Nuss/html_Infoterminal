@@ -132,9 +132,6 @@
 
     const ytInput = document.getElementById('youtubeUrl');
  
-    window.addEventListener('DOMContentLoaded', function () {
-        selectItem.dispatchEvent(new Event('change'));
-    });
 
     selectItem.addEventListener('change', function () {
         var selectedValue = this.value;

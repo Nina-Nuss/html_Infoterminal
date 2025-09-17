@@ -1031,7 +1031,6 @@ function resetForm(formType) {
     if (formType === "infoSeiteForm") {
         resetAll(); // Alle Formularfelder zurücksetzen
         selectTemplate("yt"); // Standardmäßig auf Bild-Template setzen
-
         const modalElement = document.getElementById('addInfoSeite');
         const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
         modalInstance.hide();
@@ -1039,7 +1038,6 @@ function resetForm(formType) {
 }
 
 function resetAll() {
-
     let previewContainer = document.getElementById('previewContainer');
     let idsTwo = ["imgPreview", "videoPreview"];
     let idsOne = ["img", "youtubeUrl", "start", "end", "title", "description"];
@@ -1066,10 +1064,34 @@ function resetAll() {
     previewContainer = null;
 }
 
+selectTemplate("yt"); // Standardmäßig auf YouTube-Template setzen
 function selectTemplate(template) {
-    var inputGroupSelect01 = document.getElementById('inputGroupSelect01');
-    if (inputGroupSelect01) {
-        inputGroupSelect01.value = template; // Setze den Wert des Select-Elements
+    debugger
+    var fileInput = document.getElementById('img');
+    var ytInput = document.getElementById('youtubeUrl');
+    var datai = document.getElementById('datai');
+    inputGroupSelect01.value = template; // Setze den Wert des Select-Elements
+    var selectedValue = template;
+    var Youtube = document.getElementById('YoutubeContainer');
+    var datai = document.getElementById('dataiContainer');
+    if (selectedValue === 'yt') {
+        resetAll();
+        Youtube.classList.remove('hidden');
+        datai.classList.add('hidden');
+        if (fileInput) {
+            fileInput.disabled = true;
+            fileInput.value = '';
+        } if (ytInput) ytInput.disabled = false;
+        inputGroupSelect01.dispatchEvent(new Event('change')); // Trigger das Change-Event
+    } else if (selectedValue === 'img') {
+        resetAll();
+        Youtube.classList.add('hidden');
+        datai.classList.remove('hidden');
+        if (fileInput) fileInput.disabled = false;
+        fileInput.value = '';
+        if (ytInput) {
+            ytInput.disabled = true; // optional
+        }
         inputGroupSelect01.dispatchEvent(new Event('change')); // Trigger das Change-Event
     }
 }
