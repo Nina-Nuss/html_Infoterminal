@@ -724,6 +724,8 @@ class Infoseite {
             }
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
                 alert("Das Startdatum muss in der Zukunft liegen.");
+                cardObj.startDate = new Date().toISOString();
+                cardObj.endDate = endDateTime.toISOString();
                 console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
                 return;
             }
@@ -751,7 +753,6 @@ class Infoseite {
             console.log("Enddatum:", cardObj.endDate);
         }
         else if (startTime && startDate) {
-            alert("Nur Startdatum und Startzeit gesetzt");
             let startDateTime = new Date(startDate + " " + startTime);
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
                 alert("Ungültige Eingabe: Das Startdatum muss in der Zukunft liegen.");

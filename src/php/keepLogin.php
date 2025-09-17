@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 ob_start();
 include '../database/selectUser.php';

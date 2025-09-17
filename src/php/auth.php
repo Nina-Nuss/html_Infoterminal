@@ -1,9 +1,12 @@
 <?php
+
+
 session_start();
 
 $cookieIsSet = false;
 
 if (isset($_COOKIE['username'])) {
+ 
   $cookieIsSet = true;
 }
 
