@@ -264,8 +264,6 @@ header('Access-Control-Allow-Origin: *');
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>
-
-
                                     </div>
 
                                     <div class="w-100 overflow-auto border rounded-3">

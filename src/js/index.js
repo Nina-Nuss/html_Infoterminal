@@ -24,6 +24,7 @@ window.onload = async function () {
 
     try {
         await Infoterminal.update();
+        await Infoterminal.update();
         Infoterminal.erstelleSelector();
         Infoterminal.erstelleSelectorForCardObj();
 
@@ -103,6 +104,7 @@ async function logout() {
         console.error("Fehler beim Logout:", error);
     }
 }
+
 
 
 function warten(ms) {

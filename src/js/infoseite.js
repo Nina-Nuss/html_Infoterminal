@@ -133,8 +133,8 @@ class Infoseite {
     static getEmbedUrl(url) {
         if (typeof url !== "string") return null;
         if (url.includes("youtube.com")) {
-        // Unterstützt auch youtu.be Kurzlinks
-        const match = url.match(/(?:v=|\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+            // Unterstützt auch youtu.be Kurzlinks
+            const match = url.match(/(?:v=|\/embed\/|\/v\/|\/shorts\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
             if (match) {
                 return `https://www.youtube.com/embed/${match[1]}`;
             }
@@ -146,8 +146,8 @@ class Infoseite {
                 return `https://www.tiktok.com/embed/v2/${match[1]}`;
             }
         }
-        if(url.includes("youtube"))
-        return null; 
+        if (url.includes("youtube"))
+            return null;
     }
     static event_remove(id) {
         var element = document.getElementById(`checkDelSchema${id}`);
@@ -716,17 +716,15 @@ class Infoseite {
             let endDateTime = combineDateTime(endDate, endTime);
             console.log("Start DateTime:", startDateTime);
             console.log("End DateTime:", endDateTime);
-
             if (startDateTime > endDateTime) {
-                alert("Ungültige Eingabe: das Enddatum kann nicht vor dem Startdatum liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist größer oder gleich dem Enddatum.");
+                // cardObj.startDate = new Date().toISOString();
+                // cardObj.endDate = "9999-12-31" + " 00:00";
                 return;
             }
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
-                alert("Das Startdatum muss in der Zukunft liegen.");
-                cardObj.startDate = new Date().toISOString();
-                cardObj.endDate = endDateTime.toISOString();
-                console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
+                // cardObj.startDate = new Date().toISOString();
+                //  cardObj.endDate = "9999-12-31" + " 00:00";
                 return;
             }
             console.log(new Date(getTodayDate() + "T" + startTime));
@@ -967,7 +965,7 @@ async function meow(event, selectedValue, link, start, end) {
     debugger;
     var start = Number(start);
     var end = Number(end);
-    if(isNaN(start) || isNaN(end)){
+    if (isNaN(start) || isNaN(end)) {
         alert("Start- und Endzeit müssen Zahlen sein.");
         return;
     }
@@ -998,12 +996,12 @@ async function meow(event, selectedValue, link, start, end) {
         if (linkType) {
             if (start || end) {
                 validLink = link + `&start=${start}&end=${end}`;
-            }else{
+            } else {
                 validLink = link;
             }
             prefix = linkType + "_"; // z.B. "yt_", "tiktok_"
             console.log("Valid Link:", validLink);
-            
+
         } else {
             alert("Ungültiger Link. Unterstützt: YouTube, TikTok, Instagram, ZDF, Tagesschau.");
             return;
@@ -1016,7 +1014,7 @@ async function meow(event, selectedValue, link, start, end) {
     // Gemeinsame Logik für Links
     const prefixedLink = prefix + validLink;
     console.log("Prefixed Link:", prefixedLink);
-    
+
     try {
         await createInfoseiteObj(prefixedLink, selectedTime, aktiv, titel, description);
         resetForm("infoSeiteForm");
@@ -1031,20 +1029,51 @@ function resetForm(formType) {
     debugger
     const form = document.getElementById(formType);
     if (formType === "infoSeiteForm") {
-        const imgPreview = document.getElementById('imgPreview');
-        imgPreview.src = '#'; // Bildvorschau zurücksetzen
-        imgPreview.style.display = 'none';
-        imgPreview.alt = 'Bildvorschau';
-        const videoPreview = document.getElementById('videoPreview');
-        videoPreview.src = '#'; // Video-Vorschau zurücksetzen
-        videoPreview.style.display = 'none';
-        videoPreview.alt = 'Video-Vorschau';
-        form.reset(); // Formular zurücksetzen
+        resetAll(); // Alle Formularfelder zurücksetzen
+        selectTemplate("yt"); // Standardmäßig auf Bild-Template setzen
+
         const modalElement = document.getElementById('addInfoSeite');
         const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
         modalInstance.hide();
     }
 }
+
+function resetAll() {
+
+    let previewContainer = document.getElementById('previewContainer');
+    let idsTwo = ["imgPreview", "videoPreview"];
+    let idsOne = ["img", "youtubeUrl", "start", "end", "title", "description"];
+    idsOne.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.value = ''; // Setze den Wert jedes Elements zurück
+        }
+    });
+    idsTwo.forEach(element => {
+        const el = document.getElementById(element);
+        if (el) {
+            el.src = '#';
+            el.style.display = 'none';
+            el.alt = 'Bildvorschau';
+        }
+    });
+
+    if (previewContainer) {
+        previewContainer.style.display = 'none';
+    }
+    idsOne = null;
+    idsTwo = null;
+    previewContainer = null;
+}
+
+function selectTemplate(template) {
+    var inputGroupSelect01 = document.getElementById('inputGroupSelect01');
+    if (inputGroupSelect01) {
+        inputGroupSelect01.value = template; // Setze den Wert des Select-Elements
+        inputGroupSelect01.dispatchEvent(new Event('change')); // Trigger das Change-Event
+    }
+}
+
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
     debugger;
