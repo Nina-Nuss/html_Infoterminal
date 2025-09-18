@@ -4,11 +4,11 @@ body {
 
 
 .card {
-    background-color: #1c1c1cc3;
+    background-color: #222;
     color: white;
     box-shadow: 0 0 5px white !important;
     border-color: white;
-    
+
 
 }
 
@@ -37,6 +37,14 @@ small,
     color: white;
 }
 
+.tr,
+th,
+td {
+    border-color: white !important;
+    color: white !important;
+    background-color: #222 !important;
+}
+
 .text-muted {
     color: #ccc !important;
 }
@@ -46,14 +54,21 @@ i {
     background-color: transparent;
 }
 
-button{
+button {
+    background-color: rgba(45, 45, 45, 0.644) !important;
+    color: rgb(255, 255, 255) !important;
+    border-color: white !important;
+}
+
+.select {
     background-color: rgba(45, 45, 45, 0.644) !important;
     color: rgb(255, 255, 255) !important;
     border-color: white !important;
 }
 
 .modal-content {
-    background-color: rgba(0, 0, 0, 0.852);
+    background-color: #222;
+    ;
     color: white;
     border-color: white;
 }
