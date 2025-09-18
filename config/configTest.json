@@ -9,7 +9,8 @@
             "fsdfsd": null,
             "": "1bcvbvcb",
             "maxCountForInfoTerminals": "110",
-            "maxCountForInfoPages": "100"
+            "maxCountForInfoPages": "100",
+            "theme": "dark"
         }
     ]
 }
