@@ -35,7 +35,7 @@ header('Access-Control-Allow-Origin: *');
             <div class="col-md-10 text-center">
                 <?php include $_SERVER['DOCUMENT_ROOT'] . '/src/layout/selectPanel.php'; ?>
                 <hr>
-                <div class="row justify-content-center ">
+                <div class="row justify-content-center align-items-start">
                     <div class="pb-2 d-flex flex-wrap justify-content-center overflow-auto" style="margin-right: 25%;">
                         <button id="btn_save_changes" type="button" onclick="Infoseite.saveChanges(null)"
                             class="btn btn-success btn-sm me-2">
@@ -99,7 +99,7 @@ header('Access-Control-Allow-Origin: *');
                                                     <div class="d-flex align-items-center mb-3">
 
                                                         <div class="d-flex  align-items-center">
-                                                            <i class="fas text-dark  fa-calendar-alt me-2"></i>
+                                                            <i class="fas fa-calendar-alt me-2"></i>
                                                             <span>Datum:</span>
                                                             <div class="d-flex align-items-center ms-4">
                                                                 <input type="date" class="form-control form-control-sm" style="width: 9rem; "
@@ -138,7 +138,7 @@ header('Access-Control-Allow-Origin: *');
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fa fa-clock text-dark me-2" aria-hidden="true"></i>
+                                                            <i class="fa fa-clock me-2" aria-hidden="true"></i>
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
 
                                                             <input type="time"
@@ -190,7 +190,7 @@ header('Access-Control-Allow-Origin: *');
                                                             <option value="">auswählen</option>
                                                         </select>
                                                         <button id="openTerminalBtn"
-                                                            class="btn text-dark start-btn btn-sm trashBtn "
+                                                            class="btn start-btn btn-sm trashBtn "
                                                             style="border-color: #08445f;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
                                                             <i class="fas fa-external-link-alt"></i>
                                                         </button>

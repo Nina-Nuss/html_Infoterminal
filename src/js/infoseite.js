@@ -709,7 +709,7 @@ class Infoseite {
 
         var startDate = startDateID.value;
         var endDate = endDateID.value;
-
+        debugger;
 
         if (startDate && endDate && startTime && endTime) {
             let startDateTime = combineDateTime(startDate, startTime);
@@ -723,8 +723,6 @@ class Infoseite {
                 return;
             }
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
-                // cardObj.startDate = new Date().toISOString();
-                //  cardObj.endDate = "9999-12-31" + " 00:00";
                 return;
             }
             console.log(new Date(getTodayDate() + "T" + startTime));
@@ -755,6 +753,8 @@ class Infoseite {
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
                 alert("Ungültige Eingabe: Das Startdatum muss in der Zukunft liegen.");
                 console.error("Ungültige Eingabe: Startdatum ist in der Vergangenheit.");
+                cardObj.startDate = new Date().toISOString();
+                cardObj.endDate = "9999-12-31" + " 00:00";
                 return;
             }
             cardObj.endDate = "9999-12-31" + " 00:00";
@@ -1068,8 +1068,10 @@ selectTemplate("yt"); // Standardmäßig auf YouTube-Template setzen
 function selectTemplate(template) {
     debugger
     var fileInput = document.getElementById('img');
+    var inputGroupSelect01 = document.getElementById('inputGroupSelect01');
     var ytInput = document.getElementById('youtubeUrl');
     var datai = document.getElementById('datai');
+    if(!inputGroupSelect01) return;
     inputGroupSelect01.value = template; // Setze den Wert des Select-Elements
     var selectedValue = template;
     var Youtube = document.getElementById('YoutubeContainer');
@@ -1340,7 +1342,7 @@ function erstelleFunktionForCardObj(objID) {
             const cardHeader = document.getElementById("cardHeader" + extractNumberFromString(cardObj.id));
             if (id !== extractNumberFromString(cardObj.id)) {
                 cardObj.style.border = "1px solid rgba(0,0,0,.125)";
-                cardHeader.style.backgroundColor = "#ffffff";
+                cardHeader.style.backgroundColor = "";
 
             }
         });
@@ -1408,9 +1410,9 @@ function wähleErstesInfoseite() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-    const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
-    if (btnAddInfoSeite) {
-        btnAddInfoSeite.click();
-    }
-});
+// window.addEventListener("DOMContentLoaded", function () {
+//     const btnAddInfoSeite = document.getElementById("btn_addInfoSeite");
+//     if (btnAddInfoSeite) {
+//         btnAddInfoSeite.click();
+//     }
+// });
