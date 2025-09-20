@@ -27,7 +27,7 @@ if (isset($_COOKIE['isAdmin'])) {
 </head>
 <html>
 
-<body >
+<body>
     <?php include '../layout/header.php'; ?>
     <div class="container-fluid pt-3">
         <div class="col-md-12 text-center">
@@ -42,26 +42,6 @@ if (isset($_COOKIE['isAdmin'])) {
                 </select>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const selector = document.getElementById('adminSectionSelector');
-                const infoterminalSection = document.getElementById('infoterminalVerwaltung');
-                const userSection = document.getElementById('userVerwaltung');
-
-                function updateSections() {
-                    if (selector.value === 'infoterminal') {
-                        infoterminalSection.style.display = 'block';
-                        userSection.style.display = 'none';
-                    } else if (selector.value === 'user') {
-                        infoterminalSecation.style.display = 'none';
-                        userSection.style.display = 'block';
-                    }
-                }
-
-                selector.addEventListener('change', updateSections);
-                updateSections();
-            });
-        </script>
         <div>
             <div class="row mt-3" id="infoterminalVerwaltung" style="display: none;">
                 <div class="col-12">
@@ -103,7 +83,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                             </div>
 
                                         </div>
-                                        <div class="center-bottom d-flex justify-content-center card-footer bg-white p-3" style="border-top: none;">
+                                        <div class="center-bottom d-flex justify-content-center card-footer p-3" style="border-top: none;">
                                             <button type="submit" class="btn  btn-sm btn-success shadow-sm" style="width: 150px;">
                                                 <i class="fas fa-plus me-2"></i> Hinzufügen
                                             </button>
@@ -154,7 +134,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                         </div>
 
                                     </div>
-                                    <div class="card-footer bg-white d-flex justify-content-center p-3" style="border-top: none;">
+                                    <div class="card-footer  d-flex justify-content-center p-3" style="border-top: none;">
                                         <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;" onclick="Infoterminal.remove_generate()">
                                             <i class="fas fa-trash me-2"></i> Löschen
                                         </button>
@@ -198,7 +178,7 @@ if (isset($_COOKIE['isAdmin'])) {
 
 
                                     </div>
-                                    <div class="card-footer bg-white center-bottom d-flex justify-content-center p-3" style="border-top: none;">
+                                    <div class="card-footer  center-bottom d-flex justify-content-center p-3" style="border-top: none;">
                                         <button type="button" class="btn btn-sm btn-danger" style="width: 150px;"
                                             onclick="bereinigeDatenbankUndFolder()">
                                             <i class="fas fa-broom me-2"></i> Daten bereinigen
@@ -309,7 +289,7 @@ if (isset($_COOKIE['isAdmin'])) {
                                     </div>
 
                                 </div>
-                                <div class="card-footer bg-white p-3" style="border-top: none;">
+                                <div class="card-footer p-3" style="border-top: none;">
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-sm btn-danger shadow-sm" style="width: 150px;"
                                             onclick="Crud.remove_generate(User.temp_remove, User.list)">
@@ -342,10 +322,29 @@ if (isset($_COOKIE['isAdmin'])) {
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selector = document.getElementById('adminSectionSelector');
+            const infoterminalSection = document.getElementById('infoterminalVerwaltung');
+            const userSection = document.getElementById('userVerwaltung');
+
+            function updateSections() {
+                if (selector.value === 'infoterminal') {
+                    infoterminalSection.style.display = 'block';
+                    userSection.style.display = 'none';
+                } else if (selector.value === 'user') {
+                    infoterminalSection.style.display = 'none';
+                    userSection.style.display = 'block';
+                }
+            }
+            selector.addEventListener('change', updateSections);
+            updateSections();
+        });
+    </script>
+    <script src="../js/user.js"></script>
+
+    <script src="../js/crud.js"></script>
+
 </body>
 
 </html>
-
-<script src="../js/user.js"></script>
-
-<script src="../js/crud.js"></script>
