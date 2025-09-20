@@ -237,7 +237,6 @@ class Infoterminal {
 
             console.log("Ausgewähltes Infoterminal:", selectedTerminal);
             if (selectedTerminal.toLowerCase().trim() === "localhost" || selectedTerminal.toLowerCase().trim() === "test anzeige") {
-
                 var obj = findObj(Infoseite.list, Infoseite.selectedID);
                 const url = `../output/index.php?template=${encodeURIComponent(obj.imagePath)}`;
                 window.open(url, '_blank');
@@ -386,7 +385,6 @@ function createList(cfg, select, defaultValue) {
 }
 
 function saveList(select, name) {
-
     select.addEventListener('change', async () => {
         const newDefault = parseFloat(select.value);
         console.log(`Neuer Default-Wert: ${newDefault}`);
@@ -414,8 +412,6 @@ function saveList(select, name) {
         }
     });
 }
-
-
 async function getData() {
     const result = await fetch('../../config/configTest.json')
     return await result.json();
@@ -431,9 +427,7 @@ async function setData() {
         console.error("Error fetching data:", err);
     }
 }
-
 async function update(key, value) {
-
     console.log(value);
     const result = await fetch("saveValue.php", {
         method: "POST",

@@ -15,18 +15,24 @@ header('Access-Control-Allow-Origin: *');
 // echo $_SESSION['login_success'];
 ?>
 
-<!DOCTYPE ht
-    <html lang="de">
+<!DOCTYPE html>
+<html lang="de">
 
+
+   
 <head>
     <?php include '../assets/links.html'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
 
+</head>
+<script>
+
+</script>
 
 <body>
+   
+    <!-- <?php include '../assets/darkmode.html'; ?>  -->
     <?php include '../layout/header.php'; ?>
-
     <?php include '../layout/modal/hinzufuegen.html'; ?>
     <?php include '../layout/modal/addInfoSeite.html'; ?>
     <div class="container-fluid pt-3">
@@ -69,7 +75,6 @@ header('Access-Control-Allow-Origin: *');
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <div class="d-flex flex-wrap align-items-center  justify-content-start mb-2 ">
                                                     <i class="fas fa-hourglass-half"></i>
@@ -85,28 +90,24 @@ header('Access-Control-Allow-Origin: *');
                                                     <label class="form-check-label mb-0" for="checkA">
                                                         Aktiv:
                                                     </label>
-
                                                     <input class="form-check-input" type="checkbox" id="checkA"
                                                         name="checkA">
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         <div class="p-3" style="width: 35rem;  overflow-y: auto;">
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
                                                     <div class="d-flex align-items-center mb-3">
 
                                                         <div class="d-flex  align-items-center">
-                                                            <i class="fas fa-calendar-alt me-2"></i>
+                                                            <i class="fas fa-calendar-alt me-1"></i>
                                                             <span>Datum:</span>
                                                             <div class="d-flex align-items-center ms-4">
                                                                 <input type="date" class="form-control form-control-sm" style="width: 9rem; "
                                                                     id="startDate" name="startDate">
                                                             </div>
                                                         </div>
-
                                                         <div class="d-flex align-items-center justify-content-between ms-auto">
                                                             <label for="endDate"
                                                                 class="form-label mb-0 text-secondary mx-2">bis</label>
@@ -114,13 +115,13 @@ header('Access-Control-Allow-Origin: *');
                                                                 class="form-control form-control-sm" style="width: 9rem; "
                                                                 id="endDate" name="endDate">
                                                             <button id="btnDelDateTime"
-                                                                class="btn btn-outline-danger trashbtn btn-sm ms-3"
+                                                                class="btn btn-outline-danger trashBtn btn-sm ms-3"
                                                                 onclick="Infoseite.deleteDateTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                         <div type="button" data-bs-placement="bottom"
-                                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
+                                                            class="btn btn-lg btn-secondary  btn-sm infobtn"
                                                             data-bs-toggle="popover" title="Information zum Datum"
                                                             data-bs-content="Zwischem welchem Datum die Infoseite angezeigt werden soll"><i class="bi bi-info-circle"></i></div>
                                                         <script>
@@ -132,15 +133,12 @@ header('Access-Control-Allow-Origin: *');
                                                                 });
                                                             });
                                                         </script>
-
                                                     </div>
-
                                                     <!-- Uhrzeit -->
                                                     <div class="d-flex align-items-center">
                                                         <div class="d-flex align-items-center">
-                                                            <i class="fa fa-clock me-2" aria-hidden="true"></i>
+                                                            <i class="fa fa-clock me-2"></i>    
                                                             <span style="margin-right: 0.5rem;">Uhrzeit:</span>
-
                                                             <input type="time"
                                                                 class="form-control form-control-sm flex-fill mx-2" style="width: 6rem;"
                                                                 id="startTimeRange" name="startTimeRange">
@@ -157,13 +155,13 @@ header('Access-Control-Allow-Origin: *');
                                                             <label for="endTimeRange"
                                                                 class="form-label mb-0 text-secondary me-3 mx-2"> Uhr</label>
                                                             <button id="delTimeRange"
-                                                                class="btn btn-outline-danger trashBtn me-auto ms-3"
+                                                                class="btn btn-outline-danger trashBtn me-auto ms-3 btn-sm "
                                                                 onclick="Infoseite.removeTimeRange(Infoseite.selectedID)">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </div>
                                                         <button type="button" data-bs-placement="bottom"
-                                                            class="btn btn-lg btn-secondary btn-sm" style="width: 30px;"
+                                                            class="btn btn-lg btn-secondary btn-sm infobtn"
                                                             data-bs-toggle="popover" title="Information zur Uhrzeit"
                                                             data-bs-content="Zwischen welcher Uhrzeit die Infoseite jeden Tag angezeigt werden soll"> <i class="bi bi-info-circle"></i></i></button>
                                                         <script>
@@ -175,10 +173,18 @@ header('Access-Control-Allow-Origin: *');
                                                                 });
                                                             });
                                                         </script>
-
                                                     </div>
-
-
+                                                    <div class="input-group input-group-sm mt-3  d-flex">
+                                                        <label for="img" class="form-label me-4">
+                                                            <i class="fab fa-youtube me-2"></i> Video 
+                                                        </label>
+                                                        <span class="input-group-text input-group-sm">von</span>
+                                                        <input type="text" id="start" class="form-control form-control-sm me-2" placeholder="Sekunden" value=""
+                                                            aria-label="Sekunden" aria-describedby="addon-wrapping">
+                                                        <span class="input-group-text input-group-sm">bis</span>
+                                                        <input type="text" id="end" class="form-control form-control-sm" placeholder="Sekunden" value=""
+                                                            aria-label="Sekunden" aria-describedby="addon-wrapping">
+                                                    </div>
                                                 </div>
                                                 <div class="form-group mt-3">
                                                     <div class="d-flex align-items-center">
@@ -236,13 +242,13 @@ header('Access-Control-Allow-Origin: *');
                         </div>
                         <div class="col-md-3" id="bildschirmVerwaltung">
                             <div class="card h-100">
-                                <div class="card-header  p-2">
+                                <div class="card-header p-2">
                                     <h6 class="mb-0"><i class="fas fa-tv me-2"></i>Bildschirm verwalten</h6>
                                 </div>
                                 <div class="card-body d-flex">
-                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3" style="height: 120px;">
+                                    <div class="d-flex flex-column justify-content-center  align-content-center gap-2 me-3">
                                         <button type="button" data-bs-placement="bottom"
-                                            class="btn btn-lg btn-secondary  btn-sm" style="width: 30px;"
+                                            class="btn btn-lg btn-secondary  btn-sm infobtn"
                                             data-bs-toggle="popover" title="Information zur Bildschirm verwalten"
                                             data-bs-content="Hier können die Infoseiten zu den Terminals hinzugefügt werden. Dieses Fenster dient zur übersicht,  wo die Infoseiten zu welchem Terminal zugeordnet sind."> <i class="bi bi-info-circle"></i></i></button>
                                         <script>
@@ -256,18 +262,16 @@ header('Access-Control-Allow-Origin: *');
                                         </script>
                                         <button id="btn_hinzufuegen" type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_hinzufuegen"
-                                            class="btn btn-success align-items-stretch m-0 würfelbtn">
+                                            class="btn btn-success align-items-stretch m-0 adddelLogoutbtn">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <button id="btn_loeschen" type="button"
-                                            class="btn btn-danger align-items-stretch m-0 würfelbtn"
+                                            class="btn btn-danger align-items-stretch m-0 adddelLogoutbtn"
                                             onclick="Beziehungen.remove_generate(Infoseite.selectedID, Beziehungen.temp_list_remove, 'delete_Relation')">
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
-
                                     <div class="w-100 overflow-auto border rounded-3">
-
                                         <div style="height: 120px; overflow-y: auto;">
                                             <table class="table table-hover w-100 mb-0 p-0">
                                                 <thead class="table-light"
@@ -289,11 +293,10 @@ header('Access-Control-Allow-Origin: *');
                     </div>
                     <div class="mt-3"></div>
                 </div>
-
             </div>
         </div>
     </div>
-    <?php include '../assets/scripts.html'; ?>
+     <?php include '../assets/scripts.html'; ?>
 </body>
 
 </html>

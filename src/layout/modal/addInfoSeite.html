@@ -1,13 +1,11 @@
 <div class="modal fade" id="addInfoSeite" tabindex="-1" role="dialog" aria-labelledby="addInfoSeiteLabel"
-    aria-hidden="true">
+    >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addInfoSeiteLabel">Infoseite hinzufügen</h5>
-
             </div>
             <div class="modal-body">
-
                 <form action="../php/movePic.php" method="post" enctype="multipart/form-data" id="infoSeiteForm">
                     <div class="d-flex justify-content-center">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
@@ -139,7 +137,7 @@
         var Youtube = document.getElementById('YoutubeContainer');
         var datai = document.getElementById('dataiContainer');
         if (selectedValue === 'yt') {
-            resetAll();
+            Template.resetAll();
             Youtube.classList.remove('hidden');
             datai.classList.add('hidden');
             if (fileInput) {
@@ -147,7 +145,7 @@
                 fileInput.value = '';
             } if (ytInput) ytInput.disabled = false;
         } else if (selectedValue === 'img') {
-            resetAll();
+            Template.resetAll();
             Youtube.classList.add('hidden');
             datai.classList.remove('hidden');
             if (fileInput) fileInput.disabled = false;

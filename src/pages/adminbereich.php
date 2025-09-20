@@ -27,7 +27,7 @@ if (isset($_COOKIE['isAdmin'])) {
 </head>
 <html>
 
-<body class="bg-light">
+<body >
     <?php include '../layout/header.php'; ?>
     <div class="container-fluid pt-3">
         <div class="col-md-12 text-center">
@@ -53,7 +53,7 @@ if (isset($_COOKIE['isAdmin'])) {
                         infoterminalSection.style.display = 'block';
                         userSection.style.display = 'none';
                     } else if (selector.value === 'user') {
-                        infoterminalSection.style.display = 'none';
+                        infoterminalSecation.style.display = 'none';
                         userSection.style.display = 'block';
                     }
                 }

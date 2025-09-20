@@ -9,6 +9,7 @@ include '../assets/links.html';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+ 
 </head>
 
 <body class="justify-content-center align-items-center d-flex vh-100">
@@ -20,7 +21,7 @@ include '../assets/links.html';
 
     </div>
 </body>
-
+  <?php include '../test/progressbar.php'; ?>
 </html>
 <script>
     var params = new URLSearchParams(window.location.search);
@@ -33,8 +34,8 @@ include '../assets/links.html';
                 document.getElementById("error-message").innerHTML = "<p>Reparaturarbeiten werden durchgeführt. Bitte haben Sie Geduld.</p>";
             });
     });
-
     setInterval(() => {
         window.location.href = "index.php?ip=" + ort;
     }, 10000);
+
 </script>

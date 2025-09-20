@@ -9,6 +9,7 @@ include '../assets/links.html';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 
 <body class="justify-content-center align-items-center d-flex vh-100">
@@ -18,8 +19,8 @@ include '../assets/links.html';
     <br>
      <div class="mt-4"></div>
     <div id="error-message">
-
     </div>
+ 
 </body>
 
 </html>
@@ -32,7 +33,13 @@ include '../assets/links.html';
                 document.getElementById("error-message").innerHTML = "<p>ihre IP-Adresse: " + data + " wurde nicht gefunden. Bitte kontaktieren Sie den Administrator.</p>";
             });
     });
+    //  startProgressBar(10000);
     setInterval(() => {
+
         window.location.href = "index.php";
     }, 10000);
+    startProgressBar(10000, '1');
+
+
+   
 </script>

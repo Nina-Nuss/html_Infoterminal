@@ -5,8 +5,6 @@ let json;
 let selectedCard = "";
 var anzeigebereichV = document.getElementById("anzeigebereichV");
 
-
-
 window.onload = async function () {
     console.log("window.onload von index.js läuft!");
     const ipAdress = await getSystemPath();
@@ -14,16 +12,14 @@ window.onload = async function () {
 
     if (document.getElementById("dokumente")) {
         try {
-            debugger;
+
             await Infoseite.update();
 
         } catch (error) {
             console.error("Fehler beim Erstellen der CardObjekte oder umgebungen:", error);
         }
     }
-
     try {
-        await Infoterminal.update();
         await Infoterminal.update();
         Infoterminal.erstelleSelector();
         Infoterminal.erstelleSelectorForCardObj();
@@ -43,8 +39,6 @@ window.onload = async function () {
     }
 
 }
-
-
 
 function getSekMin(ms) {
     const minutes = Math.floor(ms / 60000);
@@ -219,9 +213,6 @@ function showDateTime(type) {
     }
 }
 
-
-
-
 function findObj(list, id) {
     if (typeof id === "string") {
         var number = extractNumberFromString(id);
@@ -378,7 +369,58 @@ function uncheckAllTableCheckboxes() {
     }
     console.log(`${checkboxes.length} Tabellen-Checkboxes wurden ausgeschaltet`);
 }
+async function startProgressBar(ms, idbar) {
+    ms = ms || 10000; // ms → bestimmt Ladegeschwindigkeit (hier 20s)
+    const bar = document.createElement('div');
+    bar.classList.add('progress-bar');
+    bar.id = 'progress' + idbar;
+    const progress = document.createElement("div");
+    progress.classList.add('progress');
+    progress.appendChild(bar);
+    document.body.appendChild(progress);
+    const params = new URLSearchParams(window.location.search);
+    const timeParam = params.get('time');
+    if (timeParam && !isNaN(timeParam)) {
+        ms = parseInt(timeParam, 10);
 
+    }
+    bar.classList.remove('run');
+    bar.textContent = '';
+    bar.style.setProperty('--dur', ms + 'ms');
+    // Nächsten Frame starten
+    requestAnimationFrame(() => {
+        bar.classList.add('run');
+        setTimeout(() => {
+            bar.textContent = 'DFDF';
+        }, ms);
+    });
+}
+(function () {
+    debugger
+    try {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+        }else{
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+        }
+    } catch (e) { }
+})();
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('themeToggle')) {
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const root = document.documentElement;
+            debugger
+            if (root.getAttribute('dark') || root.getAttribute('data-bs-theme') === 'dark') {
+                root.setAttribute('data-bs-theme','light');
+                root.removeAttribute('data-bs-theme');
+                localStorage.removeItem('theme');
+            } else {
+                root.setAttribute('data-bs-theme','dark'); // oder: root.setAttribute('data-bs-theme','dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
 
+});
 
 

@@ -48,7 +48,7 @@ class Infoseite {
     htmlBody(umgebung) {
         let placeHolder;
         let icon;
-        debugger
+
         // Bestimme den korrekten Bildpfad basierend auf dem imagePath
         placeHolder = Infoseite.preparePlaceHolder(this.imagePath);
         icon = Infoseite.iconHTML(this.aktiv);
@@ -94,7 +94,7 @@ class Infoseite {
 
     static preparePlaceHolder(imagePath) {
         let placeHolder = '';
-        debugger
+
         // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
         const embedUrl = Infoseite.getEmbedUrl(imagePath);
         if (embedUrl) {
@@ -375,7 +375,7 @@ class Infoseite {
         }
     }
     static async update() {
-        debugger
+
         var delSchema = document.getElementById("deleteSchema")
         console.log("bin in delschema drin");
         if (delSchema != null) {
@@ -387,7 +387,7 @@ class Infoseite {
         console.log(this.list);
     }
     static async createCardObj() {
-        debugger
+
         console.log("createCardObj wurde aufgerufen");
         var delSchema = document.getElementById("deleteSchema")
         const response = await readDatabase("selectSchemas");
@@ -709,7 +709,7 @@ class Infoseite {
 
         var startDate = startDateID.value;
         var endDate = endDateID.value;
-        debugger;
+        ;
 
         if (startDate && endDate && startTime && endTime) {
             let startDateTime = combineDateTime(startDate, startTime);
@@ -876,9 +876,7 @@ function combineDateTime(date, time) {
 function formatDateToDayMonth(dateTimeStr) {
     // Erwartetes Format: "YYYY-MM-DD HH:MM"
     if (!dateTimeStr || typeof dateTimeStr !== "string") return "";
-
     if (dateTimeStr === "9999-12-31 00:00") return "";
-
     if (dateTimeStr.includes("T")) {
         const [datePart] = dateTimeStr.split("T");
         if (!datePart) return "";
@@ -962,7 +960,7 @@ async function meow(event, selectedValue, link, start, end) {
     console.log("Link:", link);
     console.log("Start:", start);
     console.log("End:", end);
-    debugger;
+    ;
     var start = Number(start);
     var end = Number(end);
     if (isNaN(start) || isNaN(end)) {
@@ -1010,14 +1008,12 @@ async function meow(event, selectedValue, link, start, end) {
         alert("Unbekannter Typ ausgewählt.");
         return;
     }
-
     // Gemeinsame Logik für Links
     const prefixedLink = prefix + validLink;
     console.log("Prefixed Link:", prefixedLink);
-
     try {
         await createInfoseiteObj(prefixedLink, selectedTime, aktiv, titel, description);
-        resetForm("infoSeiteForm");
+        Template.resetForm("infoSeiteForm");
         console.log("Infoseite wurde erfolgreich erstellt.");
     } catch (error) {
         console.error("Fehler beim Erstellen der Infoseite:", error);
@@ -1025,82 +1021,10 @@ async function meow(event, selectedValue, link, start, end) {
     }
 }
 
-function resetForm(formType) {
-    debugger
-    const form = document.getElementById(formType);
-    if (formType === "infoSeiteForm") {
-        resetAll(); // Alle Formularfelder zurücksetzen
-        selectTemplate("yt"); // Standardmäßig auf Bild-Template setzen
-        const modalElement = document.getElementById('addInfoSeite');
-        const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
-        modalInstance.hide();
-    }
-}
-
-function resetAll() {
-    let previewContainer = document.getElementById('previewContainer');
-    let idsTwo = ["imgPreview", "videoPreview"];
-    let idsOne = ["img", "youtubeUrl", "start", "end", "title", "description"];
-    idsOne.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.value = ''; // Setze den Wert jedes Elements zurück
-        }
-    });
-    idsTwo.forEach(element => {
-        const el = document.getElementById(element);
-        if (el) {
-            el.src = '#';
-            el.style.display = 'none';
-            el.alt = 'Bildvorschau';
-        }
-    });
-
-    if (previewContainer) {
-        previewContainer.style.display = 'none';
-    }
-    idsOne = null;
-    idsTwo = null;
-    previewContainer = null;
-}
-
-selectTemplate("yt"); // Standardmäßig auf YouTube-Template setzen
-function selectTemplate(template) {
-    debugger
-    var fileInput = document.getElementById('img');
-    var inputGroupSelect01 = document.getElementById('inputGroupSelect01');
-    var ytInput = document.getElementById('youtubeUrl');
-    var datai = document.getElementById('datai');
-    if(!inputGroupSelect01) return;
-    inputGroupSelect01.value = template; // Setze den Wert des Select-Elements
-    var selectedValue = template;
-    var Youtube = document.getElementById('YoutubeContainer');
-    var datai = document.getElementById('dataiContainer');
-    if (selectedValue === 'yt') {
-        resetAll();
-        Youtube.classList.remove('hidden');
-        datai.classList.add('hidden');
-        if (fileInput) {
-            fileInput.disabled = true;
-            fileInput.value = '';
-        } if (ytInput) ytInput.disabled = false;
-        inputGroupSelect01.dispatchEvent(new Event('change')); // Trigger das Change-Event
-    } else if (selectedValue === 'img') {
-        resetAll();
-        Youtube.classList.add('hidden');
-        datai.classList.remove('hidden');
-        if (fileInput) fileInput.disabled = false;
-        fileInput.value = '';
-        if (ytInput) {
-            ytInput.disabled = true; // optional
-        }
-        inputGroupSelect01.dispatchEvent(new Event('change')); // Trigger das Change-Event
-    }
-}
 
 
 async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description) {
-    debugger;
+    ;
     try {
         // Lokalen Dateinamen in den Infoseite einfügen
         const obj1 = new Infoseite(
@@ -1126,8 +1050,6 @@ async function createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, d
     } catch (error) {
         console.error("Fehler beim erstellen des Infoseite:", error);
     }
-
-
 }
 
 function checkYoutubeUrl(url) {
@@ -1162,7 +1084,7 @@ function prepareFormData(event) {
 }
 
 async function sendDatei(event) {
-    debugger;
+    ;
     let { formData, selectedTime, aktiv, titel, description } = prepareFormData(event); // Formulardaten vorbereiten
     const form = event.target.form;
     console.log("Selected Time:", selectedTime);
@@ -1183,11 +1105,15 @@ async function sendDatei(event) {
     }
     await createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description);
     form.reset(); // Formular zurücksetzen
-    resetForm("infoSeiteForm");
-
+    Template.resetForm("infoSeiteForm");
     return true;
 }
 
+window.addEventListener("load", function () {
+    if (Template) {
+        Template.selectTemplate("yt");
+    }
+});
 async function sendPicture(formData) {
     try {
         const response = await fetch("../php/movePic.php", {
@@ -1213,7 +1139,7 @@ async function sendPicture(formData) {
 }
 
 async function insertDatabase(cardObj) {
-    debugger;
+    ;
     // Erstellen eines JSON-Objekts
     const jsonData = {
         titel: cardObj.titel,

@@ -15,7 +15,8 @@ body {
 }
 
 .card-img-small {
-    max-height: 15vh;   /* oder z.B. 20vh, je nach gewünschter Größe */
+    max-height: 15vh;
+    /* oder z.B. 20vh, je nach gewünschter Größe */
     width: auto;
     width: 100%;
     height: 100%;
@@ -121,9 +122,9 @@ input[type="checkbox"] {
 .start-btn {
     border-width: 2px !important;
     border-color: 006c99 !important;
-    border-radius: 8px !important; 
+    border-radius: 8px !important;
 
-     
+
 }
 
 
@@ -166,7 +167,7 @@ input[type="checkbox"] {
 }
 
 .parallelogram {
-   box-shadow:
+    box-shadow:
         0 2px 4px 0 rgba(0, 0, 0, 0.2),
         0 3px 5px 0 rgba(0, 0, 0, 0.19),
         0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -199,6 +200,7 @@ label {
     background-color: #006b99 !important;
     color: white !important;
 }
+
 /* ...existing code... */
 
 /* Neue Klasse für aktiven Button-Zustand */
@@ -353,43 +355,58 @@ hr {
 }
 
 #tabelleDelete td {
-  padding: 5px; /* rem verwenden */
+    padding: 5px;
+    /* rem verwenden */
 }
 
 
 
 .btn-custom-outline {
     border-color: #006b99 !important;
-    background-color: rgba(255,255,255,0.952) !important;
+    background-color: rgba(255, 255, 255, 0.952) !important;
     color: #006b99 !important;
     transition: background-color .15s, color .15s;
 }
+
 .btn-custom-outline:hover,
 .btn-custom-outline:focus {
     background-color: #006b99 !important;
     color: #fff !important;
 }
+
 .center-bottom {
-  display: flex;
+    display: flex;
     justify-content: center;
 
-  bottom: 1rem; /* Abstand vom unteren Rand anpassen (z.B. 1rem, 2vh, etc.) */
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
+    bottom: 1rem;
+    /* Abstand vom unteren Rand anpassen (z.B. 1rem, 2vh, etc.) */
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
-.würfelbtn {
+
+.infobtn {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    padding: 1px !important;
+}
+
+.adddelLogoutbtn {
     width: 2.5rem !important;
-    height: auto !important;
-    padding: 7px !important;
+    height: 2.3rem !important;
+    padding: 0px !important;
 }
 
-.trashBtn{
+.trashBtn {
     width: 2.5rem !important;
     height: 1.9rem !important;
     border-radius: 0.25rem !important;
+    inline-size: auto;
     padding: 7px !important;
+    display: flex;
+    justify-content: center;
+    align-items: top;
 }
 
 
@@ -397,4 +414,25 @@ hr {
     background-color: #006c99;
     border: 2px solid #006c99;
     border-radius: 0.25rem;
+}
+
+
+.progress {
+    height: 1vh;
+    width: 500px;
+}
+
+@keyframes fill {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* Dauer wird per CSS-Variable --dur gesetzt */
+.progress-bar.run {
+    animation: fill var(--dur, 0ms) linear forwards;
 }

@@ -1,6 +1,5 @@
 
 <div id="rowForCards" class="col-md-2 text-center">
-
         <div class="d-flex flex-column" >
             <select id="selectorInfoterminalForCards" class="form-select shadow-sm" aria-label="Default select example">
                 <option selected>Open this select menu</option>
@@ -10,7 +9,6 @@
             </select>
         
         </div>
-   
         <!-- Card Objecte -->
      <div id="dokumente" class="w-100">
             <h2 id="titelUmgebung" class="text-center"></h2>
