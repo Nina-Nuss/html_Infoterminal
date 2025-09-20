@@ -25,10 +25,6 @@ header('Access-Control-Allow-Origin: *');
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<script>
-
-</script>
-
 <body>
    
     <!-- <?php include '../assets/darkmode.html'; ?>  -->
@@ -99,7 +95,6 @@ header('Access-Control-Allow-Origin: *');
                                             <div id="panelForDateTime" class="w-100">
                                                 <div id="dateTimeInfoPanel ">
                                                     <div class="d-flex align-items-center mb-3">
-
                                                         <div class="d-flex  align-items-center">
                                                             <i class="fas fa-calendar-alt me-1"></i>
                                                             <span>Datum:</span>
@@ -197,7 +192,7 @@ header('Access-Control-Allow-Origin: *');
                                                         </select>
                                                         <button id="openTerminalBtn"
                                                             class="btn start-btn btn-sm trashBtn "
-                                                            style="border-color: #08445f;  background-color: rgba(255, 255, 255, 0.952); width: 2vw;">
+                                                            style="width: 2vw;">
                                                             <i class="fas fa-external-link-alt"></i>
                                                         </button>
                                                     </div>
@@ -210,7 +205,6 @@ header('Access-Control-Allow-Origin: *');
                                                             <div class="d-flex align-items-center" style="margin-left: 1rem;">
                                                             </div>
                                                         </div>
-
                                                         <div class="col-6">
                                                             <div class="d-flex align-items-center" style="margin-left: 1rem;">
 
@@ -227,7 +221,6 @@ header('Access-Control-Allow-Origin: *');
                                                     style="display:none;">
                                                     <div class="row g-2 justify-content-center">
                                                         <div class="col-6 d-flex align-items-center">
-
                                                         </div>
                                                         <div class="col-6 d-flex align-items-center">
                                                         </div>
@@ -238,7 +231,6 @@ header('Access-Control-Allow-Origin: *');
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-md-3" id="bildschirmVerwaltung">
                             <div class="card h-100">

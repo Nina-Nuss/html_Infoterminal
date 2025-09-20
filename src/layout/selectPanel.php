@@ -5,11 +5,11 @@
             <div class="d-flex justify-content-center gap-2 w-100" id="startBtns">
                 <button type="button" id="infotherminalBereich"
                     class="btn text-dark start-btn"
-                    style="background-color: rgba(255, 255, 255, 0.952); border-color: #006b99;">Infoterminal</button>
+                    >Infoterminal</button>
                 <button id="templates" type="button" class="btn text-dark start-btn"
-                    style="border-color: #006b99; background-color: rgba(255, 255, 255, 0.952);">Templates</button>
+                  >Templates</button>
                 <button id="adminBereich" type="button" class="btn text-dark start-btn"
-                    style="border-color: #006b99; background-color: rgba(255, 255, 255, 0.952);">Administration</button>
+                    >Administration</button>
             </div>
             <div class="d-flex align-items-center justify-content-center position-absolute ms-auto end-0 me-4">
                 <i id="themeToggle" class="bi bi-sun me-2" style="font-size: 1.5rem; cursor: pointer;" aria-label="Theme wechseln" title="Theme wechseln"></i>
@@ -28,7 +28,6 @@
                 </div>
 
                 <button id="logout" type="button" onclick="logout()" class="btn text-dark start-btn adddelLogoutbtn"
-                    style="border-color: #006b99;  background-color: rgba(255, 255, 255, 0.952);"
                     aria-label="Logout" title="Logout">
                     <i class="bi bi-box-arrow-right"></i>
                 </button>

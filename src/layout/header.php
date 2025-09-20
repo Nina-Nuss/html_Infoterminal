@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
    
-    <?php include '../assets/links.html'; ?>
+   
 </head>
 
 <style>

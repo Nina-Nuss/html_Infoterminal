@@ -1105,15 +1105,14 @@ async function sendDatei(event) {
     }
     await createInfoseiteObj(serverImageName, selectedTime, aktiv, titel, description);
     form.reset(); // Formular zurücksetzen
+    debugger
     Template.resetForm("infoSeiteForm");
     return true;
 }
 
-window.addEventListener("load", function () {
-    if (Template) {
-        Template.selectTemplate("yt");
-    }
-});
+if (Template) {
+    Template.selectTemplate("yt");
+}
 async function sendPicture(formData) {
     try {
         const response = await fetch("../php/movePic.php", {
@@ -1137,7 +1136,6 @@ async function sendPicture(formData) {
         return "";
     }
 }
-
 async function insertDatabase(cardObj) {
     ;
     // Erstellen eines JSON-Objekts

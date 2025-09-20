@@ -72,13 +72,14 @@ class Template {
         previewContainer = null;
     }
     static resetForm(formType) {
-        const form = document.getElementById(formType);
+        debugger
         if (formType === "infoSeiteForm") {
             this.resetAll(); // Alle Formularfelder zurücksetzen
-
             const modalElement = document.getElementById('addInfoSeite');
             const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
             modalInstance.hide();
         }
     }
+    
 }
+
