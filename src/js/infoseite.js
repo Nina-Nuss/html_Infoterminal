@@ -94,7 +94,6 @@ class Infoseite {
 
     static preparePlaceHolder(imagePath) {
         let placeHolder = '';
-
         // Prüfe, ob es eine unterstützte URL ist (YouTube, TikTok, Instagram usw.)
         const embedUrl = Infoseite.getEmbedUrl(imagePath);
         if (embedUrl) {
@@ -593,11 +592,10 @@ class Infoseite {
         var endDate = document.getElementById("endDate");
         var startTimeRange = document.getElementById("startTimeRange");
         var endTimeRange = document.getElementById("endTimeRange");
+        var ytStart = document.getElementById("startyt");
+        var ytEnd = document.getElementById("endyt");
 
-        Infoseite.removeChanges() // Zuerst alle Felder leeren
-
-
-
+        Infoseite.removeChanges()
         console.log("Startzeit:", cardObj.startTime);
         console.log("Endzeit:", cardObj.endTime);
         console.log("Startdatum:", cardObj.startDate);
@@ -614,6 +612,12 @@ class Infoseite {
         let startDateStr = String(cardObj.startDate);
         let endDateStr = String(cardObj.endDate);
 
+        if (cardObj.imagePath.includes("&start=") || cardObj.imagePath.includes("&end=")) {
+            var start = cardObj.imagePath.split("&start=")[1].split("&")[0];
+            var end = cardObj.imagePath.split("&end=")[1].split("&")[0];
+            if (ytStart) ytStart.value = start;
+            if (ytEnd) ytEnd.value = end;
+        }
         if (startDateStr.includes("T")) {
             // Es ist ein "T" im String enthalten
             console.log('"T" ist in startDate enthalten:', startDateStr);
@@ -723,6 +727,7 @@ class Infoseite {
                 return;
             }
             if (startDateTime < new Date(getTodayDate() + "T" + startTime)) {
+
                 return;
             }
             console.log(new Date(getTodayDate() + "T" + startTime));
@@ -860,7 +865,6 @@ class Infoseite {
 
 }
 window.addEventListener("load", async function () {
-
     const templatebereich = document.getElementById("templateBereich");
     if (templatebereich !== null) {
         templatebereich.addEventListener("click", async function (event) {
@@ -1110,9 +1114,7 @@ async function sendDatei(event) {
     return true;
 }
 
-if (Template) {
-    Template.selectTemplate("yt");
-}
+
 async function sendPicture(formData) {
     try {
         const response = await fetch("../php/movePic.php", {
@@ -1239,7 +1241,6 @@ function erstelleFunktionForCardObj(objID) {
     const labelForSelectSchema = document.querySelectorAll('[id^="label"]');
     const allCardObj = document.querySelectorAll(`[id^="cardObjekt"]`)
     Infoseite.überprüfenÄnderungen();
-
     if (checkbox.checked) {
         console.log("moew uwu kabum omi");
         const id = extractNumberFromString(checkbox.id);
@@ -1248,20 +1249,16 @@ function erstelleFunktionForCardObj(objID) {
         Infoseite.deaktiviereAllElements(false)
         Infoseite.loadChanges(obj); // Load changes for the selected Infoseite
         // Infoseite.DateTimeHandler(obj);
-
         cardObj.style.border = "2px solid #006c99";
         cardObj.style.transition = "border 0.2s ease-in-out";
         cardObj.style.borderRadius = "8px";
         const cardHeader = document.getElementById("cardHeader" + id);
         cardHeader.style.backgroundColor = "#006c99";
-
         cbForSelectSchema.forEach(cb => {
-            console.log(id + " " + extractNumberFromString(cb.id));
             if (id !== extractNumberFromString(cb.id)) {
                 cb.checked = false;
             }
         });
-
         allCardObj.forEach(cardObj => {
             const cardHeader = document.getElementById("cardHeader" + extractNumberFromString(cardObj.id));
             if (id !== extractNumberFromString(cardObj.id)) {
@@ -1288,9 +1285,7 @@ function erstelleFunktionForCardObj(objID) {
         cardObj.style.transition = "border 0.2s ease-in-out";
         const cardHeader = document.getElementById("cardHeader" + objID);
         cardHeader.style.backgroundColor = "#ffffff";
-
         console.log("Checkbox mit ID " + objID + " wurde deaktiviert.");
-
         Infoseite.deaktiviereAllElements(true)
         // labelForSelectSchema.forEach(label => {
         //     label.innerHTML = ""; // Clear the label text for unchecked checkboxes

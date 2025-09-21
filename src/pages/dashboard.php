@@ -23,7 +23,7 @@ header('Access-Control-Allow-Origin: *');
 <head>
     <?php include '../assets/links.html'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>Infoterminal - Dashboard</title>
 </head>
 <body>
    
@@ -174,10 +174,10 @@ header('Access-Control-Allow-Origin: *');
                                                             <i class="fab fa-youtube me-2"></i> Video 
                                                         </label>
                                                         <span class="input-group-text input-group-sm">von</span>
-                                                        <input type="text" id="start" class="form-control form-control-sm me-2" placeholder="Sekunden" value=""
+                                                        <input type="text" id="startyt" class="form-control form-control-sm me-2" placeholder="Sekunden" value=""
                                                             aria-label="Sekunden" aria-describedby="addon-wrapping">
                                                         <span class="input-group-text input-group-sm">bis</span>
-                                                        <input type="text" id="end" class="form-control form-control-sm" placeholder="Sekunden" value=""
+                                                        <input type="text" id="endyt" class="form-control form-control-sm" placeholder="Sekunden" value=""
                                                             aria-label="Sekunden" aria-describedby="addon-wrapping">
                                                     </div>
                                                 </div>

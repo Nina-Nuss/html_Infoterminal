@@ -40,10 +40,13 @@ CREATE table templates (
     bild4 VARCHAR(255),
     bild5 VARCHAR(255),
     bild6 VARCHAR(255),
+    bild7 VARCHAR(255),
+    bild8 VARCHAR(255),
     video1 VARCHAR(255),
     video2 VARCHAR(255),
     video3 VARCHAR(255),
     video4 VARCHAR(255),
+
     CONSTRAINT FK_templates_schemas FOREIGN KEY (fk_schema_id)
         REFERENCES schemas(id)
         ON DELETE CASCADE
@@ -64,6 +67,7 @@ CREATE TABLE schemas (
     dateAktiv VARCHAR(1), 
     titel VARCHAR(50),
     beschreibung VARCHAR(255),
+    template_Art VARCHAR(50),
     CONSTRAINT PK_schemas PRIMARY KEY (id)  -- <- Klammer fehlte hier
 );
 

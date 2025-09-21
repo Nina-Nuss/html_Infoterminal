@@ -83,3 +83,7 @@ class Template {
     
 }
 
+
+if (Template) {
+    Template.selectTemplate("yt");
+}

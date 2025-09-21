@@ -214,6 +214,7 @@ function showDateTime(type) {
 }
 
 function findObj(list, id) {
+    debugger
     if (typeof id === "string") {
         var number = extractNumberFromString(id);
     } else {
