@@ -28,25 +28,8 @@ CREATE table templates (
     id INT NOT NULL IDENTITY(1,1),
     fk_schema_id INT NOT NULL,
     templateName VARCHAR(50),
-    text1 VARCHAR(255),
-    text2 VARCHAR(255),
-    text3 VARCHAR(255),
-    text4 VARCHAR(255),
-    text5 VARCHAR(255),
-    text6 VARCHAR(255),
-    bild1 VARCHAR(255),
-    bild2 VARCHAR(255),
-    bild3 VARCHAR(255),
-    bild4 VARCHAR(255),
-    bild5 VARCHAR(255),
-    bild6 VARCHAR(255),
-    bild7 VARCHAR(255),
-    bild8 VARCHAR(255),
-    video1 VARCHAR(255),
-    video2 VARCHAR(255),
-    video3 VARCHAR(255),
-    video4 VARCHAR(255),
-
+    typ VARCHAR(50),
+    inhalt VARCHAR(255),
     CONSTRAINT FK_templates_schemas FOREIGN KEY (fk_schema_id)
         REFERENCES schemas(id)
         ON DELETE CASCADE
