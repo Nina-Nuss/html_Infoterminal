@@ -549,7 +549,6 @@ class Infoseite {
     }
 
     static prepareObjForUpdate(obj) {
-
         // Hier können Sie das Objekt in den Zustand für die Aktualisierung versetzen
         console.log(obj.selectedTime);
         // var timerSelect = document.getElementById("timerSelectRange");
@@ -1284,7 +1283,7 @@ function erstelleFunktionForCardObj(objID) {
         cardObj.style.border = "none";
         cardObj.style.transition = "border 0.2s ease-in-out";
         const cardHeader = document.getElementById("cardHeader" + objID);
-        cardHeader.style.backgroundColor = "#ffffff";
+        cardHeader.style.backgroundColor = "";
         console.log("Checkbox mit ID " + objID + " wurde deaktiviert.");
         Infoseite.deaktiviereAllElements(true)
         // labelForSelectSchema.forEach(label => {
