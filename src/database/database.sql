@@ -22,21 +22,6 @@ CREATE TABLE infotherminals (
     ipAdresse VARCHAR(50),
     CONSTRAINT PK_infotherminals PRIMARY KEY (id)
 );
-
-
-CREATE table templates (
-    id INT NOT NULL IDENTITY(1,1),
-    fk_schema_id INT NOT NULL,
-    templateName VARCHAR(50),
-    typ VARCHAR(50),
-    inhalt VARCHAR(255),
-    CONSTRAINT FK_templates_schemas FOREIGN KEY (fk_schema_id)
-        REFERENCES schemas(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-
-
 CREATE TABLE schemas (
     id INT NOT NULL IDENTITY(1,1),
     imagePath VARCHAR(255),
@@ -50,8 +35,19 @@ CREATE TABLE schemas (
     dateAktiv VARCHAR(1), 
     titel VARCHAR(50),
     beschreibung VARCHAR(255),
-    template_Art VARCHAR(50),
     CONSTRAINT PK_schemas PRIMARY KEY (id)  -- <- Klammer fehlte hier
+);
+
+CREATE table templates (
+    id INT NOT NULL IDENTITY(1,1),
+    fk_schema_id INT NOT NULL,
+    templateName VARCHAR(50),
+    typ VARCHAR(50),
+    inhalt VARCHAR(255),
+    CONSTRAINT FK_templates_schemas FOREIGN KEY (fk_schema_id)
+        REFERENCES schemas(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE infotherminal_schema (
